@@ -1,0 +1,86 @@
+{
+  "video_id": "2ed89530ecc2",
+  "type": "article",
+  "url": "https://levelup.gitconnected.com/building-the-7-layers-of-a-production-grade-agentic-ai-system-37ee5d941f1c",
+  "title": "Building the 7 Layers of a Production-Grade Agentic AI System",
+  "channel": "Fareed Khan",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-02-18T20:30:16.421714",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Agents",
+  "token_usage": {
+    "input_tokens": 647,
+    "output_tokens": 614,
+    "total_tokens": 1261,
+    "cost_usd": 0.0112,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Agents",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction to Production-Grade Agentic AI Architecture",
+        "key_points": [
+          "Modern agentic AI systems are built as well-defined architectural layers, not single services",
+          "Each layer handles specific concerns: agent orchestration, memory management, security, scalability, fault handling",
+          "Production-grade systems combine layers for reliability, observability, and safety under real-world workloads"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Critical Monitoring Aspects",
+        "key_points": [
+          "Agent behavior monitoring: reasoning accuracy, tool usage correctness, memory consistency, safety boundaries, context handling",
+          "System reliability monitoring: latency, availability, throughput, cost efficiency, failure recovery, dependency health",
+          "Both aspects essential for operating multi-agent systems reliably at scale"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Seven-Layer Architecture Overview",
+        "key_points": [
+          "Article promises to cover 7 core architectural layers",
+          "Includes Service Layer, Middleware, Context Management",
+          "Focus on building production-ready agentic systems"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Architectural Framework for Production-Grade Agentic AI Systems",
+      "takeaways": [
+        "Production agentic AI requires layered architecture rather than monolithic design",
+        "Two critical monitoring dimensions: agent behavior and system reliability",
+        "Seven distinct layers needed for production deployment",
+        "Each layer addresses specific operational concerns like security, scalability, and fault tolerance"
+      ],
+      "concepts": [
+        "Layered architecture for AI agents",
+        "Agent orchestration",
+        "Memory management in AI systems",
+        "Production monitoring for AI agents",
+        "Multi-agent system reliability",
+        "Context management",
+        "Service layer design"
+      ],
+      "actionable": [
+        "Implement separate layers for different system concerns instead of monolithic agent design",
+        "Set up monitoring for both agent behavior and system performance metrics",
+        "Design fault handling and recovery mechanisms for each architectural layer",
+        "Plan for scalability and security controls from the architecture level"
+      ]
+    }
+  },
+  "article_text_length": 1390,
+  "cover": "https://miro.medium.com/v2/resize:fit:1200/1*GB6tXauVBaHVGDE4L_FkYg.png"
+}

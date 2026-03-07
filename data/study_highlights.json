@@ -1,0 +1,36 @@
+{
+  "highlights": [
+    {
+      "id": "a2899737-d6ae-494f-a1b2-4ec320771f2f",
+      "article_id": "18bdf6ac70bb",
+      "text": "Chrome MCP for browser control",
+      "color": "green",
+      "note": "",
+      "added_at": "2026-02-18T19:27:35.717507"
+    },
+    {
+      "id": "754faba5-0d2d-4b36-9ffe-46c898356853",
+      "article_id": "18bdf6ac70bb",
+      "text": "Processes that main Claude can delegate tasks to with limited scopes",
+      "color": "green",
+      "note": "",
+      "added_at": "2026-02-18T19:27:54.266655"
+    },
+    {
+      "id": "877b7fa0-81de-40e7-9ea2-835fa39576e9",
+      "article_id": "cddfa4a4dcc6",
+      "text": "工程师专注于系统、脚手架和杠杆作用，而非直接编码",
+      "color": "green",
+      "note": "",
+      "added_at": "2026-02-19T21:11:56.237082"
+    },
+    {
+      "id": "d71b7b24-54fe-4a36-9644-6182f8a6a2d7",
+      "article_id": "adcaaa024822",
+      "text": "Grep工具",
+      "color": "green",
+      "note": "",
+      "added_at": "2026-03-05T14:34:32.254853"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "video_id": "adcaaa024822",
+  "type": "article",
+  "url": "https://x.com/trq212/status/2027463795355095314",
+  "title": "Thariq on X: \"Lessons from Building Claude Code: Seeing like an Agent \" / X",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-05T19:42:29.205730",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Agents",
+  "token_usage": {
+    "input_tokens": 2272,
+    "output_tokens": 1030,
+    "total_tokens": 3302,
+    "cost_usd": 0.0223,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Agents",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction: Agent Action Space Design",
+        "key_points": [
+          "Building agent harness requires constructing action space",
+          "Claude acts through Tool Calling with primitives like bash, skills, code execution",
+          "Tool design should match agent's abilities - 'see like an agent'",
+          "Framework: imagine solving math problem with different tools (paper, calculator, computer)"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "AskUserQuestion Tool Evolution",
+        "key_points": [
+          "Goal: improve Claude's elicitation abilities and reduce friction",
+          "Attempt 1: Added questions to ExitPlanTool - caused confusion",
+          "Attempt 2: Modified markdown output format - unreliable",
+          "Attempt 3: Dedicated AskUserQuestion tool - successful, Claude liked using it"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Tasks vs Todos: Adapting to Model Capabilities",
+        "key_points": [
+          "Initially used TodoWrite tool with system reminders every 5 turns",
+          "As models improved, todo lists became limiting rather than helpful",
+          "Replaced with Task Tool for better subagent coordination",
+          "Tasks support dependencies, updates across subagents, and modification"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Search Interface and Context Building",
+        "key_points": [
+          "Evolution from RAG vector database to Grep tool",
+          "Claude became better at building its own context vs being given context",
+          "Progressive disclosure pattern through Agent Skills",
+          "Claude can now do nested search across multiple file layers"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Progressive Disclosure Example: Guide Agent",
+        "key_points": [
+          "Claude Code has ~20 tools, high bar for adding new ones",
+          "Instead of system prompt bloat, used progressive disclosure",
+          "Created Claude Code Guide subagent for self-documentation queries",
+          "Adds functionality without adding tools to main agent"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Conclusion: Art vs Science",
+        "key_points": [
+          "Tool design is art, not rigid science",
+          "Depends on model, goal, and environment",
+          "Requires experimentation, reading outputs, trying new approaches",
+          "Key principle: 'see like an agent'"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Lessons from Building Claude Code: Agent Tool Design Philosophy",
+      "takeaways": [
+        "Agent tool design should match the model's capabilities and evolve as models improve",
+        "Progressive disclosure allows adding functionality without tool bloat",
+        "Successful tools are ones the model actually understands and likes to use",
+        "Context building tools are more effective when agents search rather than receive pre-built context",
+        "Tool design is iterative and requires constant experimentation and observation"
+      ],
+      "concepts": [
+        "Agent action space construction",
+        "Tool calling in Claude API",
+        "Progressive disclosure pattern",
+        "Elicitation improvement",
+        "Context building vs context provision",
+        "Subagent coordination",
+        "Model capability adaptation"
+      ],
+      "actionable": [
+        "Design tools that match your model's specific capabilities",
+        "Use progressive disclosure to add functionality without adding tools",
+        "Experiment with tool designs and observe model behavior closely",
+        "Replace tools that become limiting as model capabilities improve",
+        "Consider subagents for specialized tasks rather than adding more tools",
+        "Let agents build their own context through search tools rather than providing pre-built context"
+      ]
+    }
+  },
+  "article_text_length": 8618,
+  "cover": "https://pbs.twimg.com/media/HCLxeR3acAAf2R9.jpg"
+}

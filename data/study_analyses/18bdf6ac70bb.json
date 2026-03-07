@@ -1,0 +1,353 @@
+{
+  "video_id": "18bdf6ac70bb",
+  "type": "article",
+  "url": "https://x.com/affaanmustafa/status/2012378465664745795",
+  "title": "cogsec on X: \"The Shorthand Guide to Everything Claude Code\" / X",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-02-17T20:45:05.711940",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Coding",
+  "token_usage": {
+    "input_tokens": 4586,
+    "output_tokens": 1699,
+    "total_tokens": 6285,
+    "cost_usd": 0.0763,
+    "model": "claude-sonnet-4-20250514",
+    "translate_tokens": {
+      "input_tokens": 1391,
+      "output_tokens": 2196,
+      "cost_usd": 0.0371
+    }
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Coding",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction and Background",
+        "key_points": [
+          "Author has 10 months of daily Claude Code usage experience",
+          "Won Anthropic x Forum Ventures hackathon using Claude Code",
+          "Built PMFProbe project for startup validation"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Skills and Commands System",
+        "key_points": [
+          "Skills operate like rules for specific workflows and scopes",
+          "Commands are executable via slash commands (/refactor-clean, /tdd, /e2e)",
+          "Skills stored in ~/.claude/skills, commands in ~/.claude/commands",
+          "Can chain multiple commands together in single prompt",
+          "Codemap updater skill helps Claude navigate codebase without burning context"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Hooks System",
+        "key_points": [
+          "Trigger-based automations for specific events",
+          "Hook types: PreToolUse, PostToolUse, UserPromptSubmit, Stop, PreCompact, Notification",
+          "Example: tmux reminder before long-running commands",
+          "Use hookify plugin to create hooks conversationally instead of manual JSON",
+          "Hooks constrained to tool calls and lifecycle events"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Subagents",
+        "key_points": [
+          "Processes that main Claude can delegate tasks to with limited scopes",
+          "Can run in background or foreground, freeing up context",
+          "Examples: planner.md, architect.md, tdd-guide.md, code-reviewer.md",
+          "Can be sandboxed with specific tool permissions",
+          "Work well with skills for autonomous task execution"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Rules and Memory",
+        "key_points": [
+          "Rules folder holds .md files with best practices Claude should always follow",
+          "Two approaches: single CLAUDE.md or modular rules folder",
+          "Examples: security.md, coding-style.md, testing.md, git-workflow.md",
+          "Rules include: no emojis in codebase, no purple hues in frontend, always test before deployment"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "MCPs (Model Context Protocol)",
+        "key_points": [
+          "Connect Claude to external services directly",
+          "Prompt-driven wrapper around APIs for more flexibility",
+          "Examples: Supabase MCP for SQL queries, Chrome MCP for browser control",
+          "Critical: context window management - be selective with enabled MCPs",
+          "Rule of thumb: 20-30 MCPs in config, keep under 10 enabled"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Plugins",
+        "key_points": [
+          "Package tools for easy installation instead of manual setup",
+          "Can combine skills + MCP or bundle hooks/tools together",
+          "LSP plugins provide real-time type checking and intelligent completions",
+          "Install via plugin marketplace commands",
+          "Same context window warning applies as with MCPs"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Tips and Tricks",
+        "key_points": [
+          "Keyboard shortcuts: Ctrl+U (delete line), ! (bash prefix), @ (search files), / (slash commands)",
+          "Parallel workflows: /fork for non-overlapping tasks, git worktrees for overlapping",
+          "tmux for long-running commands and log monitoring",
+          "mgrep > grep for better search capabilities",
+          "Useful commands: /rewind, /statusline, /checkpoints, /compact"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Editor Integration",
+        "key_points": [
+          "Author prefers Zed editor for Claude Code workflow",
+          "Zed benefits: Agent Panel Integration, Rust performance, CMD+Shift+R command palette",
+          "VSCode/Cursor also viable with terminal format or extension",
+          "Split screen setup: terminal with Claude Code + editor",
+          "Enable auto-save, git integration, and file watchers"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Author's Complete Setup",
+        "key_points": [
+          "14 plugins installed but only 4-5 enabled at a time",
+          "14 MCPs configured but only 5-6 enabled per project",
+          "Custom hooks for tmux reminders, formatting, TypeScript checks",
+          "Structured rules and subagents for different concerns",
+          "Custom status line showing user, directory, git branch, context %, model, time, todos"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Complete Guide to Advanced Claude Code Setup and Optimization",
+      "takeaways": [
+        "Context window management is critical - be selective with enabled MCPs and plugins",
+        "Skills, hooks, and subagents create powerful automation workflows",
+        "Parallel execution through forking and git worktrees improves productivity",
+        "Editor integration enhances the Claude Code experience significantly",
+        "Structured configuration with rules, agents, and hooks enables sophisticated AI-assisted development"
+      ],
+      "concepts": [
+        "Claude Code Skills and Commands",
+        "Hook-based automation system",
+        "Subagent delegation and scoping",
+        "Model Context Protocol (MCP) integration",
+        "Context window optimization",
+        "Plugin ecosystem management",
+        "Git worktree parallel workflows",
+        "Editor integration patterns"
+      ],
+      "actionable": [
+        "Set up modular rules structure in ~/.claude/rules/",
+        "Create custom skills for repetitive workflows",
+        "Implement hooks for automatic formatting and validation",
+        "Configure subagents with limited tool permissions",
+        "Enable only essential MCPs per project to preserve context",
+        "Use tmux for long-running command monitoring",
+        "Set up parallel workflows with /fork and git worktrees",
+        "Integrate with preferred editor for real-time file tracking"
+      ]
+    }
+  },
+  "article_text_length": 15290,
+  "cover": "/api/study/frame/18bdf6ac70bb/thumbnail.png",
+  "analysis_zh": {
+    "category": "AI Coding",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "介绍和背景",
+        "key_points": [
+          "作者拥有10个月的Claude Code日常使用经验",
+          "使用Claude Code赢得了Anthropic x Forum Ventures黑客马拉松",
+          "构建了PMFProbe项目用于初创公司验证"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "技能和命令系统",
+        "key_points": [
+          "技能像特定工作流程和范围的规则一样运作",
+          "命令可通过斜杠命令执行（/refactor-clean, /tdd, /e2e）",
+          "技能存储在~/.claude/skills，命令存储在~/.claude/commands",
+          "可以在单个提示中链接多个命令",
+          "代码映射更新器技能帮助Claude导航代码库而不消耗上下文"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "钩子系统",
+        "key_points": [
+          "针对特定事件的基于触发器的自动化",
+          "钩子类型：PreToolUse、PostToolUse、UserPromptSubmit、Stop、PreCompact、Notification",
+          "示例：长时间运行命令前的tmux提醒",
+          "使用hookify插件通过对话创建钩子，而不是手动JSON",
+          "钩子限制在工具调用和生命周期事件"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "子代理",
+        "key_points": [
+          "主Claude可以委托任务给具有有限范围的进程",
+          "可以在后台或前台运行，释放上下文",
+          "示例：planner.md、architect.md、tdd-guide.md、code-reviewer.md",
+          "可以用特定工具权限进行沙盒化",
+          "与技能配合良好，实现自主任务执行"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "规则和记忆",
+        "key_points": [
+          "规则文件夹包含Claude应始终遵循的最佳实践.md文件",
+          "两种方法：单个CLAUDE.md或模块化规则文件夹",
+          "示例：security.md、coding-style.md、testing.md、git-workflow.md",
+          "规则包括：代码库中不使用表情符号、前端不使用紫色色调、部署前始终测试"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "MCP（模型上下文协议）",
+        "key_points": [
+          "直接将Claude连接到外部服务",
+          "围绕API的提示驱动包装器，提供更多灵活性",
+          "示例：用于SQL查询的Supabase MCP、用于浏览器控制的Chrome MCP",
+          "关键：上下文窗口管理 - 选择性启用MCP",
+          "经验法则：配置中20-30个MCP，保持启用少于10个"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "插件",
+        "key_points": [
+          "打包工具以便于安装，而不是手动设置",
+          "可以组合技能 + MCP或捆绑钩子/工具",
+          "LSP插件提供实时类型检查和智能补全",
+          "通过插件市场命令安装",
+          "与MCP相同的上下文窗口警告适用"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "技巧和窍门",
+        "key_points": [
+          "键盘快捷键：Ctrl+U（删除行）、!（bash前缀）、@（搜索文件）、/（斜杠命令）",
+          "并行工作流：/fork用于非重叠任务，git worktrees用于重叠任务",
+          "tmux用于长时间运行的命令和日志监控",
+          "mgrep > grep提供更好的搜索能力",
+          "有用的命令：/rewind、/statusline、/checkpoints、/compact"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "编辑器集成",
+        "key_points": [
+          "作者偏好Zed编辑器用于Claude Code工作流",
+          "Zed优势：Agent Panel集成、Rust性能、CMD+Shift+R命令面板",
+          "VSCode/Cursor也可行，使用终端格式或扩展",
+          "分屏设置：带Claude Code的终端 + 编辑器",
+          "启用自动保存、git集成和文件监视器"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "作者的完整设置",
+        "key_points": [
+          "安装了14个插件，但一次只启用4-5个",
+          "配置了14个MCP，但每个项目只启用5-6个",
+          "用于tmux提醒、格式化、TypeScript检查的自定义钩子",
+          "针对不同关注点的结构化规则和子代理",
+          "显示用户、目录、git分支、上下文%、模型、时间、待办事项的自定义状态行"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "高级Claude Code设置和优化完整指南",
+      "takeaways": [
+        "上下文窗口管理至关重要 - 选择性启用MCP和插件",
+        "技能、钩子和子代理创建强大的自动化工作流",
+        "通过分叉和git worktrees的并行执行提高生产力",
+        "编辑器集成显著增强Claude Code体验",
+        "带有规则、代理和钩子的结构化配置实现复杂的AI辅助开发"
+      ],
+      "concepts": [
+        "Claude Code技能和命令",
+        "基于钩子的自动化系统",
+        "子代理委托和范围限定",
+        "模型上下文协议（MCP）集成",
+        "上下文窗口优化",
+        "插件生态系统管理",
+        "Git worktree并行工作流",
+        "编辑器集成模式"
+      ],
+      "actionable": [
+        "在~/.claude/rules/中设置模块化规则结构",
+        "为重复性工作流创建自定义技能",
+        "实现用于自动格式化和验证的钩子",
+        "配置具有有限工具权限的子代理",
+        "每个项目只启用必要的MCP以保留上下文",
+        "使用tmux进行长时间运行的命令监控",
+        "使用/fork和git worktrees设置并行工作流",
+        "与首选编辑器集成以实现实时文件跟踪"
+      ]
+    }
+  }
+}

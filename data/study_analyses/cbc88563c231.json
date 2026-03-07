@@ -1,0 +1,101 @@
+{
+  "video_id": "cbc88563c231",
+  "type": "article",
+  "url": "https://x.com/aiwarts/status/2022342787681939750",
+  "title": "卡尔的AI沃茨 on X: \"Seedance 2.0又出10种神级玩法，打奥特曼已经落后N个版本了\" / X",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-02-17T21:52:09.804784",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Products",
+  "token_usage": {
+    "input_tokens": 5115,
+    "output_tokens": 830,
+    "total_tokens": 5945,
+    "cost_usd": 0.0278,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Products",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Seedance 2.0 Overview and Basic Usage",
+        "key_points": [
+          "Seedance 2.0 supports 4 input modalities: image, video, audio, text",
+          "Maximum 12 files can be uploaded for mixed input",
+          "Available on JiMeng platform with video generation mode",
+          "Works with Seedream 5.0 Lite (4K image model) for enhanced results"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Advanced Video Generation Techniques",
+        "key_points": [
+          "Nine-panel storyboard generation for coherent video sequences",
+          "Action reference from uploaded videos (15-second limit, 720p recommended)",
+          "Character consistency across different scenes and styles",
+          "Smooth transitions between action sequences and camera movements"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Creative Applications and Use Cases",
+        "key_points": [
+          "Four-panel comic to animation conversion",
+          "Logo and text animation generation (AE-quality results)",
+          "Novel text-to-video adaptation with automatic subtitles",
+          "Script table interpretation for complete video production",
+          "Travel photo to vlog-style video conversion with location recognition"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Platform Ethics and Real Person Usage",
+        "key_points": [
+          "Initial controversy over real person replication capabilities",
+          "Platform implemented identity verification for personal content",
+          "Balance between creative freedom and privacy protection",
+          "Discussion on AI's ability to replicate public figures vs ordinary users"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Guide to Seedance 2.0: 10 Advanced Video Generation Techniques",
+      "takeaways": [
+        "Seedance 2.0 offers unprecedented multimodal video generation with 4 input types and 12-file capacity",
+        "The platform can generate professional-quality content from storyboards, scripts, and reference materials",
+        "Real person replication requires identity verification, showing platform's effort to balance innovation with ethics",
+        "Quality approaches professional video editing software like After Effects for text animations and effects"
+      ],
+      "concepts": [
+        "Multimodal AI video generation",
+        "Storyboard-to-video conversion",
+        "Character consistency in AI-generated content",
+        "Text-to-video adaptation",
+        "AI ethics in content creation"
+      ],
+      "actionable": [
+        "Use 720p video references under 15 seconds for best action replication results",
+        "Combine Seedream 5.0 Lite with Seedance 2.0 for enhanced character consistency",
+        "Add 'no BGM' or 'no subtitles' in prompts to control automatic additions",
+        "Verify identity on platform to use personal images and videos legally",
+        "Create detailed storyboards or scripts for complex video production needs"
+      ]
+    }
+  },
+  "article_text_length": 4688,
+  "cover": "/api/study/frame/cbc88563c231/thumbnail.png"
+}

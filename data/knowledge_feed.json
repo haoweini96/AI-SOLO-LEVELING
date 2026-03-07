@@ -1,0 +1,108 @@
+{
+  "generated": "2026-03-06T20:11:32",
+  "sections": [
+    {
+      "title": "Social",
+      "subtitle": "HN/AI News + YouTube",
+      "items": [
+        {
+          "title": "The cognitive security angle on AI: how LLMs affect human reasoning, trust, and epistemic autonomy",
+          "url": "https://x.com/affaanmustafa/status/2012378465664745795",
+          "source": "X · @affaanmustafa",
+          "cover": "https://pbs.twimg.com/profile_banners/1760623791380844544/1753468249/1500x500",
+          "subtitle": "2.7M views"
+        },
+        {
+          "title": "Amazon says Anthropic's Claude still OK for AWS customers to use",
+          "url": "https://www.cnbc.com/2026/03/06/amazon-aws-anthropic-claude-pentagon-blacklist.html",
+          "source": "Hacker News",
+          "cover": "https://image.cnbcfm.com/api/v1/image/108139648-1746134589250-GettyImages-2188101054.jpg?v=1772823184&amp;w=1920&amp;h=1080"
+        },
+        {
+          "title": "Gemini Exponential, Demis Hassabis' ‘Proto-AGI’ coming, but …",
+          "url": "https://www.youtube.com/watch?v=WHqaF4jbUYU",
+          "source": "YouTube",
+          "cover": "https://i4.ytimg.com/vi/WHqaF4jbUYU/hqdefault.jpg"
+        },
+        {
+          "title": "I BUILT A FULLY AUTOMATIC MANSPLAINER",
+          "url": "https://www.youtube.com/watch?v=xHi8PUIVyoo",
+          "source": "YouTube",
+          "cover": "https://i1.ytimg.com/vi/xHi8PUIVyoo/hqdefault.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Blogs",
+      "subtitle": "Medium + TDS",
+      "items": [
+        {
+          "title": "The 5 paid subscriptions I actually use in 2026 as a Staff Software Engineer",
+          "url": "https://medium.com/@jacobistyping/the-5-paid-subscriptions-i-actually-use-in-2026-as-a-staff-software-engineer-b4261c2e1012",
+          "source": "Medium",
+          "cover": "https://miro.medium.com/v2/resize:fit:800/1*abnkL8PKTea5iO2Cm5H-Zg.png"
+        },
+        {
+          "title": "Building the 7 Layers of a Production-Grade Agentic AI System",
+          "url": "https://medium.com/gitconnected/building-the-7-layers-of-a-production-grade-agentic-ai-system-37ee5d941f1c",
+          "source": "Medium",
+          "cover": "https://miro.medium.com/v2/resize:fit:800/1*5D9oYBd58pyjMkV_5-zXXQ.jpeg"
+        },
+        {
+          "title": "Why the Kalman Filter Beats Moving Averages in Trading",
+          "url": "https://medium.com/coding-nexus/why-the-kalman-filter-beats-moving-averages-in-trading-36d215a3f1b7",
+          "source": "Medium",
+          "cover": "https://miro.medium.com/v2/resize:fit:800/1*KCZtO6-wFqmTaMmbTMicbw.png"
+        },
+        {
+          "title": "What Makes Quantum Machine Learning “Quantum”?",
+          "url": "https://towardsdatascience.com/what-makes-quantum-machine-learning-quantum/",
+          "source": "Towards Data Science",
+          "cover": "https://towardsdatascience.com/wp-content/uploads/2026/03/pexels-markus-winkler-1430818-30901567-scaled-1.jpg"
+        },
+        {
+          "title": "The Data Team’s Survival Guide for the Next Era of Data",
+          "url": "https://towardsdatascience.com/the-data-teams-survival-guide-for-the-next-era-of-data/",
+          "source": "Towards Data Science",
+          "cover": "https://towardsdatascience.com/wp-content/uploads/2026/03/0_icZjHF5hnpQqpNX7.jpg"
+        }
+      ]
+    },
+    {
+      "title": "中文热点",
+      "subtitle": "36kr / 机器之心 / 量子位 / 品玩",
+      "items": [
+        {
+          "title": "超智算智能算力中心揭牌暨AI算力设备点亮仪式成功举行",
+          "url": "https://www.qbitai.com/2026/03/384561.html",
+          "source": "量子位",
+          "cover": "https://www.qbitai.com/wp-content/uploads/imgs/qbitai_icon.png"
+        },
+        {
+          "title": "Alibaba Cloud: AI and Cloud Computing Services",
+          "url": "https://www.aliyun.com",
+          "source": "品玩",
+          "cover": "https://img.alicdn.com/tfs/TB1xpNqnmslXu8jSZFuXXXg7FXa-1200-630.png_.webp"
+        },
+        {
+          "title": "2026年，AI初创全球化的「变与不变」｜沙龙招募",
+          "url": "https://www.qbitai.com/2026/03/384517.html",
+          "source": "量子位",
+          "cover": "https://www.qbitai.com/wp-content/uploads/imgs/qbitai_icon.png"
+        },
+        {
+          "title": "无垠拓界 基筑未来｜无问智科重磅发布业界首个物理AI数据基座平台",
+          "url": "https://www.qbitai.com/2026/03/384449.html",
+          "source": "量子位",
+          "cover": "https://www.qbitai.com/wp-content/uploads/imgs/qbitai_icon.png"
+        },
+        {
+          "title": "超智算智能算力中心揭牌暨AI算力设备点亮仪式成功举行",
+          "url": "https://www.qbitai.com/2026/03/384561.html",
+          "source": "量子位",
+          "cover": "https://www.qbitai.com/wp-content/uploads/imgs/qbitai_icon.png"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Mega Knowledge Capture",
+  "version": "1.0.0",
+  "description": "Capture knowledge from Claude.ai conversations into MegaDashboard Knowledge Tree",
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["https://claude.ai/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://claude.ai/*"],
+      "js": ["content.js"],
+      "css": ["capture-ui.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

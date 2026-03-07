@@ -1,0 +1,212 @@
+/* =============================================================================
+   Mega Knowledge Capture — Injected Styles for claude.ai
+   All selectors prefixed with #mega-capture- to avoid conflicts
+   ============================================================================= */
+
+/* ── Floating Button ── */
+#mega-capture-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c084fc, #818cf8);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(129, 140, 248, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+#mega-capture-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 24px rgba(129, 140, 248, 0.55);
+}
+#mega-capture-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── Preview Panel ── */
+#mega-capture-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  z-index: 100000;
+  width: 400px;
+  height: 100vh;
+  background: #1a1a2e;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #e0e0e0;
+  transition: right 0.3s ease;
+}
+#mega-capture-panel.mega-capture-panel--visible {
+  right: 0;
+}
+
+.mega-capture-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mega-capture-panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.mega-capture-panel-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+.mega-capture-panel-close:hover {
+  color: #fff;
+}
+
+.mega-capture-panel-body {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.mega-capture-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.mega-capture-info-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+.mega-capture-info-value {
+  font-size: 14px;
+  color: #fff;
+  text-align: right;
+  max-width: 260px;
+  word-break: break-word;
+}
+
+.mega-capture-field {
+  margin-top: 20px;
+}
+.mega-capture-field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 8px;
+}
+.mega-capture-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.mega-capture-textarea:focus {
+  border-color: #818cf8;
+}
+.mega-capture-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.mega-capture-panel-footer {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mega-capture-btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mega-capture-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+.mega-capture-btn-send {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #c084fc, #818cf8);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.mega-capture-btn-send:hover {
+  opacity: 0.9;
+}
+.mega-capture-btn-send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Toast ── */
+.mega-capture-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  z-index: 100001;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+}
+.mega-capture-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.mega-capture-toast--success {
+  background: #065f46;
+  color: #6ee7b7;
+  border: 1px solid rgba(110, 231, 183, 0.2);
+}
+.mega-capture-toast--error {
+  background: #7f1d1d;
+  color: #fca5a5;
+  border: 1px solid rgba(252, 165, 165, 0.2);
+}

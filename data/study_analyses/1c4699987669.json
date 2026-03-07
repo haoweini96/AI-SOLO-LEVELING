@@ -1,0 +1,289 @@
+{
+  "video_id": "1c4699987669",
+  "type": "article",
+  "url": "https://x.com/berryxia/status/2028668902465733084?s=46&t=L1Jp2DZHKML0nt2FUD0rxA",
+  "title": "Berryxia.AI on X: \"OpenClaw养成记，从0开始！安装后必看！（40天实战经验+含角色提示词）\" / X",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-05T19:42:02.362579",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Agents",
+  "token_usage": {
+    "input_tokens": 5865,
+    "output_tokens": 1425,
+    "total_tokens": 7290,
+    "cost_usd": 0.0707,
+    "model": "claude-sonnet-4-20250514",
+    "translate_tokens": {
+      "input_tokens": 1187,
+      "output_tokens": 1876,
+      "cost_usd": 0.0317
+    }
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Agents",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction and Problem Statement",
+        "key_points": [
+          "40-day journey from poorly performing AI agents to sophisticated content creation system",
+          "Initial agents produced low-quality content with excessive emojis and hashtags",
+          "Solution involved conversation and feedback rather than prompt engineering or model switching",
+          "8 agents now operate 24/7 with minimal supervision"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Core Philosophy: File-Based Memory System",
+        "key_points": [
+          "Agents don't get smarter over time, but their surrounding files become richer and more precise",
+          "No message queues, databases, or complex orchestration frameworks needed",
+          "File system itself serves as the integration layer",
+          "Accumulated context in Markdown files creates competitive moat"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Three-Layer Architecture",
+        "key_points": [
+          "Identity Layer: SOUL.md, IDENTITY.md, USER.md - defines who the agent is and who it serves",
+          "Operation Layer: AGENTS.md, HEARTBEAT.md - defines how agents work and self-heal",
+          "Knowledge Layer: MEMORY.md, daily logs, shared-context/ - stores what agents have learned",
+          "Each layer solves a specific core problem in agent operation"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Identity Layer Implementation",
+        "key_points": [
+          "SOUL.md contains complete personality definition with principles and role",
+          "IDENTITY.md serves as quick reference card with name, role, temperament",
+          "USER.md includes personal details like timezone, dietary preferences, background",
+          "Personal details create compound effects across all agent interactions"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Operation Layer Implementation",
+        "key_points": [
+          "AGENTS.md defines session startup process, file reading order, memory management",
+          "All agents inherit root-level AGENTS.md with basic operational rules",
+          "HEARTBEAT.md monitors system health and implements self-healing mechanisms",
+          "Individual agents can extend base rules with role-specific guidelines"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Knowledge Layer Implementation",
+        "key_points": [
+          "Three-tier memory system: MEMORY.md (refined long-term), daily logs (raw records), shared-context (cross-agent knowledge)",
+          "MEMORY.md contains distilled important content, not raw logs",
+          "Daily logs provide detailed records but require pruning to prevent context bloat",
+          "Shared-context includes THESIS.md, FEEDBACK-LOG.md, SIGNALS.md for cross-agent alignment"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Agent Collaboration Through Files",
+        "key_points": [
+          "No API calls or message queues - collaboration happens through file system",
+          "Single-writer principle prevents coordination conflicts",
+          "Scheduling ensures proper execution order (research agent runs first)",
+          "Dwight writes intel, other agents (Kelly, Rachel, Pam) read and use it"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Implementation Timeline and Best Practices",
+        "key_points": [
+          "4-week gradual implementation plan starting with basic setup",
+          "Don't try to build everything in one weekend",
+          "Start with most repetitive daily task and one agent",
+          "Add complexity incrementally as patterns emerge",
+          "Build HEARTBEAT.md only after experiencing first failure"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Building Evolving AI Agents with File-Based Memory Systems: 40-Day OpenClaw Journey",
+      "takeaways": [
+        "AI agents improve through accumulated context in files, not model changes or prompt engineering",
+        "Simple Markdown file system can replace complex orchestration frameworks for agent coordination",
+        "Three-layer architecture (Identity, Operation, Knowledge) provides robust foundation for agent systems",
+        "File-based memory with proper pruning and organization creates sustainable long-term agent evolution",
+        "Gradual implementation over weeks is more effective than trying to build complete system immediately"
+      ],
+      "concepts": [
+        "File-based agent memory systems",
+        "Three-layer agent architecture",
+        "Single-writer collaboration principle",
+        "Incremental agent training through conversation",
+        "Cross-agent knowledge sharing",
+        "Agent self-healing mechanisms",
+        "Context accumulation as competitive advantage"
+      ],
+      "actionable": [
+        "Start with OpenClaw installation and create basic SOUL.md, IDENTITY.md, USER.md files",
+        "Implement daily feedback loop ensuring corrections are saved to memory files",
+        "Create AGENTS.md with session startup process and memory management rules",
+        "Build shared-context layer with THESIS.md and FEEDBACK-LOG.md for cross-agent alignment",
+        "Establish single-writer principle for shared files to prevent conflicts",
+        "Add HEARTBEAT.md monitoring after experiencing first system failure",
+        "Follow 4-week gradual implementation timeline rather than rushing complete setup"
+      ]
+    }
+  },
+  "article_text_length": 7821,
+  "cover": "https://pbs.twimg.com/media/HCbEGcbbIAAKeK2.jpg",
+  "analysis_zh": {
+    "category": "AI Agents",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "介绍和问题陈述",
+        "key_points": [
+          "从表现不佳的AI代理到复杂内容创作系统的40天历程",
+          "初始代理产生的内容质量低下，充满过多表情符号和标签",
+          "解决方案涉及对话和反馈，而非提示工程或模型切换",
+          "8个代理现在24/7运行，只需最少监督"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "核心理念：基于文件的记忆系统",
+        "key_points": [
+          "代理本身不会随时间变得更智能，但其周围的文件变得更丰富和精确",
+          "不需要消息队列、数据库或复杂的编排框架",
+          "文件系统本身充当集成层",
+          "Markdown文件中积累的上下文创造竞争护城河"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "三层架构",
+        "key_points": [
+          "身份层：SOUL.md、IDENTITY.md、USER.md - 定义代理是谁以及它服务于谁",
+          "操作层：AGENTS.md、HEARTBEAT.md - 定义代理如何工作和自我修复",
+          "知识层：MEMORY.md、日志、shared-context/ - 存储代理学到的内容",
+          "每一层都解决代理操作中的特定核心问题"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "身份层实现",
+        "key_points": [
+          "SOUL.md包含完整的个性定义，包括原则和角色",
+          "IDENTITY.md作为快速参考卡，包含姓名、角色、性格",
+          "USER.md包含个人详细信息，如时区、饮食偏好、背景",
+          "个人详细信息在所有代理交互中产生复合效应"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "操作层实现",
+        "key_points": [
+          "AGENTS.md定义会话启动过程、文件读取顺序、内存管理",
+          "所有代理继承根级AGENTS.md的基本操作规则",
+          "HEARTBEAT.md监控系统健康状况并实现自我修复机制",
+          "个别代理可以用特定角色的指导原则扩展基础规则"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "知识层实现",
+        "key_points": [
+          "三层记忆系统：MEMORY.md（精炼的长期记忆）、日志（原始记录）、shared-context（跨代理知识）",
+          "MEMORY.md包含提炼的重要内容，而非原始日志",
+          "日志提供详细记录，但需要修剪以防止上下文膨胀",
+          "Shared-context包括THESIS.md、FEEDBACK-LOG.md、SIGNALS.md用于跨代理对齐"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "通过文件进行代理协作",
+        "key_points": [
+          "无API调用或消息队列 - 协作通过文件系统进行",
+          "单写入者原则防止协调冲突",
+          "调度确保正确的执行顺序（研究代理首先运行）",
+          "Dwight写入情报，其他代理（Kelly、Rachel、Pam）读取并使用"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "实施时间表和最佳实践",
+        "key_points": [
+          "从基本设置开始的4周渐进实施计划",
+          "不要试图在一个周末构建所有内容",
+          "从最重复的日常任务和一个代理开始",
+          "随着模式的出现逐步增加复杂性",
+          "只有在经历第一次失败后才构建HEARTBEAT.md"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "使用基于文件的记忆系统构建进化AI代理：40天OpenClaw之旅",
+      "takeaways": [
+        "AI代理通过文件中积累的上下文改进，而非模型更改或提示工程",
+        "简单的Markdown文件系统可以替代复杂的编排框架进行代理协调",
+        "三层架构（身份、操作、知识）为代理系统提供稳固基础",
+        "基于文件的记忆系统配合适当的修剪和组织创造可持续的长期代理进化",
+        "数周的渐进实施比试图立即构建完整系统更有效"
+      ],
+      "concepts": [
+        "基于文件的代理记忆系统",
+        "三层代理架构",
+        "单写入者协作原则",
+        "通过对话进行增量代理训练",
+        "跨代理知识共享",
+        "代理自我修复机制",
+        "上下文积累作为竞争优势"
+      ],
+      "actionable": [
+        "从OpenClaw安装开始，创建基本的SOUL.md、IDENTITY.md、USER.md文件",
+        "实施日常反馈循环，确保修正保存到记忆文件中",
+        "创建包含会话启动过程和内存管理规则的AGENTS.md",
+        "构建包含THESIS.md和FEEDBACK-LOG.md的shared-context层用于跨代理对齐",
+        "为共享文件建立单写入者原则以防止冲突",
+        "在经历第一次系统故障后添加HEARTBEAT.md监控",
+        "遵循4周渐进实施时间表，而非急于完成完整设置"
+      ]
+    }
+  }
+}

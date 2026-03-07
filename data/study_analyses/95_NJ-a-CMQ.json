@@ -1,0 +1,2230 @@
+{
+  "video_id": "95_NJ-a-CMQ",
+  "url": "https://www.youtube.com/watch?v=95_NJ-a-CMQ",
+  "title": "How to Build ACTUALLY Beautiful UI in With This Claude Code Skill",
+  "channel": "Build Great Products",
+  "duration": 755,
+  "upload_date": "20251118",
+  "analyzed_at": "2026-02-17T19:28:54.541114",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Coding",
+  "token_usage": {
+    "input_tokens": 26310,
+    "output_tokens": 2276,
+    "total_tokens": 28586,
+    "cost_usd": 0.163,
+    "model": "claude-sonnet-4-20250514",
+    "translate_tokens": {
+      "input_tokens": 1869,
+      "output_tokens": 2953,
+      "cost_usd": 0.0499
+    }
+  },
+  "transcript_available": true,
+  "transcript": [
+    {
+      "text": "This might be the best Claude code skill",
+      "start": 0.16,
+      "duration": 4.639
+    },
+    {
+      "text": "I've ever used. And it all came from",
+      "start": 2.56,
+      "duration": 4.48
+    },
+    {
+      "text": "this viral post on X which teaches you",
+      "start": 4.799,
+      "duration": 4.72
+    },
+    {
+      "text": "how to install it in just a few minutes.",
+      "start": 7.04,
+      "duration": 3.679
+    },
+    {
+      "text": "And in this video, I'm going to show you",
+      "start": 9.519,
+      "duration": 3.04
+    },
+    {
+      "text": "how to set up this skill and use it with",
+      "start": 10.719,
+      "duration": 3.92
+    },
+    {
+      "text": "Claude Code to create incredible UI",
+      "start": 12.559,
+      "duration": 3.601
+    },
+    {
+      "text": "designs in minutes. If you don't know",
+      "start": 14.639,
+      "duration": 3.281
+    },
+    {
+      "text": "me, my name is Chris and for the last 15",
+      "start": 16.16,
+      "duration": 3.039
+    },
+    {
+      "text": "years, I've been designing apps and",
+      "start": 17.92,
+      "duration": 3.359
+    },
+    {
+      "text": "advising startups on product and design.",
+      "start": 19.199,
+      "duration": 3.84
+    },
+    {
+      "text": "With that said, let's jump straight into",
+      "start": 21.279,
+      "duration": 3.521
+    },
+    {
+      "text": "this Claude code skill and show you",
+      "start": 23.039,
+      "duration": 5.781
+    },
+    {
+      "text": "exactly how to use it.",
+      "start": 24.8,
+      "duration": 4.479
+    },
+    {
+      "text": ">> [music]",
+      "start": 28.82,
+      "duration": 3.459
+    },
+    {
+      "text": ">> build.",
+      "start": 29.279,
+      "duration": 3.0
+    },
+    {
+      "text": ">> So before we get started here, I just",
+      "start": 33.6,
+      "duration": 3.119
+    },
+    {
+      "text": "want to show you the tweets that I found",
+      "start": 35.2,
+      "duration": 3.039
+    },
+    {
+      "text": "this skill from. And this is a tweet",
+      "start": 36.719,
+      "duration": 3.84
+    },
+    {
+      "text": "that has got over 235,000",
+      "start": 38.239,
+      "duration": 4.881
+    },
+    {
+      "text": "views so far on X. This is from a few",
+      "start": 40.559,
+      "duration": 4.241
+    },
+    {
+      "text": "days ago. So this is a little bit old",
+      "start": 43.12,
+      "duration": 3.68
+    },
+    {
+      "text": "now if you're following stuff on X, but",
+      "start": 44.8,
+      "duration": 3.759
+    },
+    {
+      "text": "I wanted to show for everyone else who",
+      "start": 46.8,
+      "duration": 3.84
+    },
+    {
+      "text": "hasn't seen this how to use this Claude",
+      "start": 48.559,
+      "duration": 4.0
+    },
+    {
+      "text": "code skill to basically build",
+      "start": 50.64,
+      "duration": 4.48
+    },
+    {
+      "text": "incredible, beautiful UIs for your",
+      "start": 52.559,
+      "duration": 4.64
+    },
+    {
+      "text": "application. And you can see here's",
+      "start": 55.12,
+      "duration": 4.16
+    },
+    {
+      "text": "basically the output for like for use",
+      "start": 57.199,
+      "duration": 3.921
+    },
+    {
+      "text": "this front-end design skill in claude",
+      "start": 59.28,
+      "duration": 3.84
+    },
+    {
+      "text": "code. Create a music player app and it's",
+      "start": 61.12,
+      "duration": 3.679
+    },
+    {
+      "text": "designed it like this which kind of",
+      "start": 63.12,
+      "duration": 3.84
+    },
+    {
+      "text": "looks like something similar to maybe",
+      "start": 64.799,
+      "duration": 3.921
+    },
+    {
+      "text": "teenage engineering but it's a pretty",
+      "start": 66.96,
+      "duration": 4.24
+    },
+    {
+      "text": "high quality like level of design just",
+      "start": 68.72,
+      "duration": 4.56
+    },
+    {
+      "text": "from that one prompt. And underneath",
+      "start": 71.2,
+      "duration": 3.76
+    },
+    {
+      "text": "here is basically the instructions to",
+      "start": 73.28,
+      "duration": 3.12
+    },
+    {
+      "text": "get started with this. And I'll put them",
+      "start": 74.96,
+      "duration": 2.72
+    },
+    {
+      "text": "in the description of the video down",
+      "start": 76.4,
+      "duration": 3.12
+    },
+    {
+      "text": "below so that you can get started with",
+      "start": 77.68,
+      "duration": 4.079
+    },
+    {
+      "text": "these front-end skills in Claude Code.",
+      "start": 79.52,
+      "duration": 3.599
+    },
+    {
+      "text": "What I'm going to do is I'm going to set",
+      "start": 81.759,
+      "duration": 3.761
+    },
+    {
+      "text": "up a very basic website that we can kind",
+      "start": 83.119,
+      "duration": 6.32
+    },
+    {
+      "text": "of see the standard AI design style in.",
+      "start": 85.52,
+      "duration": 5.599
+    },
+    {
+      "text": "And then we're going to use the Claude",
+      "start": 89.439,
+      "duration": 4.241
+    },
+    {
+      "text": "Code front-end skill to redesign that",
+      "start": 91.119,
+      "duration": 4.801
+    },
+    {
+      "text": "page. Maybe based on a reference or",
+      "start": 93.68,
+      "duration": 4.16
+    },
+    {
+      "text": "maybe just to kind of redesign it based",
+      "start": 95.92,
+      "duration": 3.76
+    },
+    {
+      "text": "on a bit of information that it would",
+      "start": 97.84,
+      "duration": 4.08
+    },
+    {
+      "text": "know about our website. And so let's go",
+      "start": 99.68,
+      "duration": 5.2
+    },
+    {
+      "text": "over to cursor and start building this",
+      "start": 101.92,
+      "duration": 4.559
+    },
+    {
+      "text": "website. So what I'm going to do is",
+      "start": 104.88,
+      "duration": 3.36
+    },
+    {
+      "text": "we've just got a new terminal open in",
+      "start": 106.479,
+      "duration": 4.161
+    },
+    {
+      "text": "cursor inside this Claude design skill",
+      "start": 108.24,
+      "duration": 3.839
+    },
+    {
+      "text": "project which I've created just to kind",
+      "start": 110.64,
+      "duration": 4.0
+    },
+    {
+      "text": "of demo this. Let's run Claude in this",
+      "start": 112.079,
+      "duration": 5.68
+    },
+    {
+      "text": "project and let's just ask it to create",
+      "start": 114.64,
+      "duration": 4.96
+    },
+    {
+      "text": "a landing page for us. So we're going to",
+      "start": 117.759,
+      "duration": 3.441
+    },
+    {
+      "text": "say let's create a simple landing page",
+      "start": 119.6,
+      "duration": 3.519
+    },
+    {
+      "text": "for an AI agency that builds and sells",
+      "start": 121.2,
+      "duration": 4.16
+    },
+    {
+      "text": "custom AI apps to businesses to save",
+      "start": 123.119,
+      "duration": 4.32
+    },
+    {
+      "text": "them time, automate processes and make",
+      "start": 125.36,
+      "duration": 4.08
+    },
+    {
+      "text": "them more money. Research other AI",
+      "start": 127.439,
+      "duration": 4.401
+    },
+    {
+      "text": "agencies to create highquality copy that",
+      "start": 129.44,
+      "duration": 4.08
+    },
+    {
+      "text": "converts potential clients to book a",
+      "start": 131.84,
+      "duration": 3.759
+    },
+    {
+      "text": "call. follows best practice for agency",
+      "start": 133.52,
+      "duration": 3.84
+    },
+    {
+      "text": "landing pages to maximize the number of",
+      "start": 135.599,
+      "duration": 3.521
+    },
+    {
+      "text": "call bookings that we would get. Let's",
+      "start": 137.36,
+      "duration": 4.08
+    },
+    {
+      "text": "send that prompt to Claude Code so that",
+      "start": 139.12,
+      "duration": 4.72
+    },
+    {
+      "text": "it can get started building this inside",
+      "start": 141.44,
+      "duration": 5.04
+    },
+    {
+      "text": "of this project folder. So, Claude Code",
+      "start": 143.84,
+      "duration": 4.64
+    },
+    {
+      "text": "has now built us this learning page",
+      "start": 146.48,
+      "duration": 3.04
+    },
+    {
+      "text": "here. And what we're going to do is",
+      "start": 148.48,
+      "duration": 2.479
+    },
+    {
+      "text": "we're going to open this in the browser",
+      "start": 149.52,
+      "duration": 2.96
+    },
+    {
+      "text": "to see what this looks like. This is",
+      "start": 150.959,
+      "duration": 3.441
+    },
+    {
+      "text": "what it looks like here. So, um we're",
+      "start": 152.48,
+      "duration": 3.68
+    },
+    {
+      "text": "probably we've got a bunch of kind of",
+      "start": 154.4,
+      "duration": 5.44
+    },
+    {
+      "text": "like AI kind of style design. We didn't",
+      "start": 156.16,
+      "duration": 5.76
+    },
+    {
+      "text": "give it any design prompt. It actually",
+      "start": 159.84,
+      "duration": 5.119
+    },
+    {
+      "text": "isn't too bad overall. Like it's not the",
+      "start": 161.92,
+      "duration": 4.72
+    },
+    {
+      "text": "purple gradients that you would usually",
+      "start": 164.959,
+      "duration": 4.241
+    },
+    {
+      "text": "see on like most AI design, but it is",
+      "start": 166.64,
+      "duration": 4.4
+    },
+    {
+      "text": "using purple. It's kind of defaulted to",
+      "start": 169.2,
+      "duration": 4.319
+    },
+    {
+      "text": "that kind of bluey purple. Um, as it",
+      "start": 171.04,
+      "duration": 4.72
+    },
+    {
+      "text": "kind of always does. It looks fairly",
+      "start": 173.519,
+      "duration": 4.641
+    },
+    {
+      "text": "basic. Like it's not too bad from a",
+      "start": 175.76,
+      "duration": 4.479
+    },
+    {
+      "text": "design point of view, but let's use this",
+      "start": 178.16,
+      "duration": 4.64
+    },
+    {
+      "text": "front-end skill to see if we can improve",
+      "start": 180.239,
+      "duration": 4.881
+    },
+    {
+      "text": "this design even further. And what I'm",
+      "start": 182.8,
+      "duration": 4.159
+    },
+    {
+      "text": "going to do here first is just use the",
+      "start": 185.12,
+      "duration": 3.52
+    },
+    {
+      "text": "front-end skill and don't give it any",
+      "start": 186.959,
+      "duration": 3.601
+    },
+    {
+      "text": "context and just see what it comes back",
+      "start": 188.64,
+      "duration": 3.76
+    },
+    {
+      "text": "with. So, first let's go back to the",
+      "start": 190.56,
+      "duration": 3.92
+    },
+    {
+      "text": "post and copy these commands over to",
+      "start": 192.4,
+      "duration": 3.919
+    },
+    {
+      "text": "claude code so that we can install this",
+      "start": 194.48,
+      "duration": 3.839
+    },
+    {
+      "text": "skill in claude code. We're just going",
+      "start": 196.319,
+      "duration": 4.161
+    },
+    {
+      "text": "to paste this into our Claude code chat",
+      "start": 198.319,
+      "duration": 5.601
+    },
+    {
+      "text": "here basically to add this marketplace.",
+      "start": 200.48,
+      "duration": 5.36
+    },
+    {
+      "text": "Um, so that's successfully added that",
+      "start": 203.92,
+      "duration": 3.44
+    },
+    {
+      "text": "marketplace. And then we're going to go",
+      "start": 205.84,
+      "duration": 4.56
+    },
+    {
+      "text": "back again to this and then install this",
+      "start": 207.36,
+      "duration": 5.68
+    },
+    {
+      "text": "plugin. This front-end design skill",
+      "start": 210.4,
+      "duration": 5.04
+    },
+    {
+      "text": "plugin basically. Uh, so let's paste",
+      "start": 213.04,
+      "duration": 4.88
+    },
+    {
+      "text": "that in there. So install now. Create",
+      "start": 215.44,
+      "duration": 4.0
+    },
+    {
+      "text": "distinctive production grade front-end",
+      "start": 217.92,
+      "duration": 3.44
+    },
+    {
+      "text": "interfaces with high design quality",
+      "start": 219.44,
+      "duration": 3.6
+    },
+    {
+      "text": "generates creative polish code that",
+      "start": 221.36,
+      "duration": 4.72
+    },
+    {
+      "text": "avoids generic AI aesthetics. Let's",
+      "start": 223.04,
+      "duration": 4.96
+    },
+    {
+      "text": "install that now. So, we've now",
+      "start": 226.08,
+      "duration": 4.4
+    },
+    {
+      "text": "installed the front-end design skill and",
+      "start": 228.0,
+      "duration": 4.56
+    },
+    {
+      "text": "then all we have to do as per the kind",
+      "start": 230.48,
+      "duration": 4.319
+    },
+    {
+      "text": "of instructions in this post. So, we",
+      "start": 232.56,
+      "duration": 4.0
+    },
+    {
+      "text": "just have to say as simple as use the",
+      "start": 234.799,
+      "duration": 4.321
+    },
+    {
+      "text": "front-end design skill to improve the",
+      "start": 236.56,
+      "duration": 4.399
+    },
+    {
+      "text": "design for this landing page. So, let's",
+      "start": 239.12,
+      "duration": 3.92
+    },
+    {
+      "text": "go back to claw code and say that let's",
+      "start": 240.959,
+      "duration": 6.161
+    },
+    {
+      "text": "say use the front end",
+      "start": 243.04,
+      "duration": 8.88
+    },
+    {
+      "text": "design skill to improve the design of",
+      "start": 247.12,
+      "duration": 7.36
+    },
+    {
+      "text": "this landing page.",
+      "start": 251.92,
+      "duration": 4.8
+    },
+    {
+      "text": "and let's see how well this front-end",
+      "start": 254.48,
+      "duration": 4.879
+    },
+    {
+      "text": "design skill kind of improves the design",
+      "start": 256.72,
+      "duration": 3.919
+    },
+    {
+      "text": "of the landing page without any",
+      "start": 259.359,
+      "duration": 3.361
+    },
+    {
+      "text": "guidance. And then maybe after this",
+      "start": 260.639,
+      "duration": 4.321
+    },
+    {
+      "text": "we'll do another step just to see how",
+      "start": 262.72,
+      "duration": 3.84
+    },
+    {
+      "text": "well this front-end design skill",
+      "start": 264.96,
+      "duration": 4.239
+    },
+    {
+      "text": "actually uses a design reference to",
+      "start": 266.56,
+      "duration": 4.48
+    },
+    {
+      "text": "improve the design for this landing page",
+      "start": 269.199,
+      "duration": 3.841
+    },
+    {
+      "text": "as well. Okay, so Claude Code has",
+      "start": 271.04,
+      "duration": 3.52
+    },
+    {
+      "text": "finished using the front-end design",
+      "start": 273.04,
+      "duration": 4.0
+    },
+    {
+      "text": "skill to redesign our entire landing",
+      "start": 274.56,
+      "duration": 5.68
+    },
+    {
+      "text": "page. Let's actually see if it's done a",
+      "start": 277.04,
+      "duration": 6.879
+    },
+    {
+      "text": "good job. So, here is our redesigned",
+      "start": 280.24,
+      "duration": 6.959
+    },
+    {
+      "text": "website and it looks pretty it looks",
+      "start": 283.919,
+      "duration": 5.201
+    },
+    {
+      "text": "pretty good. It's pretty good here.",
+      "start": 287.199,
+      "duration": 2.961
+    },
+    {
+      "text": "There are some things that I would",
+      "start": 289.12,
+      "duration": 2.96
+    },
+    {
+      "text": "change, but like this is way better than",
+      "start": 290.16,
+      "duration": 4.4
+    },
+    {
+      "text": "what it was before. It's used like some",
+      "start": 292.08,
+      "duration": 5.2
+    },
+    {
+      "text": "really nice typography here. It's added",
+      "start": 294.56,
+      "duration": 5.199
+    },
+    {
+      "text": "this kind of glow as you scroll down. I",
+      "start": 297.28,
+      "duration": 4.479
+    },
+    {
+      "text": "think there was like animations. These",
+      "start": 299.759,
+      "duration": 3.601
+    },
+    {
+      "text": "kind of fade in. They have hover",
+      "start": 301.759,
+      "duration": 4.401
+    },
+    {
+      "text": "effects. The padding is decent. You have",
+      "start": 303.36,
+      "duration": 5.119
+    },
+    {
+      "text": "the glow on these kind of menu buttons.",
+      "start": 306.16,
+      "duration": 4.72
+    },
+    {
+      "text": "The styling is consistent. It's using",
+      "start": 308.479,
+      "duration": 4.56
+    },
+    {
+      "text": "black, white, and one color, which I",
+      "start": 310.88,
+      "duration": 4.159
+    },
+    {
+      "text": "love because that is a great place to",
+      "start": 313.039,
+      "duration": 5.361
+    },
+    {
+      "text": "start for any good design. Black, white,",
+      "start": 315.039,
+      "duration": 5.041
+    },
+    {
+      "text": "and one color, and then add in another",
+      "start": 318.4,
+      "duration": 3.28
+    },
+    {
+      "text": "color palette on top of that if you want",
+      "start": 320.08,
+      "duration": 4.399
+    },
+    {
+      "text": "to. This also aligns pretty well with",
+      "start": 321.68,
+      "duration": 6.64
+    },
+    {
+      "text": "this kind of target market of like AI",
+      "start": 324.479,
+      "duration": 6.641
+    },
+    {
+      "text": "kind of agencies and businesses who want",
+      "start": 328.32,
+      "duration": 5.76
+    },
+    {
+      "text": "to use AI to like build apps that can",
+      "start": 331.12,
+      "duration": 5.6
+    },
+    {
+      "text": "save them time and make them more money.",
+      "start": 334.08,
+      "duration": 4.88
+    },
+    {
+      "text": "It's pretty I would say like there is",
+      "start": 336.72,
+      "duration": 4.96
+    },
+    {
+      "text": "some things that I would improve like to",
+      "start": 338.96,
+      "duration": 5.28
+    },
+    {
+      "text": "add a call to the the call to action.",
+      "start": 341.68,
+      "duration": 4.16
+    },
+    {
+      "text": "This button here is not standing out on",
+      "start": 344.24,
+      "duration": 3.04
+    },
+    {
+      "text": "this black background. So we need to",
+      "start": 345.84,
+      "duration": 3.68
+    },
+    {
+      "text": "make that into like this blue style on",
+      "start": 347.28,
+      "duration": 4.16
+    },
+    {
+      "text": "this background so that this is like a",
+      "start": 349.52,
+      "duration": 4.32
+    },
+    {
+      "text": "primary call to action above the fold.",
+      "start": 351.44,
+      "duration": 4.319
+    },
+    {
+      "text": "We've got a great subheading here. We",
+      "start": 353.84,
+      "duration": 3.44
+    },
+    {
+      "text": "also might want to add in like some",
+      "start": 355.759,
+      "duration": 3.761
+    },
+    {
+      "text": "social proof. It's added this here. But",
+      "start": 357.28,
+      "duration": 3.759
+    },
+    {
+      "text": "none of that is kind of like apart from",
+      "start": 359.52,
+      "duration": 3.6
+    },
+    {
+      "text": "the button styling is design styling.",
+      "start": 361.039,
+      "duration": 3.6
+    },
+    {
+      "text": "We've got these called out. I don't know",
+      "start": 363.12,
+      "duration": 3.28
+    },
+    {
+      "text": "what this kind of animation is in the",
+      "start": 364.639,
+      "duration": 3.601
+    },
+    {
+      "text": "bottom right here with this square. That",
+      "start": 366.4,
+      "duration": 3.919
+    },
+    {
+      "text": "might be a little error. It's done",
+      "start": 368.24,
+      "duration": 4.72
+    },
+    {
+      "text": "something there. I really like this kind",
+      "start": 370.319,
+      "duration": 3.921
+    },
+    {
+      "text": "of You might not be able to see it on",
+      "start": 372.96,
+      "duration": 2.64
+    },
+    {
+      "text": "the video, but there's like a subtle",
+      "start": 374.24,
+      "duration": 4.0
+    },
+    {
+      "text": "grid kind of pattern behind these cards.",
+      "start": 375.6,
+      "duration": 4.24
+    },
+    {
+      "text": "But this is giving, you can see it a bit",
+      "start": 378.24,
+      "duration": 3.36
+    },
+    {
+      "text": "more here. There's like a subtle gray",
+      "start": 379.84,
+      "duration": 3.359
+    },
+    {
+      "text": "kind of grid in the background of this",
+      "start": 381.6,
+      "duration": 4.8
+    },
+    {
+      "text": "section, which is super nice. This I am",
+      "start": 383.199,
+      "duration": 5.521
+    },
+    {
+      "text": "loving this design. And this section is",
+      "start": 386.4,
+      "duration": 4.799
+    },
+    {
+      "text": "not so good. Okay, so we've got some",
+      "start": 388.72,
+      "duration": 4.96
+    },
+    {
+      "text": "text laid out here. not particularly",
+      "start": 391.199,
+      "duration": 4.56
+    },
+    {
+      "text": "great. These need to be cards. This kind",
+      "start": 393.68,
+      "duration": 5.2
+    },
+    {
+      "text": "of uh title and kind of alignment is off",
+      "start": 395.759,
+      "duration": 5.121
+    },
+    {
+      "text": "completely. So, it hasn't done a perfect",
+      "start": 398.88,
+      "duration": 4.72
+    },
+    {
+      "text": "job in these sections. But for this",
+      "start": 400.88,
+      "duration": 4.72
+    },
+    {
+      "text": "section here, for this contact form for",
+      "start": 403.6,
+      "duration": 4.319
+    },
+    {
+      "text": "the footer and for these top sections",
+      "start": 405.6,
+      "duration": 4.96
+    },
+    {
+      "text": "here with these kind of cards um in this",
+      "start": 407.919,
+      "duration": 5.84
+    },
+    {
+      "text": "grid layout, this is super nice. We have",
+      "start": 410.56,
+      "duration": 6.0
+    },
+    {
+      "text": "some hover effects here. We had the the",
+      "start": 413.759,
+      "duration": 6.401
+    },
+    {
+      "text": "fade in animations as well. This is and",
+      "start": 416.56,
+      "duration": 5.84
+    },
+    {
+      "text": "this is just basically from using this",
+      "start": 420.16,
+      "duration": 4.64
+    },
+    {
+      "text": "claw code front-end skill asking it to",
+      "start": 422.4,
+      "duration": 4.48
+    },
+    {
+      "text": "use that to improve the design of your",
+      "start": 424.8,
+      "duration": 3.839
+    },
+    {
+      "text": "website. And what you can do with this",
+      "start": 426.88,
+      "duration": 4.319
+    },
+    {
+      "text": "is then you can then use it to follow a",
+      "start": 428.639,
+      "duration": 5.041
+    },
+    {
+      "text": "screenshot. Um so let's do that as well.",
+      "start": 431.199,
+      "duration": 5.681
+    },
+    {
+      "text": "I'm going to go over to dribble um which",
+      "start": 433.68,
+      "duration": 5.12
+    },
+    {
+      "text": "is one of the kind of main places I go",
+      "start": 436.88,
+      "duration": 4.4
+    },
+    {
+      "text": "to for kind of UI design inspiration.",
+      "start": 438.8,
+      "duration": 6.399
+    },
+    {
+      "text": "and let's say like AI website design and",
+      "start": 441.28,
+      "duration": 5.84
+    },
+    {
+      "text": "just find something like pretty nice",
+      "start": 445.199,
+      "duration": 4.641
+    },
+    {
+      "text": "that we can like take and copy here into",
+      "start": 447.12,
+      "duration": 4.4
+    },
+    {
+      "text": "our app. So I don't want to go for",
+      "start": 449.84,
+      "duration": 4.4
+    },
+    {
+      "text": "anything that's like too um kind of",
+      "start": 451.52,
+      "duration": 4.239
+    },
+    {
+      "text": "AIish",
+      "start": 454.24,
+      "duration": 3.2
+    },
+    {
+      "text": "like we don't want these kind of purple",
+      "start": 455.759,
+      "duration": 4.241
+    },
+    {
+      "text": "gradients or like any of this stuff. I",
+      "start": 457.44,
+      "duration": 4.56
+    },
+    {
+      "text": "want to do maybe something like this.",
+      "start": 460.0,
+      "duration": 5.44
+    },
+    {
+      "text": "Let's use this um let's use this because",
+      "start": 462.0,
+      "duration": 5.36
+    },
+    {
+      "text": "this is kind of like quite a clean",
+      "start": 465.44,
+      "duration": 3.68
+    },
+    {
+      "text": "design style. It's got a couple of",
+      "start": 467.36,
+      "duration": 4.16
+    },
+    {
+      "text": "colors in here. uh slightly different",
+      "start": 469.12,
+      "duration": 4.079
+    },
+    {
+      "text": "typography. I think it might be able to",
+      "start": 471.52,
+      "duration": 4.16
+    },
+    {
+      "text": "match this pretty well. Let's go back to",
+      "start": 473.199,
+      "duration": 5.28
+    },
+    {
+      "text": "Claude Code and let's say let's use the",
+      "start": 475.68,
+      "duration": 6.48
+    },
+    {
+      "text": "front end design skill",
+      "start": 478.479,
+      "duration": 7.761
+    },
+    {
+      "text": "to improve the design of this landing",
+      "start": 482.16,
+      "duration": 9.2
+    },
+    {
+      "text": "page following the attached screenshot.",
+      "start": 486.24,
+      "duration": 7.04
+    },
+    {
+      "text": "And then let's paste in the file here",
+      "start": 491.36,
+      "duration": 3.92
+    },
+    {
+      "text": "that we copied to our clipboard. And",
+      "start": 493.28,
+      "duration": 4.319
+    },
+    {
+      "text": "then let's send that off to Claude Code",
+      "start": 495.28,
+      "duration": 4.639
+    },
+    {
+      "text": "to redesign this app based on that",
+      "start": 497.599,
+      "duration": 4.561
+    },
+    {
+      "text": "screenshot using the front-end design",
+      "start": 499.919,
+      "duration": 5.201
+    },
+    {
+      "text": "skill and see how well it does. So now",
+      "start": 502.16,
+      "duration": 4.64
+    },
+    {
+      "text": "Claude Code has finished redesigning",
+      "start": 505.12,
+      "duration": 3.68
+    },
+    {
+      "text": "this website based on the screenshot",
+      "start": 506.8,
+      "duration": 4.079
+    },
+    {
+      "text": "that I gave it. It said that it's gone",
+      "start": 508.8,
+      "duration": 4.64
+    },
+    {
+      "text": "from this brutalist version to a soft",
+      "start": 510.879,
+      "duration": 3.84
+    },
+    {
+      "text": "modern version. And here are the",
+      "start": 513.44,
+      "duration": 3.44
+    },
+    {
+      "text": "differences. So black, white, and cyan",
+      "start": 514.719,
+      "duration": 3.921
+    },
+    {
+      "text": "has gone to soft gradients and pastels.",
+      "start": 516.88,
+      "duration": 3.519
+    },
+    {
+      "text": "Soft shadows with blur instead of harsh",
+      "start": 518.64,
+      "duration": 3.92
+    },
+    {
+      "text": "shadows, sharp edges to rounded",
+      "start": 520.399,
+      "duration": 4.721
+    },
+    {
+      "text": "everything. uh monospace fonts to modern",
+      "start": 522.56,
+      "duration": 5.44
+    },
+    {
+      "text": "sand serif which has chosen outfit which",
+      "start": 525.12,
+      "duration": 5.279
+    },
+    {
+      "text": "is interesting. Geometric icons to emoji",
+      "start": 528.0,
+      "duration": 4.64
+    },
+    {
+      "text": "icons which it kind of seems to fall",
+      "start": 530.399,
+      "duration": 3.921
+    },
+    {
+      "text": "back to. I think it was still using",
+      "start": 532.64,
+      "duration": 3.759
+    },
+    {
+      "text": "emojis in this brutalist version.",
+      "start": 534.32,
+      "duration": 4.639
+    },
+    {
+      "text": "Terminal aesthetic to a premium SAS feel",
+      "start": 536.399,
+      "duration": 4.56
+    },
+    {
+      "text": "data streams and grids to a floating",
+      "start": 538.959,
+      "duration": 4.56
+    },
+    {
+      "text": "gradient blobs and hard transitions to",
+      "start": 540.959,
+      "duration": 5.921
+    },
+    {
+      "text": "smooth animations. So let's see what",
+      "start": 543.519,
+      "duration": 6.161
+    },
+    {
+      "text": "this actually looks like. We go back to",
+      "start": 546.88,
+      "duration": 4.72
+    },
+    {
+      "text": "our reference here. This is the",
+      "start": 549.68,
+      "duration": 4.08
+    },
+    {
+      "text": "reference that we gave Claude code to",
+      "start": 551.6,
+      "duration": 5.359
+    },
+    {
+      "text": "work from. This is the previous version",
+      "start": 553.76,
+      "duration": 5.199
+    },
+    {
+      "text": "of the website. So let's refresh this",
+      "start": 556.959,
+      "duration": 4.161
+    },
+    {
+      "text": "website now and see how the design has",
+      "start": 558.959,
+      "duration": 4.56
+    },
+    {
+      "text": "improved or changed.",
+      "start": 561.12,
+      "duration": 5.2
+    },
+    {
+      "text": "So this is now the current website which",
+      "start": 563.519,
+      "duration": 6.081
+    },
+    {
+      "text": "is pretty it's got like it's even got",
+      "start": 566.32,
+      "duration": 5.76
+    },
+    {
+      "text": "this kind of like soft scroll. This is",
+      "start": 569.6,
+      "duration": 5.44
+    },
+    {
+      "text": "looking really good. Like again, there's",
+      "start": 572.08,
+      "duration": 5.36
+    },
+    {
+      "text": "still some things I would change here,",
+      "start": 575.04,
+      "duration": 5.2
+    },
+    {
+      "text": "but there's some great hovers with soft",
+      "start": 577.44,
+      "duration": 5.36
+    },
+    {
+      "text": "that really soft shadow on there. The",
+      "start": 580.24,
+      "duration": 6.56
+    },
+    {
+      "text": "underline animation on these is so good.",
+      "start": 582.8,
+      "duration": 6.08
+    },
+    {
+      "text": "Um, but strategy call get started for",
+      "start": 586.8,
+      "duration": 4.479
+    },
+    {
+      "text": "free. I actually still don't really I",
+      "start": 588.88,
+      "duration": 4.0
+    },
+    {
+      "text": "don't really like the emojis on here,",
+      "start": 591.279,
+      "duration": 4.161
+    },
+    {
+      "text": "but this is looking pretty good. Um,",
+      "start": 592.88,
+      "duration": 5.76
+    },
+    {
+      "text": "these are kind of breaking. Um, so that",
+      "start": 595.44,
+      "duration": 5.2
+    },
+    {
+      "text": "formatting is not quite right and maybe",
+      "start": 598.64,
+      "duration": 4.24
+    },
+    {
+      "text": "the icons aren't showing there",
+      "start": 600.64,
+      "duration": 4.4
+    },
+    {
+      "text": "correctly. This is pretty good. This",
+      "start": 602.88,
+      "duration": 5.36
+    },
+    {
+      "text": "this this section is pretty good.",
+      "start": 605.04,
+      "duration": 5.04
+    },
+    {
+      "text": "And this section styling is still kind",
+      "start": 608.24,
+      "duration": 3.599
+    },
+    {
+      "text": "of messed up, but this really soft kind",
+      "start": 610.08,
+      "duration": 4.24
+    },
+    {
+      "text": "of pastel gradient background is super",
+      "start": 611.839,
+      "duration": 5.12
+    },
+    {
+      "text": "nice. I really really like that. There's",
+      "start": 614.32,
+      "duration": 4.16
+    },
+    {
+      "text": "some issues here with the text over",
+      "start": 616.959,
+      "duration": 4.481
+    },
+    {
+      "text": "this, but to be honest, like this this",
+      "start": 618.48,
+      "duration": 5.599
+    },
+    {
+      "text": "version of the website, this is better",
+      "start": 621.44,
+      "duration": 6.0
+    },
+    {
+      "text": "than 99% of or this is better than a",
+      "start": 624.079,
+      "duration": 5.44
+    },
+    {
+      "text": "very large percentage of designs that",
+      "start": 627.44,
+      "duration": 4.24
+    },
+    {
+      "text": "you're going to get from other AI tools",
+      "start": 629.519,
+      "duration": 4.641
+    },
+    {
+      "text": "without using this front-end skill. And",
+      "start": 631.68,
+      "duration": 5.279
+    },
+    {
+      "text": "so, you can see just in this short video",
+      "start": 634.16,
+      "duration": 4.56
+    },
+    {
+      "text": "kind of me demoing this front-end skill",
+      "start": 636.959,
+      "duration": 3.761
+    },
+    {
+      "text": "here, even just by providing a simple",
+      "start": 638.72,
+      "duration": 3.84
+    },
+    {
+      "text": "screenshot. If you wanted to do this a",
+      "start": 640.72,
+      "duration": 3.359
+    },
+    {
+      "text": "little bit further, you could create a",
+      "start": 642.56,
+      "duration": 3.279
+    },
+    {
+      "text": "design system similar to what I've kind",
+      "start": 644.079,
+      "duration": 3.2
+    },
+    {
+      "text": "of gone through that process in another",
+      "start": 645.839,
+      "duration": 3.12
+    },
+    {
+      "text": "video with cursor of how you can create",
+      "start": 647.279,
+      "duration": 3.441
+    },
+    {
+      "text": "a design system in your codebase and",
+      "start": 648.959,
+      "duration": 3.44
+    },
+    {
+      "text": "then use that in your designs. You could",
+      "start": 650.72,
+      "duration": 3.679
+    },
+    {
+      "text": "create a design system kind of framework",
+      "start": 652.399,
+      "duration": 3.761
+    },
+    {
+      "text": "and then use claude code using the",
+      "start": 654.399,
+      "duration": 3.601
+    },
+    {
+      "text": "front-end skill to design your website",
+      "start": 656.16,
+      "duration": 3.76
+    },
+    {
+      "text": "following that framework and that would",
+      "start": 658.0,
+      "duration": 4.48
+    },
+    {
+      "text": "probably yield even better results than",
+      "start": 659.92,
+      "duration": 4.88
+    },
+    {
+      "text": "this. But for now, this is incredible",
+      "start": 662.48,
+      "duration": 4.479
+    },
+    {
+      "text": "and this is already so much better than",
+      "start": 664.8,
+      "duration": 4.719
+    },
+    {
+      "text": "the generic kind of AI design. It's",
+      "start": 666.959,
+      "duration": 4.241
+    },
+    {
+      "text": "still gone back to purple a little bit.",
+      "start": 669.519,
+      "duration": 4.161
+    },
+    {
+      "text": "I won't lie there though. But that is",
+      "start": 671.2,
+      "duration": 4.24
+    },
+    {
+      "text": "how you can get up and running with this",
+      "start": 673.68,
+      "duration": 4.719
+    },
+    {
+      "text": "Claude code skill in just a few minutes",
+      "start": 675.44,
+      "duration": 4.959
+    },
+    {
+      "text": "just installing that plugin and then use",
+      "start": 678.399,
+      "duration": 4.641
+    },
+    {
+      "text": "the skill to actually create beautiful",
+      "start": 680.399,
+      "duration": 4.961
+    },
+    {
+      "text": "incredible design for your app and",
+      "start": 683.04,
+      "duration": 4.64
+    },
+    {
+      "text": "website user interfaces. So, I think",
+      "start": 685.36,
+      "duration": 4.8
+    },
+    {
+      "text": "this not only shows the power of this",
+      "start": 687.68,
+      "duration": 4.719
+    },
+    {
+      "text": "specific skill in Claude Code, but also",
+      "start": 690.16,
+      "duration": 5.04
+    },
+    {
+      "text": "it shows the power of Claude skills just",
+      "start": 692.399,
+      "duration": 5.201
+    },
+    {
+      "text": "in general. The ability to create your",
+      "start": 695.2,
+      "duration": 4.639
+    },
+    {
+      "text": "own custom skills that do a specific",
+      "start": 697.6,
+      "duration": 4.96
+    },
+    {
+      "text": "task incredibly well would just allow",
+      "start": 699.839,
+      "duration": 5.201
+    },
+    {
+      "text": "you to unlock even more potential from",
+      "start": 702.56,
+      "duration": 4.719
+    },
+    {
+      "text": "Claude Code as you're building your app.",
+      "start": 705.04,
+      "duration": 3.84
+    },
+    {
+      "text": "And this means that you can take your",
+      "start": 707.279,
+      "duration": 4.0
+    },
+    {
+      "text": "app designs to a level of quality that",
+      "start": 708.88,
+      "duration": 4.56
+    },
+    {
+      "text": "is nearly professional and just looks",
+      "start": 711.279,
+      "duration": 4.081
+    },
+    {
+      "text": "incredible and so much better than all",
+      "start": 713.44,
+      "duration": 3.36
+    },
+    {
+      "text": "of the purple gradients that you get",
+      "start": 715.36,
+      "duration": 3.36
+    },
+    {
+      "text": "everywhere else. So if you are using",
+      "start": 716.8,
+      "duration": 3.92
+    },
+    {
+      "text": "claw code, I would highly recommend",
+      "start": 718.72,
+      "duration": 4.4
+    },
+    {
+      "text": "installing this front-end skill and then",
+      "start": 720.72,
+      "duration": 4.64
+    },
+    {
+      "text": "using it to design your app as you",
+      "start": 723.12,
+      "duration": 3.6
+    },
+    {
+      "text": "build. And if you are building an app",
+      "start": 725.36,
+      "duration": 3.039
+    },
+    {
+      "text": "with AI and you want to join a community",
+      "start": 726.72,
+      "duration": 3.679
+    },
+    {
+      "text": "of other people building apps too, then",
+      "start": 728.399,
+      "duration": 4.801
+    },
+    {
+      "text": "you can head over to school.com/iapps.",
+      "start": 730.399,
+      "duration": 4.24
+    },
+    {
+      "text": "There's courses there on how to build",
+      "start": 733.2,
+      "duration": 2.96
+    },
+    {
+      "text": "and launch your app, scale it to real",
+      "start": 734.639,
+      "duration": 3.361
+    },
+    {
+      "text": "paying customers, build AI agents,",
+      "start": 736.16,
+      "duration": 3.52
+    },
+    {
+      "text": "mobile apps. So, I'd love for you to",
+      "start": 738.0,
+      "duration": 3.44
+    },
+    {
+      "text": "check it out. If you enjoyed the video,",
+      "start": 739.68,
+      "duration": 3.52
+    },
+    {
+      "text": "don't forget to like and subscribe. Is a",
+      "start": 741.44,
+      "duration": 3.68
+    },
+    {
+      "text": "massive help to the channel and I hugely",
+      "start": 743.2,
+      "duration": 3.52
+    },
+    {
+      "text": "appreciate it. Thank you for watching",
+      "start": 745.12,
+      "duration": 5.573
+    },
+    {
+      "text": "and see you next time. [music]",
+      "start": 746.72,
+      "duration": 3.973
+    }
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "filename": "frame_001.jpg",
+      "timestamp": 7.941267,
+      "method": "scene_change"
+    },
+    {
+      "index": 1,
+      "filename": "frame_002.jpg",
+      "timestamp": 26.059367,
+      "method": "scene_change"
+    },
+    {
+      "index": 2,
+      "filename": "frame_003.jpg",
+      "timestamp": 33.5335,
+      "method": "scene_change"
+    },
+    {
+      "index": 3,
+      "filename": "frame_004.jpg",
+      "timestamp": 166.9668,
+      "method": "scene_change"
+    },
+    {
+      "index": 4,
+      "filename": "frame_005.jpg",
+      "timestamp": 190.7906,
+      "method": "scene_change"
+    },
+    {
+      "index": 5,
+      "filename": "frame_006.jpg",
+      "timestamp": 336.369367,
+      "method": "scene_change"
+    },
+    {
+      "index": 6,
+      "filename": "frame_007.jpg",
+      "timestamp": 417.750667,
+      "method": "scene_change"
+    },
+    {
+      "index": 7,
+      "filename": "frame_008.jpg",
+      "timestamp": 437.8374,
+      "method": "scene_change"
+    },
+    {
+      "index": 8,
+      "filename": "frame_009.jpg",
+      "timestamp": 438.2378,
+      "method": "scene_change"
+    },
+    {
+      "index": 9,
+      "filename": "frame_010.jpg",
+      "timestamp": 445.6452,
+      "method": "scene_change"
+    },
+    {
+      "index": 10,
+      "filename": "frame_011.jpg",
+      "timestamp": 460.693567,
+      "method": "scene_change"
+    },
+    {
+      "index": 11,
+      "filename": "frame_012.jpg",
+      "timestamp": 474.040233,
+      "method": "scene_change"
+    },
+    {
+      "index": 12,
+      "filename": "frame_013.jpg",
+      "timestamp": 548.214333,
+      "method": "scene_change"
+    },
+    {
+      "index": 13,
+      "filename": "frame_014.jpg",
+      "timestamp": 554.420533,
+      "method": "scene_change"
+    },
+    {
+      "index": 14,
+      "filename": "frame_015.jpg",
+      "timestamp": 562.6621,
+      "method": "scene_change"
+    },
+    {
+      "index": 15,
+      "filename": "frame_016.jpg",
+      "timestamp": 569.535633,
+      "method": "scene_change"
+    },
+    {
+      "index": 16,
+      "filename": "frame_017.jpg",
+      "timestamp": 620.0194,
+      "method": "scene_change"
+    },
+    {
+      "index": 17,
+      "filename": "frame_018.jpg",
+      "timestamp": 687.053033,
+      "method": "scene_change"
+    },
+    {
+      "index": 18,
+      "filename": "frame_019.jpg",
+      "timestamp": 747.6469,
+      "method": "scene_change"
+    }
+  ],
+  "analysis": {
+    "category": "AI Coding",
+    "sections": [
+      {
+        "frame_index": 0,
+        "timestamp": "0:07",
+        "title": "Introduction to Claude Code Frontend Design Skill",
+        "key_points": [
+          "Presenter introduces a viral Claude Code skill for creating beautiful UI designs",
+          "Claims this is the best Claude Code skill he's ever used",
+          "Promises to show setup and usage in minutes"
+        ],
+        "screen_content": "Presenter speaking to camera in a modern office/studio setup with brick walls and neon lighting"
+      },
+      {
+        "frame_index": 1,
+        "timestamp": "0:26",
+        "title": "Channel Branding and Setup",
+        "key_points": [
+          "Build Great Products channel branding displayed",
+          "Presenter has 15 years experience in app design and startup advising",
+          "Transition to demonstration"
+        ],
+        "screen_content": "Clean white background with 'Build Great Products' text and decorative doodle icons around it"
+      },
+      {
+        "frame_index": 2,
+        "timestamp": "0:33",
+        "title": "Viral X Post Demonstration",
+        "key_points": [
+          "Shows the viral X (Twitter) post with 235K+ views",
+          "Displays example of music player app created with the skill",
+          "Shows installation commands for the Claude Code plugin"
+        ],
+        "screen_content": "X/Twitter interface showing Thariq's post about the frontend design plugin, with a dark music player UI example featuring vinyl record design"
+      },
+      {
+        "frame_index": 3,
+        "timestamp": "2:46",
+        "title": "Basic AI Agency Landing Page",
+        "key_points": [
+          "Shows initial landing page created with standard Claude",
+          "Purple/blue color scheme typical of AI designs",
+          "Includes stats, form, and call-to-action elements",
+          "Describes it as 'fairly basic' but not terrible"
+        ],
+        "screen_content": "Landing page for 'AI Accelerate' with purple branding, showing business metrics (50+ businesses, $2M+ saved, 98% satisfaction) and a contact form"
+      },
+      {
+        "frame_index": 4,
+        "timestamp": "3:10",
+        "title": "Installing the Frontend Design Skill",
+        "key_points": [
+          "Copies installation commands from the X post",
+          "Adds marketplace and installs frontend-design plugin",
+          "Plugin description: 'Create distinctive production grade front-end interfaces'"
+        ],
+        "screen_content": "X post showing installation commands in code blocks, with Claude Code interface visible in background"
+      },
+      {
+        "frame_index": 5,
+        "timestamp": "5:36",
+        "title": "First Redesign Results - Brutalist Style",
+        "key_points": [
+          "Dramatic transformation to black background with cyan accents",
+          "Added animations, hover effects, and glowing elements",
+          "Improved typography and grid layouts",
+          "Some sections work better than others"
+        ],
+        "screen_content": "Dark themed website with 'STOP LOSING MONEY TO MANUAL PROCESSES' headline in cyan, showing modern brutalist design with grid patterns and glowing effects"
+      },
+      {
+        "frame_index": 6,
+        "timestamp": "6:57",
+        "title": "Exploring Design Quality",
+        "key_points": [
+          "Demonstrates hover effects and animations",
+          "Shows case study cards with professional styling",
+          "Notes subtle grid patterns and fade-in animations",
+          "Acknowledges some formatting issues but overall impressed"
+        ],
+        "screen_content": "White section showing 'MEASURED IMPACT' with three case study cards featuring customer testimonials and metrics, clean professional layout"
+      },
+      {
+        "frame_index": 7,
+        "timestamp": "7:17",
+        "title": "Finding Design Reference on Dribbble",
+        "key_points": [
+          "Navigates to Dribbble for design inspiration",
+          "Searches for AI website designs",
+          "Avoids typical purple gradients, seeks cleaner styles"
+        ],
+        "screen_content": "Dribbble website homepage showing 'Discover the World's Top Designers' with various design portfolio thumbnails"
+      },
+      {
+        "frame_index": 8,
+        "timestamp": "7:25",
+        "title": "Dribbble Design Selection",
+        "key_points": [
+          "Loading Dribbble search results",
+          "Looking for clean, non-AI-typical designs",
+          "Wants to avoid purple gradients and cliché AI aesthetics"
+        ],
+        "screen_content": "Dribbble page loading with cursor visible, showing search interface"
+      },
+      {
+        "frame_index": 9,
+        "timestamp": "7:54",
+        "title": "Using Design Reference with Frontend Skill",
+        "key_points": [
+          "Selected a clean, modern design reference",
+          "Uploads screenshot to Claude Code",
+          "Asks frontend skill to redesign based on the reference",
+          "Explains the transformation approach"
+        ],
+        "screen_content": "Claude Code interface showing the frontend design skill being used, with code output visible and explanations of the design transformation from brutalist to soft modern style"
+      },
+      {
+        "frame_index": 10,
+        "timestamp": "9:08",
+        "title": "Reference Design Comparison",
+        "key_points": [
+          "Shows the Dribbble reference design used",
+          "Clean, modern AI platform design with gradient backgrounds",
+          "Professional layout with clear typography and branding"
+        ],
+        "screen_content": "Dribbble design showing 'The Leading AI Web orchestration Platform' with clean white and gradient design, featuring a person and UI elements"
+      },
+      {
+        "frame_index": 11,
+        "timestamp": "9:22",
+        "title": "Final Redesigned Website",
+        "key_points": [
+          "Dramatic transformation to soft, modern design",
+          "Pastel gradients and rounded elements",
+          "Smooth animations and professional typography",
+          "Still some formatting issues but major improvement"
+        ],
+        "screen_content": "Redesigned website with soft pastel gradients, showing 'Transform Your Business with Custom AI Solutions' headline, clean modern layout with rounded elements and soft shadows"
+      },
+      {
+        "frame_index": 12,
+        "timestamp": "10:20",
+        "title": "Design Quality Assessment",
+        "key_points": [
+          "Evaluates the final design quality",
+          "Notes soft scrolling and hover effects",
+          "Some formatting issues remain but overall excellent",
+          "Compares favorably to other AI design tools"
+        ],
+        "screen_content": "Website section showing 'CUSTOM AI SYSTEMS BUILT FOR YOUR REALITY' with dark gradient background and three feature cards with numbered steps and descriptions"
+      },
+      {
+        "frame_index": 13,
+        "timestamp": "11:27",
+        "title": "Conclusion and Recommendations",
+        "key_points": [
+          "Emphasizes the power of Claude Code skills in general",
+          "Recommends using this for professional-quality designs",
+          "Suggests creating design systems for even better results",
+          "Promotes community and courses"
+        ],
+        "screen_content": "Presenter back on camera in the same studio setup, speaking directly to audience"
+      },
+      {
+        "frame_index": 14,
+        "timestamp": "12:27",
+        "title": "Channel Outro",
+        "key_points": [
+          "Standard like and subscribe call-to-action",
+          "Thanks viewers",
+          "Channel branding displayed"
+        ],
+        "screen_content": "Build Great Products branding with decorative doodle icons on white background"
+      }
+    ],
+    "summary": {
+      "title": "Complete Guide to Claude Code's Frontend Design Skill for Professional UI Creation",
+      "takeaways": [
+        "The Claude Code frontend design skill can dramatically improve UI quality beyond typical AI-generated designs",
+        "Installation is simple with just two commands to add the marketplace and plugin",
+        "The skill works both with general prompts and specific design references from sites like Dribbble",
+        "Results include professional animations, hover effects, proper typography, and modern design patterns",
+        "While not perfect, it produces significantly better designs than standard AI tools",
+        "Can be enhanced further by creating custom design systems and frameworks"
+      ],
+      "concepts": [
+        "Claude Code Skills and plugin system",
+        "Frontend design automation with AI",
+        "Design reference-based UI generation",
+        "Brutalist vs modern design aesthetics",
+        "Professional UI/UX patterns and animations",
+        "Design system integration with AI tools"
+      ],
+      "actionable": [
+        "Install the frontend design skill using the provided commands",
+        "Use 'use the frontend design skill to improve the design of this landing page' prompt",
+        "Upload design references from Dribbble or other sources for style matching",
+        "Create a design system framework for more consistent results",
+        "Test and iterate on designs, fixing formatting issues as needed",
+        "Avoid relying solely on the skill - review and refine the output"
+      ]
+    }
+  },
+  "analysis_zh": {
+    "category": "AI编程",
+    "sections": [
+      {
+        "frame_index": 0,
+        "timestamp": "0:07",
+        "title": "Claude Code前端设计技能介绍",
+        "key_points": [
+          "演示者介绍了一个用于创建美观UI设计的病毒式传播Claude Code技能",
+          "声称这是他使用过的最好的Claude Code技能",
+          "承诺在几分钟内展示设置和使用方法"
+        ],
+        "screen_content": "演示者在现代办公室/工作室环境中对着镜头讲话，背景是砖墙和霓虹灯"
+      },
+      {
+        "frame_index": 1,
+        "timestamp": "0:26",
+        "title": "频道品牌和设置",
+        "key_points": [
+          "显示Build Great Products频道品牌",
+          "演示者拥有15年应用设计和创业咨询经验",
+          "过渡到演示环节"
+        ],
+        "screen_content": "干净的白色背景，显示'Build Great Products'文字和周围的装饰涂鸦图标"
+      },
+      {
+        "frame_index": 2,
+        "timestamp": "0:33",
+        "title": "病毒式X帖子演示",
+        "key_points": [
+          "展示了拥有235K+浏览量的病毒式X(Twitter)帖子",
+          "显示使用该技能创建的音乐播放器应用示例",
+          "展示Claude Code插件的安装命令"
+        ],
+        "screen_content": "X/Twitter界面显示Thariq关于前端设计插件的帖子，包含一个深色音乐播放器UI示例，具有黑胶唱片设计"
+      },
+      {
+        "frame_index": 3,
+        "timestamp": "2:46",
+        "title": "基础AI代理着陆页",
+        "key_points": [
+          "展示使用标准Claude创建的初始着陆页",
+          "紫色/蓝色配色方案，典型的AI设计",
+          "包含统计数据、表单和行动号召元素",
+          "描述为'相当基础'但不算糟糕"
+        ],
+        "screen_content": "'AI Accelerate'着陆页，紫色品牌，显示业务指标(50+企业，节省$2M+，98%满意度)和联系表单"
+      },
+      {
+        "frame_index": 4,
+        "timestamp": "3:10",
+        "title": "安装前端设计技能",
+        "key_points": [
+          "从X帖子复制安装命令",
+          "添加市场并安装frontend-design插件",
+          "插件描述：'创建独特的生产级前端界面'"
+        ],
+        "screen_content": "X帖子显示代码块中的安装命令，背景可见Claude Code界面"
+      },
+      {
+        "frame_index": 5,
+        "timestamp": "5:36",
+        "title": "首次重设计结果 - 粗野主义风格",
+        "key_points": [
+          "戏剧性转变为黑色背景配青色强调",
+          "添加了动画、悬停效果和发光元素",
+          "改进了排版和网格布局",
+          "某些部分效果比其他部分更好"
+        ],
+        "screen_content": "深色主题网站，青色'停止因手动流程损失金钱'标题，展示现代粗野主义设计，带有网格图案和发光效果"
+      },
+      {
+        "frame_index": 6,
+        "timestamp": "6:57",
+        "title": "探索设计质量",
+        "key_points": [
+          "演示悬停效果和动画",
+          "展示具有专业样式的案例研究卡片",
+          "注意到细微的网格图案和淡入动画",
+          "承认一些格式问题但总体印象深刻"
+        ],
+        "screen_content": "白色部分显示'测量影响'，包含三个案例研究卡片，展示客户推荐和指标，布局干净专业"
+      },
+      {
+        "frame_index": 7,
+        "timestamp": "7:17",
+        "title": "在Dribbble上寻找设计参考",
+        "key_points": [
+          "导航到Dribbble寻找设计灵感",
+          "搜索AI网站设计",
+          "避免典型的紫色渐变，寻求更干净的风格"
+        ],
+        "screen_content": "Dribbble网站首页显示'发现世界顶级设计师'，包含各种设计作品集缩略图"
+      },
+      {
+        "frame_index": 8,
+        "timestamp": "7:25",
+        "title": "Dribbble设计选择",
+        "key_points": [
+          "加载Dribbble搜索结果",
+          "寻找干净、非典型AI的设计",
+          "希望避免紫色渐变和陈词滥调的AI美学"
+        ],
+        "screen_content": "Dribbble页面加载中，光标可见，显示搜索界面"
+      },
+      {
+        "frame_index": 9,
+        "timestamp": "7:54",
+        "title": "使用设计参考与前端技能",
+        "key_points": [
+          "选择了一个干净、现代的设计参考",
+          "将截图上传到Claude Code",
+          "要求前端技能基于参考进行重设计",
+          "解释转换方法"
+        ],
+        "screen_content": "Claude Code界面显示正在使用前端设计技能，可见代码输出和从粗野主义到柔和现代风格的设计转换说明"
+      },
+      {
+        "frame_index": 10,
+        "timestamp": "9:08",
+        "title": "参考设计对比",
+        "key_points": [
+          "展示使用的Dribbble参考设计",
+          "干净、现代的AI平台设计，带有渐变背景",
+          "专业布局，清晰的排版和品牌"
+        ],
+        "screen_content": "Dribbble设计显示'领先的AI Web编排平台'，干净的白色和渐变设计，包含人物和UI元素"
+      },
+      {
+        "frame_index": 11,
+        "timestamp": "9:22",
+        "title": "最终重设计网站",
+        "key_points": [
+          "戏剧性转变为柔和、现代的设计",
+          "柔和渐变和圆角元素",
+          "流畅动画和专业排版",
+          "仍有一些格式问题但有重大改进"
+        ],
+        "screen_content": "重设计的网站采用柔和的粉彩渐变，显示'用定制AI解决方案转变您的业务'标题，干净现代的布局，带有圆角元素和柔和阴影"
+      },
+      {
+        "frame_index": 12,
+        "timestamp": "10:20",
+        "title": "设计质量评估",
+        "key_points": [
+          "评估最终设计质量",
+          "注意到柔和滚动和悬停效果",
+          "一些格式问题仍然存在但总体优秀",
+          "与其他AI设计工具相比表现良好"
+        ],
+        "screen_content": "网站部分显示'为您的现实构建定制AI系统'，深色渐变背景和三个功能卡片，带有编号步骤和描述"
+      },
+      {
+        "frame_index": 13,
+        "timestamp": "11:27",
+        "title": "结论和建议",
+        "key_points": [
+          "强调Claude Code技能的整体威力",
+          "推荐将其用于专业质量设计",
+          "建议创建设计系统以获得更好结果",
+          "推广社区和课程"
+        ],
+        "screen_content": "演示者回到镜头前，在同样的工作室环境中直接对观众讲话"
+      },
+      {
+        "frame_index": 14,
+        "timestamp": "12:27",
+        "title": "频道结尾",
+        "key_points": [
+          "标准的点赞和订阅号召",
+          "感谢观众",
+          "显示频道品牌"
+        ],
+        "screen_content": "Build Great Products品牌，白色背景上有装饰涂鸦图标"
+      }
+    ],
+    "summary": {
+      "title": "Claude Code前端设计技能专业UI创建完整指南",
+      "takeaways": [
+        "Claude Code前端设计技能可以显著提升UI质量，超越典型的AI生成设计",
+        "安装简单，只需两个命令即可添加市场和插件",
+        "该技能既可以处理一般提示，也可以处理来自Dribbble等网站的特定设计参考",
+        "结果包括专业动画、悬停效果、适当的排版和现代设计模式",
+        "虽然不完美，但产生的设计明显优于标准AI工具",
+        "可以通过创建自定义设计系统和框架进一步增强"
+      ],
+      "concepts": [
+        "Claude Code技能和插件系统",
+        "AI前端设计自动化",
+        "基于设计参考的UI生成",
+        "粗野主义与现代设计美学",
+        "专业UI/UX模式和动画",
+        "设计系统与AI工具集成"
+      ],
+      "actionable": [
+        "使用提供的命令安装前端设计技能",
+        "使用'使用前端设计技能改进此着陆页的设计'提示",
+        "从Dribbble或其他来源上传设计参考进行风格匹配",
+        "创建设计系统框架以获得更一致的结果",
+        "测试和迭代设计，根据需要修复格式问题",
+        "避免完全依赖该技能 - 审查和完善输出"
+      ]
+    }
+  }
+}

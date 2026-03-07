@@ -1,0 +1,275 @@
+{
+  "video_id": "cddfa4a4dcc6",
+  "type": "article",
+  "url": "https://openai.com/index/harness-engineering/",
+  "title": "Harness engineering: leveraging Codex in an agent-first world",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-02-19T21:08:34.934403",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Coding",
+  "token_usage": {
+    "input_tokens": 4827,
+    "output_tokens": 1272,
+    "total_tokens": 6099,
+    "cost_usd": 0.0614,
+    "model": "claude-sonnet-4-20250514",
+    "translate_tokens": {
+      "input_tokens": 1051,
+      "output_tokens": 1646,
+      "cost_usd": 0.0278
+    }
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Coding",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "The Zero-Code Experiment",
+        "key_points": [
+          "Built entire software product with 0 manually-written lines of code using Codex",
+          "Product has daily users and external alpha testers",
+          "Estimated 1/10th the development time compared to manual coding",
+          "Generated ~1 million lines of code over 5 months",
+          "Team of 3-7 engineers managing agents, averaging 3.5 PRs per engineer per day"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Redefining Engineering Roles",
+        "key_points": [
+          "Engineers focus on systems, scaffolding, and leverage rather than direct coding",
+          "Primary job became enabling agents to do useful work",
+          "Work depth-first: break down goals into building blocks for agents",
+          "Humans interact primarily through prompts and review processes",
+          "Agent-to-agent review processes with Ralph Wiggum Loop methodology"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Making Applications Agent-Legible",
+        "key_points": [
+          "Made UI, logs, and metrics directly readable by Codex",
+          "Implemented per-worktree app instances for isolated testing",
+          "Integrated Chrome DevTools Protocol for UI interaction",
+          "Exposed observability via LogQL and PromQL queries",
+          "Agents can work autonomously for 6+ hours on single tasks"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Repository Knowledge Management",
+        "key_points": [
+          "Abandoned monolithic AGENTS.md approach due to context crowding and rot",
+          "Structured docs/ directory as system of record with progressive disclosure",
+          "AGENTS.md serves as table of contents (~100 lines)",
+          "Mechanical enforcement via linters and CI jobs",
+          "Recurring doc-gardening agent maintains documentation freshness"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Architecture and Quality Enforcement",
+        "key_points": [
+          "Rigid architectural model with strict layer dependencies",
+          "Custom linters enforce invariants and taste preferences",
+          "Business domains follow fixed layer structure (Types → Config → Repo → Service → Runtime → UI)",
+          "Constraints enable speed without architectural drift",
+          "Error messages include remediation instructions for agents"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "High-Throughput Development Philosophy",
+        "key_points": [
+          "Minimal blocking merge gates due to high agent throughput",
+          "Short-lived pull requests with quick corrections over waiting",
+          "Agents handle entire development lifecycle end-to-end",
+          "Full autonomy from bug reproduction to merge completion",
+          "Human escalation only when judgment required"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Entropy Management and Cleanup",
+        "key_points": [
+          "Agents replicate existing patterns, leading to drift over time",
+          "Replaced manual Friday cleanup (20% time) with automated processes",
+          "Golden principles encoded as mechanical rules",
+          "Background Codex tasks perform continuous refactoring",
+          "Garbage collection approach to technical debt management"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Building Production Software with Zero Human-Written Code Using AI Agents",
+      "takeaways": [
+        "It's possible to build and ship real software products entirely with AI agents, achieving 10x development speed",
+        "Success requires shifting from writing code to designing environments and feedback loops for agents",
+        "Agent legibility is crucial - everything must be accessible in-repository context",
+        "Strict architectural constraints and automated enforcement enable speed without decay",
+        "High-throughput development changes merge philosophy - corrections are cheaper than waiting"
+      ],
+      "concepts": [
+        "Agent-first software development",
+        "Repository knowledge management",
+        "Progressive disclosure for AI context",
+        "Architectural constraint enforcement",
+        "Agent legibility optimization",
+        "Automated entropy management",
+        "End-to-end autonomous development cycles"
+      ],
+      "actionable": [
+        "Structure repository knowledge as progressive disclosure rather than monolithic documentation",
+        "Implement strict architectural constraints with custom linters for agent environments",
+        "Make application state (UI, logs, metrics) directly accessible to AI agents",
+        "Build automated cleanup processes to prevent AI-generated technical debt accumulation",
+        "Design agent-to-agent review processes to reduce human bottlenecks",
+        "Encode human taste and principles as mechanical rules rather than manual guidelines"
+      ]
+    }
+  },
+  "article_text_length": 19921,
+  "cover": "https://images.ctfassets.net/kftzwdyauwt9/2TjayW57xam6dBbbV28sae/887861e21b8d205c2c392ec5315d3681/SEO.png?w=1600&h=900&fit=fill",
+  "analysis_zh": {
+    "category": "AI编程",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "零代码实验",
+        "key_points": [
+          "使用Codex构建了完整的软件产品，没有手动编写任何一行代码",
+          "产品拥有日活用户和外部alpha测试者",
+          "相比手动编码，开发时间估计缩短至1/10",
+          "5个月内生成了约100万行代码",
+          "3-7名工程师团队管理agents，平均每位工程师每天3.5个PR"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "重新定义工程师角色",
+        "key_points": [
+          "工程师专注于系统、脚手架和杠杆作用，而非直接编码",
+          "主要工作变成让agents能够完成有用的工作",
+          "深度优先工作：将目标分解为agents的构建模块",
+          "人类主要通过提示和审查流程进行交互",
+          "使用Ralph Wiggum Loop方法论的agent间审查流程"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "让应用程序对Agent可读",
+        "key_points": [
+          "让UI、日志和指标能够被Codex直接读取",
+          "实现每个工作树的应用实例以进行隔离测试",
+          "集成Chrome DevTools Protocol进行UI交互",
+          "通过LogQL和PromQL查询暴露可观测性",
+          "Agents可以在单个任务上自主工作6小时以上"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "仓库知识管理",
+        "key_points": [
+          "由于上下文拥挤和腐化，放弃了单体AGENTS.md方法",
+          "将docs/目录结构化为记录系统，采用渐进式披露",
+          "AGENTS.md作为目录（约100行）",
+          "通过linters和CI作业进行机械化执行",
+          "定期文档维护agent保持文档新鲜度"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "架构和质量执行",
+        "key_points": [
+          "严格的架构模型，具有严格的层依赖关系",
+          "自定义linters执行不变量和品味偏好",
+          "业务域遵循固定的层结构（Types → Config → Repo → Service → Runtime → UI）",
+          "约束在不产生架构漂移的情况下实现速度",
+          "错误消息包含为agents提供的修复指令"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "高吞吐量开发理念",
+        "key_points": [
+          "由于agent高吞吐量，最小化阻塞合并门控",
+          "短期pull request，快速修正而非等待",
+          "Agents处理端到端的整个开发生命周期",
+          "从bug复现到合并完成的完全自主性",
+          "仅在需要判断时才升级到人类"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "熵管理和清理",
+        "key_points": [
+          "Agents复制现有模式，随时间导致漂移",
+          "用自动化流程替代手动周五清理（20%时间）",
+          "将黄金原则编码为机械规则",
+          "后台Codex任务执行持续重构",
+          "技术债务管理的垃圾收集方法"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "使用AI Agents构建零人工代码的生产软件",
+      "takeaways": [
+        "完全使用AI agents构建和发布真实软件产品是可能的，可实现10倍开发速度",
+        "成功需要从编写代码转向为agents设计环境和反馈循环",
+        "Agent可读性至关重要 - 一切都必须在仓库上下文中可访问",
+        "严格的架构约束和自动化执行在不产生衰退的情况下实现速度",
+        "高吞吐量开发改变了合并理念 - 修正比等待更便宜"
+      ],
+      "concepts": [
+        "Agent优先的软件开发",
+        "仓库知识管理",
+        "AI上下文的渐进式披露",
+        "架构约束执行",
+        "Agent可读性优化",
+        "自动化熵管理",
+        "端到端自主开发周期"
+      ],
+      "actionable": [
+        "将仓库知识结构化为渐进式披露，而非单体文档",
+        "为agent环境实现带有自定义linters的严格架构约束",
+        "让应用状态（UI、日志、指标）对AI agents直接可访问",
+        "构建自动化清理流程以防止AI生成的技术债务积累",
+        "设计agent间审查流程以减少人类瓶颈",
+        "将人类品味和原则编码为机械规则，而非手动指导原则"
+      ]
+    }
+  }
+}

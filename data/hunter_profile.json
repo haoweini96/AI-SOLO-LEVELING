@@ -1,0 +1,72 @@
+{
+  "hunter_name": "Shadow Monarch",
+  "rank": "E",
+  "level": 4,
+  "total_xp": 450,
+  "current_xp": 104,
+  "xp_to_next_level": 152,
+  "title": "E-Rank Hunter",
+  "stats": {
+    "foundations": 0,
+    "deep_learning": 0,
+    "llm_apps": 25,
+    "ai_agents": 26,
+    "ai_engineering": 10,
+    "ai_products": 24
+  },
+  "achievements": [
+    {
+      "id": "first_light",
+      "title": "First Awakening",
+      "desc": "Light up your first concept node",
+      "icon": "⚡",
+      "earned_at": "2026-03-06T02:41:56.759954+00:00"
+    },
+    {
+      "id": "five_lights",
+      "title": "Rising Hunter",
+      "desc": "Light up 5 concept nodes",
+      "icon": "🌟",
+      "earned_at": "2026-03-06T02:41:56.759966+00:00"
+    },
+    {
+      "id": "ten_lights",
+      "title": "Illuminator",
+      "desc": "Light up 10 concept nodes",
+      "icon": "💡",
+      "earned_at": "2026-03-06T02:41:56.759969+00:00"
+    },
+    {
+      "id": "first_review",
+      "title": "Daily Quest",
+      "desc": "Complete your first review",
+      "icon": "📋",
+      "earned_at": "2026-03-06T02:41:56.759971+00:00"
+    },
+    {
+      "id": "ten_sources",
+      "title": "Knowledge Collector",
+      "desc": "Collect 10 knowledge sources",
+      "icon": "📚",
+      "earned_at": "2026-03-06T02:41:56.759973+00:00"
+    },
+    {
+      "id": "rank_d",
+      "title": "D-Rank Hunter",
+      "desc": "Reach Rank D",
+      "icon": "🇩",
+      "earned_at": "2026-03-06T02:41:56.759980+00:00"
+    },
+    {
+      "id": "rank_e",
+      "title": "觉醒",
+      "desc": "成为猎人",
+      "icon": "⚡",
+      "earned_at": "2026-03-06T02:55:07.167763+00:00"
+    }
+  ],
+  "daily_streak": 0,
+  "longest_streak": 0,
+  "last_active_date": null,
+  "created_at": "2026-03-06T02:41:56.739673+00:00"
+}

@@ -1,0 +1,122 @@
+{
+  "video_id": "8fe83ade619f",
+  "type": "article",
+  "url": "https://x.com/aiedge_/status/2029233676111008061",
+  "title": "AI Edge on X: \"The Ultimate Beginner’s Guide to Claude (March 2026) \" / X",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-05T19:50:38.612396",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Products",
+  "token_usage": {
+    "input_tokens": 2979,
+    "output_tokens": 1006,
+    "total_tokens": 3985,
+    "cost_usd": 0.024,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Products",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction to Claude",
+        "key_points": [
+          "Claude positioned as AI that does 'real work' vs just giving instructions",
+          "Emphasizes task execution capabilities over other AI tools",
+          "Requires paid plan for full functionality",
+          "Interface overview with annotated screenshots"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Prompt Engineering and Context Management",
+        "key_points": [
+          "3-Part Prompt Formula: Set the stage, Define the task, Specify the rules",
+          "Advanced 10-step prompting structure from Anthropic",
+          "Context management tips: compact conversations, add files, use output restraints",
+          "Proper prompting saves tokens and time"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Model Selection Matrix",
+        "key_points": [
+          "Claude Sonnet 4.6: everyday workhorse for 80% of tasks",
+          "Claude Opus 4.6: most intelligent, for complex reasoning with Extended Thinking feature",
+          "Claude Haiku 4.5: fastest and cheapest, for simple tasks",
+          "Model selection based on task complexity and speed requirements"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Basic Tools and Features",
+        "key_points": [
+          "Connectors for Notion, Slack, Google Calendar integration",
+          "Claude Chrome extension for browser integration",
+          "Custom styling for response formatting",
+          "Projects for dedicated work hubs with shared context",
+          "Research Mode for comprehensive cited reports",
+          "Claude desktop app required for advanced features"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Advanced Tools",
+        "key_points": [
+          "Claude Cowork: autonomous task execution and scheduling (desktop app only)",
+          "Claude Code: advanced AI coding tool for development tasks",
+          "Claude Skills: repeatable instructions and workflows",
+          "Cowork Plug-ins: automated employee roles combining multiple skills",
+          "Pre-built plug-ins available for Legal, Marketing, Finance domains"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Claude AI Guide: From Basics to Advanced Automation",
+      "takeaways": [
+        "Claude offers superior task execution capabilities compared to other AI tools like ChatGPT",
+        "Proper prompt engineering using the 3-part formula significantly improves output quality",
+        "Different Claude models serve different purposes - Sonnet for daily work, Opus for complex reasoning, Haiku for speed",
+        "Advanced features like Cowork, Skills, and Plug-ins enable autonomous task execution and workflow automation",
+        "Desktop app unlocks the most powerful features not available in web interface"
+      ],
+      "concepts": [
+        "AI task execution vs instruction giving",
+        "Prompt engineering frameworks",
+        "Model selection optimization",
+        "Context window management",
+        "AI workflow automation",
+        "Repeatable AI instructions (Skills)",
+        "Role-based AI automation (Plug-ins)"
+      ],
+      "actionable": [
+        "Create Claude account and consider paid plan for full features",
+        "Implement 3-part prompt formula: context, task, rules",
+        "Use Sonnet 4.6 for 80% of daily tasks",
+        "Set up Connectors for frequently used tools",
+        "Install Claude Chrome extension for browser integration",
+        "Create Projects for recurring work with shared context",
+        "Download desktop app to access Cowork and advanced features",
+        "Build custom Skills for repetitive workflows",
+        "Explore pre-built Plug-ins for role-based automation"
+      ]
+    }
+  },
+  "article_text_length": 10395,
+  "cover": "https://pbs.twimg.com/media/HCf5H5XbYAA4lfV.jpg"
+}

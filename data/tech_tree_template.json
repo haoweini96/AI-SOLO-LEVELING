@@ -1,0 +1,926 @@
+{
+  "version": "1.0",
+  "tree": {
+    "id": "root",
+    "title": "AI & Machine Learning",
+    "icon": "🧠",
+    "children": [
+      {
+        "id": "foundations",
+        "title": "Foundations",
+        "icon": "📐",
+        "children": [
+          {
+            "id": "math_stats",
+            "title": "Math & Statistics",
+            "children": [
+              {
+                "id": "linear_algebra",
+                "title": "Linear Algebra & Matrix Operations",
+                "guide": {
+                  "what": "线性代数是研究向量、矩阵和线性变换的数学分支。它提供了处理高维数据和线性关系的数学工具。",
+                  "why": "是机器学习的数学基础，几乎所有ML算法都涉及矩阵运算和向量操作。",
+                  "resources": [
+                    "3Blue1Brown的《线性代数的本质》视频系列",
+                    "Gilbert Strang的MIT 18.06课程",
+                    "实践：用NumPy实现矩阵运算和特征值分解"
+                  ],
+                  "prerequisites": [
+                    "probability",
+                    "optimization"
+                  ]
+                }
+              },
+              {
+                "id": "probability",
+                "title": "Probability & Bayesian Inference",
+                "guide": {
+                  "what": "概率论研究随机事件的规律，贝叶斯推断是基于先验知识更新概率的方法。它们是处理不确定性的数学框架。",
+                  "why": "机器学习本质上是在不确定性下做决策，概率思维是理解模型预测和评估的关键。",
+                  "resources": [
+                    "《Think Bayes》- 贝叶斯思维入门",
+                    "Khan Academy概率统计课程",
+                    "用Python实现贝叶斯分类器和A/B测试"
+                  ],
+                  "prerequisites": [
+                    "linear_algebra",
+                    "optimization"
+                  ]
+                }
+              },
+              {
+                "id": "optimization",
+                "title": "Optimization Theory",
+                "guide": {
+                  "what": "优化理论研究如何找到函数的最优值。在机器学习中主要涉及梯度下降、凸优化等方法。",
+                  "why": "所有机器学习模型的训练过程本质上都是优化问题，理解优化算法才能调好模型。",
+                  "resources": [
+                    "《Convex Optimization》by Boyd & Vandenberghe",
+                    "Andrew Ng的优化算法讲解",
+                    "实现不同的梯度下降变种（SGD, Adam, RMSprop）"
+                  ],
+                  "prerequisites": [
+                    "linear_algebra",
+                    "probability"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "classical_ml",
+            "title": "Classical ML",
+            "children": [
+              {
+                "id": "supervised",
+                "title": "Supervised Learning",
+                "guide": {
+                  "what": "监督学习使用标注数据训练模型，包括分类和回归任务。模型学习输入到输出的映射关系。",
+                  "why": "是最常见的机器学习范式，大多数实际应用都属于监督学习问题。",
+                  "resources": [
+                    "《Hands-On Machine Learning》第1-9章",
+                    "Scikit-learn官方教程和案例",
+                    "Kaggle竞赛实践：从数据预处理到模型调优"
+                  ],
+                  "prerequisites": [
+                    "unsupervised",
+                    "feature_eng"
+                  ]
+                }
+              },
+              {
+                "id": "unsupervised",
+                "title": "Unsupervised Learning",
+                "guide": {
+                  "what": "无监督学习从无标签数据中发现隐藏模式，包括聚类、降维、异常检测等任务。",
+                  "why": "现实中大部分数据都是无标签的，无监督学习能挖掘数据的内在结构和价值。",
+                  "resources": [
+                    "《Pattern Recognition and Machine Learning》第9、12章",
+                    "实现K-means、PCA、t-SNE等经典算法",
+                    "用无监督学习做客户细分和推荐系统"
+                  ],
+                  "prerequisites": [
+                    "supervised",
+                    "feature_eng"
+                  ]
+                }
+              },
+              {
+                "id": "feature_eng",
+                "title": "Feature Engineering & Selection",
+                "guide": {
+                  "what": "特征工程是从原始数据中提取和构造有用特征的过程。包括特征选择、变换、组合等技术。",
+                  "why": "好的特征往往比复杂的算法更重要，特征工程直接决定了模型的上限。",
+                  "resources": [
+                    "《Feature Engineering for Machine Learning》",
+                    "Pandas和Scikit-learn的特征处理工具",
+                    "实际项目中的特征工程案例分析"
+                  ],
+                  "prerequisites": [
+                    "supervised",
+                    "unsupervised"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "data_eng",
+            "title": "Data Engineering",
+            "children": [
+              {
+                "id": "data_pipelines",
+                "title": "Data Pipelines & ETL",
+                "guide": {
+                  "what": "数据管道是自动化的数据处理流程，ETL指提取、转换、加载数据的过程。确保数据从源头到模型的顺畅流动。",
+                  "why": "生产环境中需要稳定、可扩展的数据处理流程，好的数据管道是ML系统的基础设施。",
+                  "resources": [
+                    "Apache Airflow官方文档和教程",
+                    "《Designing Data-Intensive Applications》",
+                    "用Docker和Kubernetes部署数据管道"
+                  ],
+                  "prerequisites": [
+                    "data_quality"
+                  ]
+                }
+              },
+              {
+                "id": "data_quality",
+                "title": "Data Quality & Validation",
+                "guide": {
+                  "what": "数据质量管理包括数据清洗、验证、监控等环节。确保数据的准确性、完整性和一致性。",
+                  "why": "垃圾进垃圾出，数据质量直接影响模型效果，是ML项目成功的前提。",
+                  "resources": [
+                    "Great Expectations数据验证框架",
+                    "《The Data Quality Handbook》",
+                    "建立数据质量监控和告警系统"
+                  ],
+                  "prerequisites": [
+                    "data_pipelines"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "deep_learning",
+        "title": "Deep Learning",
+        "icon": "🧬",
+        "children": [
+          {
+            "id": "nn_fundamentals",
+            "title": "Neural Network Fundamentals",
+            "children": [
+              {
+                "id": "architectures",
+                "title": "Architectures (CNN, RNN, Transformer)",
+                "guide": {
+                  "what": "神经网络架构包括CNN（处理图像）、RNN（处理序列）、Transformer（处理任意序列）等不同的网络设计。",
+                  "why": "不同任务需要不同的网络架构，理解架构原理才能选择合适的模型和改进设计。",
+                  "resources": [
+                    "《Deep Learning》by Goodfellow第6-10章",
+                    "PyTorch官方教程：从CNN到Transformer",
+                    "实现并对比不同架构在同一任务上的表现"
+                  ],
+                  "prerequisites": [
+                    "training_optimization"
+                  ]
+                }
+              },
+              {
+                "id": "training_optimization",
+                "title": "Training & Optimization",
+                "guide": {
+                  "what": "神经网络训练优化包括损失函数设计、优化器选择、学习率调度、正则化等技术。",
+                  "why": "训练技巧决定了模型能否收敛到好的解，是深度学习实践的核心技能。",
+                  "resources": [
+                    "《Deep Learning》第8章优化方法",
+                    "Fast.ai的训练技巧课程",
+                    "实验不同优化策略对训练效果的影响"
+                  ],
+                  "prerequisites": [
+                    "architectures"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "computer_vision",
+            "title": "Computer Vision",
+            "children": [
+              {
+                "id": "image_classification",
+                "title": "Image Classification & Detection",
+                "guide": {
+                  "what": "图像分类是识别图像中物体类别的任务，目标检测进一步定位物体位置。是计算机视觉的基础任务。",
+                  "why": "是计算机视觉最成熟的应用领域，掌握后可以扩展到更复杂的视觉任务。",
+                  "resources": [
+                    "CS231n斯坦福计算机视觉课程",
+                    "用PyTorch实现ResNet、YOLO等经典模型",
+                    "参与图像分类竞赛（ImageNet、CIFAR）"
+                  ],
+                  "prerequisites": [
+                    "vision_language",
+                    "video_understanding"
+                  ]
+                }
+              },
+              {
+                "id": "vision_language",
+                "title": "Vision-Language Models (CLIP, SigLIP)",
+                "guide": {
+                  "what": "视觉-语言模型如CLIP、SigLIP能同时理解图像和文本，实现跨模态的表示学习和检索。",
+                  "why": "多模态AI是未来趋势，视觉-语言模型在搜索、生成、理解等任务中应用广泛。",
+                  "resources": [
+                    "CLIP论文及OpenAI官方实现",
+                    "Hugging Face的多模态模型教程",
+                    "构建图文检索和图像描述生成系统"
+                  ],
+                  "prerequisites": [
+                    "image_classification",
+                    "video_understanding"
+                  ]
+                }
+              },
+              {
+                "id": "video_understanding",
+                "title": "Video Understanding",
+                "guide": {
+                  "what": "视频理解涉及动作识别、视频分类、时序建模等任务。需要处理时间维度的视觉信息。",
+                  "why": "视频是更丰富的信息载体，视频理解在监控、娱乐、教育等领域有重要应用。",
+                  "resources": [
+                    "《Two-Stream CNN》等经典视频理解论文",
+                    "用3D CNN和LSTM处理视频数据",
+                    "实现视频动作识别和视频摘要系统"
+                  ],
+                  "prerequisites": [
+                    "image_classification",
+                    "vision_language"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "nlp_lm",
+            "title": "NLP & Language Models",
+            "children": [
+              {
+                "id": "tokenization_embeddings",
+                "title": "Tokenization & Embeddings",
+                "guide": {
+                  "what": "分词是将文本切分成词汇单元的过程，词嵌入将词汇映射为稠密向量表示。是NLP的预处理基础。",
+                  "why": "文本需要转换为数值形式才能被模型处理，好的分词和嵌入直接影响NLP模型效果。",
+                  "resources": [
+                    "《Natural Language Processing with Python》前几章",
+                    "Hugging Face Tokenizers库教程",
+                    "比较不同分词方法（BPE、WordPiece、SentencePiece）"
+                  ],
+                  "prerequisites": [
+                    "attention_transformer",
+                    "finetuning"
+                  ]
+                }
+              },
+              {
+                "id": "attention_transformer",
+                "title": "Attention & Transformer Internals",
+                "guide": {
+                  "what": "注意力机制让模型关注输入的重要部分，Transformer是基于自注意力的架构。是现代NLP的核心技术。",
+                  "why": "Transformer架构是GPT、BERT等大语言模型的基础，理解其原理是掌握现代NLP的关键。",
+                  "resources": [
+                    "《Attention Is All You Need》原论文详解",
+                    "The Illustrated Transformer博客文章",
+                    "从零实现Transformer并在翻译任务上训练"
+                  ],
+                  "prerequisites": [
+                    "tokenization_embeddings",
+                    "finetuning"
+                  ]
+                }
+              },
+              {
+                "id": "finetuning",
+                "title": "Fine-tuning (LoRA, RLHF, DPO)",
+                "guide": {
+                  "what": "Fine-tuning是在预训练模型基础上针对特定任务进行优化的技术。LoRA通过低秩适应实现高效微调，RLHF利用人类反馈进行强化学习，DPO直接优化偏好数据。",
+                  "why": "掌握这些技术能让你定制化改进模型性能，是构建实用AI应用的核心技能。",
+                  "resources": [
+                    "阅读LoRA论文并实践Hugging Face PEFT库",
+                    "学习OpenAI的RLHF技术报告和实现",
+                    "通过Axolotl或类似框架进行hands-on微调实验"
+                  ],
+                  "prerequisites": [
+                    "tokenization_embeddings",
+                    "attention_transformer"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "llm_apps",
+        "title": "LLM & Applications",
+        "icon": "🤖",
+        "children": [
+          {
+            "id": "llm_fundamentals",
+            "title": "LLM Fundamentals",
+            "children": [
+              {
+                "id": "how_llms_work",
+                "title": "How LLMs Work",
+                "guide": {
+                  "what": "深入理解大语言模型的内部机制，包括Transformer架构、注意力机制、训练过程和推理原理。涵盖从token化到生成的完整流程。",
+                  "why": "理解LLM工作原理是有效使用和优化模型的基础，帮助你做出更好的技术决策。",
+                  "resources": [
+                    "阅读《Attention Is All You Need》论文和相关解析",
+                    "观看Andrej Karpathy的GPT系列视频教程",
+                    "使用nanoGPT从零实现一个小型语言模型"
+                  ],
+                  "prerequisites": [
+                    "prompt_engineering",
+                    "context_engineering"
+                  ]
+                }
+              },
+              {
+                "id": "prompt_engineering",
+                "title": "Prompt Engineering",
+                "guide": {
+                  "what": "Prompt工程是设计和优化输入提示词的技术，通过精心构造的指令让LLM产生更准确、有用的输出。包括few-shot learning、chain-of-thought等技巧。",
+                  "why": "这是与LLM交互的核心技能，直接影响模型输出质量和应用效果。",
+                  "resources": [
+                    "学习OpenAI和Anthropic的prompt engineering指南",
+                    "实践LangChain的prompt templates和优化技巧",
+                    "阅读《The Prompt Report》了解最新研究进展"
+                  ],
+                  "prerequisites": [
+                    "how_llms_work",
+                    "context_engineering"
+                  ]
+                }
+              },
+              {
+                "id": "context_engineering",
+                "title": "Context Engineering",
+                "guide": {
+                  "what": "Context工程专注于优化LLM的上下文窗口使用，包括信息组织、上下文压缩、相关性排序等技术。目标是在有限窗口内提供最有价值的信息。",
+                  "why": "有效的上下文管理能显著提升LLM的理解能力和回答质量，特别是在复杂任务中。",
+                  "resources": [
+                    "研究context length optimization的最新论文",
+                    "实践LongChain等长上下文处理框架",
+                    "学习信息检索和文本摘要技术用于上下文压缩"
+                  ],
+                  "prerequisites": [
+                    "how_llms_work",
+                    "prompt_engineering"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "rag",
+            "title": "RAG",
+            "children": [
+              {
+                "id": "vector_db",
+                "title": "Vector Databases & Embeddings",
+                "guide": {
+                  "what": "向量数据库专门存储和检索高维向量数据，embeddings是文本、图像等数据的向量表示。两者结合实现语义搜索和相似性匹配。",
+                  "why": "这是构建RAG系统和语义搜索应用的核心基础设施。",
+                  "resources": [
+                    "实践Pinecone、Weaviate或Chroma等向量数据库",
+                    "学习不同embedding模型的特点和选择策略",
+                    "构建一个端到端的语义搜索demo项目"
+                  ],
+                  "prerequisites": [
+                    "retrieval_strategies",
+                    "rag_pipeline"
+                  ]
+                }
+              },
+              {
+                "id": "retrieval_strategies",
+                "title": "Retrieval Strategies",
+                "guide": {
+                  "what": "检索策略是从大量文档中找到相关信息的方法，包括密集检索、稀疏检索、混合检索、重排序等技术。",
+                  "why": "好的检索策略直接决定RAG系统的效果，是信息检索应用的核心。",
+                  "resources": [
+                    "学习BM25、DPR等经典检索算法",
+                    "实践Haystack或LlamaIndex的检索组件",
+                    "研究最新的retrieval augmentation技术论文"
+                  ],
+                  "prerequisites": [
+                    "vector_db",
+                    "rag_pipeline"
+                  ]
+                }
+              },
+              {
+                "id": "rag_pipeline",
+                "title": "RAG Pipeline Design",
+                "guide": {
+                  "what": "RAG管道设计涵盖从文档处理、向量化、检索到生成的完整流程。包括数据预处理、chunk策略、检索优化、答案生成等环节的设计。",
+                  "why": "掌握端到端的RAG系统设计是构建知识密集型AI应用的必备技能。",
+                  "resources": [
+                    "使用LangChain或LlamaIndex构建完整RAG系统",
+                    "学习advanced RAG技术如HyDE、Self-RAG等",
+                    "参考Microsoft的RAG系统设计最佳实践"
+                  ],
+                  "prerequisites": [
+                    "vector_db",
+                    "retrieval_strategies"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "llm_eval",
+            "title": "LLM Evaluation & Safety",
+            "children": [
+              {
+                "id": "eval_frameworks",
+                "title": "Benchmarks & Eval Frameworks",
+                "guide": {
+                  "what": "评估框架和基准测试用于衡量LLM在各种任务上的性能，包括MMLU、HellaSwag等标准基准，以及自定义评估指标。",
+                  "why": "客观评估是模型选择、优化和部署决策的科学依据。",
+                  "resources": [
+                    "熟悉Hugging Face Evaluate库和主流benchmark",
+                    "学习使用HELM、lm-evaluation-harness等评估工具",
+                    "研究如何设计针对特定应用的评估指标"
+                  ],
+                  "prerequisites": [
+                    "alignment_safety"
+                  ]
+                }
+              },
+              {
+                "id": "alignment_safety",
+                "title": "Alignment & Safety",
+                "guide": {
+                  "what": "对齐与安全研究确保AI系统的行为符合人类价值观和预期，包括有害内容检测、偏见缓解、可解释性等方面。",
+                  "why": "这是负责任AI开发的核心要求，对构建可信赖的AI系统至关重要。",
+                  "resources": [
+                    "阅读Anthropic关于Constitutional AI的研究",
+                    "学习使用safety evaluation工具如Perspective API",
+                    "关注AI safety领域的最新研究进展和标准"
+                  ],
+                  "prerequisites": [
+                    "eval_frameworks"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ai_agents",
+        "title": "AI Agents",
+        "icon": "🕵️",
+        "children": [
+          {
+            "id": "agent_fundamentals",
+            "title": "Agent Fundamentals",
+            "children": [
+              {
+                "id": "agent_patterns",
+                "title": "Agent Architecture Patterns",
+                "guide": {
+                  "what": "Agent架构模式定义了AI智能体的设计框架，包括ReAct、Plan-and-Execute、Reflexion等模式。每种模式适用于不同类型的任务和场景。",
+                  "why": "理解不同架构模式帮助你为具体应用选择最合适的agent设计方案。",
+                  "resources": [
+                    "实践LangGraph构建不同架构模式的agent",
+                    "阅读《ReAct: Synergizing Reasoning and Acting》等经典论文",
+                    "参考AutoGPT、LangChain Agents的实现案例"
+                  ],
+                  "prerequisites": [
+                    "tool_use",
+                    "memory_systems"
+                  ]
+                }
+              },
+              {
+                "id": "tool_use",
+                "title": "Tool Use & Function Calling",
+                "guide": {
+                  "what": "工具使用和函数调用让AI agent能够调用外部API、执行代码、访问数据库等，扩展其能力边界。包括工具选择、参数生成、结果处理等环节。",
+                  "why": "这是构建实用AI助手的关键能力，让agent能够完成现实世界的复杂任务。",
+                  "resources": [
+                    "学习OpenAI Function Calling和Tool Use API",
+                    "实践LangChain Tools和Toolkits的使用",
+                    "构建一个能调用多种工具的实用agent项目"
+                  ],
+                  "prerequisites": [
+                    "agent_patterns",
+                    "memory_systems"
+                  ]
+                }
+              },
+              {
+                "id": "memory_systems",
+                "title": "Memory Systems",
+                "guide": {
+                  "what": "记忆系统让AI agent能够存储和检索历史信息，包括短期记忆、长期记忆、情景记忆等类型。实现方式包括向量存储、图数据库、结构化存储等。",
+                  "why": "记忆能力使agent能够进行连续对话和学习，是构建智能助手的重要组件。",
+                  "resources": [
+                    "研究MemGPT等长期记忆架构的实现",
+                    "实践使用Redis、Neo4j等构建agent记忆系统",
+                    "学习episodic memory和semantic memory的设计模式"
+                  ],
+                  "prerequisites": [
+                    "agent_patterns",
+                    "tool_use"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "multi_agent",
+            "title": "Multi-Agent Systems",
+            "children": [
+              {
+                "id": "orchestration",
+                "title": "Orchestration Patterns",
+                "guide": {
+                  "what": "编排模式定义了多个agent之间的协调和任务分配机制，包括中心化控制、分布式协调、层次化管理等不同的组织方式。",
+                  "why": "掌握编排模式能够构建复杂的多agent系统，实现大规模协作任务。",
+                  "resources": [
+                    "学习Microsoft AutoGen的multi-agent编排框架",
+                    "研究CrewAI等团队协作agent平台",
+                    "实践构建一个多角色协作的agent系统"
+                  ],
+                  "prerequisites": [
+                    "inter_agent_comm",
+                    "subagent_design"
+                  ]
+                }
+              },
+              {
+                "id": "inter_agent_comm",
+                "title": "Inter-Agent Communication",
+                "guide": {
+                  "what": "智能体间通信定义了agent之间信息交换的协议和机制，包括消息传递、共享状态、事件驱动等通信模式。",
+                  "why": "有效的通信机制是多agent系统协作的基础，影响整体系统的效率和可靠性。",
+                  "resources": [
+                    "学习agent communication languages (ACL)的设计原理",
+                    "实践使用message queue和event bus进行agent通信",
+                    "研究分布式系统中的consensus和coordination算法"
+                  ],
+                  "prerequisites": [
+                    "orchestration",
+                    "subagent_design"
+                  ]
+                }
+              },
+              {
+                "id": "subagent_design",
+                "title": "Subagent Design",
+                "guide": {
+                  "what": "子智能体设计涉及将复杂任务分解为专门的子agent，每个子agent负责特定功能模块。包括功能划分、接口设计、生命周期管理等方面。",
+                  "why": "模块化的子agent设计提高系统的可维护性和可扩展性，是构建大型agent系统的最佳实践。",
+                  "resources": [
+                    "学习microservices架构在agent系统中的应用",
+                    "实践使用LangGraph构建hierarchical agent系统",
+                    "研究agent specialization和task decomposition的策略"
+                  ],
+                  "prerequisites": [
+                    "orchestration",
+                    "inter_agent_comm"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "agent_dev",
+            "title": "Agent Development",
+            "children": [
+              {
+                "id": "claude_code_agents",
+                "title": "Claude Code & Anthropic Tools",
+                "guide": {
+                  "what": "Claude Code是Anthropic开发的代码生成和分析工具，结合Anthropic Tools可以构建智能代码助手。它能够理解代码上下文，提供代码建议、调试帮助和自动化编程任务。",
+                  "why": "掌握Claude Code能让你构建更智能的编程助手，提高开发效率和代码质量。",
+                  "resources": [
+                    "阅读Anthropic官方文档和Claude API指南",
+                    "实践构建代码审查和生成的Agent项目",
+                    "学习prompt engineering for code tasks"
+                  ],
+                  "prerequisites": [
+                    "langchain_langgraph",
+                    "agent_eval"
+                  ]
+                }
+              },
+              {
+                "id": "langchain_langgraph",
+                "title": "LangChain / LangGraph",
+                "guide": {
+                  "what": "LangChain是构建LLM应用的框架，LangGraph是其状态管理和工作流编排组件。它们提供了链式调用、记忆管理、工具集成等功能来构建复杂的AI应用。",
+                  "why": "这是目前最流行的Agent开发框架，掌握它能快速构建生产级的AI应用。",
+                  "resources": [
+                    "完成LangChain官方教程和cookbook示例",
+                    "学习LangGraph的状态图和工作流设计模式",
+                    "构建一个多步骤推理的Agent项目"
+                  ],
+                  "prerequisites": [
+                    "claude_code_agents",
+                    "agent_eval"
+                  ]
+                }
+              },
+              {
+                "id": "agent_eval",
+                "title": "Agent Evaluation & Debugging",
+                "guide": {
+                  "what": "Agent评估是衡量AI智能体性能的方法论，包括任务完成率、推理质量、工具使用效果等指标。调试则涉及追踪Agent的决策过程和错误分析。",
+                  "why": "没有评估就无法改进Agent性能，这是构建可靠AI系统的关键环节。",
+                  "resources": [
+                    "学习Agent benchmarking方法和评估框架",
+                    "掌握LangSmith等调试工具的使用",
+                    "研究Agent failure cases和改进策略"
+                  ],
+                  "prerequisites": [
+                    "claude_code_agents",
+                    "langchain_langgraph"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ai_engineering",
+        "title": "AI Engineering",
+        "icon": "🛠",
+        "children": [
+          {
+            "id": "ml_systems",
+            "title": "ML Systems",
+            "children": [
+              {
+                "id": "model_serving",
+                "title": "Model Serving & Inference",
+                "guide": {
+                  "what": "模型服务是将训练好的ML模型部署为可调用服务的技术，包括推理优化、负载均衡、版本管理等。它确保模型能够高效稳定地为应用提供预测服务。",
+                  "why": "这是将AI模型从实验室带到生产环境的必备技能，直接影响用户体验。",
+                  "resources": [
+                    "学习TorchServe、TensorFlow Serving等框架",
+                    "掌握Docker容器化和Kubernetes部署",
+                    "了解模型量化和推理加速技术"
+                  ],
+                  "prerequisites": [
+                    "training_infra",
+                    "mlops"
+                  ]
+                }
+              },
+              {
+                "id": "training_infra",
+                "title": "Training Infrastructure",
+                "guide": {
+                  "what": "训练基础设施是支持大规模机器学习模型训练的硬件和软件系统，包括分布式计算、存储管理、资源调度等。它能够高效利用GPU集群进行模型训练。",
+                  "why": "现代AI模型规模庞大，掌握训练基础设施是进行大规模AI研发的基础。",
+                  "resources": [
+                    "学习PyTorch Distributed和Horovod分布式训练",
+                    "掌握Kubernetes和Ray等资源管理工具",
+                    "了解GPU集群管理和存储优化"
+                  ],
+                  "prerequisites": [
+                    "model_serving",
+                    "mlops"
+                  ]
+                }
+              },
+              {
+                "id": "mlops",
+                "title": "MLOps",
+                "guide": {
+                  "what": "MLOps是机器学习运维的实践，结合了ML、DevOps和数据工程，涵盖模型开发、部署、监控、更新的完整生命周期管理。",
+                  "why": "MLOps确保AI系统的可维护性和可扩展性，是企业级AI应用的必备能力。",
+                  "resources": [
+                    "学习MLflow、Kubeflow等MLOps平台",
+                    "掌握CI/CD pipeline for ML和模型版本控制",
+                    "了解模型监控和A/B测试策略"
+                  ],
+                  "prerequisites": [
+                    "model_serving",
+                    "training_infra"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "ai_dev",
+            "title": "AI-Assisted Development",
+            "children": [
+              {
+                "id": "ai_coding_tools",
+                "title": "AI Coding Tools",
+                "guide": {
+                  "what": "AI编程工具是利用人工智能辅助软件开发的工具集，如GitHub Copilot、Cursor等。它们能够自动生成代码、提供智能补全、协助调试和重构。",
+                  "why": "AI编程工具能显著提升开发效率，是现代程序员的必备技能。",
+                  "resources": [
+                    "熟练使用GitHub Copilot和Cursor等工具",
+                    "学习prompt engineering for code generation",
+                    "掌握AI辅助的代码审查和重构技巧"
+                  ],
+                  "prerequisites": [
+                    "ai_testing",
+                    "prod_patterns"
+                  ]
+                }
+              },
+              {
+                "id": "ai_testing",
+                "title": "AI-Driven Testing & QA",
+                "guide": {
+                  "what": "AI驱动的测试是利用机器学习技术自动生成测试用例、发现bug、优化测试策略的方法。它能够提高测试覆盖率和发现隐藏缺陷的能力。",
+                  "why": "AI测试能够发现人工测试难以覆盖的边界情况，提升软件质量。",
+                  "resources": [
+                    "学习AI测试框架如Testim、Applitools",
+                    "掌握自动化测试用例生成技术",
+                    "了解AI在性能测试和安全测试中的应用"
+                  ],
+                  "prerequisites": [
+                    "ai_coding_tools",
+                    "prod_patterns"
+                  ]
+                }
+              },
+              {
+                "id": "prod_patterns",
+                "title": "Production Patterns with AI",
+                "guide": {
+                  "what": "AI生产模式是在生产环境中部署和运行AI系统的最佳实践模式，包括微服务架构、缓存策略、降级机制等设计模式。",
+                  "why": "掌握生产模式能确保AI系统的稳定性和可扩展性，避免生产事故。",
+                  "resources": [
+                    "学习AI系统的架构设计模式",
+                    "掌握缓存、限流、熔断等保护机制",
+                    "了解AI服务的监控和告警策略"
+                  ],
+                  "prerequisites": [
+                    "ai_coding_tools",
+                    "ai_testing"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "api_integration",
+            "title": "API & Integration",
+            "children": [
+              {
+                "id": "llm_api_design",
+                "title": "LLM API Design",
+                "guide": {
+                  "what": "LLM API设计是为大语言模型构建高效、安全、易用的应用程序接口的方法。它涉及接口规范、认证授权、速率限制、错误处理等方面。",
+                  "why": "良好的API设计是LLM应用成功的关键，直接影响开发者体验和系统性能。",
+                  "resources": [
+                    "学习OpenAI API和Anthropic API的设计模式",
+                    "掌握RESTful API和GraphQL在LLM中的应用",
+                    "了解API安全和性能优化最佳实践"
+                  ],
+                  "prerequisites": [
+                    "mcp"
+                  ]
+                }
+              },
+              {
+                "id": "mcp",
+                "title": "MCP (Model Context Protocol)",
+                "guide": {
+                  "what": "模型上下文协议(MCP)是Anthropic提出的标准化协议，用于AI助手与外部数据源和工具的安全连接。它定义了上下文共享、工具调用和数据访问的规范。",
+                  "why": "MCP是未来AI Agent生态的重要标准，掌握它能构建更安全可靠的AI应用。",
+                  "resources": [
+                    "阅读Anthropic的MCP官方规范文档",
+                    "实践构建MCP兼容的工具和数据源",
+                    "学习MCP在企业环境中的安全实施"
+                  ],
+                  "prerequisites": [
+                    "llm_api_design"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ai_products",
+        "title": "AI Products & Creative",
+        "icon": "🎨",
+        "children": [
+          {
+            "id": "gen_media",
+            "title": "Generative Media",
+            "children": [
+              {
+                "id": "image_gen",
+                "title": "Image Generation",
+                "guide": {
+                  "what": "图像生成是利用AI模型(如Stable Diffusion、DALL-E)从文本描述或其他输入创建图像的技术。它包括文生图、图生图、风格转换等多种应用形式。",
+                  "why": "图像生成是最直观的AI创意应用，掌握它能开发出吸引用户的视觉产品。",
+                  "resources": [
+                    "学习Stable Diffusion和ComfyUI的使用",
+                    "掌握prompt engineering for image generation",
+                    "了解ControlNet、LoRA等高级技术"
+                  ],
+                  "prerequisites": [
+                    "video_gen",
+                    "audio_gen"
+                  ]
+                }
+              },
+              {
+                "id": "video_gen",
+                "title": "Video Generation",
+                "guide": {
+                  "what": "视频生成是使用AI技术创建视频内容的方法，包括文本到视频、图像到视频、视频编辑等。代表性工具有Runway、Pika Labs等。",
+                  "why": "视频是最具表现力的媒体形式，AI视频生成将革命性地改变内容创作行业。",
+                  "resources": [
+                    "学习Runway ML和Pika Labs等视频生成工具",
+                    "掌握视频prompt writing和参数调优",
+                    "了解视频后处理和质量优化技术"
+                  ],
+                  "prerequisites": [
+                    "image_gen",
+                    "audio_gen"
+                  ]
+                }
+              },
+              {
+                "id": "audio_gen",
+                "title": "Audio & Music Generation",
+                "guide": {
+                  "what": "音频和音乐生成是利用AI创建声音内容的技术，包括语音合成、音乐创作、音效生成等。代表性工具有ElevenLabs、Suno AI等。",
+                  "why": "音频AI能够创造个性化的声音体验，在娱乐、教育、无障碍等领域有巨大潜力。",
+                  "resources": [
+                    "学习ElevenLabs语音合成和Suno AI音乐生成",
+                    "掌握音频prompt engineering和风格控制",
+                    "了解音频处理和质量优化技术"
+                  ],
+                  "prerequisites": [
+                    "image_gen",
+                    "video_gen"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "ai_product_design",
+            "title": "AI Product Design",
+            "children": [
+              {
+                "id": "ai_ux",
+                "title": "AI UX Patterns",
+                "guide": {
+                  "what": "AI用户体验模式是设计AI产品交互界面和用户流程的最佳实践，包括对话设计、反馈机制、错误处理、用户引导等设计原则。",
+                  "why": "好的AI UX设计能让复杂的AI功能变得易用，直接决定产品的用户接受度。",
+                  "resources": [
+                    "学习conversational UI和chat interface设计",
+                    "掌握AI产品的loading、error和feedback状态设计",
+                    "了解AI transparency和explainability的UX实践"
+                  ],
+                  "prerequisites": [
+                    "ai_native_tools"
+                  ]
+                }
+              },
+              {
+                "id": "ai_native_tools",
+                "title": "AI-Native Tools",
+                "guide": {
+                  "what": "AI-Native Tools是专门为AI时代设计的原生工具和产品，它们从底层架构就融入了AI能力，而不是简单地在传统工具上添加AI功能。这些工具充分利用AI的特性来重新定义用户体验和工作流程。",
+                  "why": "掌握AI-Native Tools的设计理念能帮你创造真正发挥AI潜力的产品，而不是停留在传统工具的AI包装层面。",
+                  "resources": [
+                    "研究Notion AI、Figma AI、GitHub Copilot等成功的AI-Native产品案例",
+                    "学习《Designing for AI》by Josh Lovejoy - Google AI设计指南",
+                    "关注AI产品设计社区如AI Product Community和相关Medium文章"
+                  ],
+                  "prerequisites": [
+                    "ai_ux"
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

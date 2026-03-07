@@ -1,0 +1,9 @@
+flask
+flask_cors
+requests
+python-dotenv
+beautifulsoup4
+anthropic
+openai
+Pillow
+youtube-transcript-api

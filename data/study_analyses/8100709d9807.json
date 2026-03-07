@@ -1,0 +1,75 @@
+{
+  "video_id": "8100709d9807",
+  "type": "article",
+  "url": "https://medium.com/data-science-collective/the-evolution-of-context-engineering-from-prompt-hacking-to-cognitive-architectures-14eb17243ef5",
+  "title": "The Evolution of Context Engineering: From Prompt Hacking to Cognitive Architectures",
+  "channel": "Han HELOIR YAN, Ph.D. ☕️",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-02-15T19:01:17.381999",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "Prompt Engineering",
+  "token_usage": {
+    "input_tokens": 869,
+    "output_tokens": 511,
+    "total_tokens": 1380,
+    "cost_usd": 0.0103,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "Prompt Engineering",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "The Context Memory Problem",
+        "key_points": [
+          "AI assistants fail to maintain context across conversations despite having sufficient memory capacity",
+          "Example: AI forgets user's wife's preferences (sustainable fashion, rock climbing) after 3 weeks",
+          "Models have 128,000 token memory but only need 2,000 tokens for the conversation",
+          "The issue is not model capability but poor context engineering architecture"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Evolution from Prompt Hacking to Cognitive Architectures",
+        "key_points": [
+          "Article title suggests progression from basic prompt manipulation to sophisticated cognitive systems",
+          "Context engineering has become more valuable than the underlying model itself",
+          "Need for proper memory system architecture in AI applications",
+          "Gap between model capabilities and practical implementation"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Context Engineering: The Critical Gap Between AI Model Capability and Practical Memory Management",
+      "takeaways": [
+        "Modern AI models have sufficient memory capacity but lack proper context engineering architecture",
+        "Context engineering is becoming more valuable than the underlying model capabilities",
+        "Poor memory system design leads to frustrating user experiences despite advanced AI technology",
+        "The field is evolving from simple prompt manipulation to sophisticated cognitive architectures"
+      ],
+      "concepts": [
+        "Context Engineering",
+        "Memory Architecture in AI Systems",
+        "Token Management",
+        "Cognitive Architectures",
+        "AI Memory Systems"
+      ],
+      "actionable": [
+        "Design proper memory systems that persist important context across conversations",
+        "Architect context management systems rather than relying solely on model capabilities",
+        "Implement structured approaches to context retention and retrieval",
+        "Focus on context engineering as a key differentiator in AI applications"
+      ]
+    }
+  },
+  "article_text_length": 2044,
+  "cover": "https://miro.medium.com/v2/resize:fit:1200/1*BM3FuPcA5NOTrmhl2QB99A@2x.jpeg"
+}

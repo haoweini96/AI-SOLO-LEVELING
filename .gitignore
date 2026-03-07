@@ -1,0 +1,31 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Playwright
+.playwright-mcp/
+chrome-profile/
+
+# Logs
+logs/*.log
+
+# Temp
+*.tmp
+*.tmp.*
+
+# Large background images (place your own or remove background refs from HTML)
+apps/study/knowledge_assets/*.png
+apps/study/knowledge_assets/*.avif
+apps/study/knowledge_assets/knowledge_light

@@ -1,0 +1,4059 @@
+{
+  "video_id": "cSkoaCCmq0w",
+  "url": "https://www.youtube.com/watch?v=cSkoaCCmq0w",
+  "title": "Learn 90% Of Claude Code Agent Teams in 22 Minutes (Opus 4.6)",
+  "channel": "Bart Slodyczka",
+  "duration": 1322,
+  "upload_date": "20260213",
+  "analyzed_at": "2026-02-15T17:52:01.101743",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Agents",
+  "token_usage": {
+    "input_tokens": 27934,
+    "output_tokens": 1842,
+    "total_tokens": 29776,
+    "cost_usd": 0.15,
+    "model": "claude-sonnet-4-20250514",
+    "translate_tokens": {
+      "input_tokens": 1562,
+      "output_tokens": 2259,
+      "cost_usd": 0.0386
+    }
+  },
+  "transcript_available": true,
+  "transcript": [
+    {
+      "text": "Hello legends. In this video, I'm going",
+      "start": 0.08,
+      "duration": 3.839
+    },
+    {
+      "text": "to turn you into a master of claude code",
+      "start": 2.0,
+      "duration": 3.839
+    },
+    {
+      "text": "agent teams. So, as you know, we",
+      "start": 3.919,
+      "duration": 4.161
+    },
+    {
+      "text": "recently got the Opus 4.6 model and with",
+      "start": 5.839,
+      "duration": 3.68
+    },
+    {
+      "text": "it, we got a brand new feature called",
+      "start": 8.08,
+      "duration": 3.2
+    },
+    {
+      "text": "agent teams. We're going to start with",
+      "start": 9.519,
+      "duration": 4.24
+    },
+    {
+      "text": "an overview of what agent teams is and",
+      "start": 11.28,
+      "duration": 4.239
+    },
+    {
+      "text": "how it's different to using sub aents or",
+      "start": 13.759,
+      "duration": 3.761
+    },
+    {
+      "text": "even just a default mode of claude code.",
+      "start": 15.519,
+      "duration": 2.961
+    },
+    {
+      "text": "We'll then make sure that you're",
+      "start": 17.52,
+      "duration": 2.64
+    },
+    {
+      "text": "correctly set up, including that you",
+      "start": 18.48,
+      "duration": 3.04
+    },
+    {
+      "text": "have the latest version of claude code,",
+      "start": 20.16,
+      "duration": 3.039
+    },
+    {
+      "text": "so you can access all the models, that",
+      "start": 21.52,
+      "duration": 3.04
+    },
+    {
+      "text": "you have all the correct settings and",
+      "start": 23.199,
+      "duration": 2.721
+    },
+    {
+      "text": "configurations, so you can actually",
+      "start": 24.56,
+      "duration": 3.28
+    },
+    {
+      "text": "access the agent team mode. And then I'm",
+      "start": 25.92,
+      "duration": 2.88
+    },
+    {
+      "text": "going to show you something called",
+      "start": 27.84,
+      "duration": 2.48
+    },
+    {
+      "text": "TeamUx, which is an easier way for you",
+      "start": 28.8,
+      "duration": 2.96
+    },
+    {
+      "text": "to actually manage and interact with",
+      "start": 30.32,
+      "duration": 3.12
+    },
+    {
+      "text": "your different agents on a team. We'll",
+      "start": 31.76,
+      "duration": 3.44
+    },
+    {
+      "text": "then take a look at session management",
+      "start": 33.44,
+      "duration": 3.279
+    },
+    {
+      "text": "because it's a very specific way to",
+      "start": 35.2,
+      "duration": 3.6
+    },
+    {
+      "text": "actually spool up your agent team to",
+      "start": 36.719,
+      "duration": 3.761
+    },
+    {
+      "text": "then manage and interact with it. And",
+      "start": 38.8,
+      "duration": 3.279
+    },
+    {
+      "text": "that's where that T-max thing comes into",
+      "start": 40.48,
+      "duration": 3.28
+    },
+    {
+      "text": "play as well. And then finally, a",
+      "start": 42.079,
+      "duration": 3.281
+    },
+    {
+      "text": "specific way to actually shut down the",
+      "start": 43.76,
+      "duration": 3.6
+    },
+    {
+      "text": "team, then close all the tasks that",
+      "start": 45.36,
+      "duration": 3.519
+    },
+    {
+      "text": "you're working on. And then at the end",
+      "start": 47.36,
+      "duration": 2.64
+    },
+    {
+      "text": "of the video, I'm going to show you how",
+      "start": 48.879,
+      "duration": 2.961
+    },
+    {
+      "text": "to use the claw code skills to actually",
+      "start": 50.0,
+      "duration": 3.52
+    },
+    {
+      "text": "make it easier for you to manage future",
+      "start": 51.84,
+      "duration": 3.76
+    },
+    {
+      "text": "teams. So now that we have agent teams,",
+      "start": 53.52,
+      "duration": 3.039
+    },
+    {
+      "text": "there's actually three different ways",
+      "start": 55.6,
+      "duration": 2.72
+    },
+    {
+      "text": "that you can use claude code. The",
+      "start": 56.559,
+      "duration": 3.281
+    },
+    {
+      "text": "original way, the very first way to use",
+      "start": 58.32,
+      "duration": 3.36
+    },
+    {
+      "text": "claude code was in the default mode. So",
+      "start": 59.84,
+      "duration": 3.519
+    },
+    {
+      "text": "the default mode is where you open up a",
+      "start": 61.68,
+      "duration": 3.36
+    },
+    {
+      "text": "new terminal, you launch claude code,",
+      "start": 63.359,
+      "duration": 2.961
+    },
+    {
+      "text": "and you have a conversation for one of",
+      "start": 65.04,
+      "duration": 2.96
+    },
+    {
+      "text": "the claude models. You can do things",
+      "start": 66.32,
+      "duration": 4.24
+    },
+    {
+      "text": "like write code, debug code, do web",
+      "start": 68.0,
+      "duration": 4.479
+    },
+    {
+      "text": "search. So now technically speaking,",
+      "start": 70.56,
+      "duration": 3.76
+    },
+    {
+      "text": "everything you can do in agent team mode",
+      "start": 72.479,
+      "duration": 3.921
+    },
+    {
+      "text": "and sub agent mode, you can also do on a",
+      "start": 74.32,
+      "duration": 4.0
+    },
+    {
+      "text": "default mode. The biggest difference is",
+      "start": 76.4,
+      "duration": 4.399
+    },
+    {
+      "text": "in how the session is managed. So in",
+      "start": 78.32,
+      "duration": 4.96
+    },
+    {
+      "text": "default mode, you have one session. In",
+      "start": 80.799,
+      "duration": 4.881
+    },
+    {
+      "text": "sub agent mode, you have one session,",
+      "start": 83.28,
+      "duration": 4.24
+    },
+    {
+      "text": "but then in agent team mode, each of",
+      "start": 85.68,
+      "duration": 3.759
+    },
+    {
+      "text": "these little guys actually has their own",
+      "start": 87.52,
+      "duration": 3.279
+    },
+    {
+      "text": "session. And this is incredibly",
+      "start": 89.439,
+      "duration": 3.521
+    },
+    {
+      "text": "important because when you're using",
+      "start": 90.799,
+      "duration": 3.841
+    },
+    {
+      "text": "something like default mode, you already",
+      "start": 92.96,
+      "duration": 3.36
+    },
+    {
+      "text": "know this, right? There is a certain",
+      "start": 94.64,
+      "duration": 3.119
+    },
+    {
+      "text": "amount of tokens that you can consume",
+      "start": 96.32,
+      "duration": 3.36
+    },
+    {
+      "text": "for that specific session before the",
+      "start": 97.759,
+      "duration": 3.921
+    },
+    {
+      "text": "model starts to hallucinate, before it",
+      "start": 99.68,
+      "duration": 3.28
+    },
+    {
+      "text": "starts to lose track of what you were",
+      "start": 101.68,
+      "duration": 2.479
+    },
+    {
+      "text": "speaking about earlier in a",
+      "start": 102.96,
+      "duration": 2.88
+    },
+    {
+      "text": "conversation. And that's why people have",
+      "start": 104.159,
+      "duration": 3.441
+    },
+    {
+      "text": "all these like tips and tricks about",
+      "start": 105.84,
+      "duration": 4.4
+    },
+    {
+      "text": "having dedicated MD files, skill files,",
+      "start": 107.6,
+      "duration": 4.24
+    },
+    {
+      "text": "memory files, so you can kind of",
+      "start": 110.24,
+      "duration": 3.839
+    },
+    {
+      "text": "maintain the context across longer runs,",
+      "start": 111.84,
+      "duration": 3.76
+    },
+    {
+      "text": "longer sessions where there's more and",
+      "start": 114.079,
+      "duration": 4.161
+    },
+    {
+      "text": "more tokens going into the bag. So for",
+      "start": 115.6,
+      "duration": 5.119
+    },
+    {
+      "text": "default mode, what actually happens is",
+      "start": 118.24,
+      "duration": 4.879
+    },
+    {
+      "text": "if you give like a really big code base,",
+      "start": 120.719,
+      "duration": 4.72
+    },
+    {
+      "text": "it's very difficult for this agent to be",
+      "start": 123.119,
+      "duration": 4.161
+    },
+    {
+      "text": "able to look at all the different points",
+      "start": 125.439,
+      "duration": 4.561
+    },
+    {
+      "text": "of that codebase. And therefore what",
+      "start": 127.28,
+      "duration": 4.4
+    },
+    {
+      "text": "anthropic says is that these models tend",
+      "start": 130.0,
+      "duration": 3.76
+    },
+    {
+      "text": "to gravitate towards one specific area",
+      "start": 131.68,
+      "duration": 4.48
+    },
+    {
+      "text": "and kind of get like tunnel vision and",
+      "start": 133.76,
+      "duration": 5.119
+    },
+    {
+      "text": "only focus on that one area. So this is",
+      "start": 136.16,
+      "duration": 4.56
+    },
+    {
+      "text": "now starting to like tell us when we",
+      "start": 138.879,
+      "duration": 3.041
+    },
+    {
+      "text": "should be using these different modes.",
+      "start": 140.72,
+      "duration": 3.04
+    },
+    {
+      "text": "So for default mode now that we have",
+      "start": 141.92,
+      "duration": 3.44
+    },
+    {
+      "text": "these other two modes really this is",
+      "start": 143.76,
+      "duration": 3.92
+    },
+    {
+      "text": "like your general like uh system admin",
+      "start": 145.36,
+      "duration": 4.239
+    },
+    {
+      "text": "panel. You can kind of come into here.",
+      "start": 147.68,
+      "duration": 3.52
+    },
+    {
+      "text": "Really the main use case for this now is",
+      "start": 149.599,
+      "duration": 3.28
+    },
+    {
+      "text": "to choose your model that you're using,",
+      "start": 151.2,
+      "duration": 3.44
+    },
+    {
+      "text": "figure out what skills you have, set up",
+      "start": 152.879,
+      "duration": 4.161
+    },
+    {
+      "text": "the project, figure out like what sub",
+      "start": 154.64,
+      "duration": 4.0
+    },
+    {
+      "text": "aents you want to have, what your team's",
+      "start": 157.04,
+      "duration": 3.44
+    },
+    {
+      "text": "going to look like and kind of use it as",
+      "start": 158.64,
+      "duration": 3.679
+    },
+    {
+      "text": "a control panel. So now we come to sub",
+      "start": 160.48,
+      "duration": 4.0
+    },
+    {
+      "text": "agent mode. What's the use case here?",
+      "start": 162.319,
+      "duration": 4.081
+    },
+    {
+      "text": "Imagine you have a security company and",
+      "start": 164.48,
+      "duration": 3.68
+    },
+    {
+      "text": "you have a control room in a very big",
+      "start": 166.4,
+      "duration": 4.16
+    },
+    {
+      "text": "tower and everyone's inside that control",
+      "start": 168.16,
+      "duration": 3.6
+    },
+    {
+      "text": "room and you have these monitors on a",
+      "start": 170.56,
+      "duration": 2.24
+    },
+    {
+      "text": "wall and you're kind of watching what",
+      "start": 171.76,
+      "duration": 2.559
+    },
+    {
+      "text": "each monitor is showing and there's like",
+      "start": 172.8,
+      "duration": 3.68
+    },
+    {
+      "text": "a breach in one of the rooms. Well, what",
+      "start": 174.319,
+      "duration": 4.0
+    },
+    {
+      "text": "you do from the terminal here, from this",
+      "start": 176.48,
+      "duration": 3.6
+    },
+    {
+      "text": "thing, is you take one of these agents",
+      "start": 178.319,
+      "duration": 4.401
+    },
+    {
+      "text": "and you say, \"Hey, agent, you go down to",
+      "start": 180.08,
+      "duration": 5.04
+    },
+    {
+      "text": "the third floor into that fifth door and",
+      "start": 182.72,
+      "duration": 4.56
+    },
+    {
+      "text": "go into this room and then investigate",
+      "start": 185.12,
+      "duration": 3.92
+    },
+    {
+      "text": "this issue that we see on the screen.\"",
+      "start": 187.28,
+      "duration": 3.92
+    },
+    {
+      "text": "The agent will then go away, go down the",
+      "start": 189.04,
+      "duration": 4.16
+    },
+    {
+      "text": "elevator, take the stairs, turn left,",
+      "start": 191.2,
+      "duration": 4.56
+    },
+    {
+      "text": "speak to five people, go into that room,",
+      "start": 193.2,
+      "duration": 4.56
+    },
+    {
+      "text": "figure out the issue, come back,",
+      "start": 195.76,
+      "duration": 4.24
+    },
+    {
+      "text": "elevator, stairs, then come back to the",
+      "start": 197.76,
+      "duration": 3.44
+    },
+    {
+      "text": "control room, and just give you the",
+      "start": 200.0,
+      "duration": 3.519
+    },
+    {
+      "text": "summary. Okay, I fixed it. you know,",
+      "start": 201.2,
+      "duration": 4.319
+    },
+    {
+      "text": "Bart was running around and I told him",
+      "start": 203.519,
+      "duration": 4.481
+    },
+    {
+      "text": "to sit down and all the additional like",
+      "start": 205.519,
+      "duration": 4.321
+    },
+    {
+      "text": "the many steps in between completing",
+      "start": 208.0,
+      "duration": 3.76
+    },
+    {
+      "text": "that task, we don't actually get back in",
+      "start": 209.84,
+      "duration": 4.399
+    },
+    {
+      "text": "that control room. So, the value here is",
+      "start": 211.76,
+      "duration": 4.32
+    },
+    {
+      "text": "if you have something like a codebase",
+      "start": 214.239,
+      "duration": 3.681
+    },
+    {
+      "text": "and you only have an authentication",
+      "start": 216.08,
+      "duration": 4.0
+    },
+    {
+      "text": "method using password and email, in this",
+      "start": 217.92,
+      "duration": 3.92
+    },
+    {
+      "text": "case, you might spool up a sub agent to",
+      "start": 220.08,
+      "duration": 4.32
+    },
+    {
+      "text": "just go away and add the additional",
+      "start": 221.84,
+      "duration": 4.08
+    },
+    {
+      "text": "functionality of using Google to sign",
+      "start": 224.4,
+      "duration": 3.44
+    },
+    {
+      "text": "into your app as well. So, like we said",
+      "start": 225.92,
+      "duration": 3.76
+    },
+    {
+      "text": "before, we still only have one main",
+      "start": 227.84,
+      "duration": 3.92
+    },
+    {
+      "text": "session over here. So then the value of",
+      "start": 229.68,
+      "duration": 3.52
+    },
+    {
+      "text": "this is the way that you actually",
+      "start": 231.76,
+      "duration": 3.039
+    },
+    {
+      "text": "conserve the tokens for your primary",
+      "start": 233.2,
+      "duration": 3.44
+    },
+    {
+      "text": "session because you know these models",
+      "start": 234.799,
+      "duration": 3.761
+    },
+    {
+      "text": "don't have an infinity capacity to have",
+      "start": 236.64,
+      "duration": 3.519
+    },
+    {
+      "text": "these tokens. That's the reason why",
+      "start": 238.56,
+      "duration": 3.2
+    },
+    {
+      "text": "these sub agents actually go away and",
+      "start": 240.159,
+      "duration": 3.041
+    },
+    {
+      "text": "instead of giving you all that feedback",
+      "start": 241.76,
+      "duration": 2.96
+    },
+    {
+      "text": "that he turned left, he turned right",
+      "start": 243.2,
+      "duration": 3.36
+    },
+    {
+      "text": "spoke to five people. What did they say?",
+      "start": 244.72,
+      "duration": 3.519
+    },
+    {
+      "text": "He just gives you the ultimate output",
+      "start": 246.56,
+      "duration": 3.36
+    },
+    {
+      "text": "which is I went to this place, I",
+      "start": 248.239,
+      "duration": 3.681
+    },
+    {
+      "text": "completed the task and it's done or",
+      "start": 249.92,
+      "duration": 3.36
+    },
+    {
+      "text": "actually I went there and I couldn't",
+      "start": 251.92,
+      "duration": 3.039
+    },
+    {
+      "text": "complete it. Now we have a new issue.",
+      "start": 253.28,
+      "duration": 3.359
+    },
+    {
+      "text": "Gives it summary back into the main",
+      "start": 254.959,
+      "duration": 4.161
+    },
+    {
+      "text": "context to preserve the overall context",
+      "start": 256.639,
+      "duration": 4.16
+    },
+    {
+      "text": "of this session. That's why these sub",
+      "start": 259.12,
+      "duration": 3.92
+    },
+    {
+      "text": "agents are different in that way. So now",
+      "start": 260.799,
+      "duration": 4.241
+    },
+    {
+      "text": "when it comes to agent team mode, so",
+      "start": 263.04,
+      "duration": 3.76
+    },
+    {
+      "text": "let's imagine you actually have this big",
+      "start": 265.04,
+      "duration": 4.48
+    },
+    {
+      "text": "tower, right, of of like 10 levels and",
+      "start": 266.8,
+      "duration": 5.04
+    },
+    {
+      "text": "there's 10 rooms per level. Agent teams",
+      "start": 269.52,
+      "duration": 4.399
+    },
+    {
+      "text": "mode is like you are the security",
+      "start": 271.84,
+      "duration": 4.56
+    },
+    {
+      "text": "company coming into this tower and you",
+      "start": 273.919,
+      "duration": 4.72
+    },
+    {
+      "text": "have a task from the terminal which is",
+      "start": 276.4,
+      "duration": 4.4
+    },
+    {
+      "text": "go into this building and then like do",
+      "start": 278.639,
+      "duration": 3.761
+    },
+    {
+      "text": "the do the full security for this",
+      "start": 280.8,
+      "duration": 3.119
+    },
+    {
+      "text": "building. We have an event tonight. We",
+      "start": 282.4,
+      "duration": 3.68
+    },
+    {
+      "text": "need to fully secure every single floor,",
+      "start": 283.919,
+      "duration": 3.601
+    },
+    {
+      "text": "all the ins and outs. When people come",
+      "start": 286.08,
+      "duration": 2.8
+    },
+    {
+      "text": "in, we have to scan there, make sure",
+      "start": 287.52,
+      "duration": 2.88
+    },
+    {
+      "text": "everything's good. we need to fully run",
+      "start": 288.88,
+      "duration": 4.0
+    },
+    {
+      "text": "the security operation. So then in any",
+      "start": 290.4,
+      "duration": 4.239
+    },
+    {
+      "text": "security team, you have the team leader",
+      "start": 292.88,
+      "duration": 3.36
+    },
+    {
+      "text": "who understands the assignment and then",
+      "start": 294.639,
+      "duration": 3.441
+    },
+    {
+      "text": "delegates the work. The team leader",
+      "start": 296.24,
+      "duration": 3.519
+    },
+    {
+      "text": "figures out the plan which is therefore",
+      "start": 298.08,
+      "duration": 3.28
+    },
+    {
+      "text": "like the the plan for the actual session",
+      "start": 299.759,
+      "duration": 2.88
+    },
+    {
+      "text": "and then the prompts that he gives to",
+      "start": 301.36,
+      "duration": 2.88
+    },
+    {
+      "text": "each agent and the prompt is like the",
+      "start": 302.639,
+      "duration": 3.12
+    },
+    {
+      "text": "instruction that he gives and this",
+      "start": 304.24,
+      "duration": 3.44
+    },
+    {
+      "text": "person might have to go to the left side",
+      "start": 305.759,
+      "duration": 3.601
+    },
+    {
+      "text": "and do the first three floors and then",
+      "start": 307.68,
+      "duration": 2.799
+    },
+    {
+      "text": "this person might have to go to the",
+      "start": 309.36,
+      "duration": 3.6
+    },
+    {
+      "text": "right side and do the next three floors",
+      "start": 310.479,
+      "duration": 4.641
+    },
+    {
+      "text": "and each person has their own delegated",
+      "start": 312.96,
+      "duration": 4.32
+    },
+    {
+      "text": "work. Now, the interesting thing is that",
+      "start": 315.12,
+      "duration": 4.0
+    },
+    {
+      "text": "in terms of like having this security",
+      "start": 317.28,
+      "duration": 3.44
+    },
+    {
+      "text": "team, what you need to do is you have to",
+      "start": 319.12,
+      "duration": 3.6
+    },
+    {
+      "text": "be able to get your walkie-talkie and as",
+      "start": 320.72,
+      "duration": 3.68
+    },
+    {
+      "text": "the team leader say, \"Hey guys, is",
+      "start": 322.72,
+      "duration": 3.199
+    },
+    {
+      "text": "everyone at the location? Cool. We can",
+      "start": 324.4,
+      "duration": 2.799
+    },
+    {
+      "text": "start the event.\" And when you're",
+      "start": 325.919,
+      "duration": 2.961
+    },
+    {
+      "text": "actually at these events, you might say,",
+      "start": 327.199,
+      "duration": 3.84
+    },
+    {
+      "text": "\"Hey, I'm on the floor six. There's",
+      "start": 328.88,
+      "duration": 3.44
+    },
+    {
+      "text": "someone that's doing something bad. He's",
+      "start": 331.039,
+      "duration": 3.921
+    },
+    {
+      "text": "coming down the floors. So, hey teammate",
+      "start": 332.32,
+      "duration": 4.56
+    },
+    {
+      "text": "A, be ready for this next person that's",
+      "start": 334.96,
+      "duration": 3.92
+    },
+    {
+      "text": "going to come into your area very soon.\"",
+      "start": 336.88,
+      "duration": 3.599
+    },
+    {
+      "text": "And that communication actually helps",
+      "start": 338.88,
+      "duration": 3.68
+    },
+    {
+      "text": "you be more effective in the overall job",
+      "start": 340.479,
+      "duration": 3.601
+    },
+    {
+      "text": "of security for this building because",
+      "start": 342.56,
+      "duration": 3.04
+    },
+    {
+      "text": "you can communicate and say there's",
+      "start": 344.08,
+      "duration": 3.119
+    },
+    {
+      "text": "there's a specific issue happening in",
+      "start": 345.6,
+      "duration": 3.36
+    },
+    {
+      "text": "this area. Please be notified, please",
+      "start": 347.199,
+      "duration": 3.681
+    },
+    {
+      "text": "prepare for or like come and help me fix",
+      "start": 348.96,
+      "duration": 4.239
+    },
+    {
+      "text": "this. So just a few moments ago, I",
+      "start": 350.88,
+      "duration": 3.68
+    },
+    {
+      "text": "mentioned how when you have default",
+      "start": 353.199,
+      "duration": 3.921
+    },
+    {
+      "text": "mode, you only have one agent. And the",
+      "start": 354.56,
+      "duration": 4.32
+    },
+    {
+      "text": "one of the biggest issues with agents in",
+      "start": 357.12,
+      "duration": 4.079
+    },
+    {
+      "text": "general or LLM in general is that in a",
+      "start": 358.88,
+      "duration": 3.84
+    },
+    {
+      "text": "single session, they typically gravitate",
+      "start": 361.199,
+      "duration": 3.44
+    },
+    {
+      "text": "towards one specific area. And once",
+      "start": 362.72,
+      "duration": 3.52
+    },
+    {
+      "text": "they're there, it's very hard for them",
+      "start": 364.639,
+      "duration": 3.601
+    },
+    {
+      "text": "to kind of come back out of that area.",
+      "start": 366.24,
+      "duration": 3.36
+    },
+    {
+      "text": "Which is why you might notice that you",
+      "start": 368.24,
+      "duration": 3.6
+    },
+    {
+      "text": "have like that yes man syndrome when",
+      "start": 369.6,
+      "duration": 3.76
+    },
+    {
+      "text": "you're in something like chat GBT or",
+      "start": 371.84,
+      "duration": 3.44
+    },
+    {
+      "text": "claude where whatever idea you say",
+      "start": 373.36,
+      "duration": 4.0
+    },
+    {
+      "text": "typically get echoed back to you and",
+      "start": 375.28,
+      "duration": 3.6
+    },
+    {
+      "text": "then it's very difficult for you to get",
+      "start": 377.36,
+      "duration": 3.839
+    },
+    {
+      "text": "new ideas outside of that original idea.",
+      "start": 378.88,
+      "duration": 4.56
+    },
+    {
+      "text": "So the advantage of teams is that you",
+      "start": 381.199,
+      "duration": 4.161
+    },
+    {
+      "text": "still get the exact same thing. Like",
+      "start": 383.44,
+      "duration": 3.84
+    },
+    {
+      "text": "each agent that you have typically",
+      "start": 385.36,
+      "duration": 4.0
+    },
+    {
+      "text": "gravitates towards one specific area,",
+      "start": 387.28,
+      "duration": 3.68
+    },
+    {
+      "text": "but since you have multiple like",
+      "start": 389.36,
+      "duration": 3.04
+    },
+    {
+      "text": "possibility for multiple different",
+      "start": 390.96,
+      "duration": 3.519
+    },
+    {
+      "text": "agents to spool up for that one problem",
+      "start": 392.4,
+      "duration": 4.0
+    },
+    {
+      "text": "that you want to do, for that one code",
+      "start": 394.479,
+      "duration": 3.521
+    },
+    {
+      "text": "base that you want to investigate, for",
+      "start": 396.4,
+      "duration": 3.519
+    },
+    {
+      "text": "that one feature that you want to add,",
+      "start": 398.0,
+      "duration": 3.36
+    },
+    {
+      "text": "you can actually deploy each of these",
+      "start": 399.919,
+      "duration": 3.201
+    },
+    {
+      "text": "agents and tell them you look at this",
+      "start": 401.36,
+      "duration": 3.36
+    },
+    {
+      "text": "from the left side, you look at this",
+      "start": 403.12,
+      "duration": 3.12
+    },
+    {
+      "text": "from the right side, and you go upstairs",
+      "start": 404.72,
+      "duration": 3.039
+    },
+    {
+      "text": "and you look at it from the top down.",
+      "start": 406.24,
+      "duration": 2.799
+    },
+    {
+      "text": "And the cool thing is you don't actually",
+      "start": 407.759,
+      "duration": 3.121
+    },
+    {
+      "text": "have to manage all those different like",
+      "start": 409.039,
+      "duration": 3.761
+    },
+    {
+      "text": "points of view and context because the",
+      "start": 410.88,
+      "duration": 3.68
+    },
+    {
+      "text": "team leader takes your problem,",
+      "start": 412.8,
+      "duration": 3.28
+    },
+    {
+      "text": "understands it, and then spools up and",
+      "start": 414.56,
+      "duration": 2.96
+    },
+    {
+      "text": "gives the appropriate context to each of",
+      "start": 416.08,
+      "duration": 3.679
+    },
+    {
+      "text": "these sub agents so that on the outset",
+      "start": 417.52,
+      "duration": 4.32
+    },
+    {
+      "text": "you actually get the 360deree report",
+      "start": 419.759,
+      "duration": 3.681
+    },
+    {
+      "text": "returned to you. So now at this stage",
+      "start": 421.84,
+      "duration": 2.96
+    },
+    {
+      "text": "we've got a pretty good idea of the",
+      "start": 423.44,
+      "duration": 3.28
+    },
+    {
+      "text": "three different modes for clawed code",
+      "start": 424.8,
+      "duration": 3.679
+    },
+    {
+      "text": "and we're beginning to understand the",
+      "start": 426.72,
+      "duration": 3.28
+    },
+    {
+      "text": "strengths and weaknesses of each of",
+      "start": 428.479,
+      "duration": 3.041
+    },
+    {
+      "text": "those different modes. So now let's go",
+      "start": 430.0,
+      "duration": 2.72
+    },
+    {
+      "text": "into the setup and just make sure that",
+      "start": 431.52,
+      "duration": 2.88
+    },
+    {
+      "text": "our environment is ready to use all the",
+      "start": 432.72,
+      "duration": 3.199
+    },
+    {
+      "text": "new features. So the first thing we want",
+      "start": 434.4,
+      "duration": 3.04
+    },
+    {
+      "text": "to do is make sure we have the latest",
+      "start": 435.919,
+      "duration": 2.801
+    },
+    {
+      "text": "version of Claude installed on our",
+      "start": 437.44,
+      "duration": 2.96
+    },
+    {
+      "text": "system. To do that, let's just open up a",
+      "start": 438.72,
+      "duration": 4.479
+    },
+    {
+      "text": "terminal and type in claude update and",
+      "start": 440.4,
+      "duration": 4.639
+    },
+    {
+      "text": "hit enter. Claude will then check for",
+      "start": 443.199,
+      "duration": 3.761
+    },
+    {
+      "text": "updates and then it'll either update for",
+      "start": 445.039,
+      "duration": 3.44
+    },
+    {
+      "text": "you or it will just confirm that you are",
+      "start": 446.96,
+      "duration": 3.28
+    },
+    {
+      "text": "on the latest version. So now for the",
+      "start": 448.479,
+      "duration": 4.321
+    },
+    {
+      "text": "T-max and configuration, I asked Chat",
+      "start": 450.24,
+      "duration": 4.64
+    },
+    {
+      "text": "GPT to help me with the instructions of",
+      "start": 452.8,
+      "duration": 4.32
+    },
+    {
+      "text": "how to set this up. So T-Max is just a",
+      "start": 454.88,
+      "duration": 4.159
+    },
+    {
+      "text": "way that you can create separate windows",
+      "start": 457.12,
+      "duration": 3.199
+    },
+    {
+      "text": "in your terminal so that you can",
+      "start": 459.039,
+      "duration": 2.801
+    },
+    {
+      "text": "actually view each of those independent",
+      "start": 460.319,
+      "duration": 3.041
+    },
+    {
+      "text": "agents. Imagine you're running",
+      "start": 461.84,
+      "duration": 3.28
+    },
+    {
+      "text": "interviews and you have five people in",
+      "start": 463.36,
+      "duration": 3.679
+    },
+    {
+      "text": "the same room speaking to at the exact",
+      "start": 465.12,
+      "duration": 3.44
+    },
+    {
+      "text": "same time. You're trying to speak with",
+      "start": 467.039,
+      "duration": 2.801
+    },
+    {
+      "text": "each of them and interview them. It's",
+      "start": 468.56,
+      "duration": 2.639
+    },
+    {
+      "text": "just impossible. There's too much noise,",
+      "start": 469.84,
+      "duration": 3.359
+    },
+    {
+      "text": "too many conversations. So, the better",
+      "start": 471.199,
+      "duration": 3.68
+    },
+    {
+      "text": "way to do this is to get a separate room",
+      "start": 473.199,
+      "duration": 3.44
+    },
+    {
+      "text": "for each person. So, you can kind of go",
+      "start": 474.879,
+      "duration": 3.681
+    },
+    {
+      "text": "in there and just peacefully be able to",
+      "start": 476.639,
+      "duration": 3.361
+    },
+    {
+      "text": "say, \"What are you working on? What are",
+      "start": 478.56,
+      "duration": 2.479
+    },
+    {
+      "text": "you doing? Here's the updated",
+      "start": 480.0,
+      "duration": 2.96
+    },
+    {
+      "text": "instructions.\" So, T-Mox is like setting",
+      "start": 481.039,
+      "duration": 3.921
+    },
+    {
+      "text": "up rooms for each of your agents. So at",
+      "start": 482.96,
+      "duration": 3.44
+    },
+    {
+      "text": "any stage you can just take a screenshot",
+      "start": 484.96,
+      "duration": 2.799
+    },
+    {
+      "text": "of the screen and then send across to",
+      "start": 486.4,
+      "duration": 3.44
+    },
+    {
+      "text": "your chat GBT or claude and ask it to",
+      "start": 487.759,
+      "duration": 3.761
+    },
+    {
+      "text": "help with specific instructions for your",
+      "start": 489.84,
+      "duration": 3.6
+    },
+    {
+      "text": "setup. But for example for me I'm just",
+      "start": 491.52,
+      "duration": 3.6
+    },
+    {
+      "text": "going to take this I'm on Mac. So by the",
+      "start": 493.44,
+      "duration": 3.039
+    },
+    {
+      "text": "way Timox is not going to work in",
+      "start": 495.12,
+      "duration": 3.44
+    },
+    {
+      "text": "something like VS Code or cursor. It has",
+      "start": 496.479,
+      "duration": 3.761
+    },
+    {
+      "text": "to be in your core terminal. So I'm",
+      "start": 498.56,
+      "duration": 3.52
+    },
+    {
+      "text": "going to paste that command into here.",
+      "start": 500.24,
+      "duration": 3.76
+    },
+    {
+      "text": "So I already had T-Max installed. So the",
+      "start": 502.08,
+      "duration": 3.36
+    },
+    {
+      "text": "process was very quick for me. But this",
+      "start": 504.0,
+      "duration": 3.039
+    },
+    {
+      "text": "will typically take like a minute or two",
+      "start": 505.44,
+      "duration": 3.439
+    },
+    {
+      "text": "to just install on your machine. So now",
+      "start": 507.039,
+      "duration": 3.121
+    },
+    {
+      "text": "with T-Max installed there's actually",
+      "start": 508.879,
+      "duration": 2.801
+    },
+    {
+      "text": "two different ways that you can manage",
+      "start": 510.16,
+      "duration": 3.52
+    },
+    {
+      "text": "agents. The first is that you have this",
+      "start": 511.68,
+      "duration": 3.919
+    },
+    {
+      "text": "in process which is where you have that",
+      "start": 513.68,
+      "duration": 3.599
+    },
+    {
+      "text": "one terminal and then all the agents are",
+      "start": 515.599,
+      "duration": 3.281
+    },
+    {
+      "text": "literally speaking in that one terminal",
+      "start": 517.279,
+      "duration": 3.041
+    },
+    {
+      "text": "like having that one room and it's so",
+      "start": 518.88,
+      "duration": 3.2
+    },
+    {
+      "text": "noisy. Well, the second way is to have",
+      "start": 520.32,
+      "duration": 3.68
+    },
+    {
+      "text": "these split panes and a split panes is",
+      "start": 522.08,
+      "duration": 3.28
+    },
+    {
+      "text": "what you need t-mucks for which is",
+      "start": 524.0,
+      "duration": 3.04
+    },
+    {
+      "text": "having all those separate rooms. So, we",
+      "start": 525.36,
+      "duration": 3.2
+    },
+    {
+      "text": "just need to add that setting into our",
+      "start": 527.04,
+      "duration": 3.04
+    },
+    {
+      "text": "configuration file which is going to be",
+      "start": 528.56,
+      "duration": 4.399
+    },
+    {
+      "text": "this t-m split panes to true and in that",
+      "start": 530.08,
+      "duration": 4.48
+    },
+    {
+      "text": "same file we're also going to be sending",
+      "start": 532.959,
+      "duration": 4.32
+    },
+    {
+      "text": "claude code experimental agents to one",
+      "start": 534.56,
+      "duration": 4.0
+    },
+    {
+      "text": "which is just the other configuration",
+      "start": 537.279,
+      "duration": 3.68
+    },
+    {
+      "text": "that we need to enable agent teams. So,",
+      "start": 538.56,
+      "duration": 3.92
+    },
+    {
+      "text": "we're just going to copy this entire",
+      "start": 540.959,
+      "duration": 3.361
+    },
+    {
+      "text": "command and then paste it into the",
+      "start": 542.48,
+      "duration": 3.68
+    },
+    {
+      "text": "terminal. We're going to hit enter. So,",
+      "start": 544.32,
+      "duration": 3.76
+    },
+    {
+      "text": "now we've just updated the settings.json",
+      "start": 546.16,
+      "duration": 4.08
+    },
+    {
+      "text": "to enable agent teams and also give",
+      "start": 548.08,
+      "duration": 4.16
+    },
+    {
+      "text": "separate rooms to each of those teams. A",
+      "start": 550.24,
+      "duration": 3.279
+    },
+    {
+      "text": "quick note here that this is actually",
+      "start": 552.24,
+      "duration": 3.279
+    },
+    {
+      "text": "going to be your global configuration.",
+      "start": 553.519,
+      "duration": 3.521
+    },
+    {
+      "text": "I've decided to do this because I",
+      "start": 555.519,
+      "duration": 2.801
+    },
+    {
+      "text": "actually just want to have agent teams",
+      "start": 557.04,
+      "duration": 2.96
+    },
+    {
+      "text": "ready across all of my sessions with",
+      "start": 558.32,
+      "duration": 3.28
+    },
+    {
+      "text": "Claude. So, instead of me just like",
+      "start": 560.0,
+      "duration": 3.519
+    },
+    {
+      "text": "closing my terminal, starting a new one,",
+      "start": 561.6,
+      "duration": 3.2
+    },
+    {
+      "text": "having to change the configuration",
+      "start": 563.519,
+      "duration": 2.721
+    },
+    {
+      "text": "again, I've just done it globally for",
+      "start": 564.8,
+      "duration": 3.12
+    },
+    {
+      "text": "all of my sessions. So now before we",
+      "start": 566.24,
+      "duration": 2.96
+    },
+    {
+      "text": "launch Claude code, the first thing we",
+      "start": 567.92,
+      "duration": 3.28
+    },
+    {
+      "text": "need to do is start a T-max session. So",
+      "start": 569.2,
+      "duration": 3.52
+    },
+    {
+      "text": "I'm just going to copy this command. Now",
+      "start": 571.2,
+      "duration": 3.04
+    },
+    {
+      "text": "once again, don't just start a new",
+      "start": 572.72,
+      "duration": 3.119
+    },
+    {
+      "text": "claude session by typing the claude",
+      "start": 574.24,
+      "duration": 3.68
+    },
+    {
+      "text": "command. We first need to start a new",
+      "start": 575.839,
+      "duration": 3.601
+    },
+    {
+      "text": "T-mark session. So we're going to paste",
+      "start": 577.92,
+      "duration": 3.599
+    },
+    {
+      "text": "this command into here. Hit enter. And",
+      "start": 579.44,
+      "duration": 4.0
+    },
+    {
+      "text": "now we are prepared to create all those",
+      "start": 581.519,
+      "duration": 3.841
+    },
+    {
+      "text": "different rooms for agents. So now we",
+      "start": 583.44,
+      "duration": 3.92
+    },
+    {
+      "text": "can come back and start Claude. I'm just",
+      "start": 585.36,
+      "duration": 3.84
+    },
+    {
+      "text": "going to start mine with the dangerously",
+      "start": 587.36,
+      "duration": 4.08
+    },
+    {
+      "text": "skip permissions. Let's accept this",
+      "start": 589.2,
+      "duration": 4.16
+    },
+    {
+      "text": "security warning. And now we are logged",
+      "start": 591.44,
+      "duration": 3.44
+    },
+    {
+      "text": "into Claude. So, at this stage, we've",
+      "start": 593.36,
+      "duration": 2.88
+    },
+    {
+      "text": "done the overview and we've done the",
+      "start": 594.88,
+      "duration": 3.12
+    },
+    {
+      "text": "setup. Now, let's take a look at how to",
+      "start": 596.24,
+      "duration": 3.52
+    },
+    {
+      "text": "manage sessions. So, the first thing we",
+      "start": 598.0,
+      "duration": 3.519
+    },
+    {
+      "text": "want to do is actually go into our",
+      "start": 599.76,
+      "duration": 3.12
+    },
+    {
+      "text": "models and make sure we're using the",
+      "start": 601.519,
+      "duration": 4.0
+    },
+    {
+      "text": "correct model. So, we have the OP 4.6",
+      "start": 602.88,
+      "duration": 3.92
+    },
+    {
+      "text": "model. And I'm pretty sure this first",
+      "start": 605.519,
+      "duration": 3.76
+    },
+    {
+      "text": "one here is the 200,000 token context",
+      "start": 606.8,
+      "duration": 4.0
+    },
+    {
+      "text": "model. Then you have the second one,",
+      "start": 609.279,
+      "duration": 3.281
+    },
+    {
+      "text": "which is the 1 million token context",
+      "start": 610.8,
+      "duration": 3.68
+    },
+    {
+      "text": "model. So, with that 1 million token",
+      "start": 612.56,
+      "duration": 3.839
+    },
+    {
+      "text": "context model, what's really happening",
+      "start": 614.48,
+      "duration": 4.08
+    },
+    {
+      "text": "is that for the first 200,000 tokens,",
+      "start": 616.399,
+      "duration": 3.841
+    },
+    {
+      "text": "you're technically using that original",
+      "start": 618.56,
+      "duration": 3.12
+    },
+    {
+      "text": "model. you're getting charged the",
+      "start": 620.24,
+      "duration": 3.039
+    },
+    {
+      "text": "regular rates, but then for anything",
+      "start": 621.68,
+      "duration": 3.68
+    },
+    {
+      "text": "above 200,000 tokens, you get the",
+      "start": 623.279,
+      "duration": 4.641
+    },
+    {
+      "text": "premium pricing, which is the $10 and",
+      "start": 625.36,
+      "duration": 5.84
+    },
+    {
+      "text": "$3750 per million input output tokens.",
+      "start": 627.92,
+      "duration": 5.039
+    },
+    {
+      "text": "And then for Opus, you also have the",
+      "start": 631.2,
+      "duration": 3.28
+    },
+    {
+      "text": "effort toggle where if you click left",
+      "start": 632.959,
+      "duration": 3.201
+    },
+    {
+      "text": "and right, you can actually go from low",
+      "start": 634.48,
+      "duration": 3.919
+    },
+    {
+      "text": "effort to medium to high. And then we",
+      "start": 636.16,
+      "duration": 3.84
+    },
+    {
+      "text": "have the explanation of all the effort",
+      "start": 638.399,
+      "duration": 3.761
+    },
+    {
+      "text": "levels here. So low is the most",
+      "start": 640.0,
+      "duration": 4.32
+    },
+    {
+      "text": "efficient and it has some capability",
+      "start": 642.16,
+      "duration": 3.6
+    },
+    {
+      "text": "reduction. So it's going to be a little",
+      "start": 644.32,
+      "duration": 3.6
+    },
+    {
+      "text": "bit like not as smart or not as capable,",
+      "start": 645.76,
+      "duration": 4.079
+    },
+    {
+      "text": "not as good. Then you have medium for a",
+      "start": 647.92,
+      "duration": 3.599
+    },
+    {
+      "text": "balanced approach and moderate token",
+      "start": 649.839,
+      "duration": 3.921
+    },
+    {
+      "text": "savings. And then high which is the",
+      "start": 651.519,
+      "duration": 4.0
+    },
+    {
+      "text": "basically like the best for complex",
+      "start": 653.76,
+      "duration": 4.319
+    },
+    {
+      "text": "reasoning, difficult coding problems.",
+      "start": 655.519,
+      "duration": 3.921
+    },
+    {
+      "text": "And then for absolute maximum",
+      "start": 658.079,
+      "duration": 3.681
+    },
+    {
+      "text": "capability, it's only for the Opus 4.6",
+      "start": 659.44,
+      "duration": 4.0
+    },
+    {
+      "text": "model. And this is like putting the foot",
+      "start": 661.76,
+      "duration": 3.44
+    },
+    {
+      "text": "to the floor and just like letting go of",
+      "start": 663.44,
+      "duration": 3.28
+    },
+    {
+      "text": "the steering wheel and then like let's",
+      "start": 665.2,
+      "duration": 3.36
+    },
+    {
+      "text": "see what happens. So my recommendation",
+      "start": 666.72,
+      "duration": 4.08
+    },
+    {
+      "text": "is just to start with the regular Opus",
+      "start": 668.56,
+      "duration": 4.399
+    },
+    {
+      "text": "model and go all the way to low effort.",
+      "start": 670.8,
+      "duration": 3.76
+    },
+    {
+      "text": "Then as you run into like speed bumps",
+      "start": 672.959,
+      "duration": 3.361
+    },
+    {
+      "text": "and issues or as you figure out when",
+      "start": 674.56,
+      "duration": 3.839
+    },
+    {
+      "text": "you're deploying agent teams which model",
+      "start": 676.32,
+      "duration": 4.16
+    },
+    {
+      "text": "is better to use, you can just toggle up",
+      "start": 678.399,
+      "duration": 4.321
+    },
+    {
+      "text": "the effort, go into the next opus mode,",
+      "start": 680.48,
+      "duration": 4.08
+    },
+    {
+      "text": "start from low and then go medium and",
+      "start": 682.72,
+      "duration": 3.84
+    },
+    {
+      "text": "then high. So let's go to opus. Let's go",
+      "start": 684.56,
+      "duration": 4.16
+    },
+    {
+      "text": "to low. Now that we have the model set,",
+      "start": 686.56,
+      "duration": 3.92
+    },
+    {
+      "text": "it's time for us to actually start a new",
+      "start": 688.72,
+      "duration": 3.679
+    },
+    {
+      "text": "agent team. And anthropic tells us",
+      "start": 690.48,
+      "duration": 3.76
+    },
+    {
+      "text": "specifically that we must tell Claude to",
+      "start": 692.399,
+      "duration": 3.521
+    },
+    {
+      "text": "create an agent team. In all the",
+      "start": 694.24,
+      "duration": 3.52
+    },
+    {
+      "text": "examples that it give us, it always says",
+      "start": 695.92,
+      "duration": 5.039
+    },
+    {
+      "text": "create an agent team. Sometimes it says",
+      "start": 697.76,
+      "duration": 5.04
+    },
+    {
+      "text": "create three different team members that",
+      "start": 700.959,
+      "duration": 4.0
+    },
+    {
+      "text": "focus on A, B, and C. Or sometimes it",
+      "start": 702.8,
+      "duration": 3.84
+    },
+    {
+      "text": "just says create the agent team and kind",
+      "start": 704.959,
+      "duration": 3.44
+    },
+    {
+      "text": "of like figure out yourself where to",
+      "start": 706.64,
+      "duration": 3.6
+    },
+    {
+      "text": "deploy those agents. So to touch on how",
+      "start": 708.399,
+      "duration": 3.44
+    },
+    {
+      "text": "these agents work together, a little bit",
+      "start": 710.24,
+      "duration": 4.0
+    },
+    {
+      "text": "on memory and also a little bit on task",
+      "start": 711.839,
+      "duration": 4.24
+    },
+    {
+      "text": "assignment. When you enter a command",
+      "start": 714.24,
+      "duration": 3.68
+    },
+    {
+      "text": "into here to basically say, hey, create",
+      "start": 716.079,
+      "duration": 3.841
+    },
+    {
+      "text": "me an agent team. What you get is you",
+      "start": 717.92,
+      "duration": 3.44
+    },
+    {
+      "text": "get a team leader that takes your",
+      "start": 719.92,
+      "duration": 3.52
+    },
+    {
+      "text": "request and then it determines, okay,",
+      "start": 721.36,
+      "duration": 3.76
+    },
+    {
+      "text": "what are the what's the job to be done",
+      "start": 723.44,
+      "duration": 3.28
+    },
+    {
+      "text": "here? What are the different tasks that",
+      "start": 725.12,
+      "duration": 3.04
+    },
+    {
+      "text": "we need to complete? and what are the",
+      "start": 726.72,
+      "duration": 2.559
+    },
+    {
+      "text": "different prompts that we need for each",
+      "start": 728.16,
+      "duration": 3.04
+    },
+    {
+      "text": "of these agents. So when when they",
+      "start": 729.279,
+      "duration": 3.841
+    },
+    {
+      "text": "actually decide that the team leader",
+      "start": 731.2,
+      "duration": 3.439
+    },
+    {
+      "text": "will generate a certain amount of",
+      "start": 733.12,
+      "duration": 4.56
+    },
+    {
+      "text": "context and like information as part of",
+      "start": 734.639,
+      "duration": 4.561
+    },
+    {
+      "text": "the instructions and prompt for each of",
+      "start": 737.68,
+      "duration": 3.68
+    },
+    {
+      "text": "these guys but technically actually not",
+      "start": 739.2,
+      "duration": 3.6
+    },
+    {
+      "text": "even technically just truly what happens",
+      "start": 741.36,
+      "duration": 3.76
+    },
+    {
+      "text": "is these guys do not get access to the",
+      "start": 742.8,
+      "duration": 4.4
+    },
+    {
+      "text": "entire conversation thread. So if you're",
+      "start": 745.12,
+      "duration": 3.519
+    },
+    {
+      "text": "here having the like a default",
+      "start": 747.2,
+      "duration": 3.52
+    },
+    {
+      "text": "conversation, you kind of start here.",
+      "start": 748.639,
+      "duration": 4.081
+    },
+    {
+      "text": "You're just chatting for like 10, 20, 30",
+      "start": 750.72,
+      "duration": 3.44
+    },
+    {
+      "text": "minutes. You're doing a bunch of web",
+      "start": 752.72,
+      "duration": 2.72
+    },
+    {
+      "text": "searching. You're doing a bunch of like",
+      "start": 754.16,
+      "duration": 3.2
+    },
+    {
+      "text": "understanding a certain codebase. When",
+      "start": 755.44,
+      "duration": 4.16
+    },
+    {
+      "text": "you go to your agent team mode, you",
+      "start": 757.36,
+      "duration": 5.36
+    },
+    {
+      "text": "actually want to deploy get your MD file",
+      "start": 759.6,
+      "duration": 5.2
+    },
+    {
+      "text": "set up and then get the agent from the",
+      "start": 762.72,
+      "duration": 4.32
+    },
+    {
+      "text": "default mode to actually provide the",
+      "start": 764.8,
+      "duration": 3.76
+    },
+    {
+      "text": "correct context for whatever session",
+      "start": 767.04,
+      "duration": 3.12
+    },
+    {
+      "text": "you've correct you've already had so",
+      "start": 768.56,
+      "duration": 3.279
+    },
+    {
+      "text": "far. So that when it distributes the",
+      "start": 770.16,
+      "duration": 3.76
+    },
+    {
+      "text": "work to the team leader or so teammates,",
+      "start": 771.839,
+      "duration": 3.44
+    },
+    {
+      "text": "it can just tell them and instruct them",
+      "start": 773.92,
+      "duration": 3.359
+    },
+    {
+      "text": "and say read the MD file, understand",
+      "start": 775.279,
+      "duration": 3.761
+    },
+    {
+      "text": "what the context is and then here's your",
+      "start": 777.279,
+      "duration": 3.441
+    },
+    {
+      "text": "specific task as well. So then you can",
+      "start": 779.04,
+      "duration": 3.68
+    },
+    {
+      "text": "go away and do your task but have the",
+      "start": 780.72,
+      "duration": 4.16
+    },
+    {
+      "text": "additional context. So just be mindful",
+      "start": 782.72,
+      "duration": 4.559
+    },
+    {
+      "text": "these guys do not get the all the",
+      "start": 784.88,
+      "duration": 4.72
+    },
+    {
+      "text": "context from the original conversation.",
+      "start": 787.279,
+      "duration": 3.441
+    },
+    {
+      "text": "Now, the next thing you might not know",
+      "start": 789.6,
+      "duration": 2.72
+    },
+    {
+      "text": "is when the team leader creates the",
+      "start": 790.72,
+      "duration": 3.6
+    },
+    {
+      "text": "tasks, it depending on how they actually",
+      "start": 792.32,
+      "duration": 4.319
+    },
+    {
+      "text": "structure the team, there is a list of",
+      "start": 794.32,
+      "duration": 3.84
+    },
+    {
+      "text": "tasks that have to be completed. And",
+      "start": 796.639,
+      "duration": 2.961
+    },
+    {
+      "text": "sometimes it's like a free-for-all,",
+      "start": 798.16,
+      "duration": 3.2
+    },
+    {
+      "text": "like, hey, here's your four or five",
+      "start": 799.6,
+      "duration": 3.52
+    },
+    {
+      "text": "tasks. You two guys work on these five",
+      "start": 801.36,
+      "duration": 4.24
+    },
+    {
+      "text": "tasks. And um one issue that you might",
+      "start": 803.12,
+      "duration": 4.48
+    },
+    {
+      "text": "think would happen is if I finish my",
+      "start": 805.6,
+      "duration": 3.76
+    },
+    {
+      "text": "task at the same time that you do, we",
+      "start": 807.6,
+      "duration": 3.76
+    },
+    {
+      "text": "both reach for the next task. How do we",
+      "start": 809.36,
+      "duration": 4.24
+    },
+    {
+      "text": "know that we're both not wasting tokens",
+      "start": 811.36,
+      "duration": 3.52
+    },
+    {
+      "text": "working on the same task when it's",
+      "start": 813.6,
+      "duration": 3.2
+    },
+    {
+      "text": "already being taken care of? So, um",
+      "start": 814.88,
+      "duration": 3.44
+    },
+    {
+      "text": "Anthropic actually takes care of this.",
+      "start": 816.8,
+      "duration": 3.68
+    },
+    {
+      "text": "They have like a race condition check in",
+      "start": 818.32,
+      "duration": 4.079
+    },
+    {
+      "text": "place that basically whenever I take the",
+      "start": 820.48,
+      "duration": 3.68
+    },
+    {
+      "text": "task if I'm just incrementally faster",
+      "start": 822.399,
+      "duration": 3.521
+    },
+    {
+      "text": "than you, it's already blocked off. You",
+      "start": 824.16,
+      "duration": 3.52
+    },
+    {
+      "text": "cannot take it. Therefore, we don't",
+      "start": 825.92,
+      "duration": 4.24
+    },
+    {
+      "text": "double use tokens on the same tasks. The",
+      "start": 827.68,
+      "duration": 3.76
+    },
+    {
+      "text": "one final thing I want to mention, and",
+      "start": 830.16,
+      "duration": 2.799
+    },
+    {
+      "text": "this is actually a token saving",
+      "start": 831.44,
+      "duration": 3.6
+    },
+    {
+      "text": "strategy, is when you're first building",
+      "start": 832.959,
+      "duration": 3.68
+    },
+    {
+      "text": "out your team and you give the prompt to",
+      "start": 835.04,
+      "duration": 2.88
+    },
+    {
+      "text": "your team leader to create you a team",
+      "start": 836.639,
+      "duration": 2.88
+    },
+    {
+      "text": "with four agents that's going to",
+      "start": 837.92,
+      "duration": 3.599
+    },
+    {
+      "text": "refactor these modules, you can also",
+      "start": 839.519,
+      "duration": 3.68
+    },
+    {
+      "text": "define which model you want to use for",
+      "start": 841.519,
+      "duration": 3.76
+    },
+    {
+      "text": "those team members, which in this is",
+      "start": 843.199,
+      "duration": 3.44
+    },
+    {
+      "text": "actually pretty good because instead of",
+      "start": 845.279,
+      "duration": 3.201
+    },
+    {
+      "text": "using the Opus 4.6, 6 which is the most",
+      "start": 846.639,
+      "duration": 4.081
+    },
+    {
+      "text": "expensive model. Sometimes if you don't",
+      "start": 848.48,
+      "duration": 4.479
+    },
+    {
+      "text": "need the best model for a specific task,",
+      "start": 850.72,
+      "duration": 4.88
+    },
+    {
+      "text": "you can just say use a use a lower model",
+      "start": 852.959,
+      "duration": 4.481
+    },
+    {
+      "text": "which is cheaper for you but you will",
+      "start": 855.6,
+      "duration": 3.599
+    },
+    {
+      "text": "still get the correct outcome that you",
+      "start": 857.44,
+      "duration": 3.68
+    },
+    {
+      "text": "need. So you don't actually have to only",
+      "start": 859.199,
+      "duration": 4.64
+    },
+    {
+      "text": "use the opus 4.6. So now for our",
+      "start": 861.12,
+      "duration": 3.68
+    },
+    {
+      "text": "example, we're not going to be doing",
+      "start": 863.839,
+      "duration": 2.161
+    },
+    {
+      "text": "anything with code. I'm actually going",
+      "start": 864.8,
+      "duration": 3.68
+    },
+    {
+      "text": "to be deploying a team of researchers to",
+      "start": 866.0,
+      "duration": 4.16
+    },
+    {
+      "text": "understand a specific topic and give me",
+      "start": 868.48,
+      "duration": 3.28
+    },
+    {
+      "text": "some recommendations. So I've just",
+      "start": 870.16,
+      "duration": 2.799
+    },
+    {
+      "text": "created a prompt using some of the",
+      "start": 871.76,
+      "duration": 2.48
+    },
+    {
+      "text": "strategies that we were just speaking",
+      "start": 872.959,
+      "duration": 3.361
+    },
+    {
+      "text": "about. I'm specifically saying to create",
+      "start": 874.24,
+      "duration": 4.959
+    },
+    {
+      "text": "an agent team. I'm then giving my uh my",
+      "start": 876.32,
+      "duration": 4.959
+    },
+    {
+      "text": "problem that I want to research and I'm",
+      "start": 879.199,
+      "duration": 4.401
+    },
+    {
+      "text": "also defining two different agents that",
+      "start": 881.279,
+      "duration": 3.841
+    },
+    {
+      "text": "I want to create and then giving the",
+      "start": 883.6,
+      "duration": 3.599
+    },
+    {
+      "text": "team leader some freedom to uh figure",
+      "start": 885.12,
+      "duration": 4.0
+    },
+    {
+      "text": "out some opposing angles or that we want",
+      "start": 887.199,
+      "duration": 3.841
+    },
+    {
+      "text": "to investigate. Finally, I'm also",
+      "start": 889.12,
+      "duration": 3.839
+    },
+    {
+      "text": "defining that be using Sonut for all the",
+      "start": 891.04,
+      "duration": 4.88
+    },
+    {
+      "text": "agents. So now let's fire this off and",
+      "start": 892.959,
+      "duration": 4.481
+    },
+    {
+      "text": "we're not going to be splitting up our",
+      "start": 895.92,
+      "duration": 3.2
+    },
+    {
+      "text": "windows just yet because we have teams",
+      "start": 897.44,
+      "duration": 3.28
+    },
+    {
+      "text": "enabled. The first thing that has to",
+      "start": 899.12,
+      "duration": 3.519
+    },
+    {
+      "text": "happen is the agent has to the team",
+      "start": 900.72,
+      "duration": 3.52
+    },
+    {
+      "text": "leader has to identify all right what's",
+      "start": 902.639,
+      "duration": 4.0
+    },
+    {
+      "text": "this request about what do we need to do",
+      "start": 904.24,
+      "duration": 4.399
+    },
+    {
+      "text": "define the tasks that have to be",
+      "start": 906.639,
+      "duration": 4.081
+    },
+    {
+      "text": "completed then define the prompts and",
+      "start": 908.639,
+      "duration": 3.361
+    },
+    {
+      "text": "then go and establish each of those",
+      "start": 910.72,
+      "duration": 2.96
+    },
+    {
+      "text": "agents only at that moment when the",
+      "start": 912.0,
+      "duration": 4.32
+    },
+    {
+      "text": "agents are up and running will then we",
+      "start": 913.68,
+      "duration": 4.24
+    },
+    {
+      "text": "go into this split view of different",
+      "start": 916.32,
+      "duration": 3.84
+    },
+    {
+      "text": "windows. Nice. Look at that. So we're",
+      "start": 917.92,
+      "duration": 4.479
+    },
+    {
+      "text": "spinning up our first agent in this",
+      "start": 920.16,
+      "duration": 4.32
+    },
+    {
+      "text": "split view. Looks like we have our",
+      "start": 922.399,
+      "duration": 4.24
+    },
+    {
+      "text": "second agent in the second split view.",
+      "start": 924.48,
+      "duration": 4.0
+    },
+    {
+      "text": "Okay. So we spled up our fourth agent.",
+      "start": 926.639,
+      "duration": 4.481
+    },
+    {
+      "text": "Is this going to be the final one? 1 2 3",
+      "start": 928.48,
+      "duration": 4.32
+    },
+    {
+      "text": "4 5. There might actually be five",
+      "start": 931.12,
+      "duration": 3.12
+    },
+    {
+      "text": "different agents we're spooling up. So,",
+      "start": 932.8,
+      "duration": 3.36
+    },
+    {
+      "text": "it's a little bit hard to see. So now at",
+      "start": 934.24,
+      "duration": 3.76
+    },
+    {
+      "text": "this stage, we see all of our agents on",
+      "start": 936.16,
+      "duration": 4.0
+    },
+    {
+      "text": "this right hand side panel. And we can",
+      "start": 938.0,
+      "duration": 3.68
+    },
+    {
+      "text": "just drill into one of these agents and",
+      "start": 940.16,
+      "duration": 3.039
+    },
+    {
+      "text": "just have a conversation with them as",
+      "start": 941.68,
+      "duration": 3.76
+    },
+    {
+      "text": "well. So over here we have the SAS AI",
+      "start": 943.199,
+      "duration": 4.161
+    },
+    {
+      "text": "adoption. And if I type on my keyboard",
+      "start": 945.44,
+      "duration": 5.519
+    },
+    {
+      "text": "like, hey, how are you going? I can hit",
+      "start": 947.36,
+      "duration": 5.68
+    },
+    {
+      "text": "enter and then I can get a response back",
+      "start": 950.959,
+      "duration": 4.721
+    },
+    {
+      "text": "specifically from this SAS AI adoption",
+      "start": 953.04,
+      "duration": 4.56
+    },
+    {
+      "text": "agent. Now, as we just saw, we had four",
+      "start": 955.68,
+      "duration": 4.159
+    },
+    {
+      "text": "different panels of teammates working.",
+      "start": 957.6,
+      "duration": 3.679
+    },
+    {
+      "text": "If at some stage you have like four",
+      "start": 959.839,
+      "duration": 3.36
+    },
+    {
+      "text": "agents working and you realize that one",
+      "start": 961.279,
+      "duration": 3.36
+    },
+    {
+      "text": "of the agents doesn't need to keep",
+      "start": 963.199,
+      "duration": 2.64
+    },
+    {
+      "text": "working and you want to save those",
+      "start": 964.639,
+      "duration": 2.801
+    },
+    {
+      "text": "tokens, you can go to the team leader",
+      "start": 965.839,
+      "duration": 3.12
+    },
+    {
+      "text": "and ask them specifically using the",
+      "start": 967.44,
+      "duration": 3.12
+    },
+    {
+      "text": "agent's name and just say, \"Can you",
+      "start": 968.959,
+      "duration": 3.601
+    },
+    {
+      "text": "please shut this specific agent down?\"",
+      "start": 970.56,
+      "duration": 3.279
+    },
+    {
+      "text": "So, the team leader will then send a",
+      "start": 972.56,
+      "duration": 3.12
+    },
+    {
+      "text": "request to the agent. Most of the time,",
+      "start": 973.839,
+      "duration": 3.761
+    },
+    {
+      "text": "the team the teammate can approve that",
+      "start": 975.68,
+      "duration": 3.839
+    },
+    {
+      "text": "and then gracefully shut down. But if",
+      "start": 977.6,
+      "duration": 3.039
+    },
+    {
+      "text": "they are working on something that's",
+      "start": 979.519,
+      "duration": 2.56
+    },
+    {
+      "text": "like mission critical or they believe",
+      "start": 980.639,
+      "duration": 3.361
+    },
+    {
+      "text": "it's mission critical, they can reject",
+      "start": 982.079,
+      "duration": 4.32
+    },
+    {
+      "text": "the claim or the the request with an",
+      "start": 984.0,
+      "duration": 4.88
+    },
+    {
+      "text": "explanation. So then the final stage of",
+      "start": 986.399,
+      "duration": 4.88
+    },
+    {
+      "text": "working with an agent team is that um",
+      "start": 988.88,
+      "duration": 3.68
+    },
+    {
+      "text": "this is actually done automatically by",
+      "start": 991.279,
+      "duration": 2.721
+    },
+    {
+      "text": "the team leader. But basically the team",
+      "start": 992.56,
+      "duration": 3.04
+    },
+    {
+      "text": "leader goes through all the agents, make",
+      "start": 994.0,
+      "duration": 3.199
+    },
+    {
+      "text": "sure all the tasks are complete and then",
+      "start": 995.6,
+      "duration": 3.359
+    },
+    {
+      "text": "they finished working and then they'll",
+      "start": 997.199,
+      "duration": 3.361
+    },
+    {
+      "text": "just like close down the team so we can",
+      "start": 998.959,
+      "duration": 3.521
+    },
+    {
+      "text": "shut down all the shared resources.",
+      "start": 1000.56,
+      "duration": 3.519
+    },
+    {
+      "text": "Essentially closing down all those",
+      "start": 1002.48,
+      "duration": 3.12
+    },
+    {
+      "text": "separate sessions then bringing",
+      "start": 1004.079,
+      "duration": 3.281
+    },
+    {
+      "text": "everything back into just one session.",
+      "start": 1005.6,
+      "duration": 3.28
+    },
+    {
+      "text": "And that's what we saw happen over here.",
+      "start": 1007.36,
+      "duration": 3.2
+    },
+    {
+      "text": "So the team leader actually went away",
+      "start": 1008.88,
+      "duration": 3.519
+    },
+    {
+      "text": "and shut down and cleaned up all those",
+      "start": 1010.56,
+      "duration": 4.32
+    },
+    {
+      "text": "agents. Now this for this research use",
+      "start": 1012.399,
+      "duration": 4.961
+    },
+    {
+      "text": "case this is an easy like a easy",
+      "start": 1014.88,
+      "duration": 4.319
+    },
+    {
+      "text": "shutdown. It just closes the entire team",
+      "start": 1017.36,
+      "duration": 4.88
+    },
+    {
+      "text": "down for applications for like coding,",
+      "start": 1019.199,
+      "duration": 5.921
+    },
+    {
+      "text": "creating apps, refactoring, debugging.",
+      "start": 1022.24,
+      "duration": 4.64
+    },
+    {
+      "text": "Typically the team leader will leave",
+      "start": 1025.12,
+      "duration": 3.919
+    },
+    {
+      "text": "either the entire team or certain agents",
+      "start": 1026.88,
+      "duration": 4.4
+    },
+    {
+      "text": "up and idling. So instead of just",
+      "start": 1029.039,
+      "duration": 3.841
+    },
+    {
+      "text": "closing everything up when a task is",
+      "start": 1031.28,
+      "duration": 3.279
+    },
+    {
+      "text": "complete, they'll actually wait for you",
+      "start": 1032.88,
+      "duration": 3.919
+    },
+    {
+      "text": "to come back, give the final test, and",
+      "start": 1034.559,
+      "duration": 3.76
+    },
+    {
+      "text": "then just say, okay, you can close the",
+      "start": 1036.799,
+      "duration": 4.16
+    },
+    {
+      "text": "team down or please, you know, go back",
+      "start": 1038.319,
+      "duration": 5.041
+    },
+    {
+      "text": "to the QA agent and just make them",
+      "start": 1040.959,
+      "duration": 4.0
+    },
+    {
+      "text": "recheck this part because it's actually",
+      "start": 1043.36,
+      "duration": 3.679
+    },
+    {
+      "text": "still broken. Or please go back to the",
+      "start": 1044.959,
+      "duration": 3.681
+    },
+    {
+      "text": "backend agent, tell them to fix this",
+      "start": 1047.039,
+      "duration": 3.201
+    },
+    {
+      "text": "part cuz it's still broken. And that's",
+      "start": 1048.64,
+      "duration": 3.2
+    },
+    {
+      "text": "important because you maintain like that",
+      "start": 1050.24,
+      "duration": 3.439
+    },
+    {
+      "text": "backend agent maintains the context of",
+      "start": 1051.84,
+      "duration": 3.44
+    },
+    {
+      "text": "what they were working on and all the",
+      "start": 1053.679,
+      "duration": 2.641
+    },
+    {
+      "text": "different changes, all the different",
+      "start": 1055.28,
+      "duration": 2.56
+    },
+    {
+      "text": "issues they ran into. So they should be",
+      "start": 1056.32,
+      "duration": 3.2
+    },
+    {
+      "text": "able to just jump back into the project",
+      "start": 1057.84,
+      "duration": 3.68
+    },
+    {
+      "text": "and fix whatever you're telling them.",
+      "start": 1059.52,
+      "duration": 3.12
+    },
+    {
+      "text": "And that's important because you don't",
+      "start": 1061.52,
+      "duration": 2.88
+    },
+    {
+      "text": "want to lose their specific context",
+      "start": 1062.64,
+      "duration": 3.6
+    },
+    {
+      "text": "anyway. Now another strategy for",
+      "start": 1064.4,
+      "duration": 3.44
+    },
+    {
+      "text": "maintaining memory between each of these",
+      "start": 1066.24,
+      "duration": 3.28
+    },
+    {
+      "text": "sessions like this as well. Like for",
+      "start": 1067.84,
+      "duration": 3.199
+    },
+    {
+      "text": "example, if I fully shut down this team",
+      "start": 1069.52,
+      "duration": 2.88
+    },
+    {
+      "text": "and we were doing working on some kind",
+      "start": 1071.039,
+      "duration": 3.121
+    },
+    {
+      "text": "of code, you could create a shared",
+      "start": 1072.4,
+      "duration": 3.84
+    },
+    {
+      "text": "memory MD file where you get all the",
+      "start": 1074.16,
+      "duration": 4.879
+    },
+    {
+      "text": "agents to log all their issues like all",
+      "start": 1076.24,
+      "duration": 4.559
+    },
+    {
+      "text": "the bugs they ran into and all the all",
+      "start": 1079.039,
+      "duration": 3.601
+    },
+    {
+      "text": "the stuff they've tried to debug to that",
+      "start": 1080.799,
+      "duration": 4.161
+    },
+    {
+      "text": "stage or if they have debugged basically",
+      "start": 1082.64,
+      "duration": 3.84
+    },
+    {
+      "text": "like a running list of all the issues",
+      "start": 1084.96,
+      "duration": 3.36
+    },
+    {
+      "text": "and fixes that they've had. So if you do",
+      "start": 1086.48,
+      "duration": 4.0
+    },
+    {
+      "text": "spool up other agents for different in",
+      "start": 1088.32,
+      "duration": 4.08
+    },
+    {
+      "text": "the same session or different sessions,",
+      "start": 1090.48,
+      "duration": 4.48
+    },
+    {
+      "text": "you can just reference that memory file",
+      "start": 1092.4,
+      "duration": 4.32
+    },
+    {
+      "text": "basically longterm persistently through",
+      "start": 1094.96,
+      "duration": 3.52
+    },
+    {
+      "text": "different sessions. And now at this",
+      "start": 1096.72,
+      "duration": 3.12
+    },
+    {
+      "text": "stage, I just want to go through and",
+      "start": 1098.48,
+      "duration": 3.199
+    },
+    {
+      "text": "look at the cost of the session that we",
+      "start": 1099.84,
+      "duration": 4.8
+    },
+    {
+      "text": "just ran. And it looks like it was $1.15",
+      "start": 1101.679,
+      "duration": 4.641
+    },
+    {
+      "text": "to run all those agents to do that",
+      "start": 1104.64,
+      "duration": 4.88
+    },
+    {
+      "text": "research across a 4minute duration. So I",
+      "start": 1106.32,
+      "duration": 4.4
+    },
+    {
+      "text": "think something actually happened here.",
+      "start": 1109.52,
+      "duration": 3.519
+    },
+    {
+      "text": "This is not 100% correct. Typically when",
+      "start": 1110.72,
+      "duration": 3.36
+    },
+    {
+      "text": "you're running multiple different",
+      "start": 1113.039,
+      "duration": 3.52
+    },
+    {
+      "text": "agents, their API duration will",
+      "start": 1114.08,
+      "duration": 4.24
+    },
+    {
+      "text": "compound. So if you have five agents",
+      "start": 1116.559,
+      "duration": 3.441
+    },
+    {
+      "text": "running for 5 minutes, it'll typically",
+      "start": 1118.32,
+      "duration": 4.0
+    },
+    {
+      "text": "say 25m minute duration. Here these",
+      "start": 1120.0,
+      "duration": 4.32
+    },
+    {
+      "text": "agents were not running for that short",
+      "start": 1122.32,
+      "duration": 3.84
+    },
+    {
+      "text": "amount of time. for example, worked for",
+      "start": 1124.32,
+      "duration": 3.599
+    },
+    {
+      "text": "5 minutes and 33 seconds. So something",
+      "start": 1126.16,
+      "duration": 4.0
+    },
+    {
+      "text": "here is not fully lining up. But in",
+      "start": 1127.919,
+      "duration": 3.441
+    },
+    {
+      "text": "general, you should just be going to",
+      "start": 1130.16,
+      "duration": 3.28
+    },
+    {
+      "text": "your cost tab after each session or",
+      "start": 1131.36,
+      "duration": 4.559
+    },
+    {
+      "text": "after each agent spool up and spool down",
+      "start": 1133.44,
+      "duration": 3.92
+    },
+    {
+      "text": "just to see what it's costing you. So",
+      "start": 1135.919,
+      "duration": 2.721
+    },
+    {
+      "text": "you can kind of be smarter for next time",
+      "start": 1137.36,
+      "duration": 2.559
+    },
+    {
+      "text": "with your prompting or your model",
+      "start": 1138.64,
+      "duration": 2.8
+    },
+    {
+      "text": "selection. So at this stage, we've",
+      "start": 1139.919,
+      "duration": 2.961
+    },
+    {
+      "text": "looked at how to start up a team where",
+      "start": 1141.44,
+      "duration": 3.04
+    },
+    {
+      "text": "we have to specifically say we want a",
+      "start": 1142.88,
+      "duration": 2.96
+    },
+    {
+      "text": "team of agents. We can define a",
+      "start": 1144.48,
+      "duration": 2.88
+    },
+    {
+      "text": "different model that we want. We also",
+      "start": 1145.84,
+      "duration": 3.04
+    },
+    {
+      "text": "looked at different management. So",
+      "start": 1147.36,
+      "duration": 2.8
+    },
+    {
+      "text": "instead of just looking at all the",
+      "start": 1148.88,
+      "duration": 3.6
+    },
+    {
+      "text": "agents basically in that same room, we",
+      "start": 1150.16,
+      "duration": 3.68
+    },
+    {
+      "text": "split them up into separate rooms. we're",
+      "start": 1152.48,
+      "duration": 3.04
+    },
+    {
+      "text": "able to see what they're working on.",
+      "start": 1153.84,
+      "duration": 2.8
+    },
+    {
+      "text": "We're able to communicate with them",
+      "start": 1155.52,
+      "duration": 2.64
+    },
+    {
+      "text": "directly as well. And then finally,",
+      "start": 1156.64,
+      "duration": 3.52
+    },
+    {
+      "text": "looking at these shutdown principles",
+      "start": 1158.16,
+      "duration": 3.84
+    },
+    {
+      "text": "around cleaning up certain agents if we",
+      "start": 1160.16,
+      "duration": 3.28
+    },
+    {
+      "text": "don't want them to keep working, but",
+      "start": 1162.0,
+      "duration": 2.64
+    },
+    {
+      "text": "then also shutting down the team",
+      "start": 1163.44,
+      "duration": 3.04
+    },
+    {
+      "text": "gracefully and clearing up all the",
+      "start": 1164.64,
+      "duration": 3.84
+    },
+    {
+      "text": "resources. So now, interestingly, the",
+      "start": 1166.48,
+      "duration": 3.36
+    },
+    {
+      "text": "final thing that I want to go across is",
+      "start": 1168.48,
+      "duration": 3.04
+    },
+    {
+      "text": "just looking at skills and how can you",
+      "start": 1169.84,
+      "duration": 4.24
+    },
+    {
+      "text": "use skills to improve how you run teams.",
+      "start": 1171.52,
+      "duration": 4.159
+    },
+    {
+      "text": "So, as you guys know, a skill is just a",
+      "start": 1174.08,
+      "duration": 2.959
+    },
+    {
+      "text": "way that you complete a repeatable",
+      "start": 1175.679,
+      "duration": 3.521
+    },
+    {
+      "text": "process. And for my own workflow with",
+      "start": 1177.039,
+      "duration": 4.0
+    },
+    {
+      "text": "agents, I'm actually finding that I'm",
+      "start": 1179.2,
+      "duration": 3.359
+    },
+    {
+      "text": "getting them to complete the exact same",
+      "start": 1181.039,
+      "duration": 3.52
+    },
+    {
+      "text": "thing just on different topics. So, for",
+      "start": 1182.559,
+      "duration": 3.521
+    },
+    {
+      "text": "example, I've got a very specific way",
+      "start": 1184.559,
+      "duration": 3.601
+    },
+    {
+      "text": "that I like to do research. And instead",
+      "start": 1186.08,
+      "duration": 3.68
+    },
+    {
+      "text": "of me just prompting up every single",
+      "start": 1188.16,
+      "duration": 4.16
+    },
+    {
+      "text": "time the entire research process, I can",
+      "start": 1189.76,
+      "duration": 4.48
+    },
+    {
+      "text": "just turn this into a skill. And the",
+      "start": 1192.32,
+      "duration": 3.44
+    },
+    {
+      "text": "best way that I found to create skills",
+      "start": 1194.24,
+      "duration": 3.12
+    },
+    {
+      "text": "is not to just write it from scratch and",
+      "start": 1195.76,
+      "duration": 3.2
+    },
+    {
+      "text": "upload it and kind of just go with it",
+      "start": 1197.36,
+      "duration": 3.679
+    },
+    {
+      "text": "blindly. It's to actually complete the",
+      "start": 1198.96,
+      "duration": 4.16
+    },
+    {
+      "text": "skill as a process first using Claude",
+      "start": 1201.039,
+      "duration": 3.76
+    },
+    {
+      "text": "Code and then get Claude Code to create",
+      "start": 1203.12,
+      "duration": 3.76
+    },
+    {
+      "text": "that skill for you. So in this example,",
+      "start": 1204.799,
+      "duration": 3.841
+    },
+    {
+      "text": "we had a very basic process. I literally",
+      "start": 1206.88,
+      "duration": 3.28
+    },
+    {
+      "text": "just said, \"Create a research team.\" I",
+      "start": 1208.64,
+      "duration": 3.039
+    },
+    {
+      "text": "didn't even read the results, but",
+      "start": 1210.16,
+      "duration": 3.12
+    },
+    {
+      "text": "typically what you would do is you would",
+      "start": 1211.679,
+      "duration": 3.041
+    },
+    {
+      "text": "go back and forth and say, \"I'll",
+      "start": 1213.28,
+      "duration": 2.8
+    },
+    {
+      "text": "actually research this part of the",
+      "start": 1214.72,
+      "duration": 3.52
+    },
+    {
+      "text": "thing, or can you now convert the output",
+      "start": 1216.08,
+      "duration": 4.0
+    },
+    {
+      "text": "into a PDF, or can you send me an",
+      "start": 1218.24,
+      "duration": 3.679
+    },
+    {
+      "text": "email?\" Once you run through that entire",
+      "start": 1220.08,
+      "duration": 3.28
+    },
+    {
+      "text": "process, you can just create a prompt",
+      "start": 1221.919,
+      "duration": 3.201
+    },
+    {
+      "text": "like this that says, \"Turn whatever we",
+      "start": 1223.36,
+      "duration": 4.08
+    },
+    {
+      "text": "just did into a skill.\" And you can also",
+      "start": 1225.12,
+      "duration": 3.6
+    },
+    {
+      "text": "define that you want to have different",
+      "start": 1227.44,
+      "duration": 3.04
+    },
+    {
+      "text": "variables in that skill. For example,",
+      "start": 1228.72,
+      "duration": 3.52
+    },
+    {
+      "text": "for our research skill, we want to have",
+      "start": 1230.48,
+      "duration": 3.439
+    },
+    {
+      "text": "a different topic and maybe a different",
+      "start": 1232.24,
+      "duration": 3.439
+    },
+    {
+      "text": "model that we use depending on the",
+      "start": 1233.919,
+      "duration": 3.281
+    },
+    {
+      "text": "research that we're doing. So, you can",
+      "start": 1235.679,
+      "duration": 3.041
+    },
+    {
+      "text": "just go away and hit enter. And now,",
+      "start": 1237.2,
+      "duration": 2.8
+    },
+    {
+      "text": "Claude's going to take this specific",
+      "start": 1238.72,
+      "duration": 3.439
+    },
+    {
+      "text": "process and then store that skill in our",
+      "start": 1240.0,
+      "duration": 3.919
+    },
+    {
+      "text": "repository. So now another hack when",
+      "start": 1242.159,
+      "duration": 3.441
+    },
+    {
+      "text": "you're doing skills is that every time",
+      "start": 1243.919,
+      "duration": 3.441
+    },
+    {
+      "text": "you actually run the skill, if there is",
+      "start": 1245.6,
+      "duration": 3.52
+    },
+    {
+      "text": "an update to the process that you want",
+      "start": 1247.36,
+      "duration": 3.28
+    },
+    {
+      "text": "to make, you can just go back into",
+      "start": 1249.12,
+      "duration": 3.6
+    },
+    {
+      "text": "Claude and just reprompt and say, \"Hey,",
+      "start": 1250.64,
+      "duration": 3.76
+    },
+    {
+      "text": "this new adjustment to the process, how",
+      "start": 1252.72,
+      "duration": 3.6
+    },
+    {
+      "text": "we're using fewer agents, more agents,",
+      "start": 1254.4,
+      "duration": 3.759
+    },
+    {
+      "text": "or instead of sending emails, now we're",
+      "start": 1256.32,
+      "duration": 3.44
+    },
+    {
+      "text": "doing Slack, can you please go back and",
+      "start": 1258.159,
+      "duration": 3.041
+    },
+    {
+      "text": "update the skill and it can just keep it",
+      "start": 1259.76,
+      "duration": 2.88
+    },
+    {
+      "text": "up to date for you.\" So now looks like",
+      "start": 1261.2,
+      "duration": 2.959
+    },
+    {
+      "text": "Claude has created that skill for us,",
+      "start": 1262.64,
+      "duration": 3.2
+    },
+    {
+      "text": "added it to our directory, and now we",
+      "start": 1264.159,
+      "duration": 3.121
+    },
+    {
+      "text": "can just do forward slash and hit",
+      "start": 1265.84,
+      "duration": 3.52
+    },
+    {
+      "text": "research to use that skill. We're using",
+      "start": 1267.28,
+      "duration": 3.84
+    },
+    {
+      "text": "argument for the topic and then model",
+      "start": 1269.36,
+      "duration": 3.439
+    },
+    {
+      "text": "for the agent model. And then we got a",
+      "start": 1271.12,
+      "duration": 3.439
+    },
+    {
+      "text": "very easy explanation of how to use that",
+      "start": 1272.799,
+      "duration": 2.961
+    },
+    {
+      "text": "skill. So we can either just use",
+      "start": 1274.559,
+      "duration": 2.961
+    },
+    {
+      "text": "forward/ressearch why is bitcoin",
+      "start": 1275.76,
+      "duration": 4.0
+    },
+    {
+      "text": "dropping to run with the sonnet agents",
+      "start": 1277.52,
+      "duration": 4.0
+    },
+    {
+      "text": "or to override the model you can say why",
+      "start": 1279.76,
+      "duration": 3.84
+    },
+    {
+      "text": "is bitcoin dropping using haik coup. And",
+      "start": 1281.52,
+      "duration": 3.84
+    },
+    {
+      "text": "now in order for us to use that skill we",
+      "start": 1283.6,
+      "duration": 3.36
+    },
+    {
+      "text": "cannot do it in the exact same session.",
+      "start": 1285.36,
+      "duration": 2.96
+    },
+    {
+      "text": "That's why we don't see it coming up",
+      "start": 1286.96,
+      "duration": 3.44
+    },
+    {
+      "text": "over here. So we just start a brand new",
+      "start": 1288.32,
+      "duration": 4.719
+    },
+    {
+      "text": "claude session. Let's hit enter forward",
+      "start": 1290.4,
+      "duration": 5.12
+    },
+    {
+      "text": "slash research. And here is that skill.",
+      "start": 1293.039,
+      "duration": 4.0
+    },
+    {
+      "text": "And let's just test it out. So why is",
+      "start": 1295.52,
+      "duration": 4.0
+    },
+    {
+      "text": "Bitcoin dropping? Hit enter. And because",
+      "start": 1297.039,
+      "duration": 4.161
+    },
+    {
+      "text": "I didn't actually launch this in T-Max,",
+      "start": 1299.52,
+      "duration": 3.2
+    },
+    {
+      "text": "we're not going to see the split panel",
+      "start": 1301.2,
+      "duration": 3.599
+    },
+    {
+      "text": "for all the agents, but we do have the",
+      "start": 1302.72,
+      "duration": 3.68
+    },
+    {
+      "text": "skill being used. So, launch a multi-",
+      "start": 1304.799,
+      "duration": 3.281
+    },
+    {
+      "text": "aent research team to investigate why",
+      "start": 1306.4,
+      "duration": 3.519
+    },
+    {
+      "text": "Bitcoin is dropping. So, just like",
+      "start": 1308.08,
+      "duration": 3.52
+    },
+    {
+      "text": "before, we had the evidence gatherer, we",
+      "start": 1309.919,
+      "duration": 3.76
+    },
+    {
+      "text": "had the bull case, bare case, and now",
+      "start": 1311.6,
+      "duration": 3.92
+    },
+    {
+      "text": "two opposing different agents that we",
+      "start": 1313.679,
+      "duration": 3.36
+    },
+    {
+      "text": "can use. All right, guys. Thank you very",
+      "start": 1315.52,
+      "duration": 3.039
+    },
+    {
+      "text": "much for watching. I hope you can now go",
+      "start": 1317.039,
+      "duration": 3.441
+    },
+    {
+      "text": "away and use agent teams even better.",
+      "start": 1318.559,
+      "duration": 4.881
+    },
+    {
+      "text": "See you in the next one.",
+      "start": 1320.48,
+      "duration": 2.96
+    }
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "filename": "frame_001.jpg",
+      "timestamp": 4.966667,
+      "method": "scene_change"
+    },
+    {
+      "index": 1,
+      "filename": "frame_002.jpg",
+      "timestamp": 10.6,
+      "method": "scene_change"
+    },
+    {
+      "index": 2,
+      "filename": "frame_003.jpg",
+      "timestamp": 439.2,
+      "method": "scene_change"
+    },
+    {
+      "index": 3,
+      "filename": "frame_004.jpg",
+      "timestamp": 449.7,
+      "method": "scene_change"
+    },
+    {
+      "index": 4,
+      "filename": "frame_005.jpg",
+      "timestamp": 494.766667,
+      "method": "scene_change"
+    },
+    {
+      "index": 5,
+      "filename": "frame_006.jpg",
+      "timestamp": 508.633333,
+      "method": "scene_change"
+    },
+    {
+      "index": 6,
+      "filename": "frame_007.jpg",
+      "timestamp": 543.2,
+      "method": "scene_change"
+    },
+    {
+      "index": 7,
+      "filename": "frame_008.jpg",
+      "timestamp": 567.2,
+      "method": "scene_change"
+    },
+    {
+      "index": 8,
+      "filename": "frame_009.jpg",
+      "timestamp": 572.5,
+      "method": "scene_change"
+    },
+    {
+      "index": 9,
+      "filename": "frame_010.jpg",
+      "timestamp": 584.9,
+      "method": "scene_change"
+    },
+    {
+      "index": 10,
+      "filename": "frame_011.jpg",
+      "timestamp": 587.0,
+      "method": "scene_change"
+    },
+    {
+      "index": 11,
+      "filename": "frame_012.jpg",
+      "timestamp": 593.933333,
+      "method": "scene_change"
+    },
+    {
+      "index": 12,
+      "filename": "frame_013.jpg",
+      "timestamp": 598.9,
+      "method": "scene_change"
+    },
+    {
+      "index": 13,
+      "filename": "frame_014.jpg",
+      "timestamp": 612.966667,
+      "method": "scene_change"
+    },
+    {
+      "index": 14,
+      "filename": "frame_015.jpg",
+      "timestamp": 631.2,
+      "method": "scene_change"
+    },
+    {
+      "index": 15,
+      "filename": "frame_016.jpg",
+      "timestamp": 637.966667,
+      "method": "scene_change"
+    },
+    {
+      "index": 16,
+      "filename": "frame_017.jpg",
+      "timestamp": 667.7,
+      "method": "scene_change"
+    },
+    {
+      "index": 17,
+      "filename": "frame_018.jpg",
+      "timestamp": 687.366667,
+      "method": "scene_change"
+    },
+    {
+      "index": 18,
+      "filename": "frame_019.jpg",
+      "timestamp": 863.166667,
+      "method": "scene_change"
+    },
+    {
+      "index": 19,
+      "filename": "frame_020.jpg",
+      "timestamp": 956.166667,
+      "method": "scene_change"
+    }
+  ],
+  "analysis": {
+    "category": "AI Agents",
+    "sections": [
+      {
+        "frame_index": 0,
+        "timestamp": "0:04",
+        "title": "Introduction to Claude Code Agent Teams",
+        "key_points": [
+          "Introduction to mastering Claude Code Agent Teams with Opus 4.6",
+          "Overview of the video structure covering setup, sessions, and skills",
+          "New agent teams feature with the Opus 4.6 model release"
+        ],
+        "screen_content": "Title slide showing 'CLAUDE CODE' with subtitle 'Life OS: Claude Code Edition' and 'Mastering Agent Teams' with a 4-point agenda covering Overview, Setup, Sessions, and Skills"
+      },
+      {
+        "frame_index": 1,
+        "timestamp": "0:10",
+        "title": "Three Modes of Claude Code Operation",
+        "key_points": [
+          "Default mode: Single session with one Claude model",
+          "Sub agent mode: One session with sub-agents spawned",
+          "Agent team mode: Each agent has its own independent session",
+          "Key difference is session management and context isolation"
+        ],
+        "screen_content": "Diagram showing three columns comparing Default Mode, Sub agent, and Agent Team modes with visual representations of how agents interact and manage sessions"
+      },
+      {
+        "frame_index": 2,
+        "timestamp": "7:19",
+        "title": "Environment Setup and Version Check",
+        "key_points": [
+          "Update Claude to latest version using 'claude update' command",
+          "Ensure access to all new features and models",
+          "Terminal shows Claude Code version 2.1.41 is up to date"
+        ],
+        "screen_content": "Terminal window showing the claude update command being executed, displaying current version 2.1.41 and confirmation that Claude Code is up to date"
+      },
+      {
+        "frame_index": 3,
+        "timestamp": "8:28",
+        "title": "TMUX Configuration for Split Panes",
+        "key_points": [
+          "Two display modes: In-process (all agents in one terminal) vs Split panes (separate rooms)",
+          "TMUX required for split panes functionality",
+          "Configuration settings: tmuxSplitPanes: true and experimental agents enabled",
+          "TMUX works best on macOS, requires iTerm2 setup"
+        ],
+        "screen_content": "Documentation showing agent teams display mode options with explanations of in-process vs split panes, plus TMUX limitations and setup requirements"
+      },
+      {
+        "frame_index": 4,
+        "timestamp": "9:03",
+        "title": "Configuration File Setup",
+        "key_points": [
+          "Global configuration setup for agent teams across all sessions",
+          "JSON configuration showing tmuxSplitPanes: true setting",
+          "Enables agent teams and separate terminal panes for each agent"
+        ],
+        "screen_content": "Terminal showing configuration command execution and JSON configuration file with preferences settings for tmuxSplitPanes and experimental agents"
+      },
+      {
+        "frame_index": 5,
+        "timestamp": "9:32",
+        "title": "Starting TMUX Session",
+        "key_points": [
+          "Must start TMUX session before launching Claude Code",
+          "Command: tmux new-session -s claude-work",
+          "Creates foundation for multiple agent terminal panes"
+        ],
+        "screen_content": "Documentation showing step 3 'Start a tmux session' with the specific command to create a new TMUX session named claude-work"
+      },
+      {
+        "frame_index": 6,
+        "timestamp": "9:58",
+        "title": "Model Selection and Effort Levels",
+        "key_points": [
+          "Opus 4.6 available in 200k and 1M token context versions",
+          "Premium pricing for 1M context above 200k tokens ($10/$37.50 per million)",
+          "Effort levels: Low (efficient), Medium (balanced), High (complex tasks), Max (absolute maximum capability)"
+        ],
+        "screen_content": "Claude Code interface showing model selection menu with Opus 4.6 options and effort level settings, plus documentation explaining different effort levels and their use cases"
+      },
+      {
+        "frame_index": 7,
+        "timestamp": "11:27",
+        "title": "Creating Agent Teams",
+        "key_points": [
+          "Must explicitly tell Claude to 'create an agent team'",
+          "Team leader distributes tasks and creates agent prompts",
+          "Agents don't get access to full conversation history",
+          "Context must be provided through MD files or specific instructions"
+        ],
+        "screen_content": "Anthropic documentation showing 'Start your first agent team' with example prompt about creating a CLI tool with UX, technical architecture, and developer perspective agents"
+      },
+      {
+        "frame_index": 8,
+        "timestamp": "14:23",
+        "title": "Live Agent Team Demonstration",
+        "key_points": [
+          "Research task example: SaaS companies and stock market analysis",
+          "Team automatically splits into multiple terminal panes",
+          "5 agents created for different research perspectives",
+          "Can interact with individual agents directly"
+        ],
+        "screen_content": "Terminal showing agent team creation prompt about researching SaaS companies tanking in stock market, with multiple split panes visible for different agents"
+      },
+      {
+        "frame_index": 9,
+        "timestamp": "15:56",
+        "title": "Agent Management and Shutdown",
+        "key_points": [
+          "Can shut down individual agents to save tokens",
+          "Team leader sends shutdown requests that agents can approve or reject",
+          "Automatic cleanup when tasks complete",
+          "For coding tasks, agents often remain idle for further instructions"
+        ],
+        "screen_content": "Documentation showing 'Shut down teammates' and 'Clean up the team' sections with commands and explanations for graceful agent termination and resource cleanup"
+      }
+    ],
+    "summary": {
+      "title": "Complete Guide to Claude Code Agent Teams with Opus 4.6",
+      "takeaways": [
+        "Agent Teams is a new feature in Claude Code that creates multiple independent agent sessions",
+        "TMUX setup is required for split-pane view to manage multiple agents effectively",
+        "Each agent has its own session and doesn't share conversation history automatically",
+        "Team leader coordinates task distribution and agent management",
+        "Proper setup involves updating Claude, configuring TMUX, and using specific prompts to create teams"
+      ],
+      "concepts": [
+        "Agent Teams vs Sub-agents vs Default mode",
+        "TMUX split panes for agent visualization",
+        "Opus 4.6 effort levels and pricing tiers",
+        "Team leader coordination and task delegation",
+        "Agent session isolation and context management",
+        "Graceful agent shutdown and resource cleanup"
+      ],
+      "actionable": [
+        "Update Claude Code to version 2.1.41 or later",
+        "Install and configure TMUX for split pane functionality",
+        "Set tmuxSplitPanes: true in Claude configuration",
+        "Always start with 'tmux new-session -s claude-work' before launching Claude",
+        "Use explicit 'create an agent team' language in prompts",
+        "Start with Opus model on low effort, then scale up as needed",
+        "Provide context through MD files when switching to agent teams",
+        "Use team leader to shut down individual agents to save tokens"
+      ]
+    }
+  },
+  "analysis_zh": {
+    "category": "AI Agents",
+    "sections": [
+      {
+        "frame_index": 0,
+        "timestamp": "0:04",
+        "title": "Claude Code Agent Teams介绍",
+        "key_points": [
+          "介绍如何掌握Claude Code Agent Teams与Opus 4.6",
+          "视频结构概览，涵盖设置、会话和技能",
+          "Opus 4.6模型发布的新agent teams功能"
+        ],
+        "screen_content": "标题幻灯片显示'CLAUDE CODE'，副标题为'Life OS: Claude Code Edition'和'Mastering Agent Teams'，包含涵盖概览、设置、会话和技能的4点议程"
+      },
+      {
+        "frame_index": 1,
+        "timestamp": "0:10",
+        "title": "Claude Code操作的三种模式",
+        "key_points": [
+          "默认模式：单个会话使用一个Claude模型",
+          "子agent模式：一个会话中生成子agents",
+          "Agent团队模式：每个agent都有自己独立的会话",
+          "关键区别在于会话管理和上下文隔离"
+        ],
+        "screen_content": "图表显示三列比较默认模式、子agent和Agent团队模式，包含agents如何交互和管理会话的可视化表示"
+      },
+      {
+        "frame_index": 2,
+        "timestamp": "7:19",
+        "title": "环境设置和版本检查",
+        "key_points": [
+          "使用'claude update'命令更新Claude到最新版本",
+          "确保访问所有新功能和模型",
+          "终端显示Claude Code版本2.1.41已是最新"
+        ],
+        "screen_content": "终端窗口显示执行claude update命令，显示当前版本2.1.41并确认Claude Code已是最新版本"
+      },
+      {
+        "frame_index": 3,
+        "timestamp": "8:28",
+        "title": "TMUX分屏配置",
+        "key_points": [
+          "两种显示模式：进程内（所有agents在一个终端）vs 分屏（独立房间）",
+          "分屏功能需要TMUX",
+          "配置设置：tmuxSplitPanes: true和启用实验性agents",
+          "TMUX在macOS上效果最佳，需要iTerm2设置"
+        ],
+        "screen_content": "文档显示agent teams显示模式选项，解释进程内vs分屏的区别，以及TMUX限制和设置要求"
+      },
+      {
+        "frame_index": 4,
+        "timestamp": "9:03",
+        "title": "配置文件设置",
+        "key_points": [
+          "为所有会话设置agent teams的全局配置",
+          "JSON配置显示tmuxSplitPanes: true设置",
+          "启用agent teams和为每个agent创建独立终端窗格"
+        ],
+        "screen_content": "终端显示配置命令执行和JSON配置文件，包含tmuxSplitPanes和实验性agents的偏好设置"
+      },
+      {
+        "frame_index": 5,
+        "timestamp": "9:32",
+        "title": "启动TMUX会话",
+        "key_points": [
+          "必须在启动Claude Code之前启动TMUX会话",
+          "命令：tmux new-session -s claude-work",
+          "为多个agent终端窗格创建基础"
+        ],
+        "screen_content": "文档显示步骤3'启动tmux会话'，包含创建名为claude-work的新TMUX会话的具体命令"
+      },
+      {
+        "frame_index": 6,
+        "timestamp": "9:58",
+        "title": "模型选择和努力级别",
+        "key_points": [
+          "Opus 4.6提供200k和1M token上下文版本",
+          "1M上下文超过200k tokens的高级定价（每百万$10/$37.50）",
+          "努力级别：低（高效）、中（平衡）、高（复杂任务）、最大（绝对最大能力）"
+        ],
+        "screen_content": "Claude Code界面显示模型选择菜单，包含Opus 4.6选项和努力级别设置，以及解释不同努力级别及其用例的文档"
+      },
+      {
+        "frame_index": 7,
+        "timestamp": "11:27",
+        "title": "创建Agent Teams",
+        "key_points": [
+          "必须明确告诉Claude'创建一个agent team'",
+          "团队领导分配任务并创建agent提示",
+          "Agents无法访问完整对话历史",
+          "必须通过MD文件或具体指令提供上下文"
+        ],
+        "screen_content": "Anthropic文档显示'启动你的第一个agent team'，包含关于创建具有UX、技术架构和开发者视角agents的CLI工具的示例提示"
+      },
+      {
+        "frame_index": 8,
+        "timestamp": "14:23",
+        "title": "实时Agent Team演示",
+        "key_points": [
+          "研究任务示例：SaaS公司和股市分析",
+          "团队自动分割为多个终端窗格",
+          "为不同研究视角创建5个agents",
+          "可以直接与单个agents交互"
+        ],
+        "screen_content": "终端显示关于研究股市下跌的SaaS公司的agent team创建提示，可见多个分屏窗格用于不同agents"
+      },
+      {
+        "frame_index": 9,
+        "timestamp": "15:56",
+        "title": "Agent管理和关闭",
+        "key_points": [
+          "可以关闭单个agents以节省tokens",
+          "团队领导发送关闭请求，agents可以批准或拒绝",
+          "任务完成时自动清理",
+          "对于编码任务，agents通常保持空闲状态等待进一步指令"
+        ],
+        "screen_content": "文档显示'关闭队友'和'清理团队'部分，包含优雅agent终止和资源清理的命令和说明"
+      }
+    ],
+    "summary": {
+      "title": "Claude Code Agent Teams与Opus 4.6完整指南",
+      "takeaways": [
+        "Agent Teams是Claude Code的新功能，可创建多个独立的agent会话",
+        "需要TMUX设置才能实现分屏视图以有效管理多个agents",
+        "每个agent都有自己的会话，不会自动共享对话历史",
+        "团队领导协调任务分配和agent管理",
+        "正确设置包括更新Claude、配置TMUX和使用特定提示创建团队"
+      ],
+      "concepts": [
+        "Agent Teams vs 子agents vs 默认模式",
+        "用于agent可视化的TMUX分屏",
+        "Opus 4.6努力级别和定价层级",
+        "团队领导协调和任务委派",
+        "Agent会话隔离和上下文管理",
+        "优雅的agent关闭和资源清理"
+      ],
+      "actionable": [
+        "将Claude Code更新到2.1.41或更高版本",
+        "安装并配置TMUX以实现分屏功能",
+        "在Claude配置中设置tmuxSplitPanes: true",
+        "启动Claude前始终使用'tmux new-session -s claude-work'",
+        "在提示中使用明确的'创建一个agent team'语言",
+        "从低努力级别的Opus模型开始，然后根据需要扩展",
+        "切换到agent teams时通过MD文件提供上下文",
+        "使用团队领导关闭单个agents以节省tokens"
+      ]
+    }
+  }
+}

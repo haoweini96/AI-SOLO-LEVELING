@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Dark theme - Patagon sky / galaxy */
+      --bg: #0B1D26;
+      --bg-content: #0B1D26;
+      --bg-image-url: url('/apps/study/knowledge_assets/knowledge_dark.png');
+      --bg-image-overlay: radial-gradient(1200px 600px at 20% 15%, rgba(34,211,238,0.08), transparent 58%),
+                         radial-gradient(1100px 700px at 80% 10%, rgba(167,139,250,0.09), transparent 58%),
+                         linear-gradient(180deg, rgba(11,29,38,0.00) 0%, rgba(11,29,38,0.35) 60%, rgba(11,29,38,0.55) 100%);
+      --bg-image-filter: saturate(118%) contrast(106%);
+      --bg-image-opacity: 1;
+      --surface: rgba(11, 29, 38, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --accent: #FBD784;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.06);
+      /* Hero readability gradient (keep subtle so photo remains visible) */
+      --gradient-overlay: linear-gradient(180deg,
+        rgba(11, 29, 38, 0) 0%,
+        rgba(11, 29, 38, 0.32) 55%,
+        rgba(11, 29, 38, 0.40) 100%
+      );
+
+      /* Typography scale - MNTN inspired */
+      --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --text-hero: clamp(48px, 8vw, 88px);
+      --text-section: clamp(40px, 5vw, 64px);
+      --text-number: clamp(120px, 18vw, 240px);
+      --text-tagline: 18px;
+      --text-body: 18px;
+      --text-nav: 18px;
+      --text-footer: 18px;
+
+      /* Spacing */
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 32px;
+      --space-xl: 64px;
+      --space-2xl: 120px;
+      --space-3xl: 200px;
+
+      /* Layout */
+      --content-max: 1462px;
+      --content-padding: clamp(24px, 5vw, 80px);
+    }
+
+    body[data-theme="light"] {
+      /* Light theme - Tropical / Bali */
+      --bg: #E8F4F2;
+      --bg-content: #D4E8E4;
+      --bg-image-url: url('/apps/study/knowledge_assets/knowledge_light.png');
+      --bg-image-overlay: radial-gradient(1100px 700px at 70% 15%, rgba(251,191,36,0.08), transparent 62%),
+                         radial-gradient(1200px 700px at 20% 10%, rgba(56,189,248,0.08), transparent 64%),
+                         linear-gradient(180deg, rgba(232,244,242,0.00) 0%, rgba(212,232,228,0.22) 65%, rgba(212,232,228,0.35) 100%);
+      --bg-image-filter: saturate(120%) contrast(103%);
+      --bg-image-opacity: 1;
+      --surface: rgba(232, 244, 242, 0.92);
+      --border: rgba(0, 60, 50, 0.12);
+      --text: #0B3D36;
+      --text-secondary: rgba(11, 61, 54, 0.65);
+      --accent: #E07B39;
+      --card-bg: rgba(255, 255, 255, 0.7);
+      --card-border: rgba(0, 60, 50, 0.08);
+      /* Hero readability gradient (keep subtle so photo remains visible) */
+      --gradient-overlay: linear-gradient(180deg,
+        rgba(232, 244, 242, 0) 0%,
+        rgba(212, 232, 228, 0.10) 60%,
+        rgba(212, 232, 228, 0.14) 100%
+      );
+    }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-layer { animation: none !important; }
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.78;
+      font-size: var(--text-body);
+      font-weight: 500;
+      overflow-x: hidden;
+    }
+
+    /* Background photo (theme-specific) */
+    .bg-photo {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      background-image: var(--bg-image-overlay), var(--bg-image-url);
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      opacity: var(--bg-image-opacity);
+      filter: var(--bg-image-filter);
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-xl) var(--content-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .header > * { pointer-events: auto; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .nav-link {
+      font-size: var(--text-nav);
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .nav-link:hover { opacity: 1; }
+
+    .nav-account {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin-left: var(--space-lg);
+    }
+
+    .nav-account svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .header { padding: var(--space-md) var(--space-sm); }
+      .nav { gap: var(--space-sm); }
+      .nav-link { font-size: 14px; }
+      .logo { font-size: 24px; }
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-layers {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-layer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+    }
+
+    .hero-layer--bg {
+      top: 0;
+      bottom: 0;
+      /* Background image is now handled by the global .bg-photo layer so it can be visible throughout the whole page */
+      background-image: none;
+      transform: translateY(0);
+    }
+
+    body[data-theme="light"] .hero-layer--bg {
+      background-image: none;
+    }
+
+
+    .hero-gradient {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 55%;
+      background: var(--gradient-overlay);
+      /* make the lower half of the hero overlay lighter so the background photo shows through */
+      opacity: 0.75;
+      z-index: 3;
+    }
+
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 0 var(--content-padding);
+      max-width: var(--content-max);
+      margin: 0 auto;
+      width: 100%;
+      padding-top: 120px;
+    }
+
+    .hero-tagline {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-tagline::before {
+      content: '';
+      width: 72px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .hero-tagline-text {
+      font-size: var(--text-tagline);
+      font-weight: 800;
+      letter-spacing: 0.33em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 600;
+      line-height: 1.14;
+      max-width: 950px;
+      text-transform: capitalize;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 80px;
+      left: var(--content-padding);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: var(--text-nav);
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .hero-scroll svg {
+      width: 16px;
+      height: 24px;
+      fill: var(--text);
+    }
+
+    /* Progress slider */
+    .progress-bar {
+      position: fixed;
+      right: var(--content-padding);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-xl);
+    }
+
+    .progress-track {
+      position: relative;
+      width: 3px;
+      height: 240px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+
+    .progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 25%;
+      background: var(--text);
+      border-radius: 2px;
+      transition: height 0.3s ease;
+    }
+
+    .progress-labels {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-xl);
+      font-size: var(--text-nav);
+      font-weight: 700;
+    }
+
+    .progress-label {
+      opacity: 0.4;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .progress-label.active,
+    .progress-label:hover { opacity: 1; }
+
+    @media (max-width: 1200px) {
+      .progress-bar { display: none; }
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    .main {
+      position: relative;
+      background: transparent;
+      padding-top: var(--space-2xl);
+      z-index: 0;
+    }
+
+    /* Let the background photo show through the long-scroll area while keeping text readable */
+    .main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* translucent readability layer so the background photo stays visible */
+      background: rgba(11, 29, 38, 0.22);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body[data-theme="light"] .main::before {
+      background: rgba(212, 232, 228, 0.12);
+    }
+
+    .main > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .sections {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 0 var(--content-padding);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3xl);
+    }
+
+    /* Section - alternating layout */
+    .section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      position: relative;
+      min-height: 720px;
+    }
+
+    .section:nth-child(even) {
+      direction: rtl;
+    }
+
+    .section:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .section-number {
+      position: absolute;
+      font-family: var(--font-body);
+      font-size: var(--text-number);
+      font-weight: 700;
+      color: var(--text);
+      opacity: 0.1;
+      line-height: 1;
+      z-index: 0;
+      top: 38px;
+      pointer-events: none;
+    }
+
+    .section:nth-child(odd) .section-number { left: 0; }
+    .section:nth-child(even) .section-number { right: 0; }
+
+    .section-content {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-xl) 0;
+    }
+
+    .section-tagline {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .section-tagline::before {
+      content: '';
+      width: 72px;
+      height: 2px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .section-tagline-text {
+      font-size: var(--text-tagline);
+      font-weight: 800;
+      letter-spacing: 0.33em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-section);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      max-width: 632px;
+    }
+
+    /* Cards grid within section */
+    .section-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    .card {
+      display: flex;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: rgba(251, 215, 132, 0.05);
+    }
+
+    body[data-theme="light"] .card:hover {
+      background: rgba(224, 123, 57, 0.08);
+    }
+
+    .card-cover {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(251, 215, 132, 0.3), rgba(11, 29, 38, 0.5));
+    }
+
+    .card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: var(--space-xs);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .card-source {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: var(--text-nav);
+      margin-top: var(--space-lg);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+
+    .card-link:hover { gap: var(--space-sm); }
+
+    .card-link svg {
+      width: 24px;
+      height: 16px;
+      fill: var(--accent);
+      transform: rotate(-90deg);
+    }
+
+    /* Section image */
+    .section-image {
+      position: relative;
+      z-index: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 566 / 720;
+      max-height: 720px;
+      background: linear-gradient(135deg, rgba(251, 215, 132, 0.2), rgba(11, 29, 38, 0.8));
+    }
+
+    .section-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 1024px) {
+      .section {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: var(--space-lg);
+      }
+      .section:nth-child(even) { direction: ltr; }
+      .section-number { display: none; }
+      .section-image { max-height: 400px; }
+    }
+
+    /* ========== STATS BAR ========== */
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xl);
+      padding: var(--space-xl) var(--content-padding);
+      background: var(--card-bg);
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      margin-top: var(--space-2xl);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: var(--space-xs);
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar { flex-direction: column; gap: var(--space-md); }
+    }
+
+    /* ========== LOADING STATE ========== */
+    .loading {
+      text-align: center;
+      padding: var(--space-2xl) var(--content-padding);
+      color: var(--text-secondary);
+    }
+
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--card-border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      margin: 0 auto var(--space-md);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0B1D26;
+    }
+
+    .btn--primary:hover {
+      background: #FFE5A8;
+      border-color: #FFE5A8;
+    }
+
+    body[data-theme="light"] .btn--primary {
+      color: #FFFFFF;
+    }
+
+    .staleness-banner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      margin: 8px 0;
+      border-radius: 8px;
+      background: rgba(234, 179, 8, 0.08);
+      border: 1px solid rgba(234, 179, 8, 0.2);
+      color: #eab308;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .staleness-banner:hover { opacity: 0.7; }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="bg-photo" aria-hidden="true"></div>
+  <!-- Header -->
+  <header class="header">
+    <div></div>
+    <nav class="nav">
+      <button class="nav-link" onclick="setTheme('dark')">Dark</button>
+      <button class="nav-link" onclick="setTheme('light')">Light</button>
+      <button class="nav-link" onclick="loadFeed(false)">Refresh</button>
+      <button class="nav-link" onclick="loadFeed(true)" style="color: var(--accent);">Force Refresh</button>
+    </nav>
+  </header>
+
+  <!-- Progress Bar -->
+  <aside class="progress-bar">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-labels" id="progressLabels">
+      <span class="progress-label active">Start</span>
+    </div>
+  </aside>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-layers">
+      <div class="hero-layer hero-layer--bg"></div>
+      <div class="hero-gradient"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-tagline">
+        <span class="hero-tagline-text">Knowledge Feed</span>
+      </div>
+      <h1 class="hero-title">Discover ideas worth exploring.</h1>
+    </div>
+
+    <button class="hero-scroll" onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">
+      <span>scroll down</span>
+      <svg viewBox="0 0 16 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.29289 23.7071C7.68342 24.0976 8.31658 24.0976 8.70711 23.7071L15.0711 17.3431C15.4616 16.9526 15.4616 16.3195 15.0711 15.9289C14.6805 15.5384 14.0474 15.5384 13.6569 15.9289L8 21.5858L2.34315 15.9289C1.95262 15.5384 1.31946 15.5384 0.928932 15.9289C0.538408 16.3195 0.538408 16.9526 0.928932 17.3431L7.29289 23.7071ZM7 0L7 23H9L9 0L7 0Z"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main">
+    <section style="margin-bottom:24px;padding:18px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(10,18,28,.45);backdrop-filter: blur(10px);">
+      <div style="font-weight:700;font-size:18px;margin-bottom:10px;">My Saved Reads</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <input id="saveUrlInput" type="url" placeholder="Paste article URL..." style="flex:1;min-width:260px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;" />
+        <button class="btn btn--primary" onclick="saveUrl()">Save URL</button>
+      </div>
+      <div id="savedReads" style="margin-top:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;"></div>
+    </section>
+
+    <div id="staleness-banner" class="staleness-banner" style="display:none"></div>
+    <div id="content">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>Loading today's discoveries...</p>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-value" id="statUpdated">--</div>
+        <div class="stat-label">Last Updated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="statSections">--</div>
+        <div class="stat-label">Sections</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="statLinks">--</div>
+        <div class="stat-label">Links</div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const API = 'http://localhost:8081/api/knowledge';
+    const SAVED_API = 'http://localhost:8081/api/knowledge/saved';
+    const SUMMARY_API = 'http://localhost:8081/api/knowledge/summarize';
+    const THEME_KEY = 'mega-dashboard-theme';
+
+    // Theme management
+    function setTheme(theme) {
+      document.body.dataset.theme = theme;
+      localStorage.setItem(THEME_KEY, theme);
+    }
+
+    function getThemeFromQuery() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('theme');
+      } catch (e) {
+        return null;
+      }
+    }
+
+    // Listen for mega dashboard theme broadcasts
+    window.addEventListener('message', (event) => {
+      if (event.origin !== window.location.origin) return;
+      if (event.data && event.data.type === 'mega-theme') {
+        setTheme(event.data.theme);
+      }
+    });
+
+    // Initialize theme
+    const savedTheme = getThemeFromQuery() || localStorage.getItem(THEME_KEY) || 'dark';
+    setTheme(savedTheme);
+
+    // Parallax effect
+    function initParallax() {
+      const bg = document.querySelector('.hero-layer--bg');
+      const heroContent = document.querySelector('.hero-content');
+
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const heroHeight = window.innerHeight;
+
+        if (scrollY < heroHeight * 1.5) {
+          const factor = scrollY / heroHeight;
+          bg.style.transform = `translateY(${scrollY * 0.3}px)`;
+          heroContent.style.transform = `translateY(${scrollY * 0.4}px)`;
+          heroContent.style.opacity = 1 - factor * 0.8;
+        }
+      }, { passive: true });
+    }
+
+    // Progress tracking
+    function updateProgress() {
+      const sections = document.querySelectorAll('.section');
+      const progressFill = document.getElementById('progressFill');
+      const progressLabels = document.getElementById('progressLabels');
+
+      if (sections.length === 0) return;
+
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollY / docHeight, 1);
+
+      progressFill.style.height = `${progress * 100}%`;
+
+      // Update active label
+      const labels = progressLabels.querySelectorAll('.progress-label');
+      const sectionHeight = docHeight / labels.length;
+
+      labels.forEach((label, i) => {
+        const isActive = scrollY >= sectionHeight * i && scrollY < sectionHeight * (i + 1);
+        label.classList.toggle('active', isActive || (i === labels.length - 1 && progress >= 0.95));
+      });
+    }
+
+    // Escape HTML
+    function escapeHtml(s) {
+      const d = document.createElement('div');
+      d.textContent = s || '';
+      return d.innerHTML;
+    }
+
+    // Format date
+    function formatDate(dateStr) {
+      try {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      } catch (e) {
+        return '--';
+      }
+    }
+
+    // Render sections
+    function renderSections(sections) {
+      const container = document.getElementById('content');
+
+      if (!sections || sections.length === 0) {
+        container.innerHTML = `
+          <div class="loading">
+            <p>No content available. Try "Force Refresh".</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Update progress labels
+      const progressLabels = document.getElementById('progressLabels');
+      progressLabels.innerHTML = `
+        <span class="progress-label active">Start</span>
+        ${sections.map((_, i) => `<span class="progress-label">${String(i + 1).padStart(2, '0')}</span>`).join('')}
+      `;
+
+      // Render sections
+      container.innerHTML = `
+        <div class="sections">
+          ${sections.map((section, index) => {
+            const num = String(index + 1).padStart(2, '0');
+            const items = section.items || [];
+            const firstItem = items[0];
+            const coverImage = firstItem?.cover || '';
+
+            return `
+              <article class="section" id="section-${index}">
+                <span class="section-number">${num}</span>
+
+                <div class="section-content">
+                  <div class="section-tagline">
+                    <span class="section-tagline-text">${escapeHtml(section.subtitle || `Section ${num}`)}</span>
+                  </div>
+                  <h2 class="section-title">${escapeHtml(section.title || 'Untitled')}</h2>
+                  <p class="section-subtitle">Curated links and resources for you to explore.</p>
+
+                  <div class="section-cards">
+                    ${items.map(item => {
+                      const host = (() => {
+                        try { return new URL(item.url).hostname.replace('www.', ''); }
+                        catch (e) { return ''; }
+                      })();
+                      return `
+                        <a href="${item.url}" target="_blank" rel="noopener" class="card">
+                          <div class="card-cover">
+                            ${item.cover ? `<img src="${item.cover}" alt="" onerror="this.parentElement.style.background='linear-gradient(135deg, rgba(251, 215, 132, 0.3), rgba(11, 29, 38, 0.5))'">` : ''}
+                          </div>
+                          <div class="card-body">
+                            <div class="card-title">${escapeHtml(item.title)}</div>
+                            <div class="card-meta">
+                              <span class="card-source">${escapeHtml(item.source || host)}</span>
+                              <span>${escapeHtml(host)}</span>
+                            </div>
+                          </div>
+                        </a>
+                      `;
+                    }).join('')}
+                  </div>
+                </div>
+
+                <div class="section-image">
+                  ${coverImage ? `<img src="${coverImage}" alt="" onerror="this.style.display='none'">` : ''}
+                </div>
+              </article>
+            `;
+          }).join('')}
+        </div>
+      `;
+
+      // Initialize scroll tracking
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    }
+
+    // Load feed
+    async function loadFeed(force) {
+      const container = document.getElementById('content');
+
+      container.innerHTML = `
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>${force ? 'Refreshing feed...' : 'Loading today\'s discoveries...'}</p>
+        </div>
+      `;
+
+      try {
+        const url = force ? (API + '/refresh') : API;
+        const res = await fetch(url, { method: force ? 'POST' : 'GET' });
+
+        if (!res.ok) throw new Error('fetch failed');
+
+        const data = await res.json();
+
+        // Staleness check
+        const metaBanner = document.getElementById('staleness-banner');
+        if (data._meta && data._meta.stale) {
+          const h = data._meta.age_hours;
+          metaBanner.textContent = `Data may be outdated — last updated ${h > 48 ? Math.round(h/24) + ' days' : Math.round(h) + 'h'} ago`;
+          metaBanner.style.display = 'flex';
+          metaBanner.onclick = () => metaBanner.style.display = 'none';
+        } else if (metaBanner) {
+          metaBanner.style.display = 'none';
+        }
+
+        // Update stats
+        document.getElementById('statUpdated').textContent = formatDate(data.generated);
+        document.getElementById('statSections').textContent = (data.sections || []).length;
+        document.getElementById('statLinks').textContent = (data.sections || []).reduce((sum, sec) => sum + (sec.items || []).length, 0);
+
+        renderSections(data.sections || []);
+      } catch (e) {
+        container.innerHTML = `
+          <div class="loading">
+            <p>Couldn't load the feed. Try "Force Refresh".</p>
+            <button class="btn btn--primary" onclick="loadFeed(true)" style="margin-top: var(--space-md);">Force Refresh</button>
+          </div>
+        `;
+      }
+    }
+
+    function applySavedGridLayout() {
+      const el = document.getElementById('savedReads');
+      if (!el) return;
+      el.style.gridTemplateColumns = window.innerWidth < 900 ? '1fr' : 'repeat(2,minmax(0,1fr))';
+    }
+
+    function renderSaved(items) {
+      const el = document.getElementById('savedReads');
+      applySavedGridLayout();
+      if (!items || !items.length) {
+        el.innerHTML = '<div style="opacity:.7;font-size:14px;">No saved links yet.</div>';
+        return;
+      }
+      el.innerHTML = items.map(it => `
+        <div style="border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px;background:rgba(255,255,255,.04);">
+          <div style="display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start;">
+            <a href="${it.url}" target="_blank" rel="noopener" style="display:block;width:120px;height:80px;border-radius:10px;overflow:hidden;background:rgba(255,255,255,.08);text-decoration:none;position:relative;">
+              <img src="${it.cover || ('https://image.thum.io/get/width/600/noanimate/' + it.url)}" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="if(this.dataset.fallback){this.style.display='none';}else{this.dataset.fallback='1';this.src='${it.favicon || ''}';}">
+            </a>
+            <div>
+              <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start;">
+                <a href="${it.url}" target="_blank" rel="noopener" style="font-weight:700;color:#fff;text-decoration:none;line-height:1.35;">${escapeHtml(it.title || it.url)}</a>
+                <div style="display:flex;gap:8px;white-space:nowrap;">
+                  <button class="btn" onclick="enrichSaved('${it.url.replace(/'/g, "\\'")}')">Fix Card</button>
+                  <button class="btn" onclick="summarizeUrl('${it.url.replace(/'/g, "\\'")}')">Summarize</button>
+                  <button class="btn" onclick="deleteSaved('${it.url.replace(/'/g, "\\'")}')">Delete</button>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:6px;opacity:.85;font-size:12px;">
+                ${it.favicon ? `<img src="${it.favicon}" alt="" style="width:14px;height:14px;border-radius:3px;" onerror="this.style.display='none'">` : ''}
+                <span>${escapeHtml(it.source || (()=>{ try{return new URL(it.url).hostname.replace('www.','')}catch(e){return ''} })())}</span>
+              </div>
+              ${it.description ? `<div style="margin-top:6px;opacity:.8;font-size:13px;line-height:1.45;">${escapeHtml(it.description)}</div>` : ''}
+              ${it.summary ? `<div style="margin-top:10px;font-size:14px;line-height:1.6;opacity:.95;white-space:pre-wrap;">${escapeHtml(it.summary)}</div>` : '<div style="margin-top:8px;opacity:.65;font-size:13px;">No summary yet.</div>'}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function loadSaved() {
+      try {
+        const res = await fetch(SAVED_API);
+        const data = await res.json();
+        renderSaved(data.items || []);
+      } catch (_) {
+        document.getElementById('savedReads').innerHTML = '<div style="color:#fca5a5;">Failed to load saved links.</div>';
+      }
+    }
+
+    async function saveUrl() {
+      const input = document.getElementById('saveUrlInput');
+      const url = (input.value || '').trim();
+      if (!url) return;
+      await fetch(SAVED_API + '/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      // best-effort enrich to ensure title/cover are present
+      try {
+        await fetch(SAVED_API + '/enrich', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+      } catch (_) {}
+      input.value = '';
+      loadSaved();
+    }
+
+    async function deleteSaved(url) {
+      await fetch(SAVED_API + '/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      loadSaved();
+    }
+
+    async function enrichSaved(url) {
+      try {
+        const res = await fetch(SAVED_API + '/enrich', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || 'enrich_failed');
+        await loadSaved();
+      } catch (e) {
+        alert('Fix card failed: ' + (e.message || 'unknown'));
+      }
+    }
+
+    async function summarizeUrl(url) {
+      const btns = Array.from(document.querySelectorAll('button'));
+      btns.forEach(b => b.disabled = true);
+      try {
+        await enrichSaved(url);
+        const res = await fetch(SUMMARY_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || 'summary_failed');
+        await loadSaved();
+      } catch (e) {
+        alert('Summary failed: ' + (e.message || 'unknown'));
+      } finally {
+        btns.forEach(b => b.disabled = false);
+      }
+    }
+
+    // Initialize
+    initParallax();
+    window.addEventListener('resize', applySavedGridLayout);
+    loadFeed(false);
+    loadSaved();
+  </script>
+</body>
+</html>

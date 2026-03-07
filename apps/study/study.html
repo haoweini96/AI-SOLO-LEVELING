@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #080c14;
+      --bg-elevated: #0d1320;
+      --surface: rgba(13, 19, 32, 0.85);
+      --surface-hover: rgba(20, 28, 48, 0.9);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text: #e8eaf0;
+      --text-secondary: rgba(232, 234, 240, 0.55);
+      --text-tertiary: rgba(232, 234, 240, 0.3);
+      --accent: #6ee7b7;
+      --accent-dim: rgba(110, 231, 183, 0.12);
+      --accent-glow: rgba(110, 231, 183, 0.25);
+      --danger: #f87171;
+      --danger-dim: rgba(248, 113, 113, 0.12);
+      --warning: #fbbf24;
+      --card-bg: rgba(20, 28, 45, 0.85);
+      --card-hover: rgba(25, 35, 55, 0.9);
+      --glass: rgba(13, 19, 32, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.2);
+    }
+
+    body[data-theme="light"] {
+      --bg: #f4f1ec;
+      --bg-elevated: #ebe7e0;
+      --surface: rgba(235, 231, 224, 0.9);
+      --surface-hover: rgba(225, 220, 210, 0.95);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(0, 0, 0, 0.15);
+      --text: #1a1a1a;
+      --text-secondary: rgba(26, 26, 26, 0.55);
+      --text-tertiary: rgba(26, 26, 26, 0.25);
+      --accent: #059669;
+      --accent-dim: rgba(5, 150, 105, 0.1);
+      --accent-glow: rgba(5, 150, 105, 0.2);
+      --danger: #dc2626;
+      --danger-dim: rgba(220, 38, 38, 0.08);
+      --warning: #d97706;
+      --card-bg: rgba(255, 255, 255, 0.6);
+      --card-hover: rgba(255, 255, 255, 0.85);
+      --glass: rgba(244, 241, 236, 0.8);
+      --glass-border: rgba(0, 0, 0, 0.06);
+      --shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Ambient background ─────────────────────────────── */
+    .ambient {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .ambient::before {
+      content: '';
+      position: absolute;
+      width: 800px; height: 800px;
+      top: -200px; right: -200px;
+      background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+      filter: blur(80px);
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+    .ambient::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      bottom: -150px; left: -100px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+      filter: blur(60px);
+      animation: drift 25s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes drift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -30px) scale(1.1); }
+    }
+
+    /* ── Grid noise texture overlay ─────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
+      background-size: 48px 48px;
+      opacity: 0.4;
+    }
+
+    /* ── Layout ─────────────────────────────────────────── */
+    .container {
+      position: relative; z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 32px 80px;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    .header {
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .header-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .header-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+    .header-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .header-sub {
+      font-size: 15px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 500px;
+    }
+
+    /* ── Input bar ──────────────────────────────────────── */
+    .input-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .input-wrap {
+      flex: 1;
+      position: relative;
+    }
+    .input-wrap .icon-search {
+      position: absolute;
+      left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--text-tertiary);
+      width: 18px; height: 18px;
+      pointer-events: none;
+    }
+    .input-url {
+      width: 100%;
+      padding: 14px 16px 14px 44px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .input-url::placeholder { color: var(--text-tertiary); }
+    .input-url:focus {
+      border-color: var(--accent);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+    .btn-analyze {
+      padding: 14px 28px;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-analyze:hover { transform: translateY(-1px); box-shadow: 0 4px 16px var(--accent-glow); }
+    .btn-analyze:active { transform: translateY(0); }
+    .btn-analyze:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* ── Status toast ───────────────────────────────────── */
+    .toast {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      margin-bottom: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 14px;
+      color: var(--text-secondary);
+      animation: fadeUp 0.3s ease both;
+    }
+    .toast.visible { display: flex; }
+    .toast .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    .toast.error { border-color: rgba(248,113,113,0.2); color: var(--danger); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Empty state ────────────────────────────────────── */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+    .empty-icon {
+      width: 64px; height: 64px;
+      color: var(--text-tertiary);
+      margin: 0 auto 20px;
+    }
+    .empty-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .empty-sub {
+      font-size: 14px;
+      color: var(--text-tertiary);
+    }
+
+    /* ── Library grid ───────────────────────────────────── */
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      animation: fadeUp 0.6s ease 0.15s both;
+    }
+
+    .video-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .video-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-hover);
+      background: var(--card-hover);
+      box-shadow: var(--shadow);
+    }
+    .video-card .thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: var(--bg-elevated);
+    }
+    .video-card .card-body {
+      padding: 16px;
+    }
+    .video-card .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .video-card .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .video-card .card-meta span {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .card-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(12px);
+    }
+    .card-badge.processing {
+      background: rgba(251, 191, 36, 0.2);
+      color: var(--warning);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+    .card-badge.processing::after {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--warning);
+      border-radius: 50%;
+      margin-left: 6px;
+      animation: pulse 1.5s ease infinite;
+    }
+    .card-badge.done {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(110, 231, 183, 0.2);
+    }
+    .card-badge.error {
+      background: var(--danger-dim);
+      color: var(--danger);
+      border: 1px solid rgba(248, 113, 113, 0.2);
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .card-delete {
+      position: absolute;
+      top: 12px; left: 12px;
+      width: 32px; height: 32px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s, background 0.2s;
+    }
+    .video-card:hover .card-delete { opacity: 1; }
+    .card-delete:hover { background: rgba(248,113,113,0.8); }
+
+    /* ── Detail view ────────────────────────────────────── */
+    .detail-view {
+      display: none;
+      animation: fadeUp 0.4s ease both;
+    }
+    .detail-view.active { display: block; }
+
+    .detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 0;
+      margin-bottom: 24px;
+      transition: color 0.2s;
+    }
+    .detail-back:hover { color: var(--accent); }
+
+    .detail-header {
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 40px);
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .detail-meta a {
+      color: var(--accent);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .detail-meta a:hover { text-decoration: underline; }
+    .detail-meta span {
+      display: flex; align-items: center; gap: 5px;
+    }
+
+    /* ── Summary cards ──────────────────────────────────── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .summary-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .summary-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .summary-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .summary-card li {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .summary-card li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 10px;
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .summary-card .concept-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .concept-tag {
+      padding: 5px 12px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(110, 231, 183, 0.15);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* ── Timeline ───────────────────────────────────────── */
+    .timeline-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .timeline-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .timeline-item:hover {
+      border-color: var(--border-hover);
+      background: var(--card-hover);
+    }
+
+    .timeline-frame {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .timeline-frame img {
+      width: 100%;
+      height: 100%;
+      min-height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .timeline-frame:hover img { transform: scale(1.03); }
+    .timeline-ts {
+      position: absolute;
+      bottom: 8px; left: 8px;
+      padding: 3px 10px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timeline-content {
+      padding: 20px 20px 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .timeline-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .timeline-screen {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      font-style: italic;
+      padding-left: 12px;
+      border-left: 2px solid var(--accent-dim);
+    }
+    .timeline-points {
+      list-style: none; padding: 0;
+    }
+    .timeline-points li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .timeline-points li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 4px; height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* ── Lightbox ───────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px);
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      cursor: zoom-out;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 16px 64px rgba(0,0,0,0.5);
+    }
+
+    /* ── Category badge ──────────────────────────────────── */
+    .cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #a5b4fc;
+      white-space: nowrap;
+    }
+    body[data-theme="light"] .cat-badge {
+      background: rgba(99, 102, 241, 0.08);
+      color: #6366f1;
+    }
+    .cat-badge.clickable { cursor: pointer; transition: background 0.15s; }
+    .cat-badge.clickable:hover { background: rgba(99, 102, 241, 0.2); }
+
+    /* ── Category filter bar ────────────────────────────── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.4s ease 0.12s both;
+    }
+    .filter-chip {
+      padding: 6px 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-chip:hover { border-color: var(--border-hover); color: var(--text); }
+    .filter-chip.active {
+      background: var(--accent-dim);
+      border-color: rgba(110, 231, 183, 0.25);
+      color: var(--accent);
+    }
+
+    /* ── Token info ─────────────────────────────────────── */
+    .token-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      font-variant-numeric: tabular-nums;
+    }
+    .token-info .cost {
+      color: var(--warning);
+      font-weight: 600;
+    }
+
+    /* ── Translate button ───────────────────────────────── */
+    .btn-translate {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-translate:hover { border-color: var(--border-hover); color: var(--text); background: var(--surface); }
+    .btn-translate:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-translate.active { background: var(--accent-dim); border-color: rgba(110,231,183,0.25); color: var(--accent); }
+
+    /* ── Detail actions row ──────────────────────────────── */
+    .detail-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    /* ── Category select ────────────────────────────────── */
+    .cat-select {
+      padding: 6px 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text);
+      cursor: pointer;
+      outline: none;
+    }
+    .cat-select:focus { border-color: var(--accent); }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .container { padding: 24px 16px 60px; }
+      .input-bar { flex-direction: column; }
+      .library-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .timeline-content { padding: 16px; }
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Animations ─────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .stagger-1 { animation-delay: 0.05s; }
+    .stagger-2 { animation-delay: 0.1s; }
+    .stagger-3 { animation-delay: 0.15s; }
+    .stagger-4 { animation-delay: 0.2s; }
+    .stagger-5 { animation-delay: 0.25s; }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="ambient" aria-hidden="true"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-eyebrow">Study</div>
+      <h1 class="header-title">Video Study</h1>
+      <p class="header-sub">Paste a YouTube link. Get keyframes, transcript, and AI analysis.</p>
+    </div>
+
+    <!-- URL Input -->
+    <div class="input-bar">
+      <div class="input-wrap">
+        <i data-lucide="link" class="icon-search"></i>
+        <input type="text" class="input-url" id="urlInput" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off" spellcheck="false" />
+      </div>
+      <button class="btn-analyze" id="btnAnalyze" onclick="submitUrl()">
+        <i data-lucide="scan-search" style="width:16px;height:16px"></i>
+        Analyze
+      </button>
+    </div>
+
+    <!-- Status toast -->
+    <div class="toast" id="toast">
+      <div class="spinner"></div>
+      <span id="toastMsg">Analyzing video...</span>
+    </div>
+
+    <!-- Library View -->
+    <div id="libraryView">
+      <div class="filter-bar" id="filterBar"></div>
+      <div class="empty-state" id="emptyState">
+        <i data-lucide="book-open" class="empty-icon"></i>
+        <div class="empty-title">Nothing here yet</div>
+        <div class="empty-sub">Paste a YouTube URL above to start studying</div>
+      </div>
+      <div class="library-grid" id="libraryGrid"></div>
+    </div>
+
+    <!-- Detail View -->
+    <div class="detail-view" id="detailView">
+      <button class="detail-back" onclick="showLibrary()">
+        <i data-lucide="arrow-left" style="width:14px;height:14px"></i>
+        Back to library
+      </button>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Keyframe" />
+  </div>
+
+  <script>
+    // ── Theme ──────────────────────────────────────────────
+    const THEME_KEY = 'mega-dashboard-theme';
+    function setTheme(t) { document.body.dataset.theme = t; localStorage.setItem(THEME_KEY, t); }
+    function getThemeFromQuery() {
+      try { return new URLSearchParams(window.location.search).get('theme'); } catch(e) { return null; }
+    }
+    window.addEventListener('message', e => {
+      if (e.data && e.data.type === 'mega-theme') setTheme(e.data.theme);
+      if (e.data && e.data.type === 'MEGA_STOP_MEDIA') { /* no media to stop */ }
+    });
+    setTheme(getThemeFromQuery() || localStorage.getItem(THEME_KEY) || 'dark');
+
+    // ── State ──────────────────────────────────────────────
+    const API = window.location.origin;
+    let videos = [];
+    let pollTimers = {};
+    let activeFilter = 'All';
+    let showingChinese = false;
+    let currentAnalysis = null;
+
+    const CATEGORIES = [
+      'All', 'AI Agents', 'RAG', 'Fine-tuning', 'LLM Infra',
+      'Prompt Engineering', 'AI Coding', 'AI Products', 'ML Research',
+      'AI News', 'General Tech', 'Other'
+    ];
+
+    // ── API helpers ────────────────────────────────────────
+    async function fetchJson(path, opts) {
+      const r = await fetch(API + path, opts);
+      return r.json();
+    }
+
+    // ── Load library ───────────────────────────────────────
+    async function loadLibrary() {
+      try {
+        const data = await fetchJson('/api/study/videos');
+        videos = data.videos || [];
+      } catch(e) {
+        videos = [];
+      }
+      renderLibrary();
+      // Resume polling for any processing videos
+      videos.filter(v => v.status === 'processing').forEach(v => startPolling(v.video_id));
+    }
+
+    function renderLibrary() {
+      const grid = document.getElementById('libraryGrid');
+      const empty = document.getElementById('emptyState');
+      const filterWrap = document.getElementById('filterBar');
+
+      if (videos.length === 0) {
+        empty.style.display = '';
+        grid.innerHTML = '';
+        filterWrap.innerHTML = '';
+        return;
+      }
+      empty.style.display = 'none';
+
+      // Render category filter chips
+      const usedCats = new Set(videos.map(v => v.category).filter(Boolean));
+      const filterCats = ['All', ...CATEGORIES.slice(1).filter(c => usedCats.has(c))];
+      filterWrap.innerHTML = filterCats.map(c =>
+        `<button class="filter-chip ${activeFilter === c ? 'active' : ''}" onclick="setFilter('${escHtml(c)}')">${escHtml(c)}</button>`
+      ).join('');
+
+      const filtered = activeFilter === 'All' ? videos : videos.filter(v => v.category === activeFilter);
+
+      grid.innerHTML = filtered.map((v, i) => {
+        const thumb = v.thumbnail || `https://i.ytimg.com/vi/${v.video_id}/hqdefault.jpg`;
+        const title = v.title || 'Untitled';
+        const channel = v.channel || '';
+        const cat = v.category || '';
+        const cost = v.token_usage ? `$${v.token_usage.cost_usd}` : '';
+        const badge = v.status === 'done'
+          ? `<div class="card-badge done">Ready</div>`
+          : v.status === 'error'
+          ? `<div class="card-badge error">Error</div>`
+          : `<div class="card-badge processing">Analyzing</div>`;
+        const date = v.completed_at ? new Date(v.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+        const sections = v.section_count ? `${v.section_count} sections` : '';
+        const stagger = i < 6 ? `stagger-${i+1}` : '';
+
+        return `<div class="video-card ${stagger}" style="animation: fadeUp 0.4s ease both" onclick="openDetail('${v.video_id}')" data-id="${v.video_id}">
+          <div class="card-delete" onclick="event.stopPropagation(); deleteVideo('${v.video_id}')" title="Delete">
+            <i data-lucide="x" style="width:14px;height:14px"></i>
+          </div>
+          ${badge}
+          <img class="thumb" src="${thumb}" alt="${escHtml(title)}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22><rect fill=%22%23111%22 width=%2216%22 height=%229%22/></svg>'" />
+          <div class="card-body">
+            <div class="card-title">${escHtml(title)}</div>
+            <div class="card-meta">
+              ${channel ? `<span style="white-space:nowrap"><i data-lucide="user" style="width:12px;height:12px"></i> ${escHtml(channel)}</span>` : ''}
+              ${date ? `<span style="white-space:nowrap"><i data-lucide="calendar" style="width:12px;height:12px"></i> ${date}</span>` : ''}
+              ${sections ? `<span style="white-space:nowrap"><i data-lucide="layout-grid" style="width:12px;height:12px"></i> ${sections}</span>` : ''}
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap">
+              ${cat ? `<span class="cat-badge">${escHtml(cat)}</span>` : ''}
+              ${cost ? `<span class="token-info"><i data-lucide="zap" style="width:11px;height:11px"></i> <span class="cost">${cost}</span></span>` : ''}
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function setFilter(cat) {
+      activeFilter = cat;
+      renderLibrary();
+    }
+
+    // ── Submit URL ─────────────────────────────────────────
+    async function submitUrl() {
+      const input = document.getElementById('urlInput');
+      const url = input.value.trim();
+      if (!url) return;
+
+      const btn = document.getElementById('btnAnalyze');
+      btn.disabled = true;
+
+      try {
+        const data = await fetchJson('/api/study/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url }),
+        });
+
+        if (!data.ok) {
+          showToast(data.error || 'Invalid URL', true);
+          btn.disabled = false;
+          return;
+        }
+
+        if (data.status === 'already_done') {
+          showToast('Already analyzed — opening...', false);
+          await loadLibrary();
+          setTimeout(() => openDetail(data.video_id), 600);
+          btn.disabled = false;
+          hideToast();
+          return;
+        }
+
+        input.value = '';
+        showToast('Analyzing video — this takes 1-3 minutes...');
+        await loadLibrary();
+        startPolling(data.video_id);
+
+      } catch(e) {
+        showToast('Request failed: ' + e.message, true);
+      }
+      btn.disabled = false;
+    }
+
+    // ── Polling ────────────────────────────────────────────
+    function startPolling(videoId) {
+      if (pollTimers[videoId]) return;
+      pollTimers[videoId] = setInterval(async () => {
+        try {
+          const data = await fetchJson(`/api/study/status/${videoId}`);
+          if (data.status === 'done' || data.status === 'error') {
+            clearInterval(pollTimers[videoId]);
+            delete pollTimers[videoId];
+            hideToast();
+            await loadLibrary();
+            if (data.status === 'done') {
+              showToast('Analysis complete!', false);
+              setTimeout(hideToast, 3000);
+            } else {
+              showToast('Error: ' + (data.error || 'Analysis failed'), true);
+            }
+          }
+        } catch(e) { /* keep polling */ }
+      }, 3000);
+    }
+
+    // ── Toast ──────────────────────────────────────────────
+    function showToast(msg, isError) {
+      const t = document.getElementById('toast');
+      const m = document.getElementById('toastMsg');
+      t.classList.add('visible');
+      t.classList.toggle('error', !!isError);
+      t.querySelector('.spinner').style.display = isError ? 'none' : '';
+      m.textContent = msg;
+    }
+    function hideToast() {
+      document.getElementById('toast').classList.remove('visible');
+    }
+
+    // ── Detail view ────────────────────────────────────────
+    async function openDetail(videoId) {
+      const video = videos.find(v => v.video_id === videoId);
+      if (!video || video.status !== 'done') return;
+
+      try {
+        const analysis = await fetchJson(`/api/study/analysis/${videoId}`);
+        renderDetail(analysis);
+        document.getElementById('libraryView').style.display = 'none';
+        document.getElementById('detailView').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch(e) {
+        showToast('Failed to load analysis', true);
+      }
+    }
+
+    function showLibrary() {
+      document.getElementById('detailView').classList.remove('active');
+      document.getElementById('libraryView').style.display = '';
+      showingChinese = false;
+      currentAnalysis = null;
+    }
+
+    function renderDetail(data) {
+      currentAnalysis = data;
+      showingChinese = false;
+      _renderDetailContent(data);
+    }
+
+    function _renderDetailContent(data) {
+      const isZh = showingChinese && data.analysis_zh;
+      const a = isZh ? data.analysis_zh : (data.analysis || {});
+      const summary = a.summary || {};
+      const sections = a.sections || [];
+      const frames = data.frames || [];
+      const tokenUsage = data.token_usage || {};
+
+      const durationStr = data.duration ? formatDuration(data.duration) : '';
+      const hasChinese = !!data.analysis_zh;
+
+      // Token info line
+      let tokenHtml = '';
+      if (tokenUsage.total_tokens) {
+        tokenHtml = `<span class="token-info">
+          <i data-lucide="zap" style="width:13px;height:13px"></i>
+          ${(tokenUsage.total_tokens || 0).toLocaleString()} tokens
+          <span class="cost">$${tokenUsage.cost_usd || '0.00'}</span>
+        </span>`;
+      }
+
+      // Category select
+      const currentCat = data.category || a.category || 'Other';
+      const catOptions = CATEGORIES.slice(1).map(c =>
+        `<option value="${escHtml(c)}" ${c === currentCat ? 'selected' : ''}>${escHtml(c)}</option>`
+      ).join('');
+
+      let html = `
+        <div class="detail-header">
+          <h2 class="detail-title">${escHtml(summary.title || data.title || 'Video Analysis')}</h2>
+          <div class="detail-meta">
+            ${data.channel ? `<span><i data-lucide="user" style="width:14px;height:14px"></i> ${escHtml(data.channel)}</span>` : ''}
+            ${tokenHtml}
+            ${durationStr ? `<span><i data-lucide="clock" style="width:14px;height:14px"></i> ${durationStr}</span>` : ''}
+            ${data.analyzed_at ? `<span><i data-lucide="calendar" style="width:14px;height:14px"></i> ${new Date(data.analyzed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>` : ''}
+            <a href="${escHtml(data.url)}" target="_blank" rel="noopener"><i data-lucide="external-link" style="width:14px;height:14px"></i> YouTube</a>
+          </div>
+          <div class="detail-actions">
+            <select class="cat-select" onchange="updateCategory('${data.video_id}', this.value)">${catOptions}</select>
+            <button class="btn-translate ${showingChinese ? 'active' : ''}" id="btnTranslate" onclick="toggleTranslate('${data.video_id}')">
+              <i data-lucide="languages" style="width:14px;height:14px"></i>
+              ${showingChinese ? 'English' : '中文翻译'}
+            </button>
+          </div>
+        </div>
+      `;
+
+      // Summary cards
+      const takeaways = summary.takeaways || [];
+      const concepts = summary.concepts || [];
+      const actionable = summary.actionable || [];
+
+      if (takeaways.length || concepts.length || actionable.length) {
+        html += '<div class="summary-grid">';
+        if (takeaways.length) {
+          html += `<div class="summary-card">
+            <div class="summary-card-label">${isZh ? '核心要点' : 'Key Takeaways'}</div>
+            <ul>${takeaways.map(t => `<li>${escHtml(t)}</li>`).join('')}</ul>
+          </div>`;
+        }
+        if (concepts.length) {
+          html += `<div class="summary-card">
+            <div class="summary-card-label">${isZh ? '关键概念' : 'Concepts'}</div>
+            <div class="concept-tags">${concepts.map(c => `<span class="concept-tag">${escHtml(c)}</span>`).join('')}</div>
+          </div>`;
+        }
+        if (actionable.length) {
+          html += `<div class="summary-card">
+            <div class="summary-card-label">${isZh ? '行动建议' : 'Action Items'}</div>
+            <ul>${actionable.map(a => `<li>${escHtml(a)}</li>`).join('')}</ul>
+          </div>`;
+        }
+        html += '</div>';
+      }
+
+      // Timeline
+      if (sections.length) {
+        html += `<div class="timeline-label">${isZh ? '逐帧分析' : 'Frame-by-Frame Analysis'}<span style="color:var(--text-tertiary);font-weight:400;letter-spacing:0;text-transform:none;font-size:12px;margin-left:8px">${sections.length} sections</span></div>`;
+        html += '<div class="timeline">';
+        sections.forEach(sec => {
+          const frame = frames[sec.frame_index] || {};
+          const imgSrc = frame.filename
+            ? `${API}/api/study/frame/${data.video_id}/${frame.filename}`
+            : '';
+          const points = sec.key_points || [];
+
+          html += `<div class="timeline-item" style="animation: fadeUp 0.4s ease both">
+            <div class="timeline-frame" onclick="openLightbox('${escHtml(imgSrc)}')">
+              ${imgSrc ? `<img src="${imgSrc}" alt="${escHtml(sec.title || '')}" loading="lazy" />` : '<div style="min-height:180px;background:var(--bg-elevated)"></div>'}
+              <div class="timeline-ts">${escHtml(sec.timestamp || '')}</div>
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-section-title">${escHtml(sec.title || 'Section')}</div>
+              ${sec.screen_content ? `<div class="timeline-screen">${escHtml(sec.screen_content)}</div>` : ''}
+              ${points.length ? `<ul class="timeline-points">${points.map(p => `<li>${escHtml(p)}</li>`).join('')}</ul>` : ''}
+            </div>
+          </div>`;
+        });
+        html += '</div>';
+      }
+
+      document.getElementById('detailContent').innerHTML = html;
+      lucide.createIcons();
+    }
+
+    // ── Translate ──────────────────────────────────────────
+    async function toggleTranslate(videoId) {
+      if (!currentAnalysis) return;
+
+      // If already have Chinese, just toggle
+      if (currentAnalysis.analysis_zh) {
+        showingChinese = !showingChinese;
+        _renderDetailContent(currentAnalysis);
+        return;
+      }
+
+      // Fetch translation
+      const btn = document.getElementById('btnTranslate');
+      btn.disabled = true;
+      btn.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-width:2px"></div> Translating...';
+
+      try {
+        const res = await fetchJson('/api/study/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ video_id: videoId }),
+        });
+        if (res.ok) {
+          currentAnalysis.analysis_zh = res.analysis_zh;
+          // Update token cost if translation added cost
+          if (res.translate_tokens && currentAnalysis.token_usage) {
+            currentAnalysis.token_usage.cost_usd = (
+              parseFloat(currentAnalysis.token_usage.cost_usd || 0) +
+              parseFloat(res.translate_tokens.cost_usd || 0)
+            ).toFixed(4);
+          }
+          showingChinese = true;
+          _renderDetailContent(currentAnalysis);
+        } else {
+          showToast('Translation failed: ' + (res.error || 'unknown'), true);
+          btn.disabled = false;
+          btn.innerHTML = '<i data-lucide="languages" style="width:14px;height:14px"></i> 中文翻译';
+          lucide.createIcons();
+        }
+      } catch(e) {
+        showToast('Translation request failed', true);
+        btn.disabled = false;
+      }
+    }
+
+    // ── Update category ────────────────────────────────────
+    async function updateCategory(videoId, category) {
+      try {
+        await fetchJson('/api/study/category', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ video_id: videoId, category }),
+        });
+        // Update local state
+        const v = videos.find(v => v.video_id === videoId);
+        if (v) v.category = category;
+        if (currentAnalysis) currentAnalysis.category = category;
+      } catch(e) {}
+    }
+
+    // ── Delete ─────────────────────────────────────────────
+    async function deleteVideo(videoId) {
+      if (!confirm('Delete this analysis?')) return;
+      try {
+        await fetchJson('/api/study/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ video_id: videoId }),
+        });
+        await loadLibrary();
+      } catch(e) {}
+    }
+
+    // ── Lightbox ───────────────────────────────────────────
+    function openLightbox(src) {
+      if (!src) return;
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ── Helpers ────────────────────────────────────────────
+    function escHtml(s) {
+      const d = document.createElement('div');
+      d.textContent = s || '';
+      return d.innerHTML;
+    }
+
+    function formatDuration(sec) {
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      if (h) return `${h}h ${m}m`;
+      return `${m}m ${s}s`;
+    }
+
+    // ── Enter key submit ───────────────────────────────────
+    document.getElementById('urlInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') submitUrl();
+    });
+
+    // ── Init ───────────────────────────────────────────────
+    loadLibrary();
+    lucide.createIcons();
+  </script>
+</body>
+</html>

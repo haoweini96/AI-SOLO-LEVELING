@@ -1,0 +1,155 @@
+{
+  "video_id": "99c9d435d70b",
+  "type": "article",
+  "url": "https://medium.com/vibe-coding/cursor-changed-how-we-code-this-tool-changes-how-we-design-b566551f4605#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImM4MTZkMzM3YjgzNjVhMDZhODUxYWQ4MDAxNmMxNzEwOTk0OTI2MDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDMzNjUwMTk0ODQ0NzA2NTgxMTIiLCJlbWFpbCI6Im5paHcwMDlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5vbmNlIjoibm90X3Byb3ZpZGVkIiwibmJmIjoxNzcxMzc4MzQ1LCJuYW1lIjoiaGFvd2VpIG5pIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0xDODhqTlp2NlFQd0ZTbUFOVUlsYWR2MnBnMl9rb1JzOEphMDZEQVpMU3Y3Q2djb0NQMFE9czk2LWMiLCJnaXZlbl9uYW1lIjoiaGFvd2VpIiwiZmFtaWx5X25hbWUiOiJuaSIsImlhdCI6MTc3MTM3ODY0NSwiZXhwIjoxNzcxMzgyMjQ1LCJqdGkiOiI1MTg4ZDg0M2VjMGIwMDhiMzZkYjQ5N2IwOTgxMjYxOTBhNDBhZWUwIn0.qUOg1VKOW7Xs_SaYG1PW2wL5byqa3F4GuAfYCuEcPx36si49vwIHXNqUNXi6jh9dpjFg9H1Luma1bFg-sZcruqX6PZP-vdI-tTi_9cG-3CSMFh9CBkA89qp3FXidc50JtZqclRbtgCk3JzUy_24aihLhnmJoET30J7OM61I-XSItwWv23fRRu9iXUcZOldsJLdowgZ6gGTlc7AmFk52ov-KXefUhva0jR9ZrzBCnrEr8Vs2CVk4knjSogXC3vbu9oik33dfmb8g_A-IQq6QreUP-jpMHaA4X2dsUc1b_PtcE64cFkbH6zFswFRUuxOcK5X8ViAvskQ7eqTFh9agbEw",
+  "title": "Cursor Changed How We Code. This Tool Changes How We Design.",
+  "channel": "Alex Dunlop",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-02-17T20:37:57.081457",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Products",
+  "token_usage": {
+    "input_tokens": 627,
+    "output_tokens": 637,
+    "total_tokens": 1264,
+    "cost_usd": 0.026,
+    "model": "claude-sonnet-4-20250514",
+    "translate_tokens": {
+      "input_tokens": 548,
+      "output_tokens": 867,
+      "cost_usd": 0.0146
+    }
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Products",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Design Workflow Problem at Popp",
+        "key_points": [
+          "Designer creates 20 Figma projects per week with timestamps",
+          "Scope creep issue: designs change during sprints without clear version tracking",
+          "Timestamp solution creates navigation nightmare - 10 minutes wasted every few hours",
+          "Difficulty finding correct design files and navigating links"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction to Pencil.dev Solution",
+        "key_points": [
+          "Pencil.dev is a canvas design tool that integrates with IDE",
+          "Design files can exist directly in code repository",
+          "Version controlled with Git for better tracking",
+          "Files can be easily referenced within development workflow",
+          "Tool recommended by colleague, immediate appeal to author"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Author's Due Diligence",
+        "key_points": [
+          "Author contacted Tom Krcha (Pencil.dev creator) directly",
+          "Concerns about lack of visible pricing information",
+          "Uncertainty about usage metrics and billing model"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Pencil.dev: Git-Integrated Design Tool for Developer-Designer Workflow",
+      "takeaways": [
+        "Traditional design tools like Figma create version control and navigation problems in development workflows",
+        "Pencil.dev offers IDE integration and Git-based version control for design files",
+        "The tool aims to bridge the gap between design and development by bringing design into the code repository",
+        "Timestamp-based versioning in Figma creates significant workflow inefficiencies"
+      ],
+      "concepts": [
+        "Design-development workflow integration",
+        "Git-based design version control",
+        "IDE-integrated design tools",
+        "Scope creep management in design",
+        "Repository-based design files"
+      ],
+      "actionable": [
+        "Evaluate Pencil.dev as alternative to Figma for teams with scope creep issues",
+        "Consider integrating design files directly into code repositories",
+        "Implement proper version control for design assets using Git",
+        "Research pricing and usage models before adopting new design tools"
+      ]
+    }
+  },
+  "article_text_length": 1207,
+  "cover": "https://miro.medium.com/v2/resize:fit:1200/1*iHJVByWi4JzcTD-SwKUc3Q.png",
+  "analysis_zh": {
+    "category": "AI Products",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Popp公司的设计工作流问题",
+        "key_points": [
+          "设计师每周创建20个带时间戳的Figma项目",
+          "范围蔓延问题：设计在冲刺期间发生变化，没有清晰的版本跟踪",
+          "时间戳解决方案造成导航噩梦 - 每隔几小时浪费10分钟",
+          "难以找到正确的设计文件和导航链接"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Pencil.dev解决方案介绍",
+        "key_points": [
+          "Pencil.dev是一个与IDE集成的画布设计工具",
+          "设计文件可以直接存在于代码仓库中",
+          "通过Git进行版本控制以实现更好的跟踪",
+          "文件可以在开发工作流中轻松引用",
+          "工具由同事推荐，立即吸引了作者"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "作者的尽职调查",
+        "key_points": [
+          "作者直接联系了Tom Krcha（Pencil.dev创建者）",
+          "对缺乏可见定价信息的担忧",
+          "对使用指标和计费模式的不确定性"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Pencil.dev：面向开发者-设计师工作流的Git集成设计工具",
+      "takeaways": [
+        "像Figma这样的传统设计工具在开发工作流中会产生版本控制和导航问题",
+        "Pencil.dev提供IDE集成和基于Git的设计文件版本控制",
+        "该工具旨在通过将设计引入代码仓库来弥合设计和开发之间的差距",
+        "Figma中基于时间戳的版本控制会造成显著的工作流效率低下"
+      ],
+      "concepts": [
+        "设计-开发工作流集成",
+        "基于Git的设计版本控制",
+        "IDE集成设计工具",
+        "设计中的范围蔓延管理",
+        "基于仓库的设计文件"
+      ],
+      "actionable": [
+        "评估Pencil.dev作为有范围蔓延问题团队的Figma替代方案",
+        "考虑将设计文件直接集成到代码仓库中",
+        "使用Git为设计资产实施适当的版本控制",
+        "在采用新设计工具之前研究定价和使用模式"
+      ]
+    }
+  }
+}

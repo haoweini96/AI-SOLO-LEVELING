@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-header">
+    <div class="popup-logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><path d="m4.93 4.93 2.83 2.83m8.48 8.48 2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+    </div>
+    <h1>Mega Knowledge Capture</h1>
+  </div>
+
+  <div class="popup-field">
+    <label for="apiUrl">API Endpoint</label>
+    <input type="text" id="apiUrl" value="http://localhost:8081" spellcheck="false">
+  </div>
+
+  <div class="popup-status" id="status"></div>
+
+  <div class="popup-actions">
+    <button id="test" class="btn btn-ghost">Test Connection</button>
+    <button id="save" class="btn btn-primary">Save</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

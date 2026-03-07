@@ -1,0 +1,3900 @@
+{
+  "tech_tree_version": "1.0",
+  "nodes": {
+    "linear_algebra": {
+      "id": "linear_algebra",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement matrix operations (multiplication, eigenvalue decomposition, SVD) from scratch using NumPy",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "matrix_operations",
+            "title": "Matrix Operations & Properties",
+            "weight": 0.35
+          },
+          {
+            "id": "vector_spaces",
+            "title": "Vector Spaces & Linear Transformations",
+            "weight": 0.25
+          },
+          {
+            "id": "eigenvalues_decomposition",
+            "title": "Eigenvalues & Matrix Decomposition",
+            "weight": 0.25
+          },
+          {
+            "id": "computational_aspects",
+            "title": "Computational Efficiency & Numerical Stability",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "probability": {
+      "id": "probability",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build a Bayesian classifier and demonstrate parameter estimation using different priors",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "probability_fundamentals",
+            "title": "Probability Theory Fundamentals",
+            "weight": 0.3
+          },
+          {
+            "id": "distributions",
+            "title": "Probability Distributions",
+            "weight": 0.25
+          },
+          {
+            "id": "bayesian_inference",
+            "title": "Bayesian Inference & Reasoning",
+            "weight": 0.3
+          },
+          {
+            "id": "statistical_estimation",
+            "title": "Statistical Estimation & Testing",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "optimization": {
+      "id": "optimization",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement gradient descent variants (SGD, Adam, RMSprop) and compare convergence on optimization problems",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "optimization_fundamentals",
+            "title": "Optimization Theory Fundamentals",
+            "weight": 0.25
+          },
+          {
+            "id": "gradient_methods",
+            "title": "Gradient-Based Methods",
+            "weight": 0.35
+          },
+          {
+            "id": "constrained_optimization",
+            "title": "Constrained & Global Optimization",
+            "weight": 0.2
+          },
+          {
+            "id": "convergence_analysis",
+            "title": "Convergence Analysis & Properties",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "supervised": {
+      "id": "supervised",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build and compare multiple supervised learning models (linear regression, decision trees, SVM) on a real dataset",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "algorithm_types",
+            "title": "Algorithm Types & Selection",
+            "weight": 0.3
+          },
+          {
+            "id": "model_evaluation",
+            "title": "Model Evaluation & Validation",
+            "weight": 0.25
+          },
+          {
+            "id": "bias_variance",
+            "title": "Bias-Variance Tradeoff & Regularization",
+            "weight": 0.25
+          },
+          {
+            "id": "practical_implementation",
+            "title": "Practical Implementation & Tuning",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.6
+      }
+    },
+    "unsupervised": {
+      "id": "unsupervised",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement clustering algorithms (K-means, hierarchical) and dimensionality reduction (PCA, t-SNE) on unlabeled data",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "clustering_methods",
+            "title": "Clustering Methods & Algorithms",
+            "weight": 0.35
+          },
+          {
+            "id": "dimensionality_reduction",
+            "title": "Dimensionality Reduction Techniques",
+            "weight": 0.3
+          },
+          {
+            "id": "density_estimation",
+            "title": "Density Estimation & Anomaly Detection",
+            "weight": 0.2
+          },
+          {
+            "id": "evaluation_validation",
+            "title": "Evaluation & Validation Strategies",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.6
+      }
+    },
+    "feature_eng": {
+      "id": "feature_eng",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 2,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Design and implement feature engineering pipeline including scaling, encoding, and selection techniques",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "feature_creation",
+            "title": "Feature Creation & Transformation",
+            "weight": 0.3
+          },
+          {
+            "id": "feature_selection",
+            "title": "Feature Selection Methods",
+            "weight": 0.25
+          },
+          {
+            "id": "encoding_scaling",
+            "title": "Encoding & Scaling Techniques",
+            "weight": 0.25
+          },
+          {
+            "id": "domain_specific",
+            "title": "Domain-Specific Feature Engineering",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.6
+      }
+    },
+    "data_pipelines": {
+      "id": "data_pipelines",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build an end-to-end ETL pipeline using tools like Apache Airflow or similar workflow orchestrator",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "pipeline_architecture",
+            "title": "Pipeline Architecture & Design",
+            "weight": 0.3
+          },
+          {
+            "id": "etl_processes",
+            "title": "ETL Processes & Data Flow",
+            "weight": 0.3
+          },
+          {
+            "id": "scalability_performance",
+            "title": "Scalability & Performance Optimization",
+            "weight": 0.25
+          },
+          {
+            "id": "monitoring_maintenance",
+            "title": "Monitoring & Maintenance",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "data_quality": {
+      "id": "data_quality",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 2,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Create data validation framework with automated quality checks and anomaly detection",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "quality_assessment",
+            "title": "Data Quality Assessment & Metrics",
+            "weight": 0.3
+          },
+          {
+            "id": "validation_rules",
+            "title": "Validation Rules & Constraints",
+            "weight": 0.25
+          },
+          {
+            "id": "cleaning_preprocessing",
+            "title": "Data Cleaning & Preprocessing",
+            "weight": 0.25
+          },
+          {
+            "id": "quality_monitoring",
+            "title": "Quality Monitoring & Alerting",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.6
+      }
+    },
+    "architectures": {
+      "id": "architectures",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement CNN, RNN, and Transformer architectures from scratch using PyTorch or TensorFlow",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "cnn_architectures",
+            "title": "CNN Architectures & Design Principles",
+            "weight": 0.3
+          },
+          {
+            "id": "rnn_variants",
+            "title": "RNN Variants & Sequential Processing",
+            "weight": 0.25
+          },
+          {
+            "id": "transformer_architecture",
+            "title": "Transformer Architecture & Components",
+            "weight": 0.3
+          },
+          {
+            "id": "architecture_selection",
+            "title": "Architecture Selection & Adaptation",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "training_optimization": {
+      "id": "training_optimization",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement training loop with different optimizers, learning rate schedules, and regularization techniques",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "optimization_algorithms",
+            "title": "Optimization Algorithms & Variants",
+            "weight": 0.3
+          },
+          {
+            "id": "regularization_techniques",
+            "title": "Regularization & Generalization",
+            "weight": 0.25
+          },
+          {
+            "id": "training_strategies",
+            "title": "Training Strategies & Techniques",
+            "weight": 0.25
+          },
+          {
+            "id": "hyperparameter_tuning",
+            "title": "Hyperparameter Tuning & AutoML",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "image_classification": {
+      "id": "image_classification",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build image classification model and object detection system using pre-trained models and fine-tuning",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "classification_models",
+            "title": "Classification Models & Architectures",
+            "weight": 0.3
+          },
+          {
+            "id": "detection_algorithms",
+            "title": "Object Detection Algorithms",
+            "weight": 0.3
+          },
+          {
+            "id": "data_augmentation",
+            "title": "Data Augmentation & Preprocessing",
+            "weight": 0.2
+          },
+          {
+            "id": "evaluation_metrics",
+            "title": "Evaluation Metrics & Benchmarking",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "vision_language": {
+      "id": "vision_language",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement vision-language model for image captioning or visual question answering using CLIP-like architecture",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "multimodal_architectures",
+            "title": "Multimodal Architecture Design",
+            "weight": 0.35
+          },
+          {
+            "id": "contrastive_learning",
+            "title": "Contrastive Learning & Training",
+            "weight": 0.3
+          },
+          {
+            "id": "cross_modal_alignment",
+            "title": "Cross-Modal Alignment & Representation",
+            "weight": 0.25
+          },
+          {
+            "id": "applications_fine_tuning",
+            "title": "Applications & Fine-tuning Strategies",
+            "weight": 0.1
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "video_understanding": {
+      "id": "video_understanding",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build video classification or action recognition model handling temporal sequences",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "temporal_modeling",
+            "title": "Temporal Modeling & Sequence Processing",
+            "weight": 0.35
+          },
+          {
+            "id": "video_architectures",
+            "title": "Video-Specific Architectures",
+            "weight": 0.3
+          },
+          {
+            "id": "action_recognition",
+            "title": "Action Recognition & Classification",
+            "weight": 0.2
+          },
+          {
+            "id": "video_preprocessing",
+            "title": "Video Preprocessing & Data Handling",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "tokenization_embeddings": {
+      "id": "tokenization_embeddings",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement different tokenization methods (BPE, WordPiece) and train word embeddings from scratch",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "tokenization_methods",
+            "title": "Tokenization Methods & Algorithms",
+            "weight": 0.3
+          },
+          {
+            "id": "embedding_techniques",
+            "title": "Embedding Techniques & Representations",
+            "weight": 0.35
+          },
+          {
+            "id": "vocabulary_management",
+            "title": "Vocabulary Management & OOV Handling",
+            "weight": 0.2
+          },
+          {
+            "id": "subword_encoding",
+            "title": "Subword Encoding & Modern Approaches",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "attention_transformer": {
+      "id": "attention_transformer",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 5,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement multi-head attention mechanism and complete Transformer architecture from scratch",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "attention_mechanisms",
+            "title": "Attention Mechanisms & Variants",
+            "weight": 0.35
+          },
+          {
+            "id": "transformer_components",
+            "title": "Transformer Components & Architecture",
+            "weight": 0.3
+          },
+          {
+            "id": "positional_encoding",
+            "title": "Positional Encoding & Sequence Modeling",
+            "weight": 0.2
+          },
+          {
+            "id": "efficiency_optimization",
+            "title": "Efficiency & Optimization Techniques",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "finetuning": {
+      "id": "finetuning",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Fine-tune a small language model using LoRA on a specific task (e.g., sentiment analysis or text classification). Compare the results with and without fine-tuning, and experiment with different LoRA parameters.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "technique_understanding",
+            "title": "Technique Understanding",
+            "weight": 0.25
+          },
+          {
+            "id": "implementation_skills",
+            "title": "Implementation Skills",
+            "weight": 0.25
+          },
+          {
+            "id": "data_preparation",
+            "title": "Data Preparation",
+            "weight": 0.2
+          },
+          {
+            "id": "evaluation_optimization",
+            "title": "Evaluation & Optimization",
+            "weight": 0.2
+          },
+          {
+            "id": "resource_management",
+            "title": "Resource Management",
+            "weight": 0.1
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "how_llms_work": {
+      "id": "how_llms_work",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": null,
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "architecture_fundamentals",
+            "title": "Architecture Fundamentals",
+            "weight": 0.3
+          },
+          {
+            "id": "training_process",
+            "title": "Training Process",
+            "weight": 0.25
+          },
+          {
+            "id": "inference_mechanics",
+            "title": "Inference Mechanics",
+            "weight": 0.25
+          },
+          {
+            "id": "scaling_properties",
+            "title": "Scaling Properties",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "prompt_engineering": {
+      "id": "prompt_engineering",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Prompt engineering is a crucial technique for optimizing AI model performance, particularly using structured approaches like the 3-part formula. Proper prompt engineering significantly improves output quality and enables more effective task execution across different AI models.",
+      "key_takeaways": [
+        "The 3-part formula is an effective structured approach for prompt engineering",
+        "Proper prompt engineering significantly improves AI output quality",
+        "Different AI models require tailored prompting strategies for optimal performance",
+        "Effective prompting enables superior task execution capabilities"
+      ],
+      "tags": [
+        "AI",
+        "Claude",
+        "ai task execution vs instruction giving",
+        "ai workflow automation",
+        "context window management",
+        "model selection optimization",
+        "optimization",
+        "prompt engineering frameworks",
+        "prompt_engineering",
+        "repeatable ai instructions (skills)",
+        "role-based ai automation (plug-ins)",
+        "task_execution"
+      ],
+      "source_ids": [
+        "src_015"
+      ],
+      "first_lit_at": "2026-03-06T02:40:35.480412+00:00",
+      "updated_at": "2026-03-06T02:40:42.212099+00:00",
+      "quest": {
+        "required_sources": 2,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Design and test prompts for 3 different tasks: creative writing, data extraction, and reasoning. Document which techniques work best for each task type.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_015": {
+              "design_principles": 0.25,
+              "technique_mastery": 0.65,
+              "optimization_strategies": 0.7,
+              "evaluation_methods": 0.15
+            }
+          },
+          "dimension_scores": {
+            "design_principles": 0.25,
+            "technique_mastery": 0.65,
+            "optimization_strategies": 0.7,
+            "evaluation_methods": 0.15
+          },
+          "overall_coverage": 0.47
+        },
+        "dimensions": [
+          {
+            "id": "design_principles",
+            "title": "Design Principles",
+            "weight": 0.3
+          },
+          {
+            "id": "technique_mastery",
+            "title": "Technique Mastery",
+            "weight": 0.3
+          },
+          {
+            "id": "optimization_strategies",
+            "title": "Optimization Strategies",
+            "weight": 0.25
+          },
+          {
+            "id": "evaluation_methods",
+            "title": "Evaluation Methods",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.6
+      }
+    },
+    "context_engineering": {
+      "id": "context_engineering",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Context engineering is an emerging field focused on designing sophisticated memory management architectures for AI systems, going beyond simple prompt manipulation to create cognitive frameworks that properly persist and utilize context across conversations. While modern AI models have sufficient memory capacity, the lack of proper context engineering architecture creates a critical gap between model capabilities and practical user experiences.",
+      "key_takeaways": [
+        "Modern AI models have sufficient memory capacity but lack proper context engineering architecture",
+        "Context engineering is becoming more valuable than the underlying model capabilities",
+        "Poor memory system design leads to frustrating user experiences despite advanced AI technology",
+        "The field is evolving from simple prompt manipulation to sophisticated cognitive architectures",
+        "Proper memory systems that persist important context across conversations are essential for practical AI applications"
+      ],
+      "tags": [
+        "AI architecture",
+        "ai memory systems",
+        "cognitive architectures",
+        "cognitive systems",
+        "context engineering",
+        "context persistence",
+        "memory architecture in ai systems",
+        "memory management",
+        "prompt engineering",
+        "token management",
+        "user experience"
+      ],
+      "source_ids": [
+        "src_012"
+      ],
+      "first_lit_at": "2026-03-06T02:40:27.451858+00:00",
+      "updated_at": "2026-03-06T02:40:45.952996+00:00",
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build a context management system that dynamically selects and organizes relevant information for multi-turn conversations, testing with different context window sizes.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_012": {
+              "context_design": 0.9,
+              "information_structuring": 0.65,
+              "length_optimization": 0.25,
+              "dynamic_adaptation": 0.45
+            }
+          },
+          "dimension_scores": {
+            "context_design": 0.9,
+            "information_structuring": 0.65,
+            "length_optimization": 0.25,
+            "dynamic_adaptation": 0.45
+          },
+          "overall_coverage": 0.62
+        },
+        "dimensions": [
+          {
+            "id": "context_design",
+            "title": "Context Design",
+            "weight": 0.35
+          },
+          {
+            "id": "information_structuring",
+            "title": "Information Structuring",
+            "weight": 0.25
+          },
+          {
+            "id": "length_optimization",
+            "title": "Length Optimization",
+            "weight": 0.2
+          },
+          {
+            "id": "dynamic_adaptation",
+            "title": "Dynamic Adaptation",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "vector_db": {
+      "id": "vector_db",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Set up a vector database (e.g., Pinecone, Weaviate, or Chroma) and implement document embedding and similarity search functionality.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "embedding_theory",
+            "title": "Embedding Theory",
+            "weight": 0.25
+          },
+          {
+            "id": "database_operations",
+            "title": "Database Operations",
+            "weight": 0.3
+          },
+          {
+            "id": "similarity_search",
+            "title": "Similarity Search",
+            "weight": 0.25
+          },
+          {
+            "id": "performance_optimization",
+            "title": "Performance Optimization",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "retrieval_strategies": {
+      "id": "retrieval_strategies",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "检索策略是RAG（检索增强生成）系统中的核心组件，用于从知识库中高效准确地检索相关文档。这些策略决定了如何根据用户查询找到最相关的信息，直接影响生成响应的质量和准确性。",
+      "key_takeaways": [
+        "检索策略是RAG系统的关键技术组件",
+        "负责从知识库中找到与查询最相关的文档",
+        "检索质量直接影响最终生成内容的准确性",
+        "可以减少大型语言模型的幻觉现象"
+      ],
+      "tags": [
+        "RAG",
+        "information retrieval",
+        "rag",
+        "text generation",
+        "信息检索",
+        "文档检索",
+        "检索策略",
+        "知识库"
+      ],
+      "source_ids": [
+        "src_001"
+      ],
+      "first_lit_at": "2026-03-06T02:39:50.191642+00:00",
+      "updated_at": "2026-03-06T02:40:50.348478+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement and compare different retrieval strategies (semantic search, hybrid search, re-ranking) on the same document corpus, measuring precision and recall.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_001": {
+              "search_algorithms": 0.25,
+              "ranking_methods": 0.15,
+              "query_processing": 0.35,
+              "result_filtering": 0.2
+            }
+          },
+          "dimension_scores": {
+            "search_algorithms": 0.25,
+            "ranking_methods": 0.15,
+            "query_processing": 0.35,
+            "result_filtering": 0.2
+          },
+          "overall_coverage": 0.24
+        },
+        "dimensions": [
+          {
+            "id": "search_algorithms",
+            "title": "Search Algorithms",
+            "weight": 0.3
+          },
+          {
+            "id": "ranking_methods",
+            "title": "Ranking Methods",
+            "weight": 0.25
+          },
+          {
+            "id": "query_processing",
+            "title": "Query Processing",
+            "weight": 0.25
+          },
+          {
+            "id": "result_filtering",
+            "title": "Result Filtering",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "rag_pipeline": {
+      "id": "rag_pipeline",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "RAG（检索增强生成）是一种结合信息检索与文本生成的先进技术，通过检索相关文档作为上下文输入到大型语言模型中，生成基于真实信息的响应。这种方法有效减少了AI生成内容中的幻觉现象，提高了回答的准确性和可靠性。",
+      "key_takeaways": [
+        "RAG结合了信息检索和文本生成两大技术",
+        "通过向知识库发出查询来检索相关文档",
+        "生成的响应基于检索到的信息，减少了幻觉现象",
+        "提高了AI生成内容的准确性和可靠性"
+      ],
+      "tags": [
+        "AI技术",
+        "RAG",
+        "information retrieval",
+        "rag",
+        "text generation",
+        "信息检索",
+        "大型语言模型",
+        "文本生成",
+        "检索增强生成",
+        "知识库"
+      ],
+      "source_ids": [
+        "src_001"
+      ],
+      "first_lit_at": "2026-03-06T02:39:50.191642+00:00",
+      "updated_at": "2026-03-06T02:40:54.665763+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build a complete RAG system from scratch, including document ingestion, chunking, embedding, retrieval, and generation components. Test with a domain-specific knowledge base.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_001": {
+              "pipeline_architecture": 0.45,
+              "component_integration": 0.6,
+              "quality_control": 0.35,
+              "scalability_design": 0
+            }
+          },
+          "dimension_scores": {
+            "pipeline_architecture": 0.45,
+            "component_integration": 0.6,
+            "quality_control": 0.35,
+            "scalability_design": 0
+          },
+          "overall_coverage": 0.37
+        },
+        "dimensions": [
+          {
+            "id": "pipeline_architecture",
+            "title": "Pipeline Architecture",
+            "weight": 0.3
+          },
+          {
+            "id": "component_integration",
+            "title": "Component Integration",
+            "weight": 0.25
+          },
+          {
+            "id": "quality_control",
+            "title": "Quality Control",
+            "weight": 0.25
+          },
+          {
+            "id": "scalability_design",
+            "title": "Scalability Design",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "eval_frameworks": {
+      "id": "eval_frameworks",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Evaluate an LLM using at least 2 different benchmark frameworks and create custom evaluation metrics for a specific use case.",
+          "required": false
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "benchmark_understanding",
+            "title": "Benchmark Understanding",
+            "weight": 0.3
+          },
+          {
+            "id": "metric_selection",
+            "title": "Metric Selection",
+            "weight": 0.25
+          },
+          {
+            "id": "evaluation_design",
+            "title": "Evaluation Design",
+            "weight": 0.25
+          },
+          {
+            "id": "result_interpretation",
+            "title": "Result Interpretation",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "alignment_safety": {
+      "id": "alignment_safety",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "AI视频生成平台在技术创新与伦理安全之间寻求平衡，通过身份验证等机制防止滥用。这体现了AI对齐安全的实际应用，确保技术发展符合社会价值观和伦理标准。",
+      "key_takeaways": [
+        "真人复制功能需要身份验证，体现了平台对伦理问题的重视",
+        "技术创新与道德责任并重，展示了AI对齐安全的实践案例",
+        "通过技术手段防止AI生成内容的潜在滥用和伤害"
+      ],
+      "tags": [
+        "AI伦理",
+        "AI对齐",
+        "ai ethics in content creation",
+        "character consistency in ai-generated content",
+        "multimodal ai video generation",
+        "storyboard-to-video conversion",
+        "text-to-video adaptation",
+        "内容安全",
+        "技术责任",
+        "身份验证"
+      ],
+      "source_ids": [
+        "src_008"
+      ],
+      "first_lit_at": "2026-03-06T02:40:12.831710+00:00",
+      "updated_at": "2026-03-06T02:40:59.390692+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": null,
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_008": {
+              "alignment_principles": 0.25,
+              "safety_mechanisms": 0.35,
+              "risk_assessment": 0.15,
+              "mitigation_strategies": 0.3
+            }
+          },
+          "dimension_scores": {
+            "alignment_principles": 0.25,
+            "safety_mechanisms": 0.35,
+            "risk_assessment": 0.15,
+            "mitigation_strategies": 0.3
+          },
+          "overall_coverage": 0.26
+        },
+        "dimensions": [
+          {
+            "id": "alignment_principles",
+            "title": "Alignment Principles",
+            "weight": 0.3
+          },
+          {
+            "id": "safety_mechanisms",
+            "title": "Safety Mechanisms",
+            "weight": 0.3
+          },
+          {
+            "id": "risk_assessment",
+            "title": "Risk Assessment",
+            "weight": 0.25
+          },
+          {
+            "id": "mitigation_strategies",
+            "title": "Mitigation Strategies",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "agent_patterns": {
+      "id": "agent_patterns",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Agent patterns 涵盖了从AI代理的进化机制到生产级部署的完整框架。核心包括通过错误记录和知识共享促进代理进化，以及采用分层架构和环境设计来实现高效的生产级AI系统开发。",
+      "key_takeaways": [
+        "EvoMap通过胶囊记录和去中心化网络实现AI代理的错误学习与知识共享",
+        "完全基于AI代理的软件开发可实现10倍开发速度，关键在于设计环境和反馈循环",
+        "代理可读性至关重要，所有信息必须在仓库上下文中可访问",
+        "生产级代理AI需要分层架构而非单体设计，包含七个不同层次",
+        "严格的架构约束和自动化执行能够在保持速度的同时避免系统衰退",
+        "高吞吐量开发改变了合并哲学，修正比等待更经济"
+      ],
+      "tags": [
+        "AI evolution",
+        "AI代理",
+        "EvoMap",
+        "agent legibility optimization",
+        "agent orchestration",
+        "agent-first software development",
+        "architectural constraint enforcement",
+        "automated entropy management",
+        "context management",
+        "end-to-end autonomous development cycles",
+        "knowledge graph",
+        "layered architecture for ai agents",
+        "memory management in ai systems",
+        "multi-agent system reliability",
+        "production monitoring for ai agents",
+        "progressive disclosure for ai context",
+        "repository knowledge management",
+        "service layer design",
+        "开发效率",
+        "生产级系统",
+        "知识共享",
+        "软件架构",
+        "进化机制"
+      ],
+      "source_ids": [
+        "src_004",
+        "src_006",
+        "src_007"
+      ],
+      "first_lit_at": "2026-03-06T02:40:00.063034+00:00",
+      "updated_at": "2026-03-06T02:41:06.225957+00:00",
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement a ReAct agent that can reason about and execute a multi-step task, comparing its performance with a simple chain-of-thought approach.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 3,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_004": {
+              "architectural_patterns": 0.65,
+              "decision_making": 0.25,
+              "state_management": 0.45,
+              "pattern_selection": 0.35
+            },
+            "src_006": {
+              "architectural_patterns": 0.75,
+              "decision_making": 0.65,
+              "state_management": 0.6,
+              "pattern_selection": 0.7
+            },
+            "src_007": {
+              "architectural_patterns": 0.85,
+              "decision_making": 0.25,
+              "state_management": 0.3,
+              "pattern_selection": 0.7
+            }
+          },
+          "dimension_scores": {
+            "architectural_patterns": 0.85,
+            "decision_making": 0.65,
+            "state_management": 0.6,
+            "pattern_selection": 0.7
+          },
+          "overall_coverage": 0.72
+        },
+        "dimensions": [
+          {
+            "id": "architectural_patterns",
+            "title": "Architectural Patterns",
+            "weight": 0.35
+          },
+          {
+            "id": "decision_making",
+            "title": "Decision Making",
+            "weight": 0.25
+          },
+          {
+            "id": "state_management",
+            "title": "State Management",
+            "weight": 0.2
+          },
+          {
+            "id": "pattern_selection",
+            "title": "Pattern Selection",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "tool_use": {
+      "id": "tool_use",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Agent tool design should be aligned with model capabilities and discovered through experimentation rather than predetermined assumptions. Tools must evolve alongside improving model capabilities, using progressive disclosure to add functionality without increasing complexity.",
+      "key_takeaways": [
+        "Agent tool design should match the model's capabilities and be discovered through experimentation",
+        "Tools need to evolve as model capabilities improve - what helps early models may constrain advanced ones",
+        "Progressive disclosure allows adding functionality without increasing tool complexity",
+        "Letting agents build their own context is more effective than pre-providing it",
+        "Successful tools are ones the model understands and wants to use"
+      ],
+      "tags": [
+        "agent action space construction",
+        "agent-design",
+        "context building vs context provision",
+        "elicitation and user-agent communication",
+        "experimentation",
+        "model capability evolution",
+        "model-capabilities",
+        "progressive disclosure",
+        "progressive-disclosure",
+        "subagent coordination",
+        "tool calling with claude api",
+        "tool-development"
+      ],
+      "source_ids": [
+        "src_005"
+      ],
+      "first_lit_at": "2026-03-06T02:40:02.747302+00:00",
+      "updated_at": "2026-03-06T02:41:09.247273+00:00",
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Create an agent that can use at least 3 different tools (e.g., calculator, web search, file operations) and handle tool selection and error recovery.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_005": {
+              "tool_integration": 0.85,
+              "function_calling": 0.3,
+              "error_handling": 0,
+              "security_considerations": 0
+            }
+          },
+          "dimension_scores": {
+            "tool_integration": 0.85,
+            "function_calling": 0.3,
+            "error_handling": 0,
+            "security_considerations": 0
+          },
+          "overall_coverage": 0.34
+        },
+        "dimensions": [
+          {
+            "id": "tool_integration",
+            "title": "Tool Integration",
+            "weight": 0.3
+          },
+          {
+            "id": "function_calling",
+            "title": "Function Calling",
+            "weight": 0.3
+          },
+          {
+            "id": "error_handling",
+            "title": "Error Handling",
+            "weight": 0.2
+          },
+          {
+            "id": "security_considerations",
+            "title": "Security Considerations",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "memory_systems": {
+      "id": "memory_systems",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "记忆系统是AI智能体进化和实用性的关键基础设施。通过合适的记忆架构设计，AI可以积累经验、避免重复错误，并在持续交互中变得更加智能和有用。",
+      "key_takeaways": [
+        "现代AI模型具备足够的记忆容量，但缺乏合适的上下文工程架构设计",
+        "简单的三层文件架构（身份、操作、知识）比复杂的编排框架更有效",
+        "基于文件的记忆系统可以实现智能体间的无缝协作，无需API或消息队列",
+        "通过胶囊记录错误与修复过程，可以促进知识共享和集体进化",
+        "持续的日常交互和反馈比提示工程或模型切换更重要",
+        "积累的上下文文件形成了无法被复制的竞争护城河"
+      ],
+      "tags": [
+        "AI evolution",
+        "AI记忆系统",
+        "EvoMap",
+        "ai memory systems",
+        "cognitive architectures",
+        "context engineering",
+        "cross-agent knowledge sharing through shared-context",
+        "evolutionary file refinement over time",
+        "file-based agent memory system",
+        "knowledge graph",
+        "memory architecture in ai systems",
+        "self-healing mechanisms with heartbeat.md",
+        "single-writer principle for file collaboration",
+        "three-layer architecture (identity/operation/knowledge)",
+        "token management",
+        "上下文工程",
+        "文件架构",
+        "智能体进化",
+        "知识积累",
+        "错误学习"
+      ],
+      "source_ids": [
+        "src_004",
+        "src_012",
+        "src_014"
+      ],
+      "first_lit_at": "2026-03-06T02:40:00.063034+00:00",
+      "updated_at": "2026-03-06T02:41:15.579542+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Design and implement a memory system for an agent that combines short-term, long-term, and episodic memory, testing its effectiveness in multi-session interactions.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 3,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_004": {
+              "memory_architecture": 0.65,
+              "storage_retrieval": 0.45,
+              "memory_management": 0.3,
+              "persistence_strategies": 0.55
+            },
+            "src_012": {
+              "memory_architecture": 0.85,
+              "storage_retrieval": 0.65,
+              "memory_management": 0.9,
+              "persistence_strategies": 0.75
+            },
+            "src_014": {
+              "memory_architecture": 0.85,
+              "storage_retrieval": 0.65,
+              "memory_management": 0.75,
+              "persistence_strategies": 0.8
+            }
+          },
+          "dimension_scores": {
+            "memory_architecture": 0.85,
+            "storage_retrieval": 0.65,
+            "memory_management": 0.9,
+            "persistence_strategies": 0.8
+          },
+          "overall_coverage": 0.8
+        },
+        "dimensions": [
+          {
+            "id": "memory_architecture",
+            "title": "Memory Architecture",
+            "weight": 0.3
+          },
+          {
+            "id": "storage_retrieval",
+            "title": "Storage & Retrieval",
+            "weight": 0.25
+          },
+          {
+            "id": "memory_management",
+            "title": "Memory Management",
+            "weight": 0.25
+          },
+          {
+            "id": "persistence_strategies",
+            "title": "Persistence Strategies",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "orchestration": {
+      "id": "orchestration",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "编排（Orchestration）在AI Agent系统中指的是多个Agent之间的协调和任务分配机制。相比复杂的编排框架，基于文件的简单三层架构（身份、操作、知识）更加有效，通过文件系统实现Agent间协作，无需API或消息队列。",
+      "key_takeaways": [
+        "多Agent协作分为线性流水线和依赖图并行两种模式，适应不同开发需求",
+        "主Agent负责任务拆解和调度，子Agent按需激活执行具体任务",
+        "简单的三层文件架构比复杂编排框架更有效",
+        "基于文件的协作方式消除了Agent间API或消息队列的需求",
+        "持续的日常交互和反馈比复杂的编排工程更重要",
+        "文件中积累的上下文信息形成竞争优势"
+      ],
+      "tags": [
+        "AI Agents",
+        "AI架构",
+        "Claude Code",
+        "OpenClaw",
+        "collaboration",
+        "cross-agent knowledge sharing through shared-context",
+        "evolutionary file refinement over time",
+        "file-based agent memory system",
+        "multi-agent",
+        "self-healing mechanisms with heartbeat.md",
+        "single-writer principle for file collaboration",
+        "three-layer architecture (identity/operation/knowledge)",
+        "任务调度",
+        "协作模式",
+        "文件系统"
+      ],
+      "source_ids": [
+        "src_002",
+        "src_003",
+        "src_014"
+      ],
+      "first_lit_at": "2026-03-06T02:39:53.882950+00:00",
+      "updated_at": "2026-03-06T02:41:20.926095+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Build a multi-agent orchestration system where agents collaborate on a complex task (e.g., research and report generation), implementing task delegation and result aggregation.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 3,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_002": {
+              "workflow_design": 0.85,
+              "coordination_mechanisms": 0.75,
+              "execution_control": 0.6,
+              "monitoring_debugging": 0.15
+            },
+            "src_003": {
+              "workflow_design": 0.25,
+              "coordination_mechanisms": 0.35,
+              "execution_control": 0.3,
+              "monitoring_debugging": 0
+            },
+            "src_014": {
+              "workflow_design": 0.85,
+              "coordination_mechanisms": 0.75,
+              "execution_control": 0.45,
+              "monitoring_debugging": 0.35
+            }
+          },
+          "dimension_scores": {
+            "workflow_design": 0.85,
+            "coordination_mechanisms": 0.75,
+            "execution_control": 0.6,
+            "monitoring_debugging": 0.35
+          },
+          "overall_coverage": 0.66
+        },
+        "dimensions": [
+          {
+            "id": "workflow_design",
+            "title": "Workflow Design",
+            "weight": 0.3
+          },
+          {
+            "id": "coordination_mechanisms",
+            "title": "Coordination Mechanisms",
+            "weight": 0.25
+          },
+          {
+            "id": "execution_control",
+            "title": "Execution Control",
+            "weight": 0.25
+          },
+          {
+            "id": "monitoring_debugging",
+            "title": "Monitoring & Debugging",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "inter_agent_comm": {
+      "id": "inter_agent_comm",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "多Agent协作通过主Agent负责任务拆解和分配，子Agent各司其职来提高开发效率。支持线性流水线和依赖图并行两种协作模式，每个Agent拥有独立会话且按需激活。",
+      "key_takeaways": [
+        "线性流水线模式适合简单功能和标准化流程",
+        "依赖图并行模式适合大型功能开发和多分支并行",
+        "主Agent负责调度，子Agent在任务需要时按需激活",
+        "每个Agent拥有独立会话，不自动共享对话历史",
+        "需要TMUX等工具支持分屏视图来有效管理多个Agent",
+        "团队领导者负责协调任务分配和Agent管理"
+      ],
+      "tags": [
+        "Claude Code",
+        "OpenClaw",
+        "agent session isolation and context management",
+        "agent teams vs sub-agents vs default mode",
+        "collaboration",
+        "graceful agent shutdown and resource cleanup",
+        "multi-agent",
+        "opus 4.6 effort levels and pricing tiers",
+        "team leader coordination and task delegation",
+        "tmux split panes for agent visualization",
+        "任务分配",
+        "多Agent协作",
+        "工作流管理",
+        "并行处理"
+      ],
+      "source_ids": [
+        "src_002",
+        "src_013"
+      ],
+      "first_lit_at": "2026-03-06T02:39:53.882950+00:00",
+      "updated_at": "2026-03-06T02:41:25.529381+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Implement different communication protocols between agents (direct messaging, shared memory, event-driven) and compare their effectiveness in a collaborative scenario.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 2,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_002": {
+              "communication_protocols": 0.25,
+              "message_formats": 0,
+              "coordination_strategies": 0.75,
+              "conflict_resolution": 0
+            },
+            "src_013": {
+              "communication_protocols": 0.25,
+              "message_formats": 0.15,
+              "coordination_strategies": 0.65,
+              "conflict_resolution": 0.1
+            }
+          },
+          "dimension_scores": {
+            "communication_protocols": 0.25,
+            "message_formats": 0.15,
+            "coordination_strategies": 0.75,
+            "conflict_resolution": 0.1
+          },
+          "overall_coverage": 0.32
+        },
+        "dimensions": [
+          {
+            "id": "communication_protocols",
+            "title": "Communication Protocols",
+            "weight": 0.3
+          },
+          {
+            "id": "message_formats",
+            "title": "Message Formats",
+            "weight": 0.25
+          },
+          {
+            "id": "coordination_strategies",
+            "title": "Coordination Strategies",
+            "weight": 0.25
+          },
+          {
+            "id": "conflict_resolution",
+            "title": "Conflict Resolution",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "subagent_design": {
+      "id": "subagent_design",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "Design a hierarchical agent system where a main agent dynamically creates and manages specialized subagents for different subtasks, implementing proper lifecycle management.",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "specialization_design",
+            "title": "Specialization Design",
+            "weight": 0.3
+          },
+          {
+            "id": "capability_definition",
+            "title": "Capability Definition",
+            "weight": 0.25
+          },
+          {
+            "id": "interaction_interfaces",
+            "title": "Interaction Interfaces",
+            "weight": 0.25
+          },
+          {
+            "id": "lifecycle_management",
+            "title": "Lifecycle Management",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "claude_code_agents": {
+      "id": "claude_code_agents",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Claude Code 是 Anthropic 官方的命令行编码工具，专注于代码生成和任务执行，具有内置的多 Agent 编排能力。该工具通过 Skills、Hooks、Subagents 等功能创建强大的自动化工作流，并支持 Agent Teams 功能实现多个独立代理会话的协作。",
+      "key_takeaways": [
+        "Claude Code 是 Anthropic 官方工具，专注编码和任务执行，区别于开源的 OpenClaw",
+        "Agent 工具设计应匹配模型能力，通过实验发现最佳实践，随模型能力提升而演进",
+        "上下文窗口管理至关重要，需要选择性启用 MCP 和插件",
+        "Skills、Hooks 和 Subagents 创建强大的自动化工作流程",
+        "Agent Teams 功能支持多个独立代理会话，需要 TMUX 设置进行有效管理",
+        "前端设计技能可显著提升 UI 质量，超越典型 AI 生成的设计",
+        "桌面应用解锁了网页界面不可用的最强大功能"
+      ],
+      "tags": [
+        "AI Agent",
+        "AI Agents",
+        "Claude Code",
+        "OpenClaw",
+        "agent action space construction",
+        "agent session isolation and context management",
+        "agent teams vs sub-agents vs default mode",
+        "ai task execution vs instruction giving",
+        "ai workflow automation",
+        "brutalist vs modern design aesthetics",
+        "claude code skills and commands",
+        "claude code skills and plugin system",
+        "context building vs context provision",
+        "context window management",
+        "context window optimization",
+        "design reference-based ui generation",
+        "design system integration with ai tools",
+        "editor integration patterns",
+        "elicitation and user-agent communication",
+        "frontend design automation with ai",
+        "git worktree parallel workflows",
+        "graceful agent shutdown and resource cleanup",
+        "hook-based automation system",
+        "model capability evolution",
+        "model context protocol (mcp) integration",
+        "model selection optimization",
+        "opus 4.6 effort levels and pricing tiers",
+        "plugin ecosystem management",
+        "professional ui/ux patterns and animations",
+        "progressive disclosure",
+        "prompt engineering frameworks",
+        "repeatable ai instructions (skills)",
+        "role-based ai automation (plug-ins)",
+        "subagent coordination",
+        "subagent delegation and scoping",
+        "team leader coordination and task delegation",
+        "tmux split panes for agent visualization",
+        "tool calling with claude api",
+        "代码生成",
+        "多Agent协作",
+        "工具设计",
+        "编程助手",
+        "自动化工作流"
+      ],
+      "source_ids": [
+        "src_003",
+        "src_005",
+        "src_009",
+        "src_011",
+        "src_013",
+        "src_015"
+      ],
+      "first_lit_at": "2026-03-06T02:39:57.102714+00:00",
+      "updated_at": "2026-03-06T02:41:31.846542+00:00",
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "使用 Claude API 和 Anthropic Tools 构建一个代码生成和调试助手，实现代码分析、错误检测和修复建议功能",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 6,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_003": {
+              "anthropic_api": 0.25,
+              "tool_calling": 0.35,
+              "code_generation": 0.4,
+              "safety_alignment": 0
+            },
+            "src_005": {
+              "anthropic_api": 0.15,
+              "tool_calling": 0.85,
+              "code_generation": 0.25,
+              "safety_alignment": 0.1
+            },
+            "src_009": {
+              "anthropic_api": 0.25,
+              "tool_calling": 0.65,
+              "code_generation": 0.7,
+              "safety_alignment": 0.1
+            },
+            "src_011": {
+              "anthropic_api": 0.15,
+              "tool_calling": 0.65,
+              "code_generation": 0.7,
+              "safety_alignment": 0.05
+            },
+            "src_013": {
+              "anthropic_api": 0.25,
+              "tool_calling": 0.15,
+              "code_generation": 0.35,
+              "safety_alignment": 0.05
+            },
+            "src_015": {
+              "anthropic_api": 0.25,
+              "tool_calling": 0.45,
+              "code_generation": 0.15,
+              "safety_alignment": 0.1
+            }
+          },
+          "dimension_scores": {
+            "anthropic_api": 0.25,
+            "tool_calling": 0.85,
+            "code_generation": 0.7,
+            "safety_alignment": 0.1
+          },
+          "overall_coverage": 0.48
+        },
+        "dimensions": [
+          {
+            "id": "anthropic_api",
+            "title": "Anthropic API Integration",
+            "weight": 0.3
+          },
+          {
+            "id": "tool_calling",
+            "title": "Tool Calling & Function Use",
+            "weight": 0.25
+          },
+          {
+            "id": "code_generation",
+            "title": "Code Generation Patterns",
+            "weight": 0.25
+          },
+          {
+            "id": "safety_alignment",
+            "title": "Safety & Alignment Principles",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "langchain_langgraph": {
+      "id": "langchain_langgraph",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "使用 LangChain/LangGraph 构建一个多步骤的智能助手，包含工具调用、状态管理和条件分支逻辑",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "framework_concepts",
+            "title": "Framework Core Concepts",
+            "weight": 0.25
+          },
+          {
+            "id": "chain_composition",
+            "title": "Chain & Graph Composition",
+            "weight": 0.3
+          },
+          {
+            "id": "memory_state",
+            "title": "Memory & State Management",
+            "weight": 0.25
+          },
+          {
+            "id": "integration_ecosystem",
+            "title": "Integration Ecosystem",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "agent_eval": {
+      "id": "agent_eval",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "为一个 AI Agent 设计评估框架，包括性能指标定义、测试用例设计和调试工具开发",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "evaluation_metrics",
+            "title": "Evaluation Metrics & KPIs",
+            "weight": 0.3
+          },
+          {
+            "id": "testing_frameworks",
+            "title": "Testing Frameworks",
+            "weight": 0.25
+          },
+          {
+            "id": "debugging_tools",
+            "title": "Debugging & Observability",
+            "weight": 0.25
+          },
+          {
+            "id": "benchmark_design",
+            "title": "Benchmark Design",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "model_serving": {
+      "id": "model_serving",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "部署一个机器学习模型服务，实现负载均衡、缓存机制和性能监控",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "inference_optimization",
+            "title": "Inference Optimization",
+            "weight": 0.3
+          },
+          {
+            "id": "serving_architecture",
+            "title": "Serving Architecture",
+            "weight": 0.25
+          },
+          {
+            "id": "scalability_performance",
+            "title": "Scalability & Performance",
+            "weight": 0.25
+          },
+          {
+            "id": "deployment_strategies",
+            "title": "Deployment Strategies",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "training_infra": {
+      "id": "training_infra",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 5,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "搭建分布式训练环境，配置 GPU 集群、数据管道和实验跟踪系统",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "distributed_training",
+            "title": "Distributed Training",
+            "weight": 0.3
+          },
+          {
+            "id": "resource_management",
+            "title": "Resource Management",
+            "weight": 0.25
+          },
+          {
+            "id": "data_pipeline",
+            "title": "Data Pipeline & Storage",
+            "weight": 0.25
+          },
+          {
+            "id": "monitoring_logging",
+            "title": "Monitoring & Logging",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "mlops": {
+      "id": "mlops",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 5,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "构建完整的 MLOps 流水线，包括模型版本控制、自动化训练、部署和监控",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "cicd_pipeline",
+            "title": "CI/CD Pipeline",
+            "weight": 0.25
+          },
+          {
+            "id": "model_lifecycle",
+            "title": "Model Lifecycle Management",
+            "weight": 0.3
+          },
+          {
+            "id": "monitoring_governance",
+            "title": "Monitoring & Governance",
+            "weight": 0.25
+          },
+          {
+            "id": "automation_orchestration",
+            "title": "Automation & Orchestration",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "ai_coding_tools": {
+      "id": "ai_coding_tools",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 2,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "集成多种 AI 编程工具到开发工作流中，比较不同工具的效果并优化使用策略",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "code_completion",
+            "title": "Code Completion & Suggestions",
+            "weight": 0.3
+          },
+          {
+            "id": "code_review",
+            "title": "AI-Assisted Code Review",
+            "weight": 0.25
+          },
+          {
+            "id": "refactoring_optimization",
+            "title": "Refactoring & Optimization",
+            "weight": 0.25
+          },
+          {
+            "id": "documentation_generation",
+            "title": "Documentation Generation",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "ai_testing": {
+      "id": "ai_testing",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "使用 AI 工具自动生成测试用例、执行回归测试并分析测试覆盖率",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "test_generation",
+            "title": "Automated Test Generation",
+            "weight": 0.3
+          },
+          {
+            "id": "quality_assurance",
+            "title": "AI-Driven Quality Assurance",
+            "weight": 0.25
+          },
+          {
+            "id": "bug_detection",
+            "title": "Bug Detection & Analysis",
+            "weight": 0.25
+          },
+          {
+            "id": "test_optimization",
+            "title": "Test Suite Optimization",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "prod_patterns": {
+      "id": "prod_patterns",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Production-grade AI agent systems require a fundamental shift from traditional development approaches, emphasizing layered architecture design and environment optimization over direct code writing. Success depends on creating agent-legible systems with strict architectural constraints and comprehensive monitoring across both behavioral and reliability dimensions.",
+      "key_takeaways": [
+        "AI agents can achieve 10x development speed for real software products when properly architected",
+        "Success requires designing environments and feedback loops rather than writing code directly",
+        "Agent legibility is crucial - all context must be accessible within repository",
+        "Production systems need layered architecture with seven distinct operational layers",
+        "Two critical monitoring dimensions: agent behavior and system reliability",
+        "Strict architectural constraints enable high-speed development without technical decay",
+        "High-throughput development changes merge philosophy - corrections become cheaper than waiting"
+      ],
+      "tags": [
+        "agent legibility optimization",
+        "agent orchestration",
+        "agent-first software development",
+        "agent-legibility",
+        "ai-agents",
+        "architectural constraint enforcement",
+        "automated entropy management",
+        "context management",
+        "development-methodology",
+        "end-to-end autonomous development cycles",
+        "layered architecture for ai agents",
+        "layered-architecture",
+        "memory management in ai systems",
+        "multi-agent system reliability",
+        "production monitoring for ai agents",
+        "production-systems",
+        "progressive disclosure for ai context",
+        "repository knowledge management",
+        "service layer design",
+        "software-architecture",
+        "system-monitoring"
+      ],
+      "source_ids": [
+        "src_006",
+        "src_007"
+      ],
+      "first_lit_at": "2026-03-06T02:40:06.021247+00:00",
+      "updated_at": "2026-03-06T02:41:37.715422+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "在生产环境中实施 AI 系统的最佳实践，包括错误处理、降级策略和性能优化",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 2,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_006": {
+              "architecture_design": 0.75,
+              "reliability_resilience": 0.25,
+              "security_compliance": 0.15,
+              "cost_optimization": 0.35
+            },
+            "src_007": {
+              "architecture_design": 0.85,
+              "reliability_resilience": 0.75,
+              "security_compliance": 0.35,
+              "cost_optimization": 0.15
+            }
+          },
+          "dimension_scores": {
+            "architecture_design": 0.85,
+            "reliability_resilience": 0.75,
+            "security_compliance": 0.35,
+            "cost_optimization": 0.35
+          },
+          "overall_coverage": 0.6
+        },
+        "dimensions": [
+          {
+            "id": "architecture_design",
+            "title": "Architecture Design Patterns",
+            "weight": 0.3
+          },
+          {
+            "id": "reliability_resilience",
+            "title": "Reliability & Resilience",
+            "weight": 0.25
+          },
+          {
+            "id": "security_compliance",
+            "title": "Security & Compliance",
+            "weight": 0.25
+          },
+          {
+            "id": "cost_optimization",
+            "title": "Cost Optimization",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "llm_api_design": {
+      "id": "llm_api_design",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "设计和实现一个 LLM API 服务，包括请求限流、响应缓存和错误处理机制",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "api_architecture",
+            "title": "API Architecture & Design",
+            "weight": 0.3
+          },
+          {
+            "id": "prompt_engineering",
+            "title": "Prompt Engineering Integration",
+            "weight": 0.25
+          },
+          {
+            "id": "rate_limiting",
+            "title": "Rate Limiting & Throttling",
+            "weight": 0.2
+          },
+          {
+            "id": "response_optimization",
+            "title": "Response Optimization",
+            "weight": 0.25
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "mcp": {
+      "id": "mcp",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "MCP (Model Context Protocol) 是 Claude Code 中的关键组件，需要谨慎管理以优化上下文窗口使用。通过与技能、钩子和子代理的结合，MCP 能够创建强大的自动化工作流程，显著提升 AI 辅助开发的效率。",
+      "key_takeaways": [
+        "上下文窗口管理至关重要 - 需要有选择性地启用 MCP 和插件",
+        "MCP 与技能、钩子和子代理结合可创建强大的自动化工作流",
+        "通过分叉和 git worktrees 实现并行执行可提高生产力",
+        "编辑器集成显著增强 Claude Code 体验",
+        "结构化配置支持复杂的 AI 辅助开发场景"
+      ],
+      "tags": [
+        "ai-development",
+        "automation",
+        "claude code skills and commands",
+        "claude-code",
+        "context window optimization",
+        "context-management",
+        "editor integration patterns",
+        "git worktree parallel workflows",
+        "hook-based automation system",
+        "model context protocol (mcp) integration",
+        "plugin ecosystem management",
+        "subagent delegation and scoping",
+        "workflow"
+      ],
+      "source_ids": [
+        "src_009"
+      ],
+      "first_lit_at": "2026-03-06T02:40:15.915943+00:00",
+      "updated_at": "2026-03-06T02:41:42.476417+00:00",
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "实现 MCP 协议的客户端和服务端，支持模型上下文的高效传输和管理",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_009": {
+              "protocol_specification": 0.25,
+              "context_management": 0.85,
+              "implementation_patterns": 0.75,
+              "interoperability": 0.45
+            }
+          },
+          "dimension_scores": {
+            "protocol_specification": 0.25,
+            "context_management": 0.85,
+            "implementation_patterns": 0.75,
+            "interoperability": 0.45
+          },
+          "overall_coverage": 0.58
+        },
+        "dimensions": [
+          {
+            "id": "protocol_specification",
+            "title": "Protocol Specification",
+            "weight": 0.3
+          },
+          {
+            "id": "context_management",
+            "title": "Context Management",
+            "weight": 0.3
+          },
+          {
+            "id": "implementation_patterns",
+            "title": "Implementation Patterns",
+            "weight": 0.25
+          },
+          {
+            "id": "interoperability",
+            "title": "Interoperability Standards",
+            "weight": 0.15
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "image_gen": {
+      "id": "image_gen",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 2,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "使用不同的图像生成模型创建一个图片生成应用，比较不同模型的效果和性能",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "generation_models",
+            "title": "Generation Models & Architectures",
+            "weight": 0.3
+          },
+          {
+            "id": "prompt_techniques",
+            "title": "Prompt Engineering Techniques",
+            "weight": 0.25
+          },
+          {
+            "id": "quality_control",
+            "title": "Quality Control & Filtering",
+            "weight": 0.25
+          },
+          {
+            "id": "style_customization",
+            "title": "Style & Customization",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "video_gen": {
+      "id": "video_gen",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Seedance 2.0是一个先进的多模态视频生成平台，支持4种输入类型和最多12个文件的处理能力，能够从故事板、脚本和参考素材生成专业级视频内容。该平台在创新的同时注重伦理考量，对真人复制功能实施身份验证机制。",
+      "key_takeaways": [
+        "支持4种输入类型和最多12个文件的多模态视频生成",
+        "可从故事板、脚本和参考素材生成专业质量的视频内容",
+        "真人复制功能需要身份验证，体现平台的伦理责任",
+        "视频质量接近After Effects等专业视频编辑软件的文字动画和特效水平",
+        "建议使用15秒以内的720p视频作为参考以获得最佳动作复制效果"
+      ],
+      "tags": [
+        "AI工具",
+        "ai ethics in content creation",
+        "character consistency in ai-generated content",
+        "multimodal ai video generation",
+        "storyboard-to-video conversion",
+        "text-to-video adaptation",
+        "专业视频制作",
+        "伦理AI",
+        "多模态",
+        "视频生成"
+      ],
+      "source_ids": [
+        "src_008"
+      ],
+      "first_lit_at": "2026-03-06T02:40:12.831710+00:00",
+      "updated_at": "2026-03-06T02:41:47.553931+00:00",
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "构建视频生成工具，实现从文本到视频的转换，并优化生成质量和速度",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_008": {
+              "generation_techniques": 0.85,
+              "temporal_consistency": 0.65,
+              "content_control": 0.75,
+              "optimization_compression": 0.25
+            }
+          },
+          "dimension_scores": {
+            "generation_techniques": 0.85,
+            "temporal_consistency": 0.65,
+            "content_control": 0.75,
+            "optimization_compression": 0.25
+          },
+          "overall_coverage": 0.66
+        },
+        "dimensions": [
+          {
+            "id": "generation_techniques",
+            "title": "Video Generation Techniques",
+            "weight": 0.3
+          },
+          {
+            "id": "temporal_consistency",
+            "title": "Temporal Consistency",
+            "weight": 0.25
+          },
+          {
+            "id": "content_control",
+            "title": "Content Control & Editing",
+            "weight": 0.25
+          },
+          {
+            "id": "optimization_compression",
+            "title": "Optimization & Compression",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.8
+      }
+    },
+    "audio_gen": {
+      "id": "audio_gen",
+      "status": "locked",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "",
+      "key_takeaways": [],
+      "tags": [],
+      "source_ids": [],
+      "first_lit_at": null,
+      "updated_at": null,
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "开发音频生成应用，支持音乐创作、语音合成或音效生成功能",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 0,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false
+        },
+        "dimensions": [
+          {
+            "id": "synthesis_models",
+            "title": "Audio Synthesis Models",
+            "weight": 0.3
+          },
+          {
+            "id": "music_composition",
+            "title": "Music Composition Techniques",
+            "weight": 0.25
+          },
+          {
+            "id": "voice_cloning",
+            "title": "Voice Cloning & TTS",
+            "weight": 0.25
+          },
+          {
+            "id": "audio_processing",
+            "title": "Audio Processing & Effects",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "ai_ux": {
+      "id": "ai_ux",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "Claude Code的前端设计技能是一个可以显著提升UI设计质量的AI工具，超越了典型AI生成设计的水平。该技能安装简单，支持通用提示和特定设计参考，能够生成包含专业动画、悬停效果和现代设计模式的高质量界面。",
+      "key_takeaways": [
+        "Claude Code前端设计技能能显著提升UI质量，超越典型AI生成设计",
+        "安装过程简单，仅需两个命令即可添加市场和插件",
+        "支持通用提示和来自Dribbble等网站的特定设计参考",
+        "生成结果包含专业动画、悬停效果、合适的排版和现代设计模式",
+        "虽然不完美，但比标准AI工具产生更好的设计效果"
+      ],
+      "tags": [
+        "AI设计工具",
+        "Claude Code",
+        "UI设计",
+        "brutalist vs modern design aesthetics",
+        "claude code skills and plugin system",
+        "design reference-based ui generation",
+        "design system integration with ai tools",
+        "frontend design automation with ai",
+        "professional ui/ux patterns and animations",
+        "前端开发",
+        "用户界面"
+      ],
+      "source_ids": [
+        "src_011"
+      ],
+      "first_lit_at": "2026-03-06T02:40:24.092634+00:00",
+      "updated_at": "2026-03-06T02:41:52.444645+00:00",
+      "quest": {
+        "required_sources": 3,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "设计并实现一个 AI 产品的用户界面，重点关注人机交互体验和用户反馈机制",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_011": {
+              "interaction_patterns": 0.65,
+              "user_experience": 0.75,
+              "trust_transparency": 0.25,
+              "accessibility_ethics": 0.15
+            }
+          },
+          "dimension_scores": {
+            "interaction_patterns": 0.65,
+            "user_experience": 0.75,
+            "trust_transparency": 0.25,
+            "accessibility_ethics": 0.15
+          },
+          "overall_coverage": 0.47
+        },
+        "dimensions": [
+          {
+            "id": "interaction_patterns",
+            "title": "AI Interaction Patterns",
+            "weight": 0.3
+          },
+          {
+            "id": "user_experience",
+            "title": "User Experience Design",
+            "weight": 0.25
+          },
+          {
+            "id": "trust_transparency",
+            "title": "Trust & Transparency",
+            "weight": 0.25
+          },
+          {
+            "id": "accessibility_ethics",
+            "title": "Accessibility & Ethics",
+            "weight": 0.2
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    },
+    "ai_native_tools": {
+      "id": "ai_native_tools",
+      "status": "in_progress",
+      "confidence": 0,
+      "xp": 0,
+      "review_status": {
+        "ease_factor": 2.5,
+        "interval_days": 1,
+        "next_review": null,
+        "review_count": 0,
+        "last_reviewed": null
+      },
+      "summary": "AI Native Tools represent a new category of development and design tools that integrate directly with developer workflows and version control systems. These tools aim to solve traditional workflow inefficiencies by bringing design and development processes into unified, code-centric environments.",
+      "key_takeaways": [
+        "Traditional design tools create version control and navigation problems in development workflows",
+        "AI native tools offer IDE integration and Git-based version control for design files",
+        "These tools bridge the gap between design and development by bringing design into code repositories",
+        "Timestamp-based versioning in traditional tools creates significant workflow inefficiencies",
+        "Developer-centric design tools can address scope creep and collaboration issues"
+      ],
+      "tags": [
+        "IDE-integration",
+        "design-development workflow integration",
+        "design-workflow",
+        "developer-designer-collaboration",
+        "developer-tools",
+        "git-based",
+        "git-based design version control",
+        "ide-integrated design tools",
+        "repository-based design files",
+        "scope creep management in design",
+        "version-control"
+      ],
+      "source_ids": [
+        "src_010"
+      ],
+      "first_lit_at": "2026-03-06T02:40:20.416208+00:00",
+      "updated_at": "2026-03-06T02:41:56.734378+00:00",
+      "quest": {
+        "required_sources": 4,
+        "required_quiz_pass": true,
+        "quiz_pass_threshold": 0.8,
+        "practice_task": {
+          "description": "选择一个具体的用户场景，设计一个AI-Native工具的产品原型，包括：1）明确AI能力如何原生集成到用户工作流中；2）设计人机协作的交互模式；3）制作简单的界面mockup或流程图；4）说明该工具相比传统工具的独特价值",
+          "required": true
+        },
+        "progress": {
+          "sources_count": 1,
+          "quiz_passed": false,
+          "quiz_best_score": 0,
+          "quiz_attempts": 0,
+          "practice_completed": false,
+          "source_coverages": {
+            "src_010": {
+              "tool_architecture": 0.65,
+              "ai_integration": 0,
+              "user_experience": 0.45,
+              "performance_optimization": 0.25,
+              "deployment_scaling": 0.15
+            }
+          },
+          "dimension_scores": {
+            "tool_architecture": 0.65,
+            "ai_integration": 0,
+            "user_experience": 0.45,
+            "performance_optimization": 0.25,
+            "deployment_scaling": 0.15
+          },
+          "overall_coverage": 0.3
+        },
+        "dimensions": [
+          {
+            "id": "tool_architecture",
+            "title": "Tool Architecture & Design",
+            "weight": 0.25
+          },
+          {
+            "id": "ai_integration",
+            "title": "AI Model Integration",
+            "weight": 0.3
+          },
+          {
+            "id": "user_experience",
+            "title": "User Experience & Interface",
+            "weight": 0.2
+          },
+          {
+            "id": "performance_optimization",
+            "title": "Performance & Optimization",
+            "weight": 0.15
+          },
+          {
+            "id": "deployment_scaling",
+            "title": "Deployment & Scaling",
+            "weight": 0.1
+          }
+        ],
+        "coverage_threshold": 0.7
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "src_001",
+      "title": "RAG概念",
+      "type": "claude_chat",
+      "url": "https://claude.ai/chat/test-123",
+      "study_item_id": null,
+      "summary": "RAG（检索增强生成）是一种结合信息检索与文本生成的技术。它通过检索相关文档并将其作为上下文输入到大型语言模型中，从而生成基于检索信息的响应。",
+      "key_takeaways": [
+        "RAG结合了信息检索和文本生成。",
+        "通过向知识库发出查询来检索相关文档。",
+        "生成的响应基于检索到的信息，减少了幻觉现象。"
+      ],
+      "tags": [
+        "rag",
+        "information retrieval",
+        "text generation"
+      ],
+      "raw_excerpt": "RAG (Retrieval-Augmented Generation) is a technique that combines information retrieval with text generation. It works by: 1) Taking a user query, 2) Retrieving relevant documents from a knowledge base using vector similarity search, 3) Feeding those documents as context to an LLM along with the query, 4) The LLM generates a response grounded in the retrieved information.",
+      "node_ids": [
+        "rag_pipeline",
+        "retrieval_strategies"
+      ],
+      "created_at": "2026-03-06T02:39:50.191642+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_002",
+      "title": "多 Agent 协作模式",
+      "type": "claude_chat",
+      "url": "https://claude.ai/chat/c69f3141-bb8a-4d0f-8318-eae025163da2",
+      "study_item_id": null,
+      "summary": "多 Agent 协作模式分为线性流水线和依赖图并行两种模式，适合不同的开发需求。主 Agent 负责任务拆解和分配，子 Agent 各司其职，提高开发效率。",
+      "key_takeaways": [
+        "线性流水线模式适合简单功能和标准化流程。",
+        "依赖图并行模式适合大型功能开发和多分支并行。",
+        "主 Agent 负责调度，子 Agent 在任务需要时按需激活。"
+      ],
+      "tags": [
+        "multi-agent",
+        "collaboration",
+        "OpenClaw"
+      ],
+      "raw_excerpt": "这张图是在讲多 Agent 协作模式，是 Claude Code（OpenClaw 就是大家对它的昵称）的高级用法。图里展示了两种模式：Mode A · 线性流水线 (Linear)...",
+      "node_ids": [
+        "orchestration",
+        "inter_agent_comm"
+      ],
+      "created_at": "2026-03-06T02:39:53.882950+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_003",
+      "title": "OpenClaw 与 Claude Code 区别",
+      "type": "claude_chat",
+      "url": "https://claude.ai/chat/c69f3141-bb8a-4d0f-8318-eae025163da2",
+      "study_item_id": null,
+      "summary": "OpenClaw 是一个开源的自主 AI Agent，支持多种 LLM API，而 Claude Code 是 Anthropic 官方的命令行编码工具，专注于代码生成和任务执行。两者在功能和应用场景上有所不同。",
+      "key_takeaways": [
+        "OpenClaw 是开源的，支持多种模型，适合自主开发。",
+        "Claude Code 专注于编码和任务执行，具有内置的多 Agent 编排能力。",
+        "两者的多 Agent 协作模式和实现方式不同。"
+      ],
+      "tags": [
+        "OpenClaw",
+        "Claude Code",
+        "AI Agents"
+      ],
+      "raw_excerpt": "你说得对，让我搜一下！... OpenClaw 和 Claude Code 不是一样的东西...",
+      "node_ids": [
+        "claude_code_agents",
+        "orchestration"
+      ],
+      "created_at": "2026-03-06T02:39:57.102714+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_004",
+      "title": "EvoMap 与 AI 进化引擎",
+      "type": "claude_chat",
+      "url": "https://claude.ai/chat/c69f3141-bb8a-4d0f-8318-eae025163da2",
+      "study_item_id": null,
+      "summary": "EvoMap 旨在通过记录 AI agent 的错误与修复，促进 agent 的进化。其核心机制包括去中心化网络和胶囊记录，帮助 agent 避免重复错误。",
+      "key_takeaways": [
+        "EvoMap 通过胶囊记录错误与修复，促进知识共享。",
+        "去中心化网络使得贡献的胶囊被广泛使用，形成优胜劣汰机制。",
+        "EvoMap 的前身是 skillevolver，旨在优化 AI 的技能。"
+      ],
+      "tags": [
+        "EvoMap",
+        "AI evolution",
+        "knowledge graph"
+      ],
+      "raw_excerpt": "EvoMap 核心概念与机制...EvoMap 旨在解决 AI agent 重复犯错的问题，其核心机制包括：错误与修复记录为“胶囊”...",
+      "node_ids": [
+        "memory_systems",
+        "agent_patterns"
+      ],
+      "created_at": "2026-03-06T02:40:00.063034+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_005",
+      "title": "Lessons from Building Claude Code: Agent Tool Design and Progressive Disclosure",
+      "type": "article",
+      "url": "https://x.com/trq212/status/2027463795355095314",
+      "study_item_id": "adcaaa024822",
+      "summary": "Agent tool design should match the model's capabilities and be discovered through experimentation. Tools need to evolve as model capabilities improve - what helps early models may constrain advanced ones. Progressive disclosure allows adding functionality without increasing tool complexity",
+      "key_takeaways": [
+        "Agent tool design should match the model's capabilities and be discovered through experimentation",
+        "Tools need to evolve as model capabilities improve - what helps early models may constrain advanced ones",
+        "Progressive disclosure allows adding functionality without increasing tool complexity",
+        "Letting agents build their own context is more effective than pre-providing it",
+        "Successful tools are ones the model understands and wants to use",
+        "[Action] Design tools that match your model's specific capabilities through observation",
+        "[Action] Regularly revisit and update tools as model capabilities improve",
+        "[Action] Use progressive disclosure to add functionality without tool proliferation",
+        "[Action] Give agents search tools to build their own context rather than pre-providing it",
+        "[Action] Test tools by observing if the model understands and uses them effectively",
+        "[Action] Consider subagents for specialized tasks instead of adding more tools"
+      ],
+      "tags": [
+        "agent action space construction",
+        "context building vs context provision",
+        "elicitation and user-agent communication",
+        "model capability evolution",
+        "progressive disclosure",
+        "subagent coordination",
+        "tool calling with claude api"
+      ],
+      "raw_excerpt": "## Introduction: Constructing Agent Action Spaces\n- Building agent harnesses requires careful construction of action spaces\n- Claude uses Tool Calling with primitives like bash, skills, and code execution\n- Tool design should match the agent's capabilities, similar to choosing tools for solving math problems\n- Framework: give agents tools shaped to their abilities by observing and experimenting\n## Improving Elicitation with AskUserQuestion Tool\n- Goal was to improve Claude's ability to ask questions and reduce friction\n- Attempt 1: Added questions to ExitPlanTool - caused confusion about conflicting plans\n- Attempt 2: Modified markdown output format - unreliable, Claude would deviate from format\n- Attempt 3: Created dedicated AskUserQuestion tool - successful, Claude understood and used it well\n- Tool shows modal, blocks agent loop until user responds, enables structured output\n## Evolution from Todos to Tasks\n- Initially used TodoWrite tool to keep Claude on track with reminders every 5 turns\n- As models improved, todo lists became limiting rather than helpful\n- Opus 4.5 got better at subagents but couldn't coordinate on shared todo lists\n- Replaced TodoWrite with Task Tool for better agent-to-agent communication\n- Tasks include dependencies, updates across subagents, and can be modified/deleted\n- Important to revisit tool assumptions as model capabilities increase\n## Search Interface Design and Context Building\n- Initially used RAG vector database - powerful but required setup and was fragile\n- RAG gave Claude context instead of letting it find context itself\n- Introduced Grep tool to let Claude search codebase and build its own context\n- Pattern: smarter Claude becomes better at building context with right tools\n- Agent Skills formalized progressive disclosure for incremental context discovery\n- Claude evolved from unable to build context to nested search across file layers\n## Progressive Disclosure - Claude Code Guide Agent\n- Claude Code has ~20 tools, high bar for adding new ones\n- Claude lacked knowledge about how to use Claude Code itself\n- Instead of adding to system prompt (context rot), used progressive disclosure\n- First tried giving Claude link to docs - worked but loaded too much context\n- Built Claude Code Guide subagent with specialized instructions for doc searching\n- Successfully added functionality without adding tools\n## Conclusion: Art vs Science\n- No rigid rules for tool building - it's an art as much as science\n- Depends on model, agent goals, and operating environment\n- Key advice: experiment often, read outputs, try new things\n- Learn to 'see like an agent'\n\n📌 Highlight: Grep工具",
+      "node_ids": [
+        "tool_use",
+        "claude_code_agents"
+      ],
+      "created_at": "2026-03-06T02:40:02.747302+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_006",
+      "title": "Building Production Software with Zero Human-Written Code Using AI Agents",
+      "type": "article",
+      "url": "https://openai.com/index/harness-engineering/",
+      "study_item_id": "cddfa4a4dcc6",
+      "summary": "It's possible to build and ship real software products entirely with AI agents, achieving 10x development speed. Success requires shifting from writing code to designing environments and feedback loops for agents. Agent legibility is crucial - everything must be accessible in-repository context",
+      "key_takeaways": [
+        "It's possible to build and ship real software products entirely with AI agents, achieving 10x development speed",
+        "Success requires shifting from writing code to designing environments and feedback loops for agents",
+        "Agent legibility is crucial - everything must be accessible in-repository context",
+        "Strict architectural constraints and automated enforcement enable speed without decay",
+        "High-throughput development changes merge philosophy - corrections are cheaper than waiting",
+        "[Action] Structure repository knowledge as progressive disclosure rather than monolithic documentation",
+        "[Action] Implement strict architectural constraints with custom linters for agent environments",
+        "[Action] Make application state (UI, logs, metrics) directly accessible to AI agents",
+        "[Action] Build automated cleanup processes to prevent AI-generated technical debt accumulation",
+        "[Action] Design agent-to-agent review processes to reduce human bottlenecks",
+        "[Action] Encode human taste and principles as mechanical rules rather than manual guidelines"
+      ],
+      "tags": [
+        "agent legibility optimization",
+        "agent-first software development",
+        "architectural constraint enforcement",
+        "automated entropy management",
+        "end-to-end autonomous development cycles",
+        "progressive disclosure for ai context",
+        "repository knowledge management"
+      ],
+      "raw_excerpt": "## The Zero-Code Experiment\n- Built entire software product with 0 manually-written lines of code using Codex\n- Product has daily users and external alpha testers\n- Estimated 1/10th the development time compared to manual coding\n- Generated ~1 million lines of code over 5 months\n- Team of 3-7 engineers managing agents, averaging 3.5 PRs per engineer per day\n## Redefining Engineering Roles\n- Engineers focus on systems, scaffolding, and leverage rather than direct coding\n- Primary job became enabling agents to do useful work\n- Work depth-first: break down goals into building blocks for agents\n- Humans interact primarily through prompts and review processes\n- Agent-to-agent review processes with Ralph Wiggum Loop methodology\n## Making Applications Agent-Legible\n- Made UI, logs, and metrics directly readable by Codex\n- Implemented per-worktree app instances for isolated testing\n- Integrated Chrome DevTools Protocol for UI interaction\n- Exposed observability via LogQL and PromQL queries\n- Agents can work autonomously for 6+ hours on single tasks\n## Repository Knowledge Management\n- Abandoned monolithic AGENTS.md approach due to context crowding and rot\n- Structured docs/ directory as system of record with progressive disclosure\n- AGENTS.md serves as table of contents (~100 lines)\n- Mechanical enforcement via linters and CI jobs\n- Recurring doc-gardening agent maintains documentation freshness\n## Architecture and Quality Enforcement\n- Rigid architectural model with strict layer dependencies\n- Custom linters enforce invariants and taste preferences\n- Business domains follow fixed layer structure (Types → Config → Repo → Service → Runtime → UI)\n- Constraints enable speed without architectural drift\n- Error messages include remediation instructions for agents\n## High-Throughput Development Philosophy\n- Minimal blocking merge gates due to high agent throughput\n- Short-lived pull requests with quick corrections over waiting\n- Agents handle entire development lifecycle end-to-end\n- Full autonomy from bug reproduction to merge completion\n- Human escalation only when judgment required\n## Entropy Management and Cleanup\n- Agents replicate existing patterns, leading to drift over time\n- Replaced manual Friday cleanup (20% time) with automated processes\n- Golden principles encoded as mechanical rules\n- Background Codex tasks perform continuous refactoring\n- Garbage collection approach to technical debt management\n\n📌 Highlight: 工程师专注于系统、脚手架和杠杆作用，而非直接编码",
+      "node_ids": [
+        "agent_patterns",
+        "prod_patterns"
+      ],
+      "created_at": "2026-03-06T02:40:06.021247+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_007",
+      "title": "Architectural Framework for Production-Grade Agentic AI Systems",
+      "type": "article",
+      "url": "https://levelup.gitconnected.com/building-the-7-layers-of-a-production-grade-agentic-ai-system-37ee5d941f1c",
+      "study_item_id": "2ed89530ecc2",
+      "summary": "Production agentic AI requires layered architecture rather than monolithic design. Two critical monitoring dimensions: agent behavior and system reliability. Seven distinct layers needed for production deployment",
+      "key_takeaways": [
+        "Production agentic AI requires layered architecture rather than monolithic design",
+        "Two critical monitoring dimensions: agent behavior and system reliability",
+        "Seven distinct layers needed for production deployment",
+        "Each layer addresses specific operational concerns like security, scalability, and fault tolerance",
+        "[Action] Implement separate layers for different system concerns instead of monolithic agent design",
+        "[Action] Set up monitoring for both agent behavior and system performance metrics",
+        "[Action] Design fault handling and recovery mechanisms for each architectural layer",
+        "[Action] Plan for scalability and security controls from the architecture level"
+      ],
+      "tags": [
+        "agent orchestration",
+        "context management",
+        "layered architecture for ai agents",
+        "memory management in ai systems",
+        "multi-agent system reliability",
+        "production monitoring for ai agents",
+        "service layer design"
+      ],
+      "raw_excerpt": "## Introduction to Production-Grade Agentic AI Architecture\n- Modern agentic AI systems are built as well-defined architectural layers, not single services\n- Each layer handles specific concerns: agent orchestration, memory management, security, scalability, fault handling\n- Production-grade systems combine layers for reliability, observability, and safety under real-world workloads\n## Critical Monitoring Aspects\n- Agent behavior monitoring: reasoning accuracy, tool usage correctness, memory consistency, safety boundaries, context handling\n- System reliability monitoring: latency, availability, throughput, cost efficiency, failure recovery, dependency health\n- Both aspects essential for operating multi-agent systems reliably at scale\n## Seven-Layer Architecture Overview\n- Article promises to cover 7 core architectural layers\n- Includes Service Layer, Middleware, Context Management\n- Focus on building production-ready agentic systems",
+      "node_ids": [
+        "agent_patterns",
+        "prod_patterns"
+      ],
+      "created_at": "2026-03-06T02:40:09.271933+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_008",
+      "title": "Comprehensive Guide to Seedance 2.0: 10 Advanced Video Generation Techniques",
+      "type": "article",
+      "url": "https://x.com/aiwarts/status/2022342787681939750",
+      "study_item_id": "cbc88563c231",
+      "summary": "Seedance 2.0 offers unprecedented multimodal video generation with 4 input types and 12-file capacity. The platform can generate professional-quality content from storyboards, scripts, and reference materials. Real person replication requires identity verification, showing platform's effort to balance innovation with ethics",
+      "key_takeaways": [
+        "Seedance 2.0 offers unprecedented multimodal video generation with 4 input types and 12-file capacity",
+        "The platform can generate professional-quality content from storyboards, scripts, and reference materials",
+        "Real person replication requires identity verification, showing platform's effort to balance innovation with ethics",
+        "Quality approaches professional video editing software like After Effects for text animations and effects",
+        "[Action] Use 720p video references under 15 seconds for best action replication results",
+        "[Action] Combine Seedream 5.0 Lite with Seedance 2.0 for enhanced character consistency",
+        "[Action] Add 'no BGM' or 'no subtitles' in prompts to control automatic additions",
+        "[Action] Verify identity on platform to use personal images and videos legally",
+        "[Action] Create detailed storyboards or scripts for complex video production needs"
+      ],
+      "tags": [
+        "ai ethics in content creation",
+        "character consistency in ai-generated content",
+        "multimodal ai video generation",
+        "storyboard-to-video conversion",
+        "text-to-video adaptation"
+      ],
+      "raw_excerpt": "## Seedance 2.0 Overview and Basic Usage\n- Seedance 2.0 supports 4 input modalities: image, video, audio, text\n- Maximum 12 files can be uploaded for mixed input\n- Available on JiMeng platform with video generation mode\n- Works with Seedream 5.0 Lite (4K image model) for enhanced results\n## Advanced Video Generation Techniques\n- Nine-panel storyboard generation for coherent video sequences\n- Action reference from uploaded videos (15-second limit, 720p recommended)\n- Character consistency across different scenes and styles\n- Smooth transitions between action sequences and camera movements\n## Creative Applications and Use Cases\n- Four-panel comic to animation conversion\n- Logo and text animation generation (AE-quality results)\n- Novel text-to-video adaptation with automatic subtitles\n- Script table interpretation for complete video production\n- Travel photo to vlog-style video conversion with location recognition\n## Platform Ethics and Real Person Usage\n- Initial controversy over real person replication capabilities\n- Platform implemented identity verification for personal content\n- Balance between creative freedom and privacy protection\n- Discussion on AI's ability to replicate public figures vs ordinary users",
+      "node_ids": [
+        "video_gen",
+        "alignment_safety"
+      ],
+      "created_at": "2026-03-06T02:40:12.831710+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_009",
+      "title": "Complete Guide to Advanced Claude Code Setup and Optimization",
+      "type": "article",
+      "url": "https://x.com/affaanmustafa/status/2012378465664745795",
+      "study_item_id": "18bdf6ac70bb",
+      "summary": "Context window management is critical - be selective with enabled MCPs and plugins. Skills, hooks, and subagents create powerful automation workflows. Parallel execution through forking and git worktrees improves productivity",
+      "key_takeaways": [
+        "Context window management is critical - be selective with enabled MCPs and plugins",
+        "Skills, hooks, and subagents create powerful automation workflows",
+        "Parallel execution through forking and git worktrees improves productivity",
+        "Editor integration enhances the Claude Code experience significantly",
+        "Structured configuration with rules, agents, and hooks enables sophisticated AI-assisted development",
+        "[Action] Set up modular rules structure in ~/.claude/rules/",
+        "[Action] Create custom skills for repetitive workflows",
+        "[Action] Implement hooks for automatic formatting and validation",
+        "[Action] Configure subagents with limited tool permissions",
+        "[Action] Enable only essential MCPs per project to preserve context",
+        "[Action] Use tmux for long-running command monitoring",
+        "[Action] Set up parallel workflows with /fork and git worktrees",
+        "[Action] Integrate with preferred editor for real-time file tracking"
+      ],
+      "tags": [
+        "claude code skills and commands",
+        "context window optimization",
+        "editor integration patterns",
+        "git worktree parallel workflows",
+        "hook-based automation system",
+        "model context protocol (mcp) integration",
+        "plugin ecosystem management",
+        "subagent delegation and scoping"
+      ],
+      "raw_excerpt": "## Introduction and Background\n- Author has 10 months of daily Claude Code usage experience\n- Won Anthropic x Forum Ventures hackathon using Claude Code\n- Built PMFProbe project for startup validation\n## Skills and Commands System\n- Skills operate like rules for specific workflows and scopes\n- Commands are executable via slash commands (/refactor-clean, /tdd, /e2e)\n- Skills stored in ~/.claude/skills, commands in ~/.claude/commands\n- Can chain multiple commands together in single prompt\n- Codemap updater skill helps Claude navigate codebase without burning context\n## Hooks System\n- Trigger-based automations for specific events\n- Hook types: PreToolUse, PostToolUse, UserPromptSubmit, Stop, PreCompact, Notification\n- Example: tmux reminder before long-running commands\n- Use hookify plugin to create hooks conversationally instead of manual JSON\n- Hooks constrained to tool calls and lifecycle events\n## Subagents\n- Processes that main Claude can delegate tasks to with limited scopes\n- Can run in background or foreground, freeing up context\n- Examples: planner.md, architect.md, tdd-guide.md, code-reviewer.md\n- Can be sandboxed with specific tool permissions\n- Work well with skills for autonomous task execution\n## Rules and Memory\n- Rules folder holds .md files with best practices Claude should always follow\n- Two approaches: single CLAUDE.md or modular rules folder\n- Examples: security.md, coding-style.md, testing.md, git-workflow.md\n- Rules include: no emojis in codebase, no purple hues in frontend, always test before deployment\n## MCPs (Model Context Protocol)\n- Connect Claude to external services directly\n- Prompt-driven wrapper around APIs for more flexibility\n- Examples: Supabase MCP for SQL queries, Chrome MCP for browser control\n- Critical: context window management - be selective with enabled MCPs\n- Rule of thumb: 20-30 MCPs in config, keep under 10 enabled\n## Plugins\n- Package tools for easy installation instead of manual setup\n- Can combine skills + MCP or bundle hooks/tools together\n- LSP plugins provide real-time type checking and intelligent completions\n- Install via plugin marketplace commands\n- Same context window warning applies as with MCPs\n## Tips and Tricks\n- Keyboard shortcuts: Ctrl+U (delete line), ! (bash prefix), @ (search files), / (slash commands)\n- Parallel workflows: /fork for non-overlapping tasks, git worktrees for overlapping\n- tmux for long-running commands and log monitoring\n- mgrep > grep for better search capabilities\n- Useful commands: /rewind, /statusline, /checkpoints, /compact\n## Editor Integration\n- Author prefers Zed editor for Claude Code workflow\n- Zed benefits: Agent Panel Integration, Rust performance, CMD+Shift+R command palette\n- VSCode/Cursor also viable with terminal format or extension\n- Split screen setup: terminal with Claude Code + editor\n- Enable auto-save, git integration, and file watchers\n## Author's Complete Setup\n- 14 plugins installed but only 4-5 enabled at a time\n- 14 MCPs configured but only 5-6 enabled per project\n- Custom hooks for tmux reminders, formatting, TypeScript checks\n- Structured rules and subagents for different concerns\n- Custom status line showing user, directory, git branch, context %, model, time, todos\n\n📌 Highlight: Chrome MCP for browser control\n\n📌 Highlight: Processes that main Claude can delegate tasks to with limited scopes",
+      "node_ids": [
+        "claude_code_agents",
+        "mcp"
+      ],
+      "created_at": "2026-03-06T02:40:15.915943+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_010",
+      "title": "Pencil.dev: Git-Integrated Design Tool for Developer-Designer Workflow",
+      "type": "article",
+      "url": "https://medium.com/vibe-coding/cursor-changed-how-we-code-this-tool-changes-how-we-design-b566551f4605#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6ImM4MTZkMzM3YjgzNjVhMDZhODUxYWQ4MDAxNmMxNzEwOTk0OTI2MDkiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDMzNjUwMTk0ODQ0NzA2NTgxMTIiLCJlbWFpbCI6Im5paHcwMDlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5vbmNlIjoibm90X3Byb3ZpZGVkIiwibmJmIjoxNzcxMzc4MzQ1LCJuYW1lIjoiaGFvd2VpIG5pIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0xDODhqTlp2NlFQd0ZTbUFOVUlsYWR2MnBnMl9rb1JzOEphMDZEQVpMU3Y3Q2djb0NQMFE9czk2LWMiLCJnaXZlbl9uYW1lIjoiaGFvd2VpIiwiZmFtaWx5X25hbWUiOiJuaSIsImlhdCI6MTc3MTM3ODY0NSwiZXhwIjoxNzcxMzgyMjQ1LCJqdGkiOiI1MTg4ZDg0M2VjMGIwMDhiMzZkYjQ5N2IwOTgxMjYxOTBhNDBhZWUwIn0.qUOg1VKOW7Xs_SaYG1PW2wL5byqa3F4GuAfYCuEcPx36si49vwIHXNqUNXi6jh9dpjFg9H1Luma1bFg-sZcruqX6PZP-vdI-tTi_9cG-3CSMFh9CBkA89qp3FXidc50JtZqclRbtgCk3JzUy_24aihLhnmJoET30J7OM61I-XSItwWv23fRRu9iXUcZOldsJLdowgZ6gGTlc7AmFk52ov-KXefUhva0jR9ZrzBCnrEr8Vs2CVk4knjSogXC3vbu9oik33dfmb8g_A-IQq6QreUP-jpMHaA4X2dsUc1b_PtcE64cFkbH6zFswFRUuxOcK5X8ViAvskQ7eqTFh9agbEw",
+      "study_item_id": "99c9d435d70b",
+      "summary": "Traditional design tools like Figma create version control and navigation problems in development workflows. Pencil.dev offers IDE integration and Git-based version control for design files. The tool aims to bridge the gap between design and development by bringing design into the code repository",
+      "key_takeaways": [
+        "Traditional design tools like Figma create version control and navigation problems in development workflows",
+        "Pencil.dev offers IDE integration and Git-based version control for design files",
+        "The tool aims to bridge the gap between design and development by bringing design into the code repository",
+        "Timestamp-based versioning in Figma creates significant workflow inefficiencies",
+        "[Action] Evaluate Pencil.dev as alternative to Figma for teams with scope creep issues",
+        "[Action] Consider integrating design files directly into code repositories",
+        "[Action] Implement proper version control for design assets using Git",
+        "[Action] Research pricing and usage models before adopting new design tools"
+      ],
+      "tags": [
+        "design-development workflow integration",
+        "git-based design version control",
+        "ide-integrated design tools",
+        "repository-based design files",
+        "scope creep management in design"
+      ],
+      "raw_excerpt": "## Design Workflow Problem at Popp\n- Designer creates 20 Figma projects per week with timestamps\n- Scope creep issue: designs change during sprints without clear version tracking\n- Timestamp solution creates navigation nightmare - 10 minutes wasted every few hours\n- Difficulty finding correct design files and navigating links\n## Introduction to Pencil.dev Solution\n- Pencil.dev is a canvas design tool that integrates with IDE\n- Design files can exist directly in code repository\n- Version controlled with Git for better tracking\n- Files can be easily referenced within development workflow\n- Tool recommended by colleague, immediate appeal to author\n## Author's Due Diligence\n- Author contacted Tom Krcha (Pencil.dev creator) directly\n- Concerns about lack of visible pricing information\n- Uncertainty about usage metrics and billing model",
+      "node_ids": [
+        "ai_native_tools"
+      ],
+      "created_at": "2026-03-06T02:40:20.416208+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_011",
+      "title": "Complete Guide to Claude Code's Frontend Design Skill for Professional UI Creation",
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=95_NJ-a-CMQ",
+      "study_item_id": "95_NJ-a-CMQ",
+      "summary": "The Claude Code frontend design skill can dramatically improve UI quality beyond typical AI-generated designs. Installation is simple with just two commands to add the marketplace and plugin. The skill works both with general prompts and specific design references from sites like Dribbble",
+      "key_takeaways": [
+        "The Claude Code frontend design skill can dramatically improve UI quality beyond typical AI-generated designs",
+        "Installation is simple with just two commands to add the marketplace and plugin",
+        "The skill works both with general prompts and specific design references from sites like Dribbble",
+        "Results include professional animations, hover effects, proper typography, and modern design patterns",
+        "While not perfect, it produces significantly better designs than standard AI tools",
+        "Can be enhanced further by creating custom design systems and frameworks",
+        "[Action] Install the frontend design skill using the provided commands",
+        "[Action] Use 'use the frontend design skill to improve the design of this landing page' prompt",
+        "[Action] Upload design references from Dribbble or other sources for style matching",
+        "[Action] Create a design system framework for more consistent results",
+        "[Action] Test and iterate on designs, fixing formatting issues as needed",
+        "[Action] Avoid relying solely on the skill - review and refine the output"
+      ],
+      "tags": [
+        "brutalist vs modern design aesthetics",
+        "claude code skills and plugin system",
+        "design reference-based ui generation",
+        "design system integration with ai tools",
+        "frontend design automation with ai",
+        "professional ui/ux patterns and animations"
+      ],
+      "raw_excerpt": "## Introduction to Claude Code Frontend Design Skill\n- Presenter introduces a viral Claude Code skill for creating beautiful UI designs\n- Claims this is the best Claude Code skill he's ever used\n- Promises to show setup and usage in minutes\n## Channel Branding and Setup\n- Build Great Products channel branding displayed\n- Presenter has 15 years experience in app design and startup advising\n- Transition to demonstration\n## Viral X Post Demonstration\n- Shows the viral X (Twitter) post with 235K+ views\n- Displays example of music player app created with the skill\n- Shows installation commands for the Claude Code plugin\n## Basic AI Agency Landing Page\n- Shows initial landing page created with standard Claude\n- Purple/blue color scheme typical of AI designs\n- Includes stats, form, and call-to-action elements\n- Describes it as 'fairly basic' but not terrible\n## Installing the Frontend Design Skill\n- Copies installation commands from the X post\n- Adds marketplace and installs frontend-design plugin\n- Plugin description: 'Create distinctive production grade front-end interfaces'\n## First Redesign Results - Brutalist Style\n- Dramatic transformation to black background with cyan accents\n- Added animations, hover effects, and glowing elements\n- Improved typography and grid layouts\n- Some sections work better than others\n## Exploring Design Quality\n- Demonstrates hover effects and animations\n- Shows case study cards with professional styling\n- Notes subtle grid patterns and fade-in animations\n- Acknowledges some formatting issues but overall impressed\n## Finding Design Reference on Dribbble\n- Navigates to Dribbble for design inspiration\n- Searches for AI website designs\n- Avoids typical purple gradients, seeks cleaner styles\n## Dribbble Design Selection\n- Loading Dribbble search results\n- Looking for clean, non-AI-typical designs\n- Wants to avoid purple gradients and cliché AI aesthetics\n## Using Design Reference with Frontend Skill\n- Selected a clean, modern design reference\n- Uploads screenshot to Claude Code\n- Asks frontend skill to redesign based on the reference\n- Explains the transformation approach\n## Reference Design Comparison\n- Shows the Dribbble reference design used\n- Clean, modern AI platform design with gradient backgrounds\n- Professional layout with clear typography and branding\n## Final Redesigned Website\n- Dramatic transformation to soft, modern design\n- Pastel gradients and rounded elements\n- Smooth animations and professional typography\n- Still some formatting issues but major improvement\n## Design Quality Assessment\n- Evaluates the final design quality\n- Notes soft scrolling and hover effects\n- Some formatting issues remain but overall excellent\n- Compares favorably to other AI design tools\n## Conclusion and Recommendations\n- Emphasizes the power of Claude Code skills in general\n- Recommends using this for professional-quality designs\n- Suggests creating design systems for even better results\n- Promotes community and courses\n## Channel Outro\n- Standard like and subscribe call-to-action\n- Thanks viewers\n- Channel branding displayed",
+      "node_ids": [
+        "claude_code_agents",
+        "ai_ux"
+      ],
+      "created_at": "2026-03-06T02:40:24.092634+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_012",
+      "title": "Context Engineering: The Critical Gap Between AI Model Capability and Practical Memory Management",
+      "type": "article",
+      "url": "https://medium.com/data-science-collective/the-evolution-of-context-engineering-from-prompt-hacking-to-cognitive-architectures-14eb17243ef5",
+      "study_item_id": "8100709d9807",
+      "summary": "Modern AI models have sufficient memory capacity but lack proper context engineering architecture. Context engineering is becoming more valuable than the underlying model capabilities. Poor memory system design leads to frustrating user experiences despite advanced AI technology",
+      "key_takeaways": [
+        "Modern AI models have sufficient memory capacity but lack proper context engineering architecture",
+        "Context engineering is becoming more valuable than the underlying model capabilities",
+        "Poor memory system design leads to frustrating user experiences despite advanced AI technology",
+        "The field is evolving from simple prompt manipulation to sophisticated cognitive architectures",
+        "[Action] Design proper memory systems that persist important context across conversations",
+        "[Action] Architect context management systems rather than relying solely on model capabilities",
+        "[Action] Implement structured approaches to context retention and retrieval",
+        "[Action] Focus on context engineering as a key differentiator in AI applications"
+      ],
+      "tags": [
+        "ai memory systems",
+        "cognitive architectures",
+        "context engineering",
+        "memory architecture in ai systems",
+        "token management"
+      ],
+      "raw_excerpt": "## The Context Memory Problem\n- AI assistants fail to maintain context across conversations despite having sufficient memory capacity\n- Example: AI forgets user's wife's preferences (sustainable fashion, rock climbing) after 3 weeks\n- Models have 128,000 token memory but only need 2,000 tokens for the conversation\n- The issue is not model capability but poor context engineering architecture\n## Evolution from Prompt Hacking to Cognitive Architectures\n- Article title suggests progression from basic prompt manipulation to sophisticated cognitive systems\n- Context engineering has become more valuable than the underlying model itself\n- Need for proper memory system architecture in AI applications\n- Gap between model capabilities and practical implementation",
+      "node_ids": [
+        "context_engineering",
+        "memory_systems"
+      ],
+      "created_at": "2026-03-06T02:40:27.451858+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_013",
+      "title": "Complete Guide to Claude Code Agent Teams with Opus 4.6",
+      "type": "video",
+      "url": "https://www.youtube.com/watch?v=cSkoaCCmq0w",
+      "study_item_id": "cSkoaCCmq0w",
+      "summary": "Agent Teams is a new feature in Claude Code that creates multiple independent agent sessions. TMUX setup is required for split-pane view to manage multiple agents effectively. Each agent has its own session and doesn't share conversation history automatically",
+      "key_takeaways": [
+        "Agent Teams is a new feature in Claude Code that creates multiple independent agent sessions",
+        "TMUX setup is required for split-pane view to manage multiple agents effectively",
+        "Each agent has its own session and doesn't share conversation history automatically",
+        "Team leader coordinates task distribution and agent management",
+        "Proper setup involves updating Claude, configuring TMUX, and using specific prompts to create teams",
+        "[Action] Update Claude Code to version 2.1.41 or later",
+        "[Action] Install and configure TMUX for split pane functionality",
+        "[Action] Set tmuxSplitPanes: true in Claude configuration",
+        "[Action] Always start with 'tmux new-session -s claude-work' before launching Claude",
+        "[Action] Use explicit 'create an agent team' language in prompts",
+        "[Action] Start with Opus model on low effort, then scale up as needed",
+        "[Action] Provide context through MD files when switching to agent teams",
+        "[Action] Use team leader to shut down individual agents to save tokens"
+      ],
+      "tags": [
+        "agent session isolation and context management",
+        "agent teams vs sub-agents vs default mode",
+        "graceful agent shutdown and resource cleanup",
+        "opus 4.6 effort levels and pricing tiers",
+        "team leader coordination and task delegation",
+        "tmux split panes for agent visualization"
+      ],
+      "raw_excerpt": "## Introduction to Claude Code Agent Teams\n- Introduction to mastering Claude Code Agent Teams with Opus 4.6\n- Overview of the video structure covering setup, sessions, and skills\n- New agent teams feature with the Opus 4.6 model release\n## Three Modes of Claude Code Operation\n- Default mode: Single session with one Claude model\n- Sub agent mode: One session with sub-agents spawned\n- Agent team mode: Each agent has its own independent session\n- Key difference is session management and context isolation\n## Environment Setup and Version Check\n- Update Claude to latest version using 'claude update' command\n- Ensure access to all new features and models\n- Terminal shows Claude Code version 2.1.41 is up to date\n## TMUX Configuration for Split Panes\n- Two display modes: In-process (all agents in one terminal) vs Split panes (separate rooms)\n- TMUX required for split panes functionality\n- Configuration settings: tmuxSplitPanes: true and experimental agents enabled\n- TMUX works best on macOS, requires iTerm2 setup\n## Configuration File Setup\n- Global configuration setup for agent teams across all sessions\n- JSON configuration showing tmuxSplitPanes: true setting\n- Enables agent teams and separate terminal panes for each agent\n## Starting TMUX Session\n- Must start TMUX session before launching Claude Code\n- Command: tmux new-session -s claude-work\n- Creates foundation for multiple agent terminal panes\n## Model Selection and Effort Levels\n- Opus 4.6 available in 200k and 1M token context versions\n- Premium pricing for 1M context above 200k tokens ($10/$37.50 per million)\n- Effort levels: Low (efficient), Medium (balanced), High (complex tasks), Max (absolute maximum capability)\n## Creating Agent Teams\n- Must explicitly tell Claude to 'create an agent team'\n- Team leader distributes tasks and creates agent prompts\n- Agents don't get access to full conversation history\n- Context must be provided through MD files or specific instructions\n## Live Agent Team Demonstration\n- Research task example: SaaS companies and stock market analysis\n- Team automatically splits into multiple terminal panes\n- 5 agents created for different research perspectives\n- Can interact with individual agents directly\n## Agent Management and Shutdown\n- Can shut down individual agents to save tokens\n- Team leader sends shutdown requests that agents can approve or reject\n- Automatic cleanup when tasks complete\n- For coding tasks, agents often remain idle for further instructions",
+      "node_ids": [
+        "claude_code_agents",
+        "inter_agent_comm"
+      ],
+      "created_at": "2026-03-06T02:40:29.972523+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_014",
+      "title": "Building Evolving AI Agents with File-Based Memory Systems: A 40-Day OpenClaw Journey",
+      "type": "article",
+      "url": "https://x.com/berryxia/status/2028668902465733084?s=46&t=L1Jp2DZHKML0nt2FUD0rxA",
+      "study_item_id": "1c4699987669",
+      "summary": "AI agents don't get smarter over time, but their surrounding context files become richer and more precise. A simple three-layer file architecture (Identity, Operation, Knowledge) is more effective than complex orchestration frameworks. File-based collaboration eliminates the need for APIs or message queues between agents",
+      "key_takeaways": [
+        "AI agents don't get smarter over time, but their surrounding context files become richer and more precise",
+        "A simple three-layer file architecture (Identity, Operation, Knowledge) is more effective than complex orchestration frameworks",
+        "File-based collaboration eliminates the need for APIs or message queues between agents",
+        "Success comes from consistent daily interaction and feedback rather than prompt engineering or model switching",
+        "Accumulated context in files creates a competitive moat that can't be replicated by using the same model",
+        "[Action] Start with basic SOUL.md, IDENTITY.md, and USER.md files for agent identity",
+        "[Action] Implement AGENTS.md for session startup and memory management rules",
+        "[Action] Create MEMORY.md to distill important lessons and error patterns",
+        "[Action] Use daily logs for raw interaction data, prune regularly to prevent context bloat",
+        "[Action] Implement shared-context layer for cross-agent knowledge sharing",
+        "[Action] Add HEARTBEAT.md monitoring after experiencing first system failures",
+        "[Action] Follow 4-week gradual implementation timeline rather than trying to build everything at once"
+      ],
+      "tags": [
+        "cross-agent knowledge sharing through shared-context",
+        "evolutionary file refinement over time",
+        "file-based agent memory system",
+        "self-healing mechanisms with heartbeat.md",
+        "single-writer principle for file collaboration",
+        "three-layer architecture (identity/operation/knowledge)"
+      ],
+      "raw_excerpt": "## Introduction and Problem Statement\n- 40-day journey building OpenClaw AI agents from scratch\n- Initial agents were ineffective - filled content with emojis and hashtags\n- Solution wasn't changing prompts or models, but building a file-based memory system\n- 8 agents now running 24/7 with high-quality output\n## Core Philosophy: File-Based Memory System\n- Agents don't get smarter over time, but their surrounding files become richer\n- No message queues, databases, or complex orchestration - just Markdown files\n- File system itself serves as the integration layer\n- Accumulated context is the competitive moat\n## Three-Layer Architecture\n- Identity Layer: SOUL.md, IDENTITY.md, USER.md - defines who the agent is\n- Operation Layer: AGENTS.md, HEARTBEAT.md - defines how agents work and self-heal\n- Knowledge Layer: MEMORY.md, daily logs, shared-context/ - what agents have learned\n- Each layer solves a specific core problem\n## Identity Layer Implementation\n- SOUL.md defines agent personality and core principles\n- IDENTITY.md serves as quick reference card\n- USER.md contains personal details like timezone, dietary preferences\n- Personal details create compound effects across all interactions\n## Operation Layer Implementation\n- AGENTS.md defines session startup process and memory management rules\n- HEARTBEAT.md monitors system health and handles failures\n- Agents have no memory between sessions - everything must be written to files\n- Self-healing mechanisms prevent system failures\n## Knowledge Layer Implementation\n- Three-tier memory system: MEMORY.md (refined), daily logs (raw), shared-context (cross-agent)\n- MEMORY.md contains distilled lessons and error patterns\n- Daily logs are pruned to prevent context bloat\n- Shared-context enables cross-agent knowledge sharing\n## Agent Collaboration Through Files\n- No API calls or message queues - collaboration happens through file system\n- Single-writer principle prevents coordination conflicts\n- Scheduling ensures proper execution order\n- Dwight (research) runs first, others consume his output\n## Implementation Timeline and Best Practices\n- Don't try to build everything in one weekend\n- Start with basic files, add complexity gradually over 4 weeks\n- Files evolve and become more precise over time\n- Success comes from daily interaction and feedback, not prompt engineering",
+      "node_ids": [
+        "memory_systems",
+        "orchestration"
+      ],
+      "created_at": "2026-03-06T02:40:33.047500+00:00",
+      "captured_from": "migration"
+    },
+    {
+      "id": "src_015",
+      "title": "Comprehensive Claude AI Guide: From Basics to Advanced Automation",
+      "type": "article",
+      "url": "https://x.com/aiedge_/status/2029233676111008061",
+      "study_item_id": "8fe83ade619f",
+      "summary": "Claude offers superior task execution capabilities compared to other AI tools like ChatGPT. Proper prompt engineering using the 3-part formula significantly improves output quality. Different Claude models serve different purposes - Sonnet for daily work, Opus for complex reasoning, Haiku for speed",
+      "key_takeaways": [
+        "Claude offers superior task execution capabilities compared to other AI tools like ChatGPT",
+        "Proper prompt engineering using the 3-part formula significantly improves output quality",
+        "Different Claude models serve different purposes - Sonnet for daily work, Opus for complex reasoning, Haiku for speed",
+        "Advanced features like Cowork, Skills, and Plug-ins enable autonomous task execution and workflow automation",
+        "Desktop app unlocks the most powerful features not available in web interface",
+        "[Action] Create Claude account and consider paid plan for full features",
+        "[Action] Implement 3-part prompt formula: context, task, rules",
+        "[Action] Use Sonnet 4.6 for 80% of daily tasks",
+        "[Action] Set up Connectors for frequently used tools",
+        "[Action] Install Claude Chrome extension for browser integration",
+        "[Action] Create Projects for recurring work with shared context",
+        "[Action] Download desktop app to access Cowork and advanced features",
+        "[Action] Build custom Skills for repetitive workflows",
+        "[Action] Explore pre-built Plug-ins for role-based automation"
+      ],
+      "tags": [
+        "ai task execution vs instruction giving",
+        "ai workflow automation",
+        "context window management",
+        "model selection optimization",
+        "prompt engineering frameworks",
+        "repeatable ai instructions (skills)",
+        "role-based ai automation (plug-ins)"
+      ],
+      "raw_excerpt": "## Introduction to Claude\n- Claude positioned as AI that does 'real work' vs just giving instructions\n- Emphasizes task execution capabilities over other AI tools\n- Requires paid plan for full functionality\n- Interface overview with annotated screenshots\n## Prompt Engineering and Context Management\n- 3-Part Prompt Formula: Set the stage, Define the task, Specify the rules\n- Advanced 10-step prompting structure from Anthropic\n- Context management tips: compact conversations, add files, use output restraints\n- Proper prompting saves tokens and time\n## Model Selection Matrix\n- Claude Sonnet 4.6: everyday workhorse for 80% of tasks\n- Claude Opus 4.6: most intelligent, for complex reasoning with Extended Thinking feature\n- Claude Haiku 4.5: fastest and cheapest, for simple tasks\n- Model selection based on task complexity and speed requirements\n## Basic Tools and Features\n- Connectors for Notion, Slack, Google Calendar integration\n- Claude Chrome extension for browser integration\n- Custom styling for response formatting\n- Projects for dedicated work hubs with shared context\n- Research Mode for comprehensive cited reports\n- Claude desktop app required for advanced features\n## Advanced Tools\n- Claude Cowork: autonomous task execution and scheduling (desktop app only)\n- Claude Code: advanced AI coding tool for development tasks\n- Claude Skills: repeatable instructions and workflows\n- Cowork Plug-ins: automated employee roles combining multiple skills\n- Pre-built plug-ins available for Legal, Marketing, Finance domains",
+      "node_ids": [
+        "prompt_engineering",
+        "claude_code_agents"
+      ],
+      "created_at": "2026-03-06T02:40:35.480412+00:00",
+      "captured_from": "migration"
+    }
+  ],
+  "edges": []
+}
