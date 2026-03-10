@@ -1,0 +1,153 @@
+{
+  "video_id": "e1c2d9b3992a",
+  "type": "article",
+  "url": "https://towardsdatascience.com/word2vec-glove-and-fasttext-explained-215a5cd4c06f/",
+  "title": "Word2Vec, GloVe, and FastText, Explained",
+  "channel": "Ajay Halthor",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:13:27.131151",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "ML Research",
+  "token_usage": {
+    "input_tokens": 4122,
+    "output_tokens": 1428,
+    "total_tokens": 5550,
+    "cost_usd": 0.0338,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "ML Research",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction to Word Embeddings",
+        "key_points": [
+          "Computers need numerical representations to understand words",
+          "Embeddings convert words to mathematical vectors where similar meanings have similar values",
+          "Early n-gram vectors were large, sparse, and suffered from curse of dimensionality",
+          "Neural probabilistic language model (2003) introduced continuous dense vectors"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Word2Vec Architecture Overview",
+        "key_points": [
+          "Word2Vec framework emerged in 2013",
+          "Two primary architectures: Continuous Bag of Words (CBoW) and Skip-gram",
+          "Uses context windows to learn word relationships",
+          "Transforms words into dense vector representations"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Continuous Bag-of-Words (CBoW) Model",
+        "key_points": [
+          "Predicts target word from surrounding context words",
+          "Uses context window (e.g., size 2) to select input words",
+          "Converts words to one-hot vectors, projects to lower dimension, then back to vocabulary size",
+          "Training involves sliding context window across sentences"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Skip-gram Model",
+        "key_points": [
+          "Reverse of CBoW: predicts context words from target word",
+          "Input is single word, outputs are surrounding context words",
+          "Creates multiple training pairs from each context window",
+          "Name reflects 'skipping' over words to predict context"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Word2Vec Advantages and Limitations",
+        "key_points": [
+          "Pros: Overcomes curse of dimensionality, semantic similarity, pretrained embeddings available, self-supervised",
+          "Cons: Limited global information preservation, struggles with morphologically rich languages, lacks broad context awareness",
+          "Local context focus may miss long-range dependencies"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "GloVe: Global Vectors",
+        "key_points": [
+          "Addresses Word2Vec's limitation of not using global context",
+          "Uses word-word co-occurrence matrix across entire corpus",
+          "Works with ratios of co-occurrence probabilities rather than raw probabilities",
+          "Example: P(k|ice)/P(k|steam) ratio determines word association with ice vs steam"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "FastText for Morphologically Rich Languages",
+        "key_points": [
+          "Addresses Word2Vec's limitation with morphologically rich languages",
+          "Example: Kannada word 'house' has different forms (mane, maneyalli, maneyinda)",
+          "Uses subword information: breaks words into character n-grams (3-6 grams)",
+          "Aggregates n-gram vectors to represent entire words",
+          "Benefits Arabic, Turkish, Finnish, and Indian languages"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Context Awareness Limitations",
+        "key_points": [
+          "Word2Vec generates same vector regardless of context",
+          "Example: 'queen' in 'drag queen slays' vs 'ace and queen' has same vector",
+          "Advanced architectures like LSTM and transformers (BERT, GPT) address this",
+          "Modern models generate context-sensitive word representations"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Evolution of Word Embeddings: From Word2Vec to Context-Aware Models",
+      "takeaways": [
+        "Word2Vec revolutionized NLP by converting words to dense numerical vectors that capture semantic similarity",
+        "CBoW predicts target words from context, while Skip-gram predicts context from target words",
+        "GloVe improves on Word2Vec by leveraging global co-occurrence statistics across the entire corpus",
+        "FastText handles morphologically rich languages by using subword character n-grams",
+        "All these methods lack context awareness - same word gets same vector regardless of meaning in different contexts",
+        "Modern transformer-based models like BERT address context limitations but Word2Vec remains foundational"
+      ],
+      "concepts": [
+        "Word embeddings and vector representations",
+        "Continuous Bag-of-Words (CBoW) architecture",
+        "Skip-gram model",
+        "Global co-occurrence matrices",
+        "Subword tokenization with character n-grams",
+        "Context-aware vs context-independent embeddings",
+        "Morphologically rich languages"
+      ],
+      "actionable": [
+        "Use Word2Vec for basic semantic similarity tasks and as baseline embeddings",
+        "Choose GloVe when global document-level relationships are important",
+        "Apply FastText for morphologically rich languages or out-of-vocabulary words",
+        "Consider context-aware models (BERT, GPT) for tasks requiring nuanced word meaning understanding",
+        "Evaluate embedding quality using word similarity and analogy tasks",
+        "Leverage pretrained embeddings to bootstrap NLP applications"
+      ]
+    }
+  },
+  "article_text_length": 17226,
+  "cover": "https://towardsdatascience.com/wp-content/uploads/2023/06/0xXERYUxjPaWzjR_S-scaled.jpg"
+}

@@ -131,10 +131,10 @@ def _sync_to_knowledge_tree(item: dict, analysis: dict):
             tree_data = _load_tree()
             source, node_ids, any_newly_lit = _add_source_and_classify(source_data, tree_data, template)
 
-            # Generate summaries for newly lit nodes
+            # Regenerate summaries for all affected nodes (incorporates new source)
             for nid in node_ids:
                 node = tree_data.get("nodes", {}).get(nid)
-                if node and node.get("status") != "unlit" and not node.get("summary"):
+                if node and node.get("status") not in (None, "locked"):
                     result = _generate_node_summary(nid, tree_data)
                     if result:
                         node["summary"] = result.get("summary", "")

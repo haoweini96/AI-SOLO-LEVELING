@@ -1,0 +1,103 @@
+{
+  "video_id": "1af187eaec24",
+  "type": "article",
+  "url": "https://www.promptingguide.ai/",
+  "title": "Prompt Engineering Guide",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T23:39:20.363355",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "Prompt Engineering",
+  "token_usage": {
+    "input_tokens": 740,
+    "output_tokens": 776,
+    "total_tokens": 1516,
+    "cost_usd": 0.0139,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "Prompt Engineering",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Definition and Scope of Prompt Engineering",
+        "key_points": [
+          "Prompt engineering is a discipline for developing and optimizing prompts for language models",
+          "Used for wide variety of applications and research topics",
+          "Helps understand capabilities and limitations of LLMs",
+          "Goes beyond just designing prompts - encompasses skills and techniques for LLM interaction"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Applications and Use Cases",
+        "key_points": [
+          "Researchers use it to improve LLM capacity on common and complex tasks",
+          "Specific examples: question answering and arithmetic reasoning",
+          "Developers use it to design robust prompting techniques",
+          "Interfaces LLMs with other tools and systems"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Advanced Capabilities and Safety",
+        "key_points": [
+          "Can improve safety of LLMs",
+          "Enables building new capabilities",
+          "Allows augmenting LLMs with domain knowledge",
+          "Facilitates integration with external tools"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Guide Resources and Learning Materials",
+        "key_points": [
+          "Comprehensive guide covering latest papers and techniques",
+          "Includes advanced prompting techniques and learning guides",
+          "Model-specific prompting guides available",
+          "Contains lectures, references, and tools",
+          "Related courses: 'Prompt Engineering for LLMs' (2 hours, beginner) and 'Building Effective AI Agents' (5 hours, intermediate)"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Overview of Prompt Engineering as a Discipline",
+      "takeaways": [
+        "Prompt engineering is an essential skill for working effectively with large language models",
+        "It extends beyond simple prompt writing to encompass comprehensive LLM interaction techniques",
+        "The field enables both improved performance on existing tasks and development of new capabilities",
+        "Safety improvements and tool integration are key advanced applications"
+      ],
+      "concepts": [
+        "Prompt optimization",
+        "LLM capabilities and limitations",
+        "Question answering systems",
+        "Arithmetic reasoning",
+        "Domain knowledge augmentation",
+        "External tool integration",
+        "AI agent development"
+      ],
+      "actionable": [
+        "Study the comprehensive prompt engineering guide mentioned for latest techniques",
+        "Take the beginner 'Prompt Engineering for LLMs' course to build foundational skills",
+        "Progress to 'Building Effective AI Agents' course for advanced implementation",
+        "Practice prompt engineering on both simple and complex tasks like Q&A and arithmetic",
+        "Explore model-specific prompting guides for targeted optimization"
+      ]
+    }
+  },
+  "article_text_length": 1990,
+  "cover": ""
+}

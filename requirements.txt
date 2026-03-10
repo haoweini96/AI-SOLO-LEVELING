@@ -3,7 +3,13 @@ flask_cors
 requests
 python-dotenv
 beautifulsoup4
+numpy
+faiss-cpu
+sentence-transformers
 anthropic
 openai
 Pillow
-youtube-transcript-api
+playwright
+elevenlabs
+pydub
+tavily-python

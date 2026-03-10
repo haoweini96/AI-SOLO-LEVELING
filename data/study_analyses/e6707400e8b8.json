@@ -1,0 +1,166 @@
+{
+  "video_id": "e6707400e8b8",
+  "type": "article",
+  "url": "https://www.getmaxim.ai/articles/prompt-evaluation-frameworks-measuring-quality-consistency-and-cost-at-scale/",
+  "title": "Prompt Evaluation Frameworks: Measuring Quality, Consistency, and Cost at Scale",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:01:35.986277",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "Prompt Engineering",
+  "token_usage": {
+    "input_tokens": 2575,
+    "output_tokens": 1542,
+    "total_tokens": 4117,
+    "cost_usd": 0.0309,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "Prompt Engineering",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction and Importance of Prompt Evaluation",
+        "key_points": [
+          "Prompt evaluation is becoming a core engineering discipline for AI teams",
+          "Teams are moving from intuitive to standardized, measurable evaluation",
+          "Structured frameworks ensure quality, safety, cost and latency targets",
+          "Small prompt changes can materially impact output faithfulness, tone, and latency"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Core Evaluation Dimensions",
+        "key_points": [
+          "Quality: Correctness, faithfulness, relevance, helpfulness, safety, tone alignment",
+          "Consistency: Stability across datasets, versions, and models with variance analysis",
+          "Cost: Token usage, latency, runtime overhead across prompts and models",
+          "Rubric-based evaluators provide explainable scores for auditability"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Four-Layer Evaluation Framework",
+        "key_points": [
+          "Offline prompt tests: Bulk comparisons using curated datasets",
+          "Multi-turn simulation: Dynamic agent workflows with tool-call evaluation",
+          "Online monitoring: Production traces for quality checks and drift detection",
+          "Human-in-the-loop: Domain expertise for safety and brand tone calibration"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Dataset Design and Coverage",
+        "key_points": [
+          "Task diversity: Varying complexity, ambiguity, domain specificity",
+          "Scenario realism: Multi-turn conversations with clarifications and tool calls",
+          "Edge cases: Adversarial instructions, prompt injection, safety-sensitive content",
+          "Voice agents require varied audio quality and accent coverage"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Evaluator Design Approaches",
+        "key_points": [
+          "Programmatic checks: Schema conformity, tool-call structure validation",
+          "Statistical metrics: Latency distributions, token usage, cost per request",
+          "LLM-as-a-Judge: Rubric-based scoring for clarity, coherence, faithfulness",
+          "Calibration against human annotations ensures fairness and reproducibility"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "A/B Testing and Experimentation",
+        "key_points": [
+          "Clear objectives: Higher faithfulness, lower latency, reduced hallucinations",
+          "Randomized assignment with unbiased traffic distribution",
+          "Metric bundles combining quality, consistency, and cost",
+          "Statistical rigor with sufficient samples for confidence-based decisions"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Operationalization and Deployment",
+        "key_points": [
+          "Version control linking evaluation outcomes to prompt metadata",
+          "Progressive rollout with rule-based variables and canary testing",
+          "Reproducible retrieval using SDK filtering by tags",
+          "Automated rollback protocols for regression detection"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Agent and RAG-Specific Evaluation",
+        "key_points": [
+          "Tool-call evaluation: Selection, argument correctness, schema conformity",
+          "RAG evaluation: Precision, recall, relevance, faithfulness to sources",
+          "Trajectory analysis: Multi-turn coherence, task completion, error handling",
+          "Trace analysis for pinpointing exact reasoning failures"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Production Monitoring and Best Practices",
+        "key_points": [
+          "Distributed tracing for prompt execution, tool calls, retrieval steps",
+          "Automated checks on live logs for drift detection",
+          "Data curation converting live traces to evaluation datasets",
+          "Common pitfalls: insufficient samples, overfitting, ignoring multi-turn dynamics"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Framework for Scalable Prompt Evaluation in Production AI Systems",
+      "takeaways": [
+        "Prompt evaluation requires a structured, four-layer approach spanning offline testing, simulation, online monitoring, and human review",
+        "Evaluation must measure three key dimensions: quality (correctness, safety), consistency (stability across versions), and cost (tokens, latency)",
+        "LLM-as-a-Judge combined with programmatic checks and statistical metrics provides comprehensive assessment",
+        "A/B testing with proper statistical rigor enables evidence-driven prompt iteration and deployment decisions",
+        "Agent and RAG systems require specialized evaluation for tool calls, retrieval accuracy, and multi-turn trajectory analysis"
+      ],
+      "concepts": [
+        "Four-layer evaluation framework",
+        "LLM-as-a-Judge scoring",
+        "Rubric-based evaluation",
+        "Multi-turn simulation testing",
+        "Trajectory analysis for agents",
+        "RAG faithfulness evaluation",
+        "Progressive rollout strategies",
+        "Distributed tracing for prompts"
+      ],
+      "actionable": [
+        "Implement offline, simulation, online, and human review layers for comprehensive evaluation",
+        "Build diverse datasets covering task complexity, realistic scenarios, and edge cases",
+        "Design evaluators combining programmatic checks, statistical metrics, and AI-based scoring",
+        "Set up A/B testing with clear objectives, randomized assignment, and statistical confidence",
+        "Establish version control linking evaluation results to deployment decisions",
+        "Implement distributed tracing and automated monitoring for production prompt performance",
+        "Create rollback protocols triggered by regression detection in live evaluators"
+      ]
+    }
+  },
+  "article_text_length": 10831,
+  "cover": "https://maxim-articles.ghost.io/content/images/size/w1200/2025/10/ChatGPT-Image-Oct-26--2025--02_03_12-AM.png"
+}

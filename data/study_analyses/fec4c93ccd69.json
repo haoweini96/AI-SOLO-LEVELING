@@ -1,0 +1,112 @@
+{
+  "video_id": "fec4c93ccd69",
+  "type": "article",
+  "url": "https://www.paloaltonetworks.com/cyberpedia/ai-infrastructure-security",
+  "title": "How to Secure AI Infrastructure: A Secure by Design Guide",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:08:01.893117",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Infra",
+  "token_usage": {
+    "input_tokens": 5336,
+    "output_tokens": 994,
+    "total_tokens": 6330,
+    "cost_usd": 0.0309,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Infra",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "The Need for AI Infrastructure Security",
+        "key_points": [
+          "78% of organizations use AI in at least one business function (McKinsey survey)",
+          "AI systems operate differently than traditional IT with large datasets and complex algorithms",
+          "Distributed AI deployments across edge, on-prem, and cloud increase attack surfaces",
+          "Traditional cybersecurity tools weren't designed for AI-specific threats like adversarial inputs and model inversion"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Secure by Design AI Principles",
+        "key_points": [
+          "Security must be built into every part of AI systems from the start, not added later",
+          "CISA emphasizes AI must be secure to use out of the box with minimal configuration",
+          "Includes encrypted data pipelines, isolated training environments, and signed models",
+          "Focuses on making AI trustworthy, not just functional"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Eight Core Security Components",
+        "key_points": [
+          "1. Secure AI data pipeline with AES-256 encryption and TLS 1.3",
+          "2. Isolate model training environments with dependency scanning",
+          "3. Protect model artifacts with cryptographic signing and access controls",
+          "4. Harden deployment infrastructure with container security and immutable infrastructure",
+          "5. Defend inference operations with input validation and rate limiting",
+          "6. Implement continuous monitoring with behavioral analytics and automated response",
+          "7. Apply Zero Trust with RBAC and microsegmentation",
+          "8. Govern the entire AI lifecycle with versioning and provenance tracking"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Implementation Details and Best Practices",
+        "key_points": [
+          "Use Hardware Security Modules (HSMs) for key management",
+          "Implement just-in-time access to reduce exposure windows",
+          "Apply confidential computing for highly sensitive training workloads",
+          "Maintain forensic logs for at least 90 days for incident analysis",
+          "63% of organizations lack proper data management practices for AI (Gartner)"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Guide to Securing AI Infrastructure with Secure by Design Principles",
+      "takeaways": [
+        "AI infrastructure requires purpose-built security approaches that differ from traditional IT security",
+        "Security must be integrated from the beginning of the AI lifecycle, not bolted on afterward",
+        "A comprehensive 8-component framework covers data pipelines, training, deployment, and operations",
+        "Continuous monitoring and Zero Trust principles are essential for distributed AI environments",
+        "Most organizations lack proper data management practices needed for secure AI deployment"
+      ],
+      "concepts": [
+        "Secure by Design AI",
+        "AI data pipeline security",
+        "Model artifact protection",
+        "Inference-time security",
+        "Zero Trust for AI",
+        "AI lifecycle governance",
+        "Adversarial attacks",
+        "Model provenance tracking"
+      ],
+      "actionable": [
+        "Implement AES-256 encryption for data at rest and TLS 1.3 for data in transit",
+        "Set up isolated training environments with automated dependency scanning",
+        "Use cryptographic signing for all model artifacts and implement RBAC",
+        "Deploy input validation and rate limiting for inference endpoints",
+        "Establish continuous monitoring with behavioral analytics and automated response playbooks",
+        "Apply microsegmentation and just-in-time access across AI environments",
+        "Maintain detailed audit logs and implement model rollback capabilities",
+        "Create governance frameworks for end-to-end AI lifecycle management"
+      ]
+    }
+  },
+  "article_text_length": 23468,
+  "cover": "https://www.paloaltonetworks.com/etc/clientlibs/pan-templates/seoimages/social-panw.png"
+}

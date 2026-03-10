@@ -1837,36 +1837,117 @@
     .kt-daily-quests-refresh:hover { color: var(--accent); background: var(--accent-dim); }
     .kt-daily-quests-refresh.spinning { animation: kt-spin 0.8s linear infinite; }
     @keyframes kt-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .kt-quest-item {
-      display: flex;
-      gap: 8px;
-      padding: 8px 14px;
-      cursor: pointer;
-      border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
-      transition: background 0.15s;
+    /* Quest switch tabs */
+    .kt-quest-switch {
+      display: flex; gap: 2px; padding: 2px;
+      background: rgba(255,255,255,0.05); border-radius: 8px; margin: 0 12px 8px;
     }
-    .kt-quest-item:hover { background: var(--card-hover); }
-    .kt-quest-item:last-child { border-bottom: none; }
-    .kt-quest-dot {
-      width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; flex-shrink: 0;
+    body[data-theme="light"] .kt-quest-switch { background: rgba(0,0,0,0.04); }
+    .kt-quest-tab {
+      flex: 1; padding: 5px 0; border: none; border-radius: 6px;
+      font: 600 11px var(--font-body); cursor: pointer;
+      color: var(--text-tertiary); background: transparent; transition: all 0.15s;
     }
-    .kt-quest-dot.high { background: #ef4444; }
-    .kt-quest-dot.medium { background: #f59e0b; }
-    .kt-quest-dot.low { background: #22c55e; }
-    .kt-quest-item-body { flex: 1; min-width: 0; }
-    .kt-quest-item-action {
-      font-size: 12px; font-weight: 500; color: var(--text);
-      line-height: 1.3; margin-bottom: 2px;
-      overflow: hidden; text-overflow: ellipsis;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    .kt-quest-tab:hover { color: var(--text-secondary); }
+    .kt-quest-tab.active {
+      background: rgba(168,85,247,0.15); color: #c084fc;
     }
-    .kt-quest-item-node {
-      font-size: 10px; color: var(--text-tertiary);
+    body[data-theme="light"] .kt-quest-tab.active {
+      background: rgba(124,58,237,0.1); color: #7c3aed;
+    }
+    /* Quest cards */
+    .kt-quest-card-item {
+      margin: 0 10px 8px; padding: 10px 12px; border-radius: 10px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .kt-quest-card-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(168,85,247,0.2); }
+    body[data-theme="light"] .kt-quest-card-item { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.06); }
+    body[data-theme="light"] .kt-quest-card-item:hover { background: rgba(0,0,0,0.04); border-color: rgba(124,58,237,0.2); }
+    .kt-quest-card-row1 {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;
+    }
+    .kt-quest-card-label {
+      font-size: 12px; font-weight: 600; color: var(--text);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .kt-quest-card-xp {
+      font-size: 10px; font-weight: 600; color: #fbbf24; white-space: nowrap;
+    }
+    .kt-quest-card-desc {
+      font-size: 11px; color: var(--text-secondary); line-height: 1.4;
       overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-    .kt-quest-item-reason {
-      font-size: 10px; color: var(--text-tertiary); margin-top: 1px;
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    .kt-quest-card-arrow {
+      float: right; font-size: 11px; color: var(--text-tertiary); margin-left: 8px;
+    }
+    .kt-quest-pri-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .kt-quest-pri-dot.high { background: #ef4444; }
+    .kt-quest-pri-dot.medium { background: #f59e0b; }
+    .kt-quest-pri-dot.low { background: #22c55e; }
+    /* Quest detail modal (centered) */
+    .kt-quest-modal-overlay {
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center;
+      animation: ktNodePageFadeIn 0.15s ease;
+    }
+    .kt-quest-modal {
+      width: 90%; max-width: 480px; background: rgba(15,20,35,0.97);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 2px;
+      padding: 24px 28px; position: relative;
+    }
+    body[data-theme="light"] .kt-quest-modal {
+      background: rgba(255,255,255,0.97); border-color: rgba(0,0,0,0.12);
+    }
+    .kt-quest-modal-close {
+      position: absolute; top: 12px; right: 14px;
+      background: none; border: none; color: var(--text-tertiary); cursor: pointer;
+      font-size: 18px; line-height: 1; padding: 4px;
+    }
+    .kt-quest-modal-close:hover { color: var(--text); }
+    .kt-quest-detail-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-right: 24px;
+    }
+    .kt-quest-detail-icon { font-size: 24px; }
+    .kt-quest-detail-title { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
+    .kt-quest-detail-xp {
+      font-size: 12px; font-weight: 700; color: #fbbf24; white-space: nowrap;
+    }
+    .kt-quest-detail-body {
+      font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px;
+    }
+    .kt-quest-detail-actions-title {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      color: var(--text-tertiary); margin-bottom: 10px;
+    }
+    .kt-quest-detail-action-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.4;
+    }
+    .kt-quest-detail-action-num {
+      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(168,85,247,0.15); color: #c084fc;
+      font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+    .kt-quest-detail-cta {
+      margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .kt-quest-detail-cta button {
+      padding: 8px 16px; border-radius: 2px; border: none; cursor: pointer;
+      font: 600 12px var(--font-body); transition: opacity 0.15s;
+    }
+    .kt-quest-detail-cta button:hover { opacity: 0.85; }
+    .kt-quest-detail-cta .primary {
+      background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff;
+    }
+    .kt-quest-detail-cta .secondary {
+      background: rgba(255,255,255,0.06); color: var(--text-secondary);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    body[data-theme="light"] .kt-quest-detail-cta .secondary {
+      background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); color: var(--text);
     }
     .kt-daily-quests-empty {
       padding: 16px; text-align: center; font-size: 11px; color: var(--text-tertiary);
@@ -2275,6 +2356,11 @@
     body[data-theme="light"] .kt-node-page-back { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); color: rgba(0,0,0,0.6); }
     .kt-node-page-back:hover { background: rgba(255,255,255,0.15); }
     body[data-theme="light"] .kt-node-page-back:hover { background: rgba(0,0,0,0.1); }
+    .kt-lang-btn { padding:4px 12px; border-radius:6px; border:1px solid rgba(255,255,255,0.12); background:transparent; color:var(--text-secondary); font-size:12px; font-weight:600; cursor:pointer; transition:all 0.15s; }
+    .kt-lang-btn:hover:not(.active) { border-color:rgba(168,85,247,0.4); }
+    .kt-lang-btn.active { border-color:#a855f7; background:rgba(168,85,247,0.15); color:#c084fc; }
+    body[data-theme="light"] .kt-lang-btn { border-color:rgba(0,0,0,0.12); }
+    body[data-theme="light"] .kt-lang-btn.active { border-color:#7c3aed; background:rgba(124,58,237,0.1); color:#7c3aed; }
     .kt-node-page-breadcrumb {
       font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 8px;
     }
@@ -2284,7 +2370,7 @@
     }
     body[data-theme="light"] .kt-node-page-title { color: #1a1a2e; }
     .kt-node-page-section {
-      margin-bottom: 28px;
+      margin-bottom: 40px;
     }
     .kt-node-page-section-title {
       font-size: 11px; font-weight: 800; letter-spacing: 2px;
@@ -2293,6 +2379,155 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     body[data-theme="light"] .kt-node-page-section-title { color: rgba(0,0,0,0.4); border-bottom-color: rgba(0,0,0,0.08); }
+    /* ── Mind Map section ── */
+    .kt-mindmap-container {
+      position: relative; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; overflow: auto; min-height: 200px; max-height: 600px;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .kt-mindmap-container::-webkit-scrollbar { display: none; }
+    body[data-theme="light"] .kt-mindmap-container { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.06); }
+    .kt-mindmap-container svg { display: block; }
+    .kt-mindmap-loading {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--text-secondary);
+    }
+    .kt-mindmap-locked-hint {
+      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+      font-size: 11px; color: var(--text-tertiary); background: rgba(0,0,0,0.4);
+      padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+    }
+    body[data-theme="light"] .kt-mindmap-locked-hint { background: rgba(0,0,0,0.06); }
+    /* ── Audio Overview player ── */
+    .kt-audio-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 20px 24px;
+    }
+    body[data-theme="light"] .kt-audio-card { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+    .kt-audio-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .kt-audio-subtitle { font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; }
+    .kt-audio-controls { display: flex; align-items: center; gap: 12px; }
+    .kt-audio-play {
+      width: 40px; height: 40px; border-radius: 50%; border: none;
+      background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff;
+      font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: transform 0.15s, opacity 0.15s; flex-shrink: 0;
+    }
+    .kt-audio-play:hover { transform: scale(1.08); }
+    .kt-audio-play:active { transform: scale(0.95); }
+    .kt-audio-progress {
+      flex: 1; height: 6px; -webkit-appearance: none; appearance: none;
+      background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;
+    }
+    .kt-audio-progress::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
+      background: #a855f7; cursor: pointer; margin-top: -4px;
+    }
+    .kt-audio-progress::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; }
+    body[data-theme="light"] .kt-audio-progress { background: rgba(0,0,0,0.08); }
+    .kt-audio-time { font-size: 11px; color: var(--text-secondary); white-space: nowrap; min-width: 80px; text-align: right; }
+    .kt-audio-gen-btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px;
+      background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff;
+      border: none; border-radius: 10px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: transform 0.15s, opacity 0.15s;
+    }
+    .kt-audio-gen-btn:hover { transform: scale(1.03); }
+    .kt-audio-gen-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .kt-audio-gen-hint { font-size: 11px; color: var(--text-tertiary); margin-top: 10px; }
+    /* ── Deep Research ── */
+    .kt-research-empty {
+      text-align: center; padding: 28px 20px;
+      background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.12);
+      border-radius: 14px;
+    }
+    .kt-research-empty-icon { font-size: 28px; margin-bottom: 8px; }
+    .kt-research-empty-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .kt-research-empty-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.6; }
+    .kt-research-gen-btn {
+      display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed); color: #fff;
+      border: none; border-radius: 10px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .kt-research-gen-btn:hover { transform: scale(1.03); box-shadow: 0 4px 16px rgba(37,99,235,0.25); }
+    .kt-research-gen-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+    .kt-research-hint { font-size: 11px; color: var(--text-tertiary); margin-top: 10px; }
+    .kt-research-overview { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
+    .kt-research-step {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; margin-bottom: 12px; overflow: hidden;
+    }
+    .kt-research-step-header {
+      display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+      cursor: pointer; user-select: none;
+    }
+    .kt-research-step-header:hover { background: rgba(255,255,255,0.03); }
+    .kt-research-step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: #fff; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .kt-research-step-title { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
+    .kt-research-step-arrow { font-size: 12px; color: var(--text-secondary); transition: transform 0.2s; }
+    .kt-research-step.collapsed .kt-research-step-arrow { transform: rotate(-90deg); }
+    .kt-research-step.collapsed .kt-research-step-body { display: none; }
+    .kt-research-step-desc { font-size: 12px; color: var(--text-secondary); padding: 0 16px 8px; line-height: 1.5; }
+    .kt-research-resource {
+      display: flex; align-items: flex-start; gap: 10px; padding: 8px 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .kt-research-resource-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+    .kt-research-resource-body { flex: 1; min-width: 0; }
+    .kt-research-resource-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .kt-research-resource-why { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+    .kt-research-resource-meta { font-size: 10px; color: var(--text-tertiary); margin-top: 3px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .kt-research-resource-actions { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
+    .kt-research-resource-btn {
+      padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.12); background: transparent;
+      color: var(--accent); cursor: pointer; text-decoration: none; white-space: nowrap;
+    }
+    .kt-research-resource-btn:hover { background: rgba(255,255,255,0.06); }
+    .kt-research-resource-btn.added { color: #22c55e; border-color: rgba(34,197,94,0.3); cursor: default; }
+    .kt-research-section-label {
+      font-size: 12px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase;
+      letter-spacing: 0.5px; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .kt-research-classic-card {
+      display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; margin-bottom: 8px;
+    }
+    .kt-research-weak-dim {
+      background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 8px;
+    }
+    .kt-research-weak-dim-title { font-size: 12px; font-weight: 600; color: #ef4444; margin-bottom: 8px; }
+    .kt-research-project {
+      display: flex; gap: 12px; padding: 10px 14px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; margin-bottom: 8px;
+    }
+    .kt-research-project-icon { font-size: 20px; flex-shrink: 0; }
+    .kt-research-project-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .kt-research-project-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+    .kt-research-project-meta { font-size: 10px; color: var(--text-tertiary); margin-top: 3px; }
+    .kt-research-footer { font-size: 11px; color: var(--text-tertiary); margin-top: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .kt-research-refresh-btn {
+      padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.12); background: transparent;
+      color: var(--text-secondary); cursor: pointer;
+    }
+    .kt-research-refresh-btn:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+    .kt-research-ai-warning { font-size: 10px; color: var(--text-tertiary); font-style: italic; }
+    body[data-theme="light"] .kt-research-empty { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.12); }
+    body[data-theme="light"] .kt-research-step { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+    body[data-theme="light"] .kt-research-step-header:hover { background: rgba(0,0,0,0.03); }
+    body[data-theme="light"] .kt-research-resource { border-top-color: rgba(0,0,0,0.06); }
+    body[data-theme="light"] .kt-research-classic-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.06); }
+    body[data-theme="light"] .kt-research-project { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.06); }
     /* ── Branch detail — leaf concept card ── */
     .kt-branch-leaf-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
@@ -2530,6 +2765,16 @@
       transition: all 0.2s;
     }
     .kt-review-exit:hover { color: var(--text); border-color: var(--text-secondary); }
+    /* Comprehensive review node header + reason tags */
+    .kt-cr-node-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+    .kt-cr-node-from { font-size:13px; font-weight:600; color:var(--text-secondary); }
+    .kt-cr-reason { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; }
+    .kt-cr-reason-due { background:rgba(239,68,68,0.15); color:#f87171; }
+    .kt-cr-reason-wrong { background:rgba(251,191,36,0.15); color:#fbbf24; }
+    .kt-cr-reason-random { background:rgba(96,165,250,0.15); color:#60a5fa; }
+    .kt-cr-result-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); font-size:14px; }
+    .kt-cr-result-row:last-child { border-bottom:none; }
+    .kt-cr-result-node { color:var(--text); font-weight:500; }
     .kt-review-progress-bar {
       width: 100%;
       height: 4px;
@@ -2555,38 +2800,172 @@
     .kt-quiz-type {
       font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
       padding: 3px 10px; border-radius: 4px;
-      background: rgba(168,85,247,0.15); color: #c084fc;
     }
+    .kt-quiz-type[data-qt="concept_recall"] { background: rgba(96,165,250,0.15); color: #60a5fa; }
+    .kt-quiz-type[data-qt="application"] { background: rgba(34,197,94,0.15); color: #4ade80; }
+    .kt-quiz-type[data-qt="comparison"] { background: rgba(251,146,60,0.15); color: #fb923c; }
+    .kt-quiz-type[data-qt="system_design"] { background: rgba(168,85,247,0.15); color: #c084fc; }
     .kt-quiz-difficulty { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 3px 10px; border-radius: 4px; }
     .kt-quiz-difficulty[data-d="easy"] { background: rgba(34,197,94,0.15); color: #4ade80; }
     .kt-quiz-difficulty[data-d="medium"] { background: rgba(251,191,36,0.15); color: #fbbf24; }
     .kt-quiz-difficulty[data-d="hard"] { background: rgba(239,68,68,0.15); color: #f87171; }
-    .kt-quiz-question { font-size: 18px; font-weight: 600; line-height: 1.6; color: var(--text); }
-    .kt-quiz-think {
-      min-height: 100px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 16px;
-      padding: 24px; color: var(--text-secondary); font-size: 14px;
+    .kt-quiz-question { font-size: 18px; font-weight: 600; line-height: 1.6; color: var(--text); white-space: pre-line; }
+
+    /* Shimmer loading skeleton */
+    .kt-quiz-shimmer {
+      background: linear-gradient(90deg,
+        rgba(255,255,255,0.03) 25%,
+        rgba(255,255,255,0.08) 50%,
+        rgba(255,255,255,0.03) 75%
+      );
+      background-size: 200% 100%;
+      animation: ktShimmer 1.5s infinite;
+      border-radius: 12px;
     }
-    .kt-quiz-hint {
+    @keyframes ktShimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .kt-quiz-shimmer-card {
+      padding: 24px 28px; border-radius: 14px; border: 1px solid var(--border);
+      background: var(--surface); margin-bottom: 14px;
+    }
+    .kt-quiz-shimmer-line {
+      height: 14px; border-radius: 6px; margin-bottom: 10px;
+    }
+    .kt-quiz-shimmer-line.w80 { width: 80%; }
+    .kt-quiz-shimmer-line.w60 { width: 60%; }
+    .kt-quiz-shimmer-line.w50 { width: 50%; }
+    .kt-quiz-shimmer-line.w40 { width: 40%; }
+    .kt-quiz-shimmer-line.w90 { width: 90%; }
+    .kt-quiz-shimmer-option {
+      height: 48px; border-radius: 10px; margin-bottom: 10px;
+    }
+
+    /* Multiple choice options */
+    .kt-mc-options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    .kt-mc-option {
+      padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--surface); cursor: pointer; font-size: 15px; line-height: 1.5;
+      color: var(--text); transition: all 0.2s; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .kt-mc-option:hover:not(.kt-mc-locked) { border-color: var(--text-secondary); background: rgba(168,85,247,0.05); }
+    .kt-mc-option.kt-mc-locked { cursor: default; }
+    .kt-mc-option.kt-mc-correct { border-color: #4ade80; background: rgba(34,197,94,0.1); }
+    .kt-mc-option.kt-mc-wrong { border-color: #f87171; background: rgba(239,68,68,0.1); }
+    .kt-mc-option .kt-mc-letter {
+      font-weight: 700; min-width: 20px; color: var(--text-secondary);
+    }
+    .kt-mc-option.kt-mc-correct .kt-mc-letter { color: #4ade80; }
+    .kt-mc-option.kt-mc-wrong .kt-mc-letter { color: #f87171; }
+    .kt-mc-explanation {
+      margin-top: 16px; padding: 14px 18px; border-radius: 10px;
+      background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.2);
+      font-size: 14px; line-height: 1.6; color: var(--text); display: none;
+    }
+    .kt-mc-explanation.kt-mc-wrong-explain {
+      background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.2);
+    }
+
+    /* Open-ended answer area */
+    .kt-oe-area { margin-top: 20px; }
+    .kt-oe-textarea {
+      width: 100%; min-height: 120px; padding: 14px 16px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--bg); color: var(--text);
+      font-size: 15px; line-height: 1.6; font-family: inherit; resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .kt-oe-textarea:focus { outline: none; border-color: #a855f7; }
+    .kt-oe-textarea::placeholder { color: var(--text-tertiary); }
+    .kt-oe-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+    .kt-oe-hint-btn {
+      background: none; border: 1px solid var(--border); color: var(--text-secondary);
+      padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: all 0.2s;
+    }
+    .kt-oe-hint-btn:hover { color: var(--text); border-color: var(--text-secondary); }
+    .kt-oe-submit-btn {
+      background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; border: none;
+      padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: opacity 0.2s;
+    }
+    .kt-oe-submit-btn:hover { opacity: 0.9; }
+    .kt-oe-submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .kt-oe-hint {
+      margin-top: 10px; padding: 12px 16px; border-radius: 8px;
       background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2);
-      border-radius: 8px; padding: 12px 16px; font-size: 14px;
-      color: var(--text-secondary); width: 100%; text-align: left; display: none;
+      font-size: 14px; color: var(--text-secondary); display: none;
     }
-    .kt-quiz-action-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 10px 20px; border-radius: 8px; border: 1px solid var(--border);
-      background: transparent; color: var(--text-secondary);
-      font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+
+    /* Evaluation results */
+    .kt-eval-result { margin-top: 20px; padding: 18px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
+    .kt-eval-score { font-size: 16px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .kt-eval-points { list-style: none; padding: 0; margin: 0; }
+    .kt-eval-points li { padding: 6px 0 6px 24px; position: relative; font-size: 14px; line-height: 1.5; color: var(--text); }
+    .kt-eval-points li::before { position: absolute; left: 0; font-weight: 700; }
+    .kt-eval-points li.kt-eval-covered::before { content: "\2713"; color: #4ade80; }
+    .kt-eval-points li.kt-eval-missed::before { content: "\2717"; color: #f87171; }
+    .kt-eval-comment { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+    .kt-eval-feedback { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-secondary); }
+
+    /* Quiz next button */
+    .kt-quiz-next-btn {
+      display: block; margin: 20px 0 0 auto; padding: 10px 28px; border-radius: 8px;
+      background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; border: none;
+      font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.2s;
     }
-    .kt-quiz-action-btn:hover { color: var(--text); border-color: var(--text-secondary); }
-    .kt-quiz-answer { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px; display: none; }
-    .kt-quiz-answer-title {
-      font-size: 12px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 12px;
+    .kt-quiz-next-btn:hover { opacity: 0.9; }
+
+    /* Quiz summary */
+    .kt-quiz-summary-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      border-radius: 8px; background: var(--surface); border: 1px solid var(--border); font-size: 14px;
     }
-    .kt-quiz-answer-points { list-style: none; padding: 0; }
-    .kt-quiz-answer-points li { padding: 6px 0 6px 20px; position: relative; font-size: 15px; line-height: 1.5; color: var(--text); }
-    .kt-quiz-answer-points li::before { content: "\2713"; position: absolute; left: 0; color: #4ade80; font-weight: 700; }
+    .kt-quiz-summary-item + .kt-quiz-summary-item { margin-top: 8px; }
+    .kt-quiz-summary-check { font-size: 16px; min-width: 20px; text-align: center; }
+    .kt-quiz-summary-type { font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+    .kt-quiz-passed-banner {
+      text-align: center; padding: 20px; margin: 20px 0; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(99,102,241,0.15));
+      border: 1px solid rgba(168,85,247,0.3);
+    }
+    .kt-quiz-passed-banner h3 { font-size: 20px; color: #c084fc; margin: 0 0 8px; }
+    .kt-quiz-passed-banner p { color: var(--text-secondary); margin: 0; font-size: 14px; }
+    .kt-wrong-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; }
+    .kt-wrong-card.wrong { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.15); }
+    body[data-theme="light"] .kt-wrong-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+    body[data-theme="light"] .kt-wrong-card.wrong { background: rgba(239,68,68,0.04); border-color: rgba(239,68,68,0.12); }
+    .kt-wrong-card-header { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-secondary); margin-bottom: 8px; }
+    .kt-wrong-card-q { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
+    .kt-wrong-card-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+    .kt-wrong-card-detail strong { color: var(--text); font-weight: 600; }
+    .kt-wrong-retry { padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(168,85,247,0.3); background: rgba(168,85,247,0.1); color: #c084fc; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s; float: right; margin-top: 4px; }
+    .kt-wrong-retry:hover { background: rgba(168,85,247,0.2); }
+    body[data-theme="light"] .kt-wrong-retry { border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); color: #7c3aed; }
+    .kt-wrong-viewall { font-size: 12px; font-weight: 600; color: #c084fc; cursor: pointer; background: none; border: none; padding: 0; }
+    .kt-wrong-viewall:hover { text-decoration: underline; }
+    /* Custom dropdown for Quiz History filter */
+    .kt-dropdown { position: relative; display: inline-block; }
+    .kt-dropdown-trigger { display: flex; align-items: center; gap: 6px; padding: 3px 10px 3px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: var(--text-secondary); font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.15s; user-select: none; line-height: 1; white-space: nowrap; }
+    .kt-dropdown-trigger:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.07); color: var(--text); }
+    .kt-dropdown-trigger.open { border-color: rgba(168,85,247,0.4); background: rgba(168,85,247,0.08); color: #c084fc; }
+    .kt-dropdown-arrow { font-size: 8px; opacity: 0.6; transition: transform 0.15s; }
+    .kt-dropdown-trigger.open .kt-dropdown-arrow { transform: rotate(180deg); }
+    .kt-dropdown-panel { position: absolute; top: calc(100% + 4px); right: 0; min-width: 130px; background: rgba(20,25,40,0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04) inset; z-index: 50; overflow: hidden; opacity: 0; transform: translateY(-4px); pointer-events: none; transition: opacity 0.15s, transform 0.15s; }
+    .kt-dropdown-panel.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .kt-dropdown-item { display: flex; align-items: center; gap: 8px; padding: 7px 12px; font-size: 11px; color: var(--text-secondary); cursor: pointer; transition: background 0.1s, color 0.1s; }
+    .kt-dropdown-item:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+    .kt-dropdown-item.active { color: #c084fc; }
+    .kt-dropdown-item.active::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: #a855f7; flex-shrink: 0; }
+    .kt-dropdown-item:not(.active)::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: transparent; flex-shrink: 0; }
+    /* Light theme overrides */
+    body[data-theme="light"] .kt-dropdown-trigger { border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.03); color: #64748b; }
+    body[data-theme="light"] .kt-dropdown-trigger:hover { border-color: rgba(0,0,0,0.2); background: rgba(0,0,0,0.05); color: #334155; }
+    body[data-theme="light"] .kt-dropdown-trigger.open { border-color: rgba(124,58,237,0.4); background: rgba(124,58,237,0.06); color: #7c3aed; }
+    body[data-theme="light"] .kt-dropdown-panel { background: rgba(255,255,255,0.96); border-color: rgba(0,0,0,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04) inset; }
+    body[data-theme="light"] .kt-dropdown-item:hover { background: rgba(0,0,0,0.04); color: #1e293b; }
+    body[data-theme="light"] .kt-dropdown-item.active { color: #7c3aed; }
+    body[data-theme="light"] .kt-dropdown-item.active::before { background: #7c3aed; }
+    body[data-theme="light"] .kt-wrong-viewall { color: #7c3aed; }
     .kt-rating-section { text-align: center; padding-top: 20px; display: none; }
     .kt-rating-label { font-size: 14px; color: var(--text-secondary); margin-bottom: 14px; font-weight: 600; }
     .kt-rating-buttons { display: flex; gap: 10px; justify-content: center; }
@@ -2716,7 +3095,7 @@
   <div class="tab-bar">
     <button class="tab-btn active" id="tabFeed" onclick="switchTab('feed')">Feed</button>
     <button class="tab-btn" id="tabStudy" onclick="switchTab('study')">Study</button>
-    <button class="tab-btn" id="tabKtree" onclick="switchTab('ktree')">Knowledge Tree</button>
+    <button class="tab-btn" id="tabKtree" onclick="switchTab('ktree')">Hunter's Path</button>
   </div>
 
   <div class="tab-actions" id="feedActions">
@@ -2870,21 +3249,25 @@
         <!-- View Toggle -->
         <div class="kt-view-toggle">
           <button class="kt-view-btn active" id="ktViewOverview" onclick="ktSwitchView('overview')">Overview</button>
-          <button class="kt-view-btn" id="ktViewTechTree" onclick="ktSwitchView('tech-tree')">Tech Tree</button>
+          <button class="kt-view-btn" id="ktViewTechTree" onclick="ktSwitchView('tech-tree')">Power Grid</button>
         </div>
 
         <!-- Sidebar Actions -->
         <div class="kt-sidebar-actions">
-          <button class="kt-review-btn" id="ktReviewBtn" onclick="ktStartReview()" disabled>
+          <button class="kt-review-btn" id="ktReviewBtn" onclick="ktStartReview()">
             Start Review <span class="kt-due-badge" id="ktDueBadge">0</span>
           </button>
         </div>
 
-        <!-- Daily Quests -->
+        <!-- Quests (Daily / Weekly) -->
         <div class="kt-daily-quests" id="ktDailyQuests">
           <div class="kt-daily-quests-header">
-            DAILY QUESTS
-            <button class="kt-daily-quests-refresh" id="ktQuestsRefreshBtn" onclick="ktRefreshDailyQuests(true)" title="Refresh recommendations">&#x1f504;</button>
+            ⚔️ QUESTS
+            <button class="kt-daily-quests-refresh" id="ktQuestsRefreshBtn" onclick="ktRefreshQuests(true)" title="Refresh">&#x1f504;</button>
+          </div>
+          <div class="kt-quest-switch">
+            <button class="kt-quest-tab active" data-tab="daily" onclick="ktSwitchQuestTab('daily')">Daily</button>
+            <button class="kt-quest-tab" data-tab="weekly" onclick="ktSwitchQuestTab('weekly')">Weekly</button>
           </div>
           <div id="ktDailyQuestsList">
             <div class="kt-daily-quests-empty">Loading...</div>
@@ -4193,6 +4576,9 @@
     // ================================================================
 
     const KT_API = 'http://localhost:8081/api/knowledge-tree';
+    const KT_QUIZ_TYPE_LABELS = { concept_recall: 'Concept Recall', application: 'Application', comparison: 'Comparison', system_design: 'System Design' };
+    const KT_QUIZ_TYPE_COLORS = { concept_recall: '#60a5fa', application: '#4ade80', comparison: '#fb923c', system_design: '#c084fc' };
+    let ktNodeLang = localStorage.getItem('kt_node_lang') || 'en';
     let ktHunterProfile = null;
     let ktTechTree = null;
     let ktView = 'overview'; // 'overview' | 'tech-tree'
@@ -4559,11 +4945,11 @@
             </div>
 
             <div style="font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:16px">Branch Progress</div>
-            ${branchRowsHtml || '<div style="color:var(--text-tertiary);font-size:14px">No tech tree data. Click "Tech Tree" to explore.</div>'}
+            ${branchRowsHtml || '<div style="color:var(--text-tertiary);font-size:14px">No data yet. Click "Power Grid" to explore.</div>'}
 
             <div style="margin-top:20px">
               <button class="kt-review-btn" onclick="ktSwitchView('tech-tree')" style="background:linear-gradient(135deg,#3b82f6,#6366f1)">
-                Explore Tech Tree
+                Explore Power Grid
               </button>
             </div>
           </div>
@@ -4713,7 +5099,27 @@
             .attr('stroke-dasharray', `${conf * 2 * Math.PI * (radius + 3)} ${2 * Math.PI * (radius + 3)}`)
             .attr('opacity', 0.5);
         }
-        // in_progress: no glow, no confidence ring
+        // Coverage arc for in_progress nodes
+        const _covProgress = (() => {
+          if (status !== 'in_progress') return 0;
+          const q = node.data.quest || {};
+          const p = q.progress || {};
+          if (isLeaf) return p.overall_coverage || 0;
+          // Mid-level: average coverage of child leaves
+          if (node.children && node.children.length > 0) {
+            function _gatherLeaves(n) {
+              if (!n.children || n.children.length === 0) return [n];
+              return n.children.flatMap(_gatherLeaves);
+            }
+            const leaves = _gatherLeaves(node);
+            const sum = leaves.reduce((s, l) => {
+              const lp = (l.data.quest || {}).progress || {};
+              return s + (lp.overall_coverage || 0);
+            }, 0);
+            return leaves.length > 0 ? sum / leaves.length : 0;
+          }
+          return 0;
+        })();
 
         // Main circle
         let fill, opacity, strokeColor, strokeW;
@@ -4722,7 +5128,7 @@
         } else if (status === 'lit') {
           fill = color; opacity = 1; strokeColor = color; strokeW = 1.5;
         } else if (status === 'in_progress') {
-          fill = color; opacity = 0.7; strokeColor = color; strokeW = 1;
+          fill = '#1e293b'; opacity = 0.6; strokeColor = color; strokeW = 1;
         } else {
           fill = '#1e293b'; opacity = 0.55; strokeColor = '#334155'; strokeW = 1;
         }
@@ -4738,8 +5144,22 @@
           .attr('stroke-width', isRoot ? 2.5 : (isBranch ? 2 : strokeW))
           .attr('filter', (status === 'lit' || status === 'mastered') ? 'url(#lit-glow)' : null);
 
+        // Coverage arc overlay for in_progress nodes
+        if (status === 'in_progress' && _covProgress > 0) {
+          const arc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius - 0.5)
+            .startAngle(0)
+            .endAngle(_covProgress * 2 * Math.PI);
+          g.append('path')
+            .attr('d', arc)
+            .attr('fill', color)
+            .attr('opacity', 0.8);
+        }
+
         // Root / branch labels
         if (isRoot) {
+          // Icon inside circle
           g.append('text')
             .attr('text-anchor', 'middle')
             .attr('dominant-baseline', 'middle')
@@ -4748,9 +5168,10 @@
             .attr('font-family', 'Manrope, sans-serif')
             .attr('font-weight', '700')
             .text('🧠');
+          // Name above circle
           g.append('text')
             .attr('text-anchor', 'middle')
-            .attr('y', radius + 12)
+            .attr('y', -radius - 10)
             .attr('font-size', '9')
             .attr('fill', '#e9d5ff')
             .attr('font-family', 'Manrope, sans-serif')
@@ -4759,6 +5180,7 @@
         } else if (isBranch) {
           const icon = KT_BRANCH_ICONS[node.data.id] || '';
           const branchColor = KT_BRANCH_COLORS[node.data.id] || color;
+          // Icon inside circle
           g.append('text')
             .attr('text-anchor', 'middle')
             .attr('dominant-baseline', 'middle')
@@ -4766,32 +5188,60 @@
             .attr('fill', branchColor)
             .attr('font-family', 'Manrope, sans-serif')
             .text(icon);
-          // Label
-          const [lx, ly] = polarXY(node);
-          const angle = node.x;
-          const labelR = radii[1] + 22;
-          const la = angle - Math.PI / 2;
-          const labelX = labelR * Math.cos(la) - nx;
-          const labelY = labelR * Math.sin(la) - ny;
+          // Name above circle
           const lit = node.data.lit_count || 0;
           const tot = node.data.total_leaves || 0;
           g.append('text')
             .attr('text-anchor', 'middle')
-            .attr('x', labelX)
-            .attr('y', labelY)
+            .attr('y', -radius - 10)
             .attr('font-size', '9')
             .attr('fill', branchColor)
             .attr('font-family', 'Manrope, sans-serif')
             .attr('font-weight', '700')
             .text(KT_BRANCH_LABELS[node.data.id] || node.data.title);
+          // Progress below circle
           g.append('text')
             .attr('text-anchor', 'middle')
-            .attr('x', labelX)
-            .attr('y', labelY + 11)
+            .attr('y', radius + 14)
             .attr('font-size', '8')
             .attr('fill', 'rgba(255,255,255,0.4)')
             .attr('font-family', 'Manrope, sans-serif')
             .text(lit + '/' + tot + ' lit');
+        } else if (!isLeaf) {
+          // Mid-level nodes (depth 2) — name above, progress below
+          const midIcon = node.data.icon || '';
+          if (midIcon) {
+            g.append('text')
+              .attr('text-anchor', 'middle')
+              .attr('dominant-baseline', 'middle')
+              .attr('font-size', '7')
+              .attr('fill', color)
+              .attr('font-family', 'Manrope, sans-serif')
+              .text(midIcon);
+          }
+          g.append('text')
+            .attr('text-anchor', 'middle')
+            .attr('y', -radius - 8)
+            .attr('font-size', '8')
+            .attr('fill', color)
+            .attr('font-family', 'Manrope, sans-serif')
+            .attr('font-weight', '600')
+            .text(node.data.title || node.data.id);
+          const midLit = node.data.lit_count || 0;
+          const midTot = node.data.total_leaves || 0;
+          if (midTot > 0) {
+            const midLabel = (status === 'in_progress' && _covProgress > 0)
+              ? Math.round(_covProgress * 100) + '%'
+              : midLit + '/' + midTot;
+            g.append('text')
+              .attr('text-anchor', 'middle')
+              .attr('y', radius + 12)
+              .attr('font-size', '7')
+              .attr('fill', (status === 'in_progress' && _covProgress > 0) ? color : 'rgba(255,255,255,0.35)')
+              .attr('opacity', (status === 'in_progress' && _covProgress > 0) ? 0.5 : 1)
+              .attr('font-family', 'Manrope, sans-serif')
+              .text(midLabel);
+          }
         } else if (status === 'mastered') {
           g.append('text')
             .attr('text-anchor', 'middle')
@@ -5169,7 +5619,7 @@
 
       overlay.innerHTML = `<div class="kt-node-page-content">
         <div class="kt-node-page-header">
-          <button class="kt-node-page-back" onclick="this.closest('.kt-node-page').remove()">← Back to Tech Tree</button>
+          <button class="kt-node-page-back" onclick="this.closest('.kt-node-page').remove()">← Back to Power Grid</button>
           <span style="flex:1"></span>
           <span class="kt-locked-badge">🔒 NOT DISCOVERED</span>
         </div>
@@ -5187,6 +5637,13 @@
         </div>
 
         <div class="kt-locked-section">
+          <div class="kt-locked-section-title">🧠 Mind Map Preview</div>
+          <div class="kt-mindmap-container" id="ktLockedMindmap_${nodeData.id}" style="height:320px">
+            <div class="kt-mindmap-locked-hint">Start learning to reveal full mind map</div>
+          </div>
+        </div>
+
+        <div class="kt-locked-section">
           <div class="kt-locked-section-title">📋 Quest Preview — What you need to learn</div>
           ${dimensions.length > 0
             ? `<div style="margin-bottom:12px;font-size:13px;color:var(--text-secondary)">This concept has ${dimensions.length} knowledge dimensions:</div>${dimsHtml}
@@ -5200,8 +5657,10 @@
         </div>
 
         <div class="kt-locked-section">
-          <div class="kt-locked-section-title">📚 Learning Roadmap</div>
-          ${roadmapHtml}
+          <div class="kt-locked-section-title">📚 Deep Research</div>
+          <div id="ktResearch_${nodeData.id}">
+            <div style="text-align:center;padding:12px;color:var(--text-secondary);font-size:12px">Checking...</div>
+          </div>
         </div>
 
         <div class="kt-locked-section">
@@ -5214,6 +5673,28 @@
           ${relatedHtml}
         </div>
       </div>`;
+
+      // Render locked mind map preview from dimensions/guide
+      const lockedMmContainer = document.getElementById('ktLockedMindmap_' + nodeData.id);
+      if (lockedMmContainer && dimensions.length > 0) {
+        const skeletonData = {
+          center: nodeData.title || nodeData.id,
+          branches: dimensions.map((dim, i) => ({
+            id: 'dim_' + i,
+            label: dim.title || dim.id,
+            color: ['#4fc3f7', '#81c784', '#ffb74d', '#f06292', '#ba68c8', '#4dd0e1'][i % 6],
+            children: [{ id: 'dim_' + i + '_1', label: '???' }, { id: 'dim_' + i + '_2', label: '???' }]
+          })),
+          connections: []
+        };
+        requestAnimationFrame(() => ktRenderMindMap(lockedMmContainer, skeletonData, true));
+      } else if (lockedMmContainer) {
+        lockedMmContainer.style.display = 'none';
+        lockedMmContainer.closest('.kt-locked-section').style.display = 'none';
+      }
+
+      // Load deep research (async)
+      ktLoadResearch(nodeData.id);
 
       // Event delegation for prerequisite/related concept clicks
       overlay.addEventListener('click', function(e) {
@@ -5350,7 +5831,7 @@
       overlay.querySelector || null; // ensure overlay exists
       overlay.innerHTML = `<div class="kt-node-page-content">
         <div class="kt-node-page-header">
-          <button class="kt-node-page-back" onclick="this.closest('.kt-node-page').remove()">← Back to Tech Tree</button>
+          <button class="kt-node-page-back" onclick="this.closest('.kt-node-page').remove()">← Back to Power Grid</button>
         </div>
         ${parentLabel ? `<div class="kt-node-page-breadcrumb">${ktEsc(parentLabel)}</div>` : ''}
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
@@ -5361,6 +5842,14 @@
           <div style="font-size:13px;color:var(--text-secondary);margin-bottom:6px">Overall Progress: ${litCount}/${totalCount} concepts lit</div>
           <div style="height:8px;background:var(--bg-tertiary);border-radius:4px;overflow:hidden">
             <div style="height:100%;width:${pct}%;background:${color};border-radius:4px;transition:width 0.3s"></div>
+          </div>
+        </div>
+
+        <!-- Mind Map -->
+        <div class="kt-node-page-section">
+          <div class="kt-node-page-section-title">Mind Map</div>
+          <div class="kt-mindmap-container" id="ktBranchMindmap_${branchId}">
+            <div class="kt-mindmap-loading" id="ktBranchMmLoading_${branchId}">Loading mind map...</div>
           </div>
         </div>
 
@@ -5405,6 +5894,27 @@
           ktShowNodePage(nodeData);
         }
       });
+
+      // Load branch mind map (async)
+      const bmCont = document.getElementById('ktBranchMindmap_' + branchId);
+      const bmLoad = document.getElementById('ktBranchMmLoading_' + branchId);
+      if (bmCont) {
+        fetch(KT_API + '/mindmap/' + encodeURIComponent(branchId))
+          .then(r => r.json())
+          .then(data => {
+            if (bmLoad) bmLoad.style.display = 'none';
+            if (data.ok && data.mindmap) {
+              ktRenderMindMap(bmCont, data.mindmap, false);
+            } else {
+              bmCont.style.display = 'none';
+              bmCont.closest('.kt-node-page-section').style.display = 'none';
+            }
+          })
+          .catch(() => {
+            bmCont.style.display = 'none';
+            bmCont.closest('.kt-node-page-section').style.display = 'none';
+          });
+      }
     }
 
     function ktStartBranchQuiz(branchId) {
@@ -5424,6 +5934,247 @@
       const overlay = document.querySelector('.kt-node-page');
       if (overlay) overlay.remove();
       ktStartReviewForNodes(reviewableIds);
+    }
+
+    function ktRenderMindMap(container, mindmapData, isLocked) {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      const margin = { top: 20, right: 160, bottom: 20, left: 120 };
+
+      // Convert mindmap data to d3 hierarchy
+      const treeData = {
+        name: mindmapData.center,
+        _type: 'center',
+        children: (mindmapData.branches || []).map(b => ({
+          name: b.label,
+          _type: 'branch',
+          _color: b.color || '#4fc3f7',
+          _status: b.status,
+          _id: b.id,
+          children: (b.children || []).map(c => ({
+            name: isLocked ? '???' : c.label,
+            _type: 'leaf',
+            _color: b.color || '#4fc3f7',
+            _status: c.status,
+            _id: c.id,
+          }))
+        }))
+      };
+
+      const root = d3.hierarchy(treeData);
+      // Collapse children by default — only show center + branches
+      root.children?.forEach(ch => {
+        ch._children = ch.children;
+        ch.children = null;
+      });
+
+      const nodeH = 64;
+      const duration = 400;
+      let i = 0;
+
+      function countVisible(node) {
+        if (!node.children) return 1;
+        return node.children.reduce((sum, c) => sum + countVisible(c), 0);
+      }
+
+      const svgW = container.clientWidth || container.parentElement?.clientWidth || 600;
+      const svg = d3.select(container).append('svg')
+        .attr('width', svgW);
+      const gZoom = svg.append('g');
+      const g = gZoom.append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+      // Zoom + pan
+      const zoom = d3.zoom().scaleExtent([0.4, 2]).on('zoom', (ev) => {
+        gZoom.attr('transform', ev.transform);
+      });
+      svg.call(zoom);
+
+      function update(source) {
+        const treeLayout = d3.tree().nodeSize([nodeH, 300]);
+        treeLayout(root);
+
+        // Compute actual bounds since nodeSize positions relative to root (0,0)
+        const nodes = root.descendants();
+        let minX = Infinity, maxX = -Infinity, maxY = -Infinity;
+        nodes.forEach(d => { minX = Math.min(minX, d.x); maxX = Math.max(maxX, d.x); maxY = Math.max(maxY, d.y); });
+        const treeH = Math.max(200, maxX - minX + nodeH);
+        const treeW = Math.max(svgW - margin.left - margin.right, maxY + 200);
+        const offsetY = -minX + margin.top;
+
+        svg.transition().duration(duration)
+          .attr('width', treeW + margin.left + margin.right)
+          .attr('height', treeH + margin.top + margin.bottom);
+        container.style.height = Math.min(600, Math.max(200, treeH + margin.top + margin.bottom)) + 'px';
+        g.attr('transform', `translate(${margin.left},${offsetY})`);
+        const nodesSel = g.selectAll('g.mm-node').data(nodes, d => d.id || (d.id = ++i));
+
+        // Enter
+        const enter = nodesSel.enter().append('g')
+          .attr('class', 'mm-node')
+          .attr('transform', `translate(${source.y0 || 0},${source.x0 || 0})`)
+          .style('opacity', 0);
+
+        // Rect background for each node
+        enter.each(function(d) {
+          const el = d3.select(this);
+          const data = d.data;
+          const locked = isLocked ? 0.4 : 1;
+          const color = data._color || '#4fc3f7';
+
+          if (data._type === 'center') {
+            el.append('rect').attr('class', 'mm-bg')
+              .attr('rx', 10).attr('ry', 10)
+              .attr('fill', isLight ? '#1e1b4b' : '#1e1040')
+              .attr('stroke', '#a78bfa').attr('stroke-width', 1.5)
+              .attr('opacity', locked);
+            el.append('text').attr('class', 'mm-label')
+              .attr('dominant-baseline', 'middle').attr('text-anchor', 'middle')
+              .attr('font-size', '13').attr('font-weight', '700')
+              .attr('fill', '#fff').attr('font-family', 'Manrope, sans-serif')
+              .attr('opacity', locked).text(data.name);
+          } else if (data._type === 'branch') {
+            el.append('rect').attr('class', 'mm-bg')
+              .attr('rx', 8).attr('ry', 8)
+              .attr('fill', color + '30')
+              .attr('stroke', color).attr('stroke-width', 1)
+              .attr('stroke-dasharray', isLocked ? '3,3' : null)
+              .attr('opacity', locked);
+            el.append('text').attr('class', 'mm-label')
+              .attr('dominant-baseline', 'middle')
+              .attr('font-size', '12').attr('font-weight', '600')
+              .attr('fill', isLight ? '#222' : '#eee')
+              .attr('font-family', 'Manrope, sans-serif')
+              .attr('opacity', locked).text(data.name);
+            // Expand/collapse indicator
+            const hasKids = d.data.children?.length || d._children?.length;
+            if (hasKids || d.children || d._children) {
+              el.append('text').attr('class', 'mm-toggle')
+                .attr('dominant-baseline', 'middle')
+                .attr('font-size', '11').attr('font-weight', '600')
+                .attr('fill', color)
+                .attr('font-family', 'Manrope, sans-serif')
+                .attr('cursor', 'pointer')
+                .text(d.children ? '▾' : '▸');
+            }
+          } else {
+            // Leaf
+            el.append('rect').attr('class', 'mm-bg')
+              .attr('rx', 6).attr('ry', 6)
+              .attr('fill', isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.05)')
+              .attr('stroke', isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.08)')
+              .attr('stroke-width', 0.5)
+              .attr('stroke-dasharray', isLocked ? '2,2' : null)
+              .attr('opacity', locked);
+            el.append('circle').attr('class', 'mm-dot').attr('r', 3)
+              .attr('fill', color).attr('opacity', isLocked ? 0.3 : 0.7);
+            el.append('text').attr('class', 'mm-label')
+              .attr('dominant-baseline', 'middle')
+              .attr('font-size', '11')
+              .attr('fill', isLight ? '#444' : '#bbb')
+              .attr('font-family', 'Manrope, sans-serif')
+              .attr('opacity', locked).text(data.name);
+          }
+
+          // Size rect to text and store dimensions for link offsets
+          const textEl = el.select('.mm-label').node();
+          if (textEl) {
+            const bbox = textEl.getBBox();
+            const padX = data._type === 'center' ? 24 : (data._type === 'branch' ? 20 : 18);
+            const padY = data._type === 'center' ? 10 : 7;
+            const dotOffset = data._type === 'leaf' ? 10 : 0;
+            const toggleW = data._type === 'branch' ? 18 : 0;
+            let rectW, rectX;
+            if (data._type === 'center') {
+              // Center node uses text-anchor:middle — rect must be centered around x=0
+              rectW = bbox.width + padX * 2;
+              rectX = -(bbox.width / 2 + padX);
+            } else {
+              rectW = bbox.width + padX * 2 + dotOffset + toggleW;
+              rectX = -(padX + dotOffset);
+            }
+            el.select('.mm-bg')
+              .attr('x', rectX)
+              .attr('y', -(bbox.height / 2 + padY))
+              .attr('width', rectW)
+              .attr('height', bbox.height + padY * 2);
+            if (data._type !== 'center') el.select('.mm-label').attr('x', dotOffset);
+            el.select('.mm-dot')?.attr('cx', 0).attr('cy', 0);
+            el.select('.mm-toggle')?.attr('x', bbox.width + dotOffset + 6);
+            // Store rect bounds for link endpoint calculations
+            d._rectLeft = rectX;
+            d._rectRight = rectX + rectW;
+          }
+
+          // Click to expand/collapse
+          if (data._type === 'branch' && !isLocked) {
+            el.style('cursor', 'pointer').on('click', (ev) => {
+              ev.stopPropagation();
+              if (d.children) {
+                d._children = d.children;
+                d.children = null;
+              } else {
+                d.children = d._children;
+                d._children = null;
+              }
+              update(d);
+            });
+          }
+        });
+
+        // Update + Enter merge
+        const merged = enter.merge(nodesSel);
+        merged.transition().duration(duration)
+          .attr('transform', d => `translate(${d.y},${d.x})`)
+          .style('opacity', 1);
+
+        // Update toggle indicator
+        merged.select('.mm-toggle').text(d => d.children ? '▾' : '▸');
+
+        // Exit
+        nodesSel.exit().transition().duration(duration)
+          .attr('transform', `translate(${source.y},${source.x})`)
+          .style('opacity', 0).remove();
+
+        // Links — connect from parent right edge to child left edge
+        const links = root.links();
+        const linksSel = g.selectAll('path.mm-link').data(links, d => d.target.id);
+
+        const edgeLinkGen = d3.linkHorizontal().x(d => d[0]).y(d => d[1]);
+        function edgeLinkPath(d) {
+          const srcRight = d.source._rectRight || 0;
+          const tgtLeft = d.target._rectLeft || 0;
+          return edgeLinkGen({ source: [d.source.y + srcRight, d.source.x], target: [d.target.y + tgtLeft, d.target.x] });
+        }
+        const centerLinkGen = d3.linkHorizontal().x(d => d.y).y(d => d.x);
+
+        const linkEnter = linksSel.enter().insert('path', 'g')
+          .attr('class', 'mm-link')
+          .attr('fill', 'none')
+          .attr('stroke', d => d.target.data._color || '#555')
+          .attr('stroke-width', d => d.source.data._type === 'center' ? 2 : 1.5)
+          .attr('stroke-opacity', isLocked ? 0.2 : 0.4)
+          .attr('d', () => {
+            const o = { x: source.x0 || 0, y: source.y0 || 0 };
+            return centerLinkGen({ source: o, target: o });
+          });
+
+        linkEnter.merge(linksSel).transition().duration(duration)
+          .attr('d', edgeLinkPath)
+          .attr('stroke', d => d.target.data._color || '#555');
+
+        linksSel.exit().transition().duration(duration)
+          .attr('d', () => {
+            const o = { x: source.x, y: source.y };
+            return centerLinkGen({ source: o, target: o });
+          }).remove();
+
+        // Save positions for next transition
+        nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+      }
+
+      root.x0 = 0;
+      root.y0 = 0;
+      update(root);
     }
 
     async function ktShowNodePage(nodeData) {
@@ -5583,7 +6334,9 @@
               ${progress.quiz_attempts ? ` · ${progress.quiz_attempts} attempt${progress.quiz_attempts !== 1 ? 's' : ''}` : ''}
               ${progress.quiz_best_score && !quizMet ? ` · Best: ${Math.round(progress.quiz_best_score * 100)}%` : ''}
             </div>
-            ${!quizMet && coverageMet ? `<button class="kt-quest-start-btn" onclick="ktStartNodeQuiz('${ktEsc(node.id)}')">Start Quiz</button>` : ''}
+            ${!quizMet
+              ? `<button class="kt-quest-start-btn" onclick="ktStartNodeQuiz('${ktEsc(node.id)}')">&#127919; Start Quiz</button>`
+              : `<button class="kt-quest-start-btn" onclick="ktStartNodeQuiz('${ktEsc(node.id)}')" style="opacity:0.8">&#128260; Practice More</button>`}
           </div>
         `;
 
@@ -5638,6 +6391,10 @@
           <!-- Header -->
           <div class="kt-node-page-header">
             <button class="kt-node-page-back" onclick="this.closest('.kt-node-page').remove()">← Back</button>
+            <div style="display:flex;gap:4px;margin-left:auto" id="ktLangToggle_${node.id}">
+              <button class="kt-lang-btn ${ktNodeLang==='en'?'active':''}" data-lang="en" onclick="ktSwitchNodeLang('${ktEsc(node.id)}','en')">EN</button>
+              <button class="kt-lang-btn ${ktNodeLang==='zh'?'active':''}" data-lang="zh" onclick="ktSwitchNodeLang('${ktEsc(node.id)}','zh')">中文</button>
+            </div>
             <div class="kt-radial-detail-status ${status}" style="margin:0">${statusLabels[status]}</div>
           </div>
           ${branchPath ? `<div class="kt-node-page-breadcrumb">${ktEsc(branchPath)}</div>` : ''}
@@ -5647,9 +6404,25 @@
           ${node.summary ? `
             <div class="kt-node-page-section">
               <div class="kt-node-page-section-title">About</div>
-              <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">${ktEsc(node.summary)}</div>
+              <div id="ktSummary_${node.id}" style="font-size:13px;color:var(--text-secondary);line-height:1.7">${ktEsc(ktNodeLang === 'zh' && node.zh && node.zh.summary ? node.zh.summary : node.summary)}</div>
             </div>
           ` : ''}
+
+          <!-- Audio Overview -->
+          <div class="kt-node-page-section">
+            <div class="kt-node-page-section-title">Audio Overview</div>
+            <div class="kt-audio-card" id="ktAudioCard_${node.id}">
+              <div style="text-align:center;padding:8px;color:var(--text-secondary);font-size:12px">Checking...</div>
+            </div>
+          </div>
+
+          <!-- Mind Map -->
+          <div class="kt-node-page-section">
+            <div class="kt-node-page-section-title">Mind Map</div>
+            <div class="kt-mindmap-container" id="ktMindmapContainer_${node.id}">
+              <div class="kt-mindmap-loading" id="ktMindmapLoading_${node.id}">Generating mind map...</div>
+            </div>
+          </div>
 
           <!-- Quest Progress -->
           <div class="kt-node-page-section">
@@ -5663,11 +6436,21 @@
             ${questHtml}
           </div>
 
+          <!-- Deep Research -->
+          <div class="kt-node-page-section">
+            <div class="kt-node-page-section-title">Deep Research</div>
+            <div id="ktResearch_${node.id}">
+              <div style="text-align:center;padding:12px;color:var(--text-secondary);font-size:12px">Checking...</div>
+            </div>
+          </div>
+
           <!-- Key Takeaways -->
           ${node.key_takeaways && node.key_takeaways.length ? `
             <div class="kt-node-page-section">
               <div class="kt-node-page-section-title">Key Takeaways</div>
-              ${node.key_takeaways.map(t => `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;line-height:1.6">• ${ktEsc(t)}</div>`).join('')}
+              <div id="ktTakeaways_${node.id}">
+                ${(ktNodeLang === 'zh' && node.zh && node.zh.key_takeaways ? node.zh.key_takeaways : node.key_takeaways).map(t => `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;line-height:1.6">• ${ktEsc(t)}</div>`).join('')}
+              </div>
             </div>
           ` : ''}
 
@@ -5702,34 +6485,507 @@
               <span class="kt-radial-conf-label" style="color:${confColor}">${Math.round(conf*100)}%</span>
             </div>
           </div>
+
+          <!-- Quiz History -->
+          <div class="kt-node-page-section" id="ktWrongAnswers_${node.id}" style="display:none"></div>
         `;
+
+        // Load wrong answers (async)
+        ktLoadWrongAnswers(node.id, reviews);
+
+        // Load audio overview status (async)
+        ktLoadAudioOverview(node.id);
+
+        // Load deep research (async)
+        ktLoadResearch(node.id);
+
+        // Load mind map (async, doesn't block page render)
+        const mmContainer = document.getElementById('ktMindmapContainer_' + node.id);
+        const mmLoading = document.getElementById('ktMindmapLoading_' + node.id);
+        if (mmContainer) {
+          const mmCached = ktNodeLang === 'zh' && node.zh && node.zh.mindmap ? node.zh.mindmap : node.mindmap;
+          const mmLangParam = ktNodeLang === 'zh' ? '?lang=zh' : '';
+          if (mmCached && mmCached.branches) {
+            if (mmLoading) mmLoading.style.display = 'none';
+            ktRenderMindMap(mmContainer, mmCached, false);
+          } else if (sources.length > 0) {
+            fetch(KT_API + '/mindmap/' + encodeURIComponent(node.id) + mmLangParam)
+              .then(r => r.json())
+              .then(data => {
+                if (mmLoading) mmLoading.style.display = 'none';
+                if (data.ok && data.mindmap) {
+                  ktRenderMindMap(mmContainer, data.mindmap, false);
+                } else {
+                  mmContainer.style.display = 'none';
+                  mmContainer.closest('.kt-node-page-section').style.display = 'none';
+                }
+              })
+              .catch(() => {
+                mmContainer.style.display = 'none';
+                mmContainer.closest('.kt-node-page-section').style.display = 'none';
+              });
+          } else {
+            mmContainer.style.display = 'none';
+            mmContainer.closest('.kt-node-page-section').style.display = 'none';
+          }
+        }
       } catch (e) {
         overlay.querySelector('.kt-node-page-content').innerHTML = `<div style="padding:24px;color:var(--text-secondary)">Failed to load: ${ktEsc(e.message)}</div>`;
       }
     }
 
-    function ktStartNodeQuiz(nodeId) {
+    // ── Wrong Answers ──
+
+    function _ktIsWrongAnswer(r) {
+      if (r.result === 'forgot') return true;
+      if (r.format === 'multiple_choice' && r.user_answer && r.correct_answer && r.user_answer !== r.correct_answer) return true;
+      if (r.format === 'open_ended' && r.evaluation && r.evaluation.score_percentage < 0.5) return true;
+      return false;
+    }
+
+    function _ktOptionText(options, letter) {
+      if (!options || !letter) return '';
+      const match = options.find(o => o.startsWith(letter + '.'));
+      return match ? match.replace(/^[A-D]\.\s*/, '') : '';
+    }
+
+    function _ktRenderHistoryCard(r, rIdx, nodeId, isWrong) {
+      const date = r.reviewed_at ? new Date(r.reviewed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
+      const quizType = r.quiz_type || 'concept_recall';
+      const typeLabel = KT_QUIZ_TYPE_LABELS[quizType] || quizType;
+      const qText = (r.question || '').length > 120 ? r.question.slice(0, 120) + '...' : (r.question || '');
+
+      if (!isWrong) {
+        // Correct answer — compact display
+        let answerStr = '';
+        if (r.format === 'multiple_choice') {
+          const answerText = _ktOptionText(r.options, r.user_answer);
+          answerStr = `Your answer: ${ktEsc(r.user_answer || '?')} &#10003;`
+            + (answerText ? `<br><span style="opacity:0.75;font-style:italic">${ktEsc(answerText)}</span>` : '');
+        } else if (r.format === 'open_ended' && r.evaluation) {
+          answerStr = `Score: ${r.evaluation.earned_points || 0}/${r.evaluation.total_points || 0} points`;
+        }
+        return `<div class="kt-wrong-card">
+          <div class="kt-wrong-card-header">
+            <span style="color:#22c55e">&#9989;</span>
+            <span>${ktEsc(typeLabel)}</span>
+            <span>·</span>
+            <span>${date}</span>
+          </div>
+          <div class="kt-wrong-card-q">Q: ${ktEsc(qText)}</div>
+          ${answerStr ? `<div class="kt-wrong-card-detail" style="color:#4ade80">${answerStr}</div>` : ''}
+          <div style="clear:both"></div>
+        </div>`;
+      }
+
+      // Wrong answer — detailed display
+      let detailHtml = '';
+      if (r.format === 'multiple_choice') {
+        const userText = _ktOptionText(r.options, r.user_answer);
+        const correctText = _ktOptionText(r.options, r.correct_answer);
+        detailHtml = `<div class="kt-wrong-card-detail">
+          Your answer: <strong>${ktEsc(r.user_answer || '?')}</strong> &#10007;${userText ? ` <span style="opacity:0.75;font-style:italic">${ktEsc(userText)}</span>` : ''}
+          <br>Correct: <strong>${ktEsc(r.correct_answer || '?')}</strong>${correctText ? ` <span style="opacity:0.75;font-style:italic">${ktEsc(correctText)}</span>` : ''}
+          ${r.explanation ? `<br>${ktEsc(r.explanation)}` : ''}
+        </div>`;
+      } else if (r.format === 'open_ended' && r.evaluation) {
+        const ev = r.evaluation;
+        const missed = (ev.point_results || []).filter(p => !p.covered).map(p => p.point);
+        detailHtml = `<div class="kt-wrong-card-detail">
+          Score: <strong>${ev.earned_points || 0}/${ev.total_points || 0}</strong> points
+          ${missed.length ? `<br>Missed: ${missed.map(m => ktEsc(m)).join(', ')}` : ''}
+        </div>`;
+      }
+
+      return `<div class="kt-wrong-card wrong">
+        <div class="kt-wrong-card-header">
+          <span>&#10060;</span>
+          <span>${ktEsc(typeLabel)}</span>
+          <span>·</span>
+          <span>${date}</span>
+        </div>
+        <div class="kt-wrong-card-q">Q: ${ktEsc(qText)}</div>
+        ${detailHtml}
+        ${r.question ? `<button class="kt-wrong-retry" onclick="ktRetryQuestion('${ktEsc(nodeId)}', ${rIdx})">Retry This Question</button>` : ''}
+        <div style="clear:both"></div>
+      </div>`;
+    }
+
+    function _ktRenderHistorySection(nodeId, allReviews, filter, showAllFlag) {
+      const container = document.getElementById('ktWrongAnswers_' + nodeId);
+      if (!container) return;
+
+      // Sort by time descending (newest first)
+      const sorted = [...allReviews].sort((a, b) => {
+        const da = a.reviewed_at ? new Date(a.reviewed_at).getTime() : 0;
+        const db = b.reviewed_at ? new Date(b.reviewed_at).getTime() : 0;
+        return db - da;
+      });
+
+      // Apply filter
+      let filtered;
+      if (filter === 'wrong') filtered = sorted.filter(r => _ktIsWrongAnswer(r));
+      else if (filter === 'correct') filtered = sorted.filter(r => !_ktIsWrongAnswer(r));
+      else filtered = sorted;
+
+      if (!filtered.length && !allReviews.length) return;
+      container.style.display = '';
+
+      const displayed = showAllFlag ? filtered : filtered.slice(0, 5);
+      const wrongCount = allReviews.filter(r => _ktIsWrongAnswer(r)).length;
+
+      const cardsHtml = displayed.map((r) => {
+        const rIdx = allReviews.indexOf(r);
+        const isWrong = _ktIsWrongAnswer(r);
+        return _ktRenderHistoryCard(r, rIdx, nodeId, isWrong);
+      }).join('');
+
+      const filterLabels = { all: 'All', wrong: 'Wrong only', correct: 'Correct only' };
+      const ddId = 'ktHistDD_' + nodeId.replace(/[^a-zA-Z0-9_]/g, '_');
+      const filterItems = ['all', 'wrong', 'correct'].map(f =>
+        `<div class="kt-dropdown-item${f === filter ? ' active' : ''}" data-val="${f}" onclick="ktSelectHistFilter('${ktEsc(nodeId)}','${f}','${ddId}')">${filterLabels[f]}</div>`
+      ).join('');
+
+      container.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="kt-node-page-section-title" style="margin:0">Quiz History (${filtered.length})${wrongCount ? ` · <span style="color:#f87171;font-weight:400;font-size:12px">${wrongCount} wrong</span>` : ''}</div>
+          <div class="kt-dropdown" id="${ddId}">
+            <div class="kt-dropdown-trigger" onclick="ktToggleHistDD('${ddId}')">
+              <span>${filterLabels[filter]}</span>
+              <span class="kt-dropdown-arrow">&#9660;</span>
+            </div>
+            <div class="kt-dropdown-panel">
+              ${filterItems}
+            </div>
+          </div>
+        </div>
+        <div id="ktWrongCards_${nodeId}">${cardsHtml || '<div style="color:var(--text-secondary);font-size:13px;text-align:center;padding:20px 0">No matching records</div>'}</div>
+        ${!showAllFlag && filtered.length > 5 ? `<button class="kt-wrong-viewall" onclick="ktShowAllQuizHistory('${ktEsc(nodeId)}', '${filter}')">View All (${filtered.length}) &#8594;</button>` : ''}
+      `;
+    }
+
+    // Store reviews per node for filter/viewall without re-fetching
+    const _ktNodeReviewsCache = {};
+
+    function ktLoadWrongAnswers(nodeId, reviews) {
+      _ktNodeReviewsCache[nodeId] = reviews;
+      const container = document.getElementById('ktWrongAnswers_' + nodeId);
+      if (!container || !reviews.length) return;
+      _ktRenderHistorySection(nodeId, reviews, 'all', false);
+    }
+
+    function ktFilterQuizHistory(nodeId, filter) {
+      const reviews = _ktNodeReviewsCache[nodeId] || [];
+      _ktRenderHistorySection(nodeId, reviews, filter, false);
+    }
+
+    function ktToggleHistDD(ddId) {
+      const dd = document.getElementById(ddId);
+      if (!dd) return;
+      const trigger = dd.querySelector('.kt-dropdown-trigger');
+      const panel = dd.querySelector('.kt-dropdown-panel');
+      const isOpen = trigger.classList.contains('open');
+      // Close all other open dropdowns first
+      document.querySelectorAll('.kt-dropdown-trigger.open').forEach(t => {
+        t.classList.remove('open');
+        t.closest('.kt-dropdown').querySelector('.kt-dropdown-panel').classList.remove('show');
+      });
+      if (!isOpen) {
+        trigger.classList.add('open');
+        panel.classList.add('show');
+      }
+    }
+
+    function ktSelectHistFilter(nodeId, val, ddId) {
+      // Close dropdown
+      const dd = document.getElementById(ddId);
+      if (dd) {
+        dd.querySelector('.kt-dropdown-trigger').classList.remove('open');
+        dd.querySelector('.kt-dropdown-panel').classList.remove('show');
+      }
+      ktFilterQuizHistory(nodeId, val);
+    }
+
+    // Click outside to close any open dropdown
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.kt-dropdown')) {
+        document.querySelectorAll('.kt-dropdown-trigger.open').forEach(t => {
+          t.classList.remove('open');
+          t.closest('.kt-dropdown').querySelector('.kt-dropdown-panel').classList.remove('show');
+        });
+      }
+    });
+
+    function ktShowAllQuizHistory(nodeId, filter) {
+      // Fetch all reviews to ensure we have the full set
+      fetch(KT_API + '/review/history?node_id=' + encodeURIComponent(nodeId))
+        .then(r => r.json())
+        .then(data => {
+          const reviews = data.reviews || [];
+          _ktNodeReviewsCache[nodeId] = reviews;
+          _ktRenderHistorySection(nodeId, reviews, filter || 'all', true);
+        }).catch(() => {});
+    }
+
+    function ktRetryQuestion(nodeId, reviewIdx) {
+      // Fetch the review to get the full question data
+      fetch(KT_API + '/review/history?node_id=' + encodeURIComponent(nodeId))
+        .then(r => r.json())
+        .then(data => {
+          const reviews = data.reviews || [];
+          const review = reviews[reviewIdx];
+          if (!review || !review.question) return;
+
+          // Build a quiz object from the saved review data
+          const quiz = {
+            id: 'retry_1',
+            node_id: nodeId,
+            quiz_type: review.quiz_type || 'concept_recall',
+            format: review.format || 'multiple_choice',
+            question: review.question,
+            difficulty: review.difficulty || 'medium',
+          };
+          if (review.format === 'multiple_choice') {
+            quiz.options = review.options || [];
+            quiz.correct_answer = review.correct_answer || '';
+            quiz.explanation = review.explanation || '';
+          } else {
+            quiz.expected_points = review.expected_points || [];
+            quiz.hint = '';
+          }
+
+          // Close node page and start quiz with this single question
+          const overlay = document.querySelector('.kt-node-page');
+          if (overlay) overlay.remove();
+
+          _ktQuizNodeId = nodeId;
+          ktSwitchView('review');
+          ktReviewQuizzes = [quiz];
+          ktReviewIndex = 0;
+          ktReviewResults = [];
+          ktReviewStartTime = Date.now();
+          ktQuizSessionId = 'retry_' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 15);
+          ktRenderQuiz();
+        }).catch(() => {});
+    }
+
+    // ── Language Toggle ──
+
+    async function ktSwitchNodeLang(nodeId, lang) {
+      ktNodeLang = lang;
+      localStorage.setItem('kt_node_lang', lang);
+
+      // Update toggle button states
+      const toggle = document.getElementById('ktLangToggle_' + nodeId);
+      if (toggle) {
+        toggle.querySelectorAll('.kt-lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+      }
+
+      // Fetch fresh node data
+      let node;
+      try {
+        const res = await fetch(KT_API + '/nodes/' + encodeURIComponent(nodeId));
+        const data = await res.json();
+        node = data.ok !== false ? data.node : null;
+      } catch { node = null; }
+      if (!node) return;
+
+      // Switch Summary
+      const summaryEl = document.getElementById('ktSummary_' + nodeId);
+      if (summaryEl) {
+        if (lang === 'zh') {
+          if (node.zh && node.zh.summary) {
+            summaryEl.textContent = node.zh.summary;
+          } else if (node.summary) {
+            summaryEl.textContent = 'Translating...';
+            try {
+              const tr = await fetch(KT_API + '/translate/' + encodeURIComponent(nodeId), { method: 'POST' });
+              const tData = await tr.json();
+              if (tData.ok && tData.zh && tData.zh.summary) {
+                summaryEl.textContent = tData.zh.summary;
+                node.zh = tData.zh;
+              } else {
+                summaryEl.textContent = node.summary;
+              }
+            } catch { summaryEl.textContent = node.summary; }
+          }
+        } else {
+          summaryEl.textContent = node.summary || '';
+        }
+      }
+
+      // Switch Key Takeaways
+      const takeawaysEl = document.getElementById('ktTakeaways_' + nodeId);
+      if (takeawaysEl) {
+        const items = lang === 'zh' && node.zh && node.zh.key_takeaways ? node.zh.key_takeaways : (node.key_takeaways || []);
+        takeawaysEl.innerHTML = items.map(t => `<div style="font-size:13px;color:var(--text-secondary);padding:4px 0;line-height:1.6">• ${ktEsc(t)}</div>`).join('');
+      }
+
+      // Switch Mind Map
+      const mmContainer = document.getElementById('ktMindmapContainer_' + nodeId);
+      if (mmContainer) {
+        // Clear existing SVG
+        const existingSvg = mmContainer.querySelector('svg');
+        if (existingSvg) existingSvg.remove();
+        const mmLoading = document.getElementById('ktMindmapLoading_' + nodeId);
+
+        const cachedMm = lang === 'zh' && node.zh && node.zh.mindmap ? node.zh.mindmap : node.mindmap;
+        if (cachedMm && cachedMm.branches) {
+          if (mmLoading) mmLoading.style.display = 'none';
+          ktRenderMindMap(mmContainer, cachedMm, false);
+        } else {
+          if (mmLoading) { mmLoading.style.display = ''; mmLoading.textContent = 'Generating mind map...'; }
+          const langParam = lang === 'zh' ? '?lang=zh' : '';
+          try {
+            const mmRes = await fetch(KT_API + '/mindmap/' + encodeURIComponent(nodeId) + langParam);
+            const mmData = await mmRes.json();
+            if (mmLoading) mmLoading.style.display = 'none';
+            if (mmData.ok && mmData.mindmap) {
+              ktRenderMindMap(mmContainer, mmData.mindmap, false);
+            }
+          } catch {
+            if (mmLoading) mmLoading.style.display = 'none';
+          }
+        }
+      }
+    }
+
+    // ── Audio Overview helpers (bilingual) ──
+
+    function ktLoadAudioOverview(nodeId) {
+      const card = document.getElementById('ktAudioCard_' + nodeId);
+      if (!card) return;
+      fetch(KT_API + '/audio/' + encodeURIComponent(nodeId) + '/status')
+        .then(r => r.json())
+        .then(status => {
+          // status = { en: {exists, url}, zh: {exists, url} }
+          card._audioStatus = status;
+          const defaultLang = status.en?.exists ? 'en' : (status.zh?.exists ? 'zh' : 'en');
+          ktRenderAudioCard(card, nodeId, status, defaultLang);
+        })
+        .catch(() => {
+          card.innerHTML = '<div style="font-size:12px;color:var(--text-tertiary);text-align:center;padding:8px">Audio Overview unavailable</div>';
+        });
+    }
+
+    function ktRenderAudioCard(card, nodeId, status, lang) {
+      const langInfo = status[lang] || { exists: false, url: null };
+      const otherLang = lang === 'en' ? 'zh' : 'en';
+      const langBtnStyle = (l, active) => `padding:4px 12px;border-radius:6px;border:1px solid ${active ? '#a855f7' : 'rgba(255,255,255,0.12)'};background:${active ? 'rgba(168,85,247,0.15)' : 'transparent'};color:${active ? '#c084fc' : 'var(--text-secondary)'};font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s`;
+
+      // Language toggle header
+      const header = `
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="kt-audio-title" style="margin:0">🎙 Audio Overview</div>
+          <div style="display:flex;gap:6px">
+            <button class="kt-audio-lang-btn" data-lang="en" style="${langBtnStyle('en', lang==='en')}">EN</button>
+            <button class="kt-audio-lang-btn" data-lang="zh" style="${langBtnStyle('zh', lang==='zh')}">中文</button>
+          </div>
+        </div>
+      `;
+
+      if (langInfo.exists) {
+        card.innerHTML = header + `
+          <div class="kt-audio-subtitle">AI Podcast · <span id="ktAudioDur_${nodeId}">--:--</span></div>
+          <audio id="ktAudio_${nodeId}" src="${langInfo.url}" preload="metadata"></audio>
+          <div class="kt-audio-controls">
+            <button class="kt-audio-play" id="ktAudioPlayBtn_${nodeId}">▶</button>
+            <input type="range" class="kt-audio-progress" id="ktAudioProg_${nodeId}" min="0" max="100" value="0" step="0.1">
+            <span class="kt-audio-time" id="ktAudioTime_${nodeId}">0:00 / 0:00</span>
+          </div>
+        `;
+        const audio = document.getElementById('ktAudio_' + nodeId);
+        const playBtn = document.getElementById('ktAudioPlayBtn_' + nodeId);
+        const prog = document.getElementById('ktAudioProg_' + nodeId);
+        const timeEl = document.getElementById('ktAudioTime_' + nodeId);
+        const durEl = document.getElementById('ktAudioDur_' + nodeId);
+        function fmtTime(s) { const m = Math.floor(s/60); return m + ':' + String(Math.floor(s%60)).padStart(2,'0'); }
+        audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmtTime(audio.duration); timeEl.textContent = '0:00 / ' + fmtTime(audio.duration); });
+        audio.addEventListener('timeupdate', () => { if (audio.duration) { prog.value = (audio.currentTime / audio.duration) * 100; timeEl.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration); } });
+        audio.addEventListener('ended', () => { playBtn.textContent = '▶'; fetch(KT_API + '/award-xp', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ source: 'audio_overview', node_id: nodeId, xp: 15 }) }).catch(() => {}); });
+        playBtn.addEventListener('click', () => { if (audio.paused) { audio.play(); playBtn.textContent = '⏸'; } else { audio.pause(); playBtn.textContent = '▶'; } });
+        prog.addEventListener('input', () => { if (audio.duration) audio.currentTime = (prog.value / 100) * audio.duration; });
+      } else {
+        const label = lang === 'zh' ? '生成中文播客' : 'Generate Audio Overview';
+        card.innerHTML = header + `
+          <div class="kt-audio-subtitle">${lang === 'zh' ? '两位 AI 主持人用中文讨论这个概念' : 'Two AI hosts discuss this concept in a podcast-style conversation'}</div>
+          <button class="kt-audio-gen-btn" id="ktAudioGenBtn_${nodeId}">🎧 ${label}</button>
+          <div class="kt-audio-gen-hint">Estimated: ~4 min · Uses ElevenLabs TTS</div>
+        `;
+        document.getElementById('ktAudioGenBtn_' + nodeId).addEventListener('click', function() {
+          const btn = this;
+          btn.disabled = true;
+          btn.textContent = '⏳ Generating... (30-60s)';
+          const langQ = lang !== 'en' ? '?lang=' + lang : '';
+          fetch(KT_API + '/audio/' + encodeURIComponent(nodeId) + '/generate' + langQ, { method: 'POST' })
+            .then(r => r.json())
+            .then(data => {
+              if (data.status === 'generated' || data.status === 'exists') {
+                status[lang] = { exists: true, url: data.url };
+                ktRenderAudioCard(card, nodeId, status, lang);
+              } else {
+                btn.textContent = '❌ ' + (data.error || 'Failed') + ' — Try again';
+                btn.disabled = false;
+              }
+            })
+            .catch(() => { btn.textContent = '❌ Error — Try again'; btn.disabled = false; });
+        });
+      }
+
+      // Language toggle click handlers
+      card.querySelectorAll('.kt-audio-lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const newLang = btn.dataset.lang;
+          if (newLang === lang) return;
+          // Stop current audio if playing
+          const curAudio = card.querySelector('audio');
+          if (curAudio) curAudio.pause();
+          ktRenderAudioCard(card, nodeId, status, newLang);
+        });
+      });
+    }
+
+    let _ktQuizNodeId = null; // Track which node quiz was started from
+
+    function ktStartNodeQuiz(nodeId, forceRegenerate = false) {
+      _ktQuizNodeId = nodeId;
       // Close node page overlay
       const overlay = document.querySelector('.kt-node-page');
       if (overlay) overlay.remove();
 
-      // Use the existing review mode with specific node_ids
       ktSwitchView('review');
       const reviewEl = document.getElementById('ktReview');
-      reviewEl.style.display = '';
-      reviewEl.innerHTML = '<div style="text-align:center;padding:60px 0;color:var(--text-secondary)">Generating quiz...</div>';
+      reviewEl.style.display = 'block';
+      reviewEl.innerHTML = `
+        <div style="max-width:700px;margin:0 auto;padding:40px 20px">
+          <div style="text-align:center;margin-bottom:28px;color:var(--text-secondary)">
+            <div style="font-size:24px;margin-bottom:8px">&#129504;</div>
+            <div class="kt-quiz-shimmer" style="font-size:15px;font-weight:600;display:inline-block;padding:4px 16px;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 100%;background-image:linear-gradient(90deg,rgba(255,255,255,0.4) 25%,rgba(255,255,255,0.9) 50%,rgba(255,255,255,0.4) 75%)">${forceRegenerate ? 'Regenerating questions...' : 'Generating quiz...'}</div>
+          </div>
+          <div class="kt-quiz-shimmer-card">
+            <div class="kt-quiz-shimmer kt-quiz-shimmer-line w40" style="height:10px;margin-bottom:16px"></div>
+            <div class="kt-quiz-shimmer kt-quiz-shimmer-line w90"></div>
+            <div class="kt-quiz-shimmer kt-quiz-shimmer-line w80"></div>
+          </div>
+          <div class="kt-quiz-shimmer kt-quiz-shimmer-option" style="opacity:0.7"></div>
+          <div class="kt-quiz-shimmer kt-quiz-shimmer-option" style="opacity:0.55"></div>
+          <div class="kt-quiz-shimmer kt-quiz-shimmer-option" style="opacity:0.4"></div>
+          <div class="kt-quiz-shimmer kt-quiz-shimmer-option" style="opacity:0.25"></div>
+        </div>`;
 
       fetch(KT_API + '/review/generate', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ node_ids: [nodeId], batch_size: 5 }),
+        body: JSON.stringify({ node_ids: [nodeId], batch_size: 5, force: forceRegenerate }),
       })
         .then(r => r.json())
         .then(data => {
           if (!data.quizzes || !data.quizzes.length) {
             reviewEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:var(--text-secondary)">
               <p>No quiz questions available. Add more sources first.</p>
-              <button class="kt-btn kt-btn-ghost" onclick="ktSwitchView('tech-tree')" style="margin-top:16px">Back</button>
+              <button class="kt-btn kt-btn-ghost" onclick="ktExitQuiz()" style="margin-top:16px">Back</button>
             </div>`;
             return;
           }
@@ -5737,18 +6993,34 @@
           ktReviewIndex = 0;
           ktReviewResults = [];
           ktReviewStartTime = Date.now();
+          ktQuizSessionId = 'quiz_' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 15);
           ktRenderQuiz();
         })
         .catch(e => {
-          reviewEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:#f87171">Failed to generate quiz: ${ktEsc(e.message)}</div>
-            <button class="kt-btn kt-btn-ghost" onclick="ktSwitchView('tech-tree')" style="margin-top:16px">Back</button>`;
+          reviewEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:#f87171">Failed to generate quiz: ${ktEsc(e.message)}
+            <br><button class="kt-btn kt-btn-ghost" onclick="ktExitQuiz()" style="margin-top:16px">Back</button></div>`;
         });
     }
 
+    function ktExitQuiz() {
+      if (_ktQuizNodeId) {
+        ktSwitchView('tech-tree');
+        const nodeData = ktFindNodeById(_ktQuizNodeId);
+        if (nodeData) {
+          if (nodeData.status === 'locked') ktShowLockedPage(nodeData);
+          else ktShowNodePage(nodeData);
+        }
+        _ktQuizNodeId = null;
+      } else {
+        ktSwitchView('overview');
+      }
+    }
+
     function ktStartReviewForNodes(nodeIds) {
+      _ktQuizNodeId = null;
       ktSwitchView('review');
       const reviewEl = document.getElementById('ktReview');
-      reviewEl.style.display = '';
+      reviewEl.style.display = 'block';
       reviewEl.innerHTML = '<div style="text-align:center;padding:60px 0;color:var(--text-secondary)">Generating branch quiz...</div>';
 
       fetch(KT_API + '/review/generate', {
@@ -5769,6 +7041,7 @@
           ktReviewIndex = 0;
           ktReviewResults = [];
           ktReviewStartTime = Date.now();
+          ktQuizSessionId = 'quiz_' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 15);
           ktRenderQuiz();
         })
         .catch(e => {
@@ -5820,39 +7093,127 @@
       }
     }
 
-    // ── Daily Quests ──
-    async function ktRefreshDailyQuests(force) {
+    // ── Quests (Daily / Weekly) ──
+    const QUEST_CACHE_KEY = 'kt_quests_cache';
+    const QUEST_CACHE_TTL = 3600000; // 1 hour
+    let _ktQuestsData = null;
+    let _ktQuestTab = 'daily';
+
+    async function ktLoadQuests(force) {
+      if (!force) {
+        try {
+          const cached = localStorage.getItem(QUEST_CACHE_KEY);
+          if (cached) {
+            const data = JSON.parse(cached);
+            if (Date.now() - data.timestamp < QUEST_CACHE_TTL) {
+              return data.quests;
+            }
+          }
+        } catch (_) {}
+      }
+      const res = await fetch(KT_API + '/recommended-tasks').then(r => r.json());
+      localStorage.setItem(QUEST_CACHE_KEY, JSON.stringify({ quests: res, timestamp: Date.now() }));
+      return res;
+    }
+
+    async function ktRefreshQuests(force) {
       const btn = document.getElementById('ktQuestsRefreshBtn');
       const list = document.getElementById('ktDailyQuestsList');
-      if (force && btn) { btn.classList.add('spinning'); }
+      if (force && btn) btn.classList.add('spinning');
+      if (force) localStorage.removeItem(QUEST_CACHE_KEY);
       try {
-        const url = KT_API + '/recommended-tasks' + (force ? '?force=1' : '');
-        const res = await fetch(url).then(r => r.json());
-        const tasks = res.tasks || [];
-        if (!tasks.length) {
-          list.innerHTML = '<div class="kt-daily-quests-empty">No recommendations yet</div>';
-          return;
-        }
-        list.innerHTML = tasks.map(t => {
-          const pri = t.priority || 'medium';
-          const nodeId = t.node_id || '';
-          return `
-            <div class="kt-quest-item" onclick="${nodeId ? `ktNavigateToNode('${ktEsc(nodeId)}')` : ''}">
-              <div class="kt-quest-dot ${pri}"></div>
-              <div class="kt-quest-item-body">
-                <div class="kt-quest-item-action">${ktEsc(t.action || '')}</div>
-                <div class="kt-quest-item-node">${ktEsc(t.node_title || '')}</div>
-                <div class="kt-quest-item-reason">${ktEsc(t.reason || '')}</div>
-              </div>
-            </div>`;
-        }).join('');
+        _ktQuestsData = await ktLoadQuests(force);
+        ktRenderQuestCards();
       } catch (e) {
-        console.error('Daily quests error:', e);
+        console.error('Quest load error:', e);
         list.innerHTML = '<div class="kt-daily-quests-empty">Failed to load</div>';
       } finally {
         if (btn) btn.classList.remove('spinning');
       }
     }
+
+    function ktSwitchQuestTab(tab) {
+      _ktQuestTab = tab;
+      document.querySelectorAll('.kt-quest-tab').forEach(b => {
+        b.classList.toggle('active', b.dataset.tab === tab);
+      });
+      ktRenderQuestCards();
+    }
+
+    function ktRenderQuestCards() {
+      const list = document.getElementById('ktDailyQuestsList');
+      if (!_ktQuestsData) { list.innerHTML = '<div class="kt-daily-quests-empty">Loading...</div>'; return; }
+      const items = _ktQuestTab === 'daily' ? (_ktQuestsData.daily || []) : (_ktQuestsData.weekly || []);
+      if (!items.length) {
+        list.innerHTML = '<div class="kt-daily-quests-empty">No quests available</div>';
+        return;
+      }
+      list.innerHTML = items.map((q, i) => `
+        <div class="kt-quest-card-item" onclick="ktShowQuestDetail(${i})">
+          <div class="kt-quest-card-row1">
+            <div class="kt-quest-card-label">
+              <span class="kt-quest-pri-dot ${q.priority || 'medium'}"></span>
+              ${q.icon || ''} ${ktEsc(q.title || '')}
+            </div>
+            <span class="kt-quest-card-xp">+${q.xp_reward || 0}XP</span>
+          </div>
+          <div class="kt-quest-card-desc">${ktEsc(q.short_desc || '')}<span class="kt-quest-card-arrow">→</span></div>
+        </div>
+      `).join('');
+    }
+
+    function ktCloseQuestModal() {
+      const el = document.querySelector('.kt-quest-modal-overlay');
+      if (el) el.remove();
+    }
+
+    function ktShowQuestDetail(idx) {
+      const items = _ktQuestTab === 'daily' ? (_ktQuestsData.daily || []) : (_ktQuestsData.weekly || []);
+      const q = items[idx];
+      if (!q) return;
+
+      ktCloseQuestModal();
+
+      const actions = (q.actions || []).map((a, i) => `
+        <div class="kt-quest-detail-action-item">
+          <span class="kt-quest-detail-action-num">${i + 1}</span>
+          <span>${ktEsc(a)}</span>
+        </div>
+      `).join('');
+
+      let ctaHtml = '';
+      if (q.node_id) {
+        ctaHtml += `<button class="primary" onclick="ktCloseQuestModal(); ktNavigateToNode('${ktEsc(q.node_id)}')">Open Node →</button>`;
+        if (q.type === 'quiz' || q.type === 'review') {
+          ctaHtml += `<button class="primary" onclick="ktCloseQuestModal(); ktNavigateToNode('${ktEsc(q.node_id)}'); setTimeout(()=>ktStartNodeQuiz('${ktEsc(q.node_id)}'),500)">Start Quiz →</button>`;
+        }
+      }
+      if (q.type === 'read') {
+        ctaHtml += `<button class="primary" onclick="ktCloseQuestModal(); switchTab('study')">Go to Study Tab →</button>`;
+      }
+
+      const overlay = document.createElement('div');
+      overlay.className = 'kt-quest-modal-overlay';
+      overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+      overlay.innerHTML = `
+        <div class="kt-quest-modal">
+          <button class="kt-quest-modal-close" onclick="ktCloseQuestModal()">✕</button>
+          <div class="kt-quest-detail-header">
+            <span class="kt-quest-detail-icon">${q.icon || '⚔️'}</span>
+            <span class="kt-quest-detail-title">${_ktQuestTab === 'daily' ? 'Daily' : 'Weekly'} Quest: ${ktEsc(q.title || '')}</span>
+            <span class="kt-quest-detail-xp">+${q.xp_reward || 0} XP</span>
+          </div>
+          <div class="kt-quest-detail-body">${ktEsc(q.detail || '')}</div>
+          <div class="kt-quest-detail-actions-title">🚀 SUGGESTED ACTIONS</div>
+          ${actions}
+          <div class="kt-quest-detail-cta">${ctaHtml}</div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+    }
+
+    // Keep old name as alias for backward compat
+    function ktRefreshDailyQuests(force) { ktRefreshQuests(force); }
 
     function ktViewStudyItem(studyItemId) {
       // Switch to study view and show the item
@@ -5879,12 +7240,305 @@
       setTimeout(() => popup.remove(), 8000);
     }
 
+    // ── Deep Research helpers ──
+
+    // Cache of studied URLs for "Add to Study" button persistence
+    let _ktStudiedUrls = null;
+    async function _ktGetStudiedUrls() {
+      if (_ktStudiedUrls) return _ktStudiedUrls;
+      try {
+        const res = await fetch('/api/study/videos');
+        const data = await res.json();
+        const vids = data.videos || data || [];
+        _ktStudiedUrls = new Set(vids.map(v => v.url).filter(Boolean));
+        return _ktStudiedUrls;
+      } catch { return new Set(); }
+    }
+
+    function ktLoadResearch(nodeId) {
+      const container = document.getElementById('ktResearch_' + nodeId);
+      if (!container) return;
+      // Load both research report and studied URLs in parallel
+      Promise.all([
+        fetch(KT_API + '/research/' + encodeURIComponent(nodeId)).then(r => r.status === 404 ? null : r.json()),
+        _ktGetStudiedUrls()
+      ]).then(([report, studiedUrls]) => {
+          if (report && report.exists === false) report = null;
+          container._studiedUrls = studiedUrls;
+          ktRenderResearch(container, nodeId, report);
+        })
+        .catch(() => {
+          ktRenderResearch(container, nodeId, null);
+        });
+    }
+
+    function _ktAddToStudyBtn(url, title, studiedUrls, nodeId) {
+      if (!url) return '';
+      const safeUrl = ktEsc(url);
+      const safeTitle = ktEsc((title || '').replace(/'/g, ''));
+      const safeNodeId = ktEsc(nodeId || '');
+      if (studiedUrls && studiedUrls.has(url)) {
+        return `<button class="kt-research-resource-btn added" disabled>✅ Added</button>`;
+      }
+      return `<button class="kt-research-resource-btn" onclick="ktAddToStudy('${safeUrl}', '${safeTitle}', this, '${safeNodeId}')">📥 Add to Study</button>`;
+    }
+
+    function ktRenderResearch(container, nodeId, report) {
+      const studiedUrls = container._studiedUrls || new Set();
+      if (!report || report.exists === false) {
+        // Empty state — show generate button
+        container.innerHTML = `
+          <div class="kt-research-empty">
+            <div class="kt-research-empty-icon">🔬</div>
+            <div class="kt-research-empty-title">AI-Powered Learning Resource Discovery</div>
+            <div class="kt-research-empty-desc">Searches the web for the best articles, tutorials, and courses for this concept</div>
+            <button class="kt-research-gen-btn" id="ktResearchGenBtn_${nodeId}">🔬 Generate Research Report</button>
+            <div class="kt-research-hint">Powered by Tavily Search + Claude AI · ~15-30s</div>
+          </div>
+        `;
+        document.getElementById('ktResearchGenBtn_' + nodeId).addEventListener('click', function() {
+          ktGenerateResearch(nodeId, container, this);
+        });
+        return;
+      }
+
+      // Render full report
+      const typeIcons = { article: '📄', video: '🎥', tutorial: '🔧', course: '🎓', docs: '📖', github: '📂', book: '📕' };
+      const diffColors = { beginner: '#22c55e', intermediate: '#fb923c', advanced: '#ef4444' };
+
+      let html = '';
+
+      // Overview
+      if (report.overview) {
+        html += `<div class="kt-research-overview">${ktEsc(report.overview)}</div>`;
+      }
+
+      // Learning Path
+      const path = report.learning_path || [];
+      if (path.length) {
+        const totalTime = report.total_estimated_time || '';
+        html += `<div class="kt-research-section-label">📚 Learning Path ${totalTime ? `<span style="font-weight:400;font-size:11px;color:var(--text-tertiary)">${ktEsc(totalTime)} total</span>` : ''}</div>`;
+        path.forEach((step, i) => {
+          const resources = step.resources || [];
+          html += `<div class="kt-research-step" id="ktResStep_${nodeId}_${i}">
+            <div class="kt-research-step-header" onclick="this.closest('.kt-research-step').classList.toggle('collapsed')">
+              <div class="kt-research-step-num">${step.step || i + 1}</div>
+              <div class="kt-research-step-title">${ktEsc(step.title || 'Step ' + (i + 1))}</div>
+              <span class="kt-research-step-arrow">▼</span>
+            </div>
+            ${step.description ? `<div class="kt-research-step-desc">${ktEsc(step.description)}</div>` : ''}
+            ${resources.map(r => ktRenderResourceCard(r, nodeId, typeIcons, diffColors, studiedUrls)).join('')}
+          </div>`;
+        });
+      }
+
+      // Classic Resources
+      const classics = report.classic_resources || [];
+      if (classics.length) {
+        html += `<div class="kt-research-section-label">📖 Classic Resources</div>`;
+        classics.forEach(r => {
+          const icon = typeIcons[r.type] || '📄';
+          html += `<div class="kt-research-classic-card">
+            <span class="kt-research-resource-icon">${icon}</span>
+            <div class="kt-research-resource-body">
+              <div class="kt-research-resource-title">${ktEsc(r.title || '')}</div>
+              <div class="kt-research-resource-why">${ktEsc(r.why || '')}</div>
+              ${!r.from_search ? '<div class="kt-research-ai-warning">AI recommended — verify link</div>' : ''}
+            </div>
+            <div class="kt-research-resource-actions">
+              ${r.url ? `<a href="${ktEsc(r.url)}" target="_blank" class="kt-research-resource-btn">Open</a>` : ''}
+              ${_ktAddToStudyBtn(r.url, r.title, studiedUrls, nodeId)}
+            </div>
+          </div>`;
+        });
+      }
+
+      // Weak Dimension Resources
+      const weakDims = report.weak_dimension_resources || [];
+      if (weakDims.length) {
+        html += `<div class="kt-research-section-label">⚠️ Weak Dimensions</div>`;
+        weakDims.forEach(wd => {
+          html += `<div class="kt-research-weak-dim">
+            <div class="kt-research-weak-dim-title">${ktEsc(wd.dimension || '')}</div>
+            ${(wd.resources || []).map(r => `
+              <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px">
+                <div class="kt-research-resource-body" style="flex:1">
+                  <div class="kt-research-resource-title">${ktEsc(r.title || '')}</div>
+                  <div class="kt-research-resource-why">${ktEsc(r.why || '')}</div>
+                </div>
+                <div class="kt-research-resource-actions">
+                  ${r.url ? `<a href="${ktEsc(r.url)}" target="_blank" class="kt-research-resource-btn">Open</a>` : ''}
+                  ${_ktAddToStudyBtn(r.url, r.title, studiedUrls, nodeId)}
+                </div>
+              </div>
+            `).join('')}
+          </div>`;
+        });
+      }
+
+      // Practice Projects
+      const projects = report.practice_projects || [];
+      if (projects.length) {
+        html += `<div class="kt-research-section-label">🛠 Practice Projects</div>`;
+        projects.forEach(p => {
+          const diffColor = diffColors[p.difficulty] || '#94a3b8';
+          html += `<div class="kt-research-project">
+            <span class="kt-research-project-icon">🔧</span>
+            <div>
+              <div class="kt-research-project-title">${ktEsc(p.title || '')}</div>
+              <div class="kt-research-project-desc">${ktEsc(p.description || '')}</div>
+              <div class="kt-research-project-meta">
+                <span style="color:${diffColor}">${ktEsc(p.difficulty || '')}</span>
+                ${p.estimated_time ? ` · ${ktEsc(p.estimated_time)}` : ''}
+              </div>
+            </div>
+          </div>`;
+        });
+      }
+
+      // Footer
+      const genAt = report.generated_at ? new Date(report.generated_at).toLocaleDateString() : '';
+      html += `<div class="kt-research-footer">
+        <span>${genAt ? 'Generated: ' + genAt + ' · Refreshes weekly' : ''}</span>
+        <button class="kt-research-refresh-btn" onclick="ktGenerateResearch('${ktEsc(nodeId)}', document.getElementById('ktResearch_${nodeId}'), this, true)">🔄 Refresh</button>
+      </div>`;
+
+      container.innerHTML = html;
+    }
+
+    function ktRenderResourceCard(r, nodeId, typeIcons, diffColors, studiedUrls) {
+      const icon = typeIcons[r.type] || '📄';
+      const diffColor = diffColors[r.difficulty] || '#94a3b8';
+      return `<div class="kt-research-resource">
+        <span class="kt-research-resource-icon">${icon}</span>
+        <div class="kt-research-resource-body">
+          <div class="kt-research-resource-title">${ktEsc(r.title || '')}</div>
+          <div class="kt-research-resource-why">${ktEsc(r.why || '')}</div>
+          <div class="kt-research-resource-meta">
+            <span style="color:${diffColor}">${ktEsc(r.difficulty || '')}</span>
+            ${r.estimated_time ? `<span>${ktEsc(r.estimated_time)}</span>` : ''}
+            ${r.from_search ? '<span style="color:#2563eb">web</span>' : '<span class="kt-research-ai-warning">AI rec</span>'}
+          </div>
+        </div>
+        <div class="kt-research-resource-actions">
+          ${r.url ? `<a href="${ktEsc(r.url)}" target="_blank" class="kt-research-resource-btn">Open</a>` : ''}
+          ${_ktAddToStudyBtn(r.url, r.title, studiedUrls, nodeId)}
+        </div>
+      </div>`;
+    }
+
+    async function ktGenerateResearch(nodeId, container, btn, force) {
+      if (btn) {
+        btn.disabled = true;
+        if (btn.classList.contains('kt-research-gen-btn')) {
+          btn.textContent = '🔍 Searching... (15-30s)';
+        } else {
+          btn.textContent = '⏳ Refreshing...';
+        }
+      }
+      container.style.opacity = '0.6';
+
+      try {
+        const forceQ = force ? '?force=1' : '';
+        const res = await fetch(KT_API + '/research/' + encodeURIComponent(nodeId) + forceQ, { method: 'POST' });
+        const report = await res.json();
+        container.style.opacity = '1';
+        if (res.ok) {
+          ktRenderResearch(container, nodeId, report);
+        } else {
+          container.innerHTML = `<div style="padding:16px;color:#ef4444;font-size:12px">Failed: ${ktEsc(report.error || 'Unknown error')}</div>`;
+        }
+      } catch(e) {
+        container.style.opacity = '1';
+        container.innerHTML = `<div style="padding:16px;color:#ef4444;font-size:12px">Error: ${ktEsc(e.message)}</div>`;
+      }
+    }
+
+    async function ktAddToStudy(url, title, btn, nodeId) {
+      btn.disabled = true;
+      btn.textContent = '⏳ Adding...';
+      try {
+        const res = await fetch('/api/study/analyze', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ url: url })
+        });
+        const data = await res.json();
+        if (!data.ok) { btn.textContent = '❌ Failed'; btn.disabled = false; return; }
+
+        const videoId = data.video_id;
+        if (data.status === 'already_done') {
+          // Already analyzed — trigger sync by fetching status (which calls _sync_to_knowledge_tree)
+          await fetch('/api/study/status/' + encodeURIComponent(videoId));
+          btn.textContent = '✅ Synced';
+          btn.classList.add('added');
+          if (_ktStudiedUrls) _ktStudiedUrls.add(url);
+          _ktRefreshNodePage(nodeId);
+          return;
+        }
+
+        // Poll for completion (analysis takes 10-60s)
+        btn.textContent = '⏳ Analyzing...';
+        let attempts = 0;
+        const maxAttempts = 60; // ~2 min max
+        const poll = setInterval(async () => {
+          attempts++;
+          try {
+            const statusRes = await fetch('/api/study/status/' + encodeURIComponent(videoId));
+            const statusData = await statusRes.json();
+            if (statusData.status === 'done') {
+              clearInterval(poll);
+              btn.textContent = '✅ Synced';
+              btn.classList.add('added');
+              if (_ktStudiedUrls) _ktStudiedUrls.add(url);
+              _ktRefreshNodePage(nodeId);
+            } else if (statusData.status === 'error' || attempts >= maxAttempts) {
+              clearInterval(poll);
+              btn.textContent = statusData.status === 'error' ? '❌ Failed' : '✅ Added';
+              btn.classList.add('added');
+              if (_ktStudiedUrls) _ktStudiedUrls.add(url);
+            }
+          } catch {
+            if (attempts >= maxAttempts) {
+              clearInterval(poll);
+              btn.textContent = '✅ Added';
+              btn.classList.add('added');
+            }
+          }
+        }, 2000);
+      } catch(e) {
+        btn.textContent = '❌ Failed';
+        btn.disabled = false;
+      }
+    }
+
+    async function _ktRefreshNodePage(nodeId) {
+      // Re-render the node detail page with fresh data after a sync
+      if (!nodeId) return;
+      // Small delay to let backend finish saving
+      await new Promise(r => setTimeout(r, 500));
+      // Refresh the tree data so ktFindNodeById returns updated status
+      try {
+        const treeRes = await fetch(KT_API + '/tech-tree').then(r => r.json());
+        if (treeRes.tree) ktTechTree = treeRes.tree;
+      } catch {}
+      const nodeData = ktFindNodeById(nodeId);
+      if (!nodeData) return;
+      if (nodeData.status === 'locked' || !nodeData.status) {
+        ktShowLockedPage(nodeData);
+      } else {
+        ktShowNodePage(nodeData);
+      }
+    }
+
     // ── Review Mode ──
     let ktReviewQuizzes = [];
     let ktReviewIndex = 0;
     let ktReviewResults = [];
     let ktReviewStartTime = 0;
     let ktQuizStartTime = 0;
+    let ktQuizSessionId = '';
+    let ktIsComprehensiveReview = false;
 
     async function ktUpdateDueBadge() {
       try {
@@ -5893,19 +7547,22 @@
         const badge = document.getElementById('ktDueBadge');
         const btn = document.getElementById('ktReviewBtn');
         if (badge) badge.textContent = count;
-        if (btn) btn.disabled = count === 0;
+        if (btn) btn.disabled = false; // Always enabled — comprehensive review uses wrong+random when 0 due
       } catch (e) { /* ignore */ }
     }
 
     async function ktStartReview(nodeId) {
+      _ktQuizNodeId = nodeId || null;
+      ktIsComprehensiveReview = !nodeId;
       ktSwitchView('review');
       const reviewEl = document.getElementById('ktReview');
-      reviewEl.style.display = '';
-      reviewEl.innerHTML = '<div style="text-align:center;padding:60px 0;color:var(--text-secondary)">Generating review quizzes...</div>';
+      reviewEl.style.display = 'block';
+      reviewEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:var(--text-secondary)">${ktIsComprehensiveReview ? 'Preparing comprehensive review...' : 'Generating review quizzes...'}</div>`;
 
       try {
-        const body = { batch_size: 5 };
-        if (nodeId) body.node_id = nodeId;
+        const body = ktIsComprehensiveReview
+          ? { mode: 'comprehensive' }
+          : { batch_size: 5, node_ids: [nodeId] };
         const res = await fetch(KT_API + '/review/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -5913,12 +7570,20 @@
         }).then(r => r.json());
 
         if (!res.quizzes || res.quizzes.length === 0) {
-          const nextDue = res.next_due ? new Date(res.next_due).toLocaleString() : 'N/A';
-          reviewEl.innerHTML = `<div class="kt-review-container" style="text-align:center;padding:60px 0">
-            <h3 style="color:var(--text);margin-bottom:12px">No Concepts Due</h3>
-            <p style="color:var(--text-secondary);margin-bottom:24px">Next review: ${nextDue}</p>
-            <button class="kt-btn kt-btn-ghost" onclick="ktSwitchView('overview')">Back</button>
-          </div>`;
+          if (ktIsComprehensiveReview) {
+            reviewEl.innerHTML = `<div class="kt-review-container" style="text-align:center;padding:60px 0">
+              <h3 style="color:var(--text);margin-bottom:12px">No Nodes Available</h3>
+              <p style="color:var(--text-secondary);margin-bottom:24px">Learn some concepts first to unlock review!</p>
+              <button class="kt-btn kt-btn-ghost" onclick="ktSwitchView('overview')">Back</button>
+            </div>`;
+          } else {
+            const nextDue = res.next_due ? new Date(res.next_due).toLocaleString() : 'N/A';
+            reviewEl.innerHTML = `<div class="kt-review-container" style="text-align:center;padding:60px 0">
+              <h3 style="color:var(--text);margin-bottom:12px">No Concepts Due</h3>
+              <p style="color:var(--text-secondary);margin-bottom:24px">Next review: ${nextDue}</p>
+              <button class="kt-btn kt-btn-ghost" onclick="ktSwitchView('overview')">Back</button>
+            </div>`;
+          }
           return;
         }
 
@@ -5926,6 +7591,7 @@
         ktReviewIndex = 0;
         ktReviewResults = [];
         ktReviewStartTime = Date.now();
+        ktQuizSessionId = 'quiz_' + new Date().toISOString().replace(/[-:T]/g, '').slice(0, 15);
         ktRenderQuiz();
       } catch (e) {
         reviewEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:#f87171">Failed to generate quizzes: ${ktEsc(e.message)}</div>`;
@@ -5939,83 +7605,149 @@
       const progress = ((ktReviewIndex) / total * 100).toFixed(0);
       ktQuizStartTime = Date.now();
 
-      const answerPointsHtml = (quiz.expected_answer_points || [])
-        .map(p => `<li>${ktEsc(p)}</li>`).join('');
+      const quizType = quiz.quiz_type || quiz.type || 'concept_recall';
+      const quizFormat = quiz.format || (quiz.options ? 'multiple_choice' : 'open_ended');
+      const typeLabels = KT_QUIZ_TYPE_LABELS;
 
-      const sourceCount = quiz.source_count || 0;
-      const sourceCountHtml = sourceCount > 0
-        ? `<span style="font-size:12px;color:var(--text-tertiary);margin-left:auto">Based on ${sourceCount} source${sourceCount !== 1 ? 's' : ''}</span>`
-        : '';
+      let bodyHtml = '';
+
+      if (quizFormat === 'multiple_choice') {
+        const options = quiz.options || [];
+        bodyHtml = `<div class="kt-mc-options" id="ktMcOptions">
+          ${options.map((opt, i) => {
+            const letter = String.fromCharCode(65 + i);
+            const optText = opt.replace(/^[A-D]\.\s*/, '');
+            return `<div class="kt-mc-option" data-letter="${letter}" onclick="ktSelectMcOption(this, '${letter}')">
+              <span class="kt-mc-letter">${letter}.</span>
+              <span>${ktEsc(optText)}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="kt-mc-explanation" id="ktMcExplanation"></div>
+        <button class="kt-quiz-next-btn" id="ktQuizNextBtn" style="display:none" onclick="ktNextQuiz()">Next &#8594;</button>`;
+      } else {
+        bodyHtml = `<div class="kt-oe-area">
+          <textarea class="kt-oe-textarea" id="ktOeTextarea" placeholder="Write your answer here..." rows="5"></textarea>
+          <div class="kt-oe-actions">
+            <div>
+              ${quiz.hint ? `<button class="kt-oe-hint-btn" onclick="document.getElementById('ktOeHint').style.display='';this.style.display='none'">&#128161; Show Hint</button>` : ''}
+            </div>
+            <button class="kt-oe-submit-btn" id="ktOeSubmitBtn" onclick="ktSubmitOpenEnded()">Submit Answer</button>
+          </div>
+          ${quiz.hint ? `<div class="kt-oe-hint" id="ktOeHint">${ktEsc(quiz.hint)}</div>` : ''}
+        </div>
+        <div id="ktEvalResult"></div>
+        <button class="kt-quiz-next-btn" id="ktQuizNextBtn" style="display:none" onclick="ktNextQuiz()">Next &#8594;</button>`;
+      }
+
+      // Comprehensive review: show source node + reason tag
+      const reasonLabels = { due: '\ud83d\udd34 Due for review', wrong: '\ud83d\udfe0 Previously wrong', random: '\ud83d\udd35 Random check' };
+      const reviewReason = quiz.review_reason || '';
+      const nodeTitle = quiz.node_title || '';
+      const showNodeHeader = ktIsComprehensiveReview && nodeTitle;
 
       reviewEl.innerHTML = `
         <div class="kt-review-container">
           <div class="kt-review-header">
             <div class="kt-review-header-left">
-              <span>Review Concepts</span>
+              <span>${ktIsComprehensiveReview ? '\ud83e\udde0 Comprehensive Review' : '\ud83e\udde0 Knowledge Check'}</span>
               <span class="kt-review-progress-text">${ktReviewIndex + 1}/${total}</span>
             </div>
-            <button class="kt-review-exit" onclick="ktSwitchView('overview')">Exit</button>
+            <button class="kt-review-exit" onclick="ktExitQuiz()">&#10005; Exit</button>
           </div>
           <div class="kt-review-progress-bar">
             <div class="kt-review-progress-fill" style="width:${progress}%"></div>
           </div>
 
+          ${showNodeHeader ? `<div class="kt-cr-node-header">
+            <span class="kt-cr-node-from">From: ${ktEsc(nodeTitle)}</span>
+            ${reviewReason ? `<span class="kt-cr-reason kt-cr-reason-${reviewReason}">${reasonLabels[reviewReason] || reviewReason}</span>` : ''}
+          </div>` : ''}
+
           <div class="kt-quiz-card">
             <div class="kt-quiz-meta">
-              <span class="kt-quiz-type">${ktEsc(quiz.type || 'recall')}</span>
+              <span class="kt-quiz-type" data-qt="${quizType}">${typeLabels[quizType] || quizType}</span>
               <span class="kt-quiz-difficulty" data-d="${quiz.difficulty || 'medium'}">${ktEsc(quiz.difficulty || 'medium')}</span>
-              ${sourceCountHtml}
             </div>
             <div class="kt-quiz-question">${ktEsc(quiz.question || '')}</div>
           </div>
-
-          <div class="kt-quiz-think" id="ktQuizThink">
-            <div style="font-style:italic">Take a moment to recall...</div>
-            ${quiz.hint ? `<button class="kt-quiz-action-btn" onclick="document.getElementById('ktQuizHint').style.display='';this.style.display='none'">Show Hint</button>` : ''}
-            ${quiz.hint ? `<div class="kt-quiz-hint" id="ktQuizHint">${ktEsc(quiz.hint)}</div>` : ''}
-            <button class="kt-quiz-action-btn" onclick="ktShowAnswer()" style="margin-top:8px">Show Answer</button>
-          </div>
-
-          <div class="kt-quiz-answer" id="ktQuizAnswer">
-            <div class="kt-quiz-answer-title">Expected Answer</div>
-            <ul class="kt-quiz-answer-points">${answerPointsHtml}</ul>
-          </div>
-
-          <div class="kt-rating-section" id="ktRatingSection">
-            <div class="kt-rating-label">How did you do?</div>
-            <div class="kt-rating-buttons">
-              <button class="kt-rating-btn" data-r="forgot" onclick="ktSubmitRating('forgot')">
-                <span class="kt-rating-emoji">&#x1F630;</span>
-                <span class="kt-rating-text">Forgot</span>
-              </button>
-              <button class="kt-rating-btn" data-r="hard" onclick="ktSubmitRating('hard')">
-                <span class="kt-rating-emoji">&#x1F623;</span>
-                <span class="kt-rating-text">Hard</span>
-              </button>
-              <button class="kt-rating-btn" data-r="remembered" onclick="ktSubmitRating('remembered')">
-                <span class="kt-rating-emoji">&#x1F60A;</span>
-                <span class="kt-rating-text">Good</span>
-              </button>
-              <button class="kt-rating-btn" data-r="easy" onclick="ktSubmitRating('easy')">
-                <span class="kt-rating-emoji">&#x1F3AF;</span>
-                <span class="kt-rating-text">Easy</span>
-              </button>
-            </div>
-          </div>
+          ${bodyHtml}
         </div>
       `;
     }
 
-    function ktShowAnswer() {
-      document.getElementById('ktQuizThink').style.display = 'none';
-      document.getElementById('ktQuizAnswer').style.display = '';
-      document.getElementById('ktRatingSection').style.display = '';
+    function ktSelectMcOption(el, letter) {
+      const container = document.getElementById('ktMcOptions');
+      if (container.classList.contains('kt-mc-submitted')) return;
+      container.classList.add('kt-mc-submitted');
+
+      const quiz = ktReviewQuizzes[ktReviewIndex];
+      const correct = (quiz.correct_answer || '').charAt(0).toUpperCase();
+      const isCorrect = letter === correct;
+
+      // Lock all options and highlight
+      container.querySelectorAll('.kt-mc-option').forEach(opt => {
+        opt.classList.add('kt-mc-locked');
+        const optLetter = opt.dataset.letter;
+        if (optLetter === correct) opt.classList.add('kt-mc-correct');
+        if (optLetter === letter && !isCorrect) opt.classList.add('kt-mc-wrong');
+      });
+
+      // Show explanation
+      const explEl = document.getElementById('ktMcExplanation');
+      if (quiz.explanation) {
+        explEl.className = 'kt-mc-explanation' + (isCorrect ? '' : ' kt-mc-wrong-explain');
+        explEl.innerHTML = `<strong>${isCorrect ? '&#10003; Correct!' : '&#10007; Wrong'}</strong><br>${ktEsc(quiz.explanation)}`;
+        explEl.style.display = '';
+      }
+
+      // Show next button
+      document.getElementById('ktQuizNextBtn').style.display = '';
+
+      // Submit to backend
+      const timeSpent = Math.round((Date.now() - ktQuizStartTime) / 1000);
+      const result = isCorrect ? 'remembered' : 'forgot';
+      const score = isCorrect ? 1.0 : 0.0;
+      ktReviewResults.push({ node_id: quiz.node_id, node_title: quiz.node_title || '', result, score, quiz_type: quiz.quiz_type || 'concept_recall', format: 'multiple_choice', question: quiz.question, user_answer: letter, correct_answer: correct });
+
+      fetch(KT_API + '/review/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          node_id: quiz.node_id,
+          format: 'multiple_choice',
+          quiz_type: quiz.quiz_type || 'concept_recall',
+          question: quiz.question || '',
+          options: quiz.options || [],
+          selected_answer: letter,
+          correct_answer: correct,
+          explanation: quiz.explanation || '',
+          difficulty: quiz.difficulty || 'medium',
+          session_id: ktQuizSessionId,
+          time_spent_seconds: timeSpent,
+        }),
+      }).then(r => r.json()).then(res => {
+        if (res.quest_completed) ktShowQuestCompletionPopup(quiz.node_id);
+        if (res.xp_result) {
+          const xr = res.xp_result;
+          if (xr.level_ups > 0) ktPendingPopups.push({ type: 'levelup', data: xr });
+          if (xr.new_achievements) xr.new_achievements.forEach(a => ktPendingPopups.push({ type: 'achievement', data: a }));
+        }
+      }).catch(() => {});
     }
 
-    async function ktSubmitRating(result) {
+    async function ktSubmitOpenEnded() {
+      const textarea = document.getElementById('ktOeTextarea');
+      const userAnswer = textarea.value.trim();
+      if (!userAnswer) return;
+
+      const btn = document.getElementById('ktOeSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Evaluating...';
+      textarea.readOnly = true;
+
       const quiz = ktReviewQuizzes[ktReviewIndex];
       const timeSpent = Math.round((Date.now() - ktQuizStartTime) / 1000);
-      ktReviewResults.push({ node_id: quiz.node_id, result, time_spent_seconds: timeSpent });
 
       try {
         const res = await fetch(KT_API + '/review/submit', {
@@ -6023,32 +7755,62 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             node_id: quiz.node_id,
-            result: result,
-            quiz_type: quiz.type || 'recall',
+            format: 'open_ended',
+            quiz_type: quiz.quiz_type || 'application',
             question: quiz.question || '',
+            user_answer: userAnswer,
+            expected_points: quiz.expected_points || [],
+            difficulty: quiz.difficulty || 'medium',
+            session_id: ktQuizSessionId,
             time_spent_seconds: timeSpent,
           }),
         }).then(r => r.json());
 
-        // Quest completion popup
-        if (res.quest_completed) {
-          ktShowQuestCompletionPopup(quiz.node_id);
-        }
+        const ev = res.evaluation || {};
+        const earned = ev.earned_points || 0;
+        const total = ev.total_points || 1;
+        const pct = Math.round((earned / total) * 100);
 
-        // Queue popups from xp_result
+        let pointsHtml = (ev.point_results || []).map(p => {
+          const cls = p.covered ? 'kt-eval-covered' : 'kt-eval-missed';
+          return `<li class="${cls}">
+            <div>${ktEsc(p.point)}</div>
+            ${p.comment ? `<div class="kt-eval-comment">${ktEsc(p.comment)}</div>` : ''}
+          </li>`;
+        }).join('');
+
+        const evalEl = document.getElementById('ktEvalResult');
+        evalEl.innerHTML = `
+          <div class="kt-eval-result">
+            <div class="kt-eval-score">
+              Score: ${earned}/${total} points (${pct}%)
+              ${pct >= 70 ? ' &#10003;' : ''}
+            </div>
+            <ul class="kt-eval-points">${pointsHtml}</ul>
+            ${ev.overall_feedback ? `<div class="kt-eval-feedback">${ktEsc(ev.overall_feedback)}</div>` : ''}
+          </div>
+        `;
+
+        document.getElementById('ktQuizNextBtn').style.display = '';
+
+        const result = res.result || 'forgot';
+        const score = res.score || 0;
+        ktReviewResults.push({ node_id: quiz.node_id, node_title: quiz.node_title || '', result, score, quiz_type: quiz.quiz_type || 'application', format: 'open_ended', question: quiz.question });
+
+        if (res.quest_completed) ktShowQuestCompletionPopup(quiz.node_id);
         if (res.xp_result) {
           const xr = res.xp_result;
-          if (xr.level_ups > 0) {
-            ktPendingPopups.push({ type: 'levelup', data: xr });
-          }
-          if (xr.new_achievements && xr.new_achievements.length) {
-            xr.new_achievements.forEach(a => {
-              ktPendingPopups.push({ type: 'achievement', data: a });
-            });
-          }
+          if (xr.level_ups > 0) ktPendingPopups.push({ type: 'levelup', data: xr });
+          if (xr.new_achievements) xr.new_achievements.forEach(a => ktPendingPopups.push({ type: 'achievement', data: a }));
         }
-      } catch (e) { /* ignore */ }
+      } catch (e) {
+        btn.textContent = 'Error - Try Again';
+        btn.disabled = false;
+        textarea.readOnly = false;
+      }
+    }
 
+    function ktNextQuiz() {
       ktReviewIndex++;
       if (ktReviewIndex < ktReviewQuizzes.length) {
         ktRenderQuiz();
@@ -6064,26 +7826,96 @@
       const secs = totalTime % 60;
       const timeStr = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
 
-      const counts = { forgot: 0, hard: 0, remembered: 0, easy: 0 };
-      ktReviewResults.forEach(r => { if (counts[r.result] !== undefined) counts[r.result]++; });
+      const totalQuestions = ktReviewResults.length;
+      const correctCount = ktReviewResults.filter(r => r.result === 'remembered' || r.result === 'easy').length;
+      const pct = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
+      const passed = pct >= 80;
+      const allCorrect = correctCount === totalQuestions && totalQuestions > 0;
 
-      reviewEl.innerHTML = `
-        <div class="kt-review-container">
-          <div class="kt-review-summary">
-            <h3>Review Complete!</h3>
-            <div class="kt-review-summary-stats">
-              ${counts.remembered + counts.easy > 0 ? `<div class="kt-review-summary-item" style="color:#4ade80">&#10003; ${counts.remembered + counts.easy} remembered</div>` : ''}
-              ${counts.hard > 0 ? `<div class="kt-review-summary-item" style="color:#fbbf24">&#9651; ${counts.hard} hard</div>` : ''}
-              ${counts.forgot > 0 ? `<div class="kt-review-summary-item" style="color:#f87171">&#10007; ${counts.forgot} forgot</div>` : ''}
+      const typeLabels = { concept_recall: 'Recall', application: 'Apply', comparison: 'Compare', system_design: 'Design' };
+      const typeColors = KT_QUIZ_TYPE_COLORS;
+
+      let itemsHtml = '';
+
+      if (ktIsComprehensiveReview) {
+        // Group results by node
+        const nodeGroups = {};
+        ktReviewResults.forEach(r => {
+          const nid = r.node_id || 'unknown';
+          if (!nodeGroups[nid]) nodeGroups[nid] = { title: r.node_title || nid, items: [] };
+          nodeGroups[nid].items.push(r);
+        });
+        itemsHtml = Object.entries(nodeGroups).map(([nid, group]) => {
+          const allOk = group.items.every(r => r.result === 'remembered' || r.result === 'easy');
+          return `<div class="kt-cr-result-row">
+            <span class="kt-cr-result-node">${ktEsc(group.title)}</span>
+            <span style="color:${allOk ? '#4ade80' : '#f87171'};font-weight:600">${allOk ? '\u2713 Correct' : '\u2717 Wrong'}</span>
+          </div>`;
+        }).join('');
+
+        // Bonus XP info
+        const completionBonus = 15;
+        const perfectBonus = allCorrect ? 30 : 0;
+        const bonusText = allCorrect ? `+${completionBonus + perfectBonus} bonus XP (completion + perfect!)` : `+${completionBonus} bonus XP (completion)`;
+
+        // Award completion bonus via a lightweight POST
+        fetch(KT_API + '/review/complete-bonus', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ all_correct: allCorrect, node_count: Object.keys(nodeGroups).length }),
+        }).catch(() => {});
+
+        reviewEl.innerHTML = `
+          <div class="kt-review-container">
+            <div class="kt-review-summary" style="text-align:center;margin-bottom:20px">
+              <h3 style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">\ud83d\udcca Review Results \u2014 ${correctCount}/${totalQuestions} correct</h3>
+              <div style="font-size:14px;color:#c084fc;font-weight:600;margin-top:4px">${bonusText}</div>
             </div>
-            <div style="color:var(--text-secondary);font-size:14px;margin-bottom:8px">Time: ${timeStr}</div>
-            <div class="kt-review-summary-actions">
+            ${itemsHtml}
+            <div style="color:var(--text-secondary);font-size:14px;margin-top:16px;text-align:center">
+              Time: ${timeStr} \u00b7 Confidence updated for ${Object.keys(nodeGroups).length} nodes
+            </div>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap">
               <button class="kt-btn kt-btn-ghost" onclick="ktSwitchView('overview')">Done</button>
-              <button class="kt-btn kt-btn-primary" onclick="ktStartReview()">Review More</button>
+              <button class="kt-btn kt-btn-primary" onclick="ktStartReview()">Review Again</button>
             </div>
           </div>
-        </div>
-      `;
+        `;
+      } else {
+        itemsHtml = ktReviewResults.map((r, i) => {
+          const ok = r.result === 'remembered' || r.result === 'easy';
+          const qt = r.quiz_type || 'concept_recall';
+          const scoreStr = r.format === 'open_ended' ? `${Math.round((r.score || 0) * 100)}%` : (ok ? 'Correct' : 'Wrong');
+          return `<div class="kt-quiz-summary-item">
+            <span class="kt-quiz-summary-check">${ok ? '&#10003;' : '&#10007;'}</span>
+            <span>Q${i+1}</span>
+            <span class="kt-quiz-summary-type" style="background:${typeColors[qt] || '#c084fc'}20;color:${typeColors[qt] || '#c084fc'}">${typeLabels[qt] || qt}</span>
+            <span style="margin-left:auto;color:${ok ? '#4ade80' : '#f87171'}">${scoreStr}</span>
+          </div>`;
+        }).join('');
+
+        reviewEl.innerHTML = `
+          <div class="kt-review-container">
+            ${passed ? `
+            <div class="kt-quiz-passed-banner">
+              <h3>&#9889; Quiz Passed!</h3>
+              <p>Score: ${correctCount}/${totalQuestions} (${pct}%)</p>
+            </div>` : `
+            <div class="kt-review-summary" style="text-align:center;margin-bottom:20px">
+              <h3 style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px">Quiz Complete</h3>
+              <div style="font-size:16px;color:${pct >= 60 ? '#fbbf24' : '#f87171'};font-weight:600">Score: ${correctCount}/${totalQuestions} (${pct}%)</div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-top:4px">Need ${Math.ceil(totalQuestions * 0.8)} correct to pass (80%)</div>
+            </div>`}
+            ${itemsHtml}
+            <div style="color:var(--text-secondary);font-size:14px;margin-top:16px;text-align:center">Time: ${timeStr}</div>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+              <button class="kt-btn kt-btn-ghost" onclick="ktExitQuiz()">Back to Node</button>
+              <button class="kt-btn kt-btn-primary" onclick="ktStartNodeQuiz('${ktEsc(_ktQuizNodeId || '')}')">Retake Quiz</button>
+              <button class="kt-btn kt-btn-ghost" onclick="ktStartNodeQuiz('${ktEsc(_ktQuizNodeId || '')}', true)" style="font-size:12px;opacity:0.7" title="Generate brand new questions from scratch">&#128260; New Questions</button>
+            </div>
+          </div>
+        `;
+      }
 
       // Reload hunter profile and show popups
       fetch(KT_API + '/hunter-profile').then(r => r.json()).then(data => {

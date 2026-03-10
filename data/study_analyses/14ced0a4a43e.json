@@ -1,0 +1,123 @@
+{
+  "video_id": "14ced0a4a43e",
+  "type": "article",
+  "url": "https://azure.github.io/AI-in-Production-Guide/chapters/chapter_09_managing_expedition_cost_management_optimization",
+  "title": "Chapter 9: Managing the Expedition: Cost Management and Optimization",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T23:42:43.793512",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "LLM Infra",
+  "token_usage": {
+    "input_tokens": 2819,
+    "output_tokens": 1059,
+    "total_tokens": 3878,
+    "cost_usd": 0.0243,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "LLM Infra",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction and AI vs Traditional Software Cost Comparison",
+        "key_points": [
+          "AI projects have experimental and iterative nature vs linear traditional software",
+          "AI requires large, diverse datasets and high-performance computing resources",
+          "AI needs specialized talent like prompt engineers and data scientists",
+          "AI has lower cost predictability and higher scalability costs",
+          "Continuous model training and updates required for AI maintenance"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Azure Cost Optimization Resources",
+        "key_points": [
+          "Azure cost optimization involves tradeoffs with reliability, security, and performance",
+          "Azure OpenAI optimization includes model selection, prompt crafting, API rate management",
+          "Provisioned Throughput Units (PTUs) provide consistent performance",
+          "Eight crucial cost factors: complexity, expertise, data quality, infrastructure, UI, storage, security, compliance",
+          "Cost reduction strategies: clear objectives, skilled developers, open-source software, high data quality"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Understanding AI Project Costs",
+        "key_points": [
+          "Azure pricing calculator for cost estimation and planning",
+          "Azure cost management features: budgets, monitoring, forecasting, trend identification",
+          "Azure OpenAI charges based on token usage for base and Codex models",
+          "Cost analysis tools for tracking expenses over time and categorization",
+          "FinOps discipline enhances collaboration across engineering, finance, and IT"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Budgeting Challenges for AI Projects",
+        "key_points": [
+          "Higher unpredictability due to experimental nature",
+          "Dynamic scaling needs for computational power and data storage",
+          "Continuous investment required for ongoing model training",
+          "Specialized talent costs higher than traditional software roles",
+          "Complex cost structures requiring nuanced budgeting approach",
+          "Higher risk requiring contingency planning"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Key Recommendations for Leaders",
+        "key_points": [
+          "Implement robust cost forecasting systems using Azure cost management",
+          "Prioritize efficiency in model development and deployment",
+          "Balance performance with cost in AI model selection",
+          "Invest in ongoing cost optimization training and FinOps practices",
+          "Integrate FinOps into organizational culture"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Guide to AI Project Cost Management and Optimization",
+      "takeaways": [
+        "AI projects have fundamentally different cost structures than traditional software, requiring specialized management approaches",
+        "Azure provides comprehensive cost management tools including pricing calculators, monitoring, and forecasting capabilities",
+        "AI cost optimization involves balancing performance, reliability, and security tradeoffs",
+        "Budgeting for AI requires accounting for unpredictability, dynamic scaling, and continuous investment needs",
+        "FinOps practices are essential for effective collaboration between finance, engineering, and IT teams"
+      ],
+      "concepts": [
+        "AI vs traditional software cost comparison",
+        "Azure cost management and optimization tools",
+        "Provisioned Throughput Units (PTUs)",
+        "Token-based pricing models",
+        "FinOps methodology",
+        "Cost forecasting and budgeting for AI",
+        "Specialized AI talent cost considerations"
+      ],
+      "actionable": [
+        "Use Azure pricing calculator for accurate cost estimation",
+        "Implement Azure cost management features for monitoring and budgeting",
+        "Optimize Azure OpenAI through model selection and prompt engineering",
+        "Set up cost alerts and budgets to prevent overspending",
+        "Invest in FinOps training for cross-functional teams",
+        "Create contingency plans for AI project budget overruns",
+        "Focus on clear objectives and skilled developers to reduce costs"
+      ]
+    }
+  },
+  "article_text_length": 12783,
+  "cover": ""
+}

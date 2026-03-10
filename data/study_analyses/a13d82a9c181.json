@@ -1,0 +1,101 @@
+{
+  "video_id": "a13d82a9c181",
+  "type": "article",
+  "url": "https://github.com/disesdi/mlsecops",
+  "title": "Search code, repositories, users, issues, pull requests...",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:07:16.114058",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "General Tech",
+  "token_usage": {
+    "input_tokens": 632,
+    "output_tokens": 675,
+    "total_tokens": 1307,
+    "cost_usd": 0.012,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "General Tech",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "GitHub Platform Overview",
+        "key_points": [
+          "GitHub serves as a platform for code repositories, user management, and project collaboration",
+          "Offers search functionality across code, repositories, users, issues, and pull requests",
+          "Provides authentication options including username/email and alternative sign-in methods"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Product Portfolio",
+        "key_points": [
+          "GitHub Copilot - AI-powered coding assistant",
+          "Enterprise solutions for organizations",
+          "Multiple client applications: CLI, Desktop, Mobile",
+          "GitHub Marketplace for extensions and integrations",
+          "MCP Registry for additional tools"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Developer Resources and Support",
+        "key_points": [
+          "Developer newsletter with technical guides and best practices (bi-monthly)",
+          "Comprehensive documentation and community forum",
+          "Professional services and premium support options",
+          "Educational resources and skills development programs",
+          "Developer API for platform integration"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Corporate Information",
+        "key_points": [
+          "Multiple social media presence across LinkedIn, Instagram, YouTube, X, TikTok, Twitch",
+          "Focus on inclusion, social impact, and community engagement",
+          "Updated privacy policy as of February 2024",
+          "Comprehensive terms of service and cookie management options"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "GitHub Platform Navigation and Service Overview",
+      "takeaways": [
+        "GitHub offers comprehensive code hosting and collaboration platform with AI integration",
+        "Multiple access points and tools available for different development workflows",
+        "Strong focus on developer education and community support",
+        "Enterprise-grade solutions with professional support options available"
+      ],
+      "concepts": [
+        "Version control platform",
+        "AI-powered development tools",
+        "Developer ecosystem",
+        "Enterprise software solutions",
+        "Community-driven development"
+      ],
+      "actionable": [
+        "Subscribe to GitHub's developer newsletter for technical updates",
+        "Explore GitHub Copilot for AI-assisted coding",
+        "Utilize GitHub CLI or Desktop for streamlined workflow",
+        "Access documentation and community forum for learning resources",
+        "Consider enterprise solutions for organizational needs"
+      ]
+    }
+  },
+  "article_text_length": 1131,
+  "cover": "https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
+}

@@ -6,13 +6,17 @@ Prefix: /api/knowledge-tree/
 
 from __future__ import annotations
 
+import io
 import json
+import os
+import random
+import re
 import shutil
 import threading
 from datetime import datetime, timedelta, timezone
 
 import numpy as np
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, send_file
 
 from routes._shared import (
     DATA_DIR,
@@ -131,6 +135,17 @@ RANK_TABLE = [
 # ---------------------------------------------------------------------------
 # Helpers — basics
 # ---------------------------------------------------------------------------
+
+def _is_chinese(text: str) -> bool:
+    """Return True if >30% of non-whitespace chars are CJK."""
+    if not text:
+        return False
+    chars = [c for c in text if not c.isspace()]
+    if not chars:
+        return False
+    cjk = sum(1 for c in chars if "\u4e00" <= c <= "\u9fff")
+    return cjk / len(chars) > 0.3
+
 
 def _now_iso():
     return datetime.now(timezone.utc).isoformat()
@@ -553,24 +568,24 @@ def _evaluate_source_coverage(source: dict, node: dict) -> dict:
     dims_json = json.dumps([{"id": d["id"], "title": d["title"]} for d in dimensions], ensure_ascii=False)
 
     result = _call_claude(
-        system_prompt="你是一个知识评估助手。严格返回 JSON。",
-        user_prompt=f"""评估以下学习材料对各知识维度的覆盖程度。
+        system_prompt="You are a knowledge assessment assistant. Return strict JSON.",
+        user_prompt=f"""Evaluate how well the following learning material covers each knowledge dimension.
 
-学习材料：
-标题：{source.get('title', '')}
-摘要：{source.get('summary', '')}
-要点：{source.get('key_takeaways', [])[:8]}
+Learning material:
+Title: {source.get('title', '')}
+Summary: {source.get('summary', '')}
+Key points: {source.get('key_takeaways', [])[:8]}
 
-需要评估的知识维度：
+Knowledge dimensions to evaluate:
 {dims_json}
 
-对每个维度打分 0-100：
-- 0: 完全没涉及
-- 20-40: 简单提及
-- 50-70: 有一定深度的覆盖
-- 80-100: 深入全面的覆盖
+Score each dimension 0-100:
+- 0: Not covered at all
+- 20-40: Briefly mentioned
+- 50-70: Covered with some depth
+- 80-100: Deep, comprehensive coverage
 
-返回 JSON：
+Return JSON:
 {{"scores": {{"dim_id_1": 85, "dim_id_2": 30, ...}}}}""",
         max_tokens=500,
     )
@@ -614,37 +629,71 @@ def _call_claude(system_prompt: str, user_prompt: str, max_tokens: int = 2000) -
         temperature=0.3,
     )
 
-    text = response.content[0].text
+    text = response.content[0].text.strip()
+    # Strip markdown code fence
     if text.startswith("```"):
-        text = text.split("\n", 1)[1]
-        text = text.rsplit("```", 1)[0]
+        text = re.sub(r"^```(?:json)?\s*\n?", "", text)
+        text = re.sub(r"\n?\s*```$", "", text)
+    # Find the outermost JSON object
+    start = text.find("{")
+    if start >= 0:
+        depth = 0
+        end = start
+        for i in range(start, len(text)):
+            if text[i] == "{":
+                depth += 1
+            elif text[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    end = i + 1
+                    break
+        text = text[start:end]
 
-    return json.loads(text.strip())
+    return json.loads(text)
 
 
 def _classify_source_to_tree(source: dict, template: dict) -> list[str]:
     """AI-classify a source to 1-3 tech tree leaf nodes."""
     leaves = _get_all_leaves(template)
-    leaves_json = json.dumps([{"id": l["id"], "title": l["title"]} for l in leaves], ensure_ascii=False)
+
+    # Build rich leaf descriptions with guide + dimensions for better classification
+    tree_data = _load_tree()
+    leaf_entries = []
+    for l in leaves:
+        entry: dict = {"id": l["id"], "title": l["title"]}
+        # Add guide description if available
+        guide = l.get("guide")
+        if isinstance(guide, dict) and guide.get("what"):
+            entry["description"] = guide["what"]
+        # Add dimension names from quest config
+        node_data = tree_data.get("nodes", {}).get(l["id"], {})
+        dims = node_data.get("quest", {}).get("dimensions", [])
+        dim_names = [d.get("title") or d.get("name") or d.get("id") for d in dims if isinstance(d, dict)]
+        dim_names = [n for n in dim_names if n]
+        if dim_names:
+            entry["dimensions"] = dim_names
+        leaf_entries.append(entry)
+    leaves_json = json.dumps(leaf_entries, ensure_ascii=False)
 
     prompt = (
-        "以下是一个新的知识来源：\n"
-        f"标题：{source.get('title', '')}\n"
-        f"摘要：{source.get('summary', '')}\n"
-        f"Tags：{source.get('tags', [])}\n"
-        f"Key takeaways：{source.get('key_takeaways', [])[:5]}\n\n"
-        f"以下是科技树的所有叶子概念节点：\n{leaves_json}\n\n"
-        "这个来源应该关联到哪些概念节点？一个来源可以关联 1-3 个节点。\n\n"
-        '返回 JSON：\n'
-        '{"node_ids": ["node_id_1", "node_id_2"], "reasoning": "简短说明为什么选这些节点"}\n\n'
-        "规则：\n"
-        "- 只选真正相关的节点，不要为了多选而选\n"
-        "- 通常 1-2 个就够了\n"
-        "- 只能选叶子节点的 id"
+        "Here is a new knowledge source:\n"
+        f"Title: {source.get('title', '')}\n"
+        f"Summary: {source.get('summary', '')}\n"
+        f"Tags: {source.get('tags', [])}\n"
+        f"Key takeaways: {source.get('key_takeaways', [])[:5]}\n\n"
+        f"Here are all leaf concept nodes in the tech tree (with descriptions and dimensions):\n{leaves_json}\n\n"
+        "Which concept nodes should this source be linked to? A source can link to 1-3 nodes.\n\n"
+        'Return JSON:\n'
+        '{"node_ids": ["node_id_1", "node_id_2"], "reasoning": "Brief explanation for the choices"}\n\n'
+        "Rules:\n"
+        "- Only select truly relevant nodes, don't over-select\n"
+        "- Usually 1-2 is enough\n"
+        "- Only select leaf node IDs\n"
+        "- Reference each node's description and dimensions to judge relevance, don't rely solely on title"
     )
 
     result = _call_claude(
-        system_prompt="你是一个知识分类助手。",
+        system_prompt="You are a knowledge classification assistant.",
         user_prompt=prompt,
         max_tokens=500,
     )
@@ -672,13 +721,13 @@ def _generate_node_summary(node_id: str, tree_data: dict) -> dict | None:
 
     try:
         result = _call_claude(
-            system_prompt="你是知识整理助手。根据来源信息，生成一个概念的综合总结。用来源的主要语言。严格返回 JSON。",
-            user_prompt=f"""概念 ID: {node_id}
-来源信息：
+            system_prompt="You are a knowledge organizer. Synthesize source information into a concise concept summary. Always respond in English. Return strict JSON.",
+            user_prompt=f"""Concept ID: {node_id}
+Source information:
 {json.dumps(sources_info, ensure_ascii=False, indent=2)}
 
-返回 JSON：
-{{"summary": "2-3句话综合总结", "key_takeaways": ["要点1", "要点2", ...], "tags": ["tag1", "tag2"]}}""",
+Return JSON:
+{{"summary": "2-3 sentence comprehensive summary in English", "key_takeaways": ["takeaway1", "takeaway2", ...], "tags": ["tag1", "tag2"]}}""",
             max_tokens=1000,
         )
         return result
@@ -687,36 +736,110 @@ def _generate_node_summary(node_id: str, tree_data: dict) -> dict | None:
         return None
 
 
+MINDMAP_COLORS = ["#4fc3f7", "#81c784", "#ffb74d", "#f06292", "#ba68c8", "#4dd0e1"]
+
+
+def _generate_mindmap(node: dict, takeaways: list[str], summaries: list[str], lang: str = "en") -> dict:
+    """AI-generate a mind map structure for a node."""
+    title = node.get("title", node.get("id", ""))
+    # Guard: need at least some content to generate a meaningful mind map
+    if not takeaways and not any(summaries):
+        return {"center": title, "branches": [], "connections": []}
+
+    if lang == "zh":
+        lang_rule = "- 用简体中文，技术术语保留英文（如 RAG, Embedding, Fine-tuning, Agent, Pipeline）"
+    else:
+        lang_rule = "- Use English for all labels"
+
+    result = _call_claude(
+        system_prompt="You are a knowledge structuring expert. Organize scattered knowledge points into a clear mind map structure. Return strict JSON.",
+        user_prompt=f"""Concept: {title}
+Description: {node.get('summary', '')}
+
+Source summaries for this concept:
+{chr(10).join(s for s in summaries if s)}
+
+Key takeaways:
+{chr(10).join(f'• {t}' for t in takeaways)}
+
+Organize this knowledge into a mind map structure. The center node is the concept name, then branch out into 3-6 thematic branches, each with 2-5 specific knowledge points.
+
+Return JSON:
+{{
+  "center": "{title}",
+  "branches": [
+    {{
+      "id": "branch_1",
+      "label": "Branch theme name",
+      "color": "#4fc3f7",
+      "children": [
+        {{"id": "b1_1", "label": "Specific knowledge point 1"}},
+        {{"id": "b1_2", "label": "Specific knowledge point 2"}}
+      ]
+    }}
+  ],
+  "connections": [
+    {{"from": "b1_2", "to": "b2_1", "label": "relates to"}}
+  ]
+}}
+
+Rules:
+- Center node is the concept name
+- 3-6 main branches representing core themes/aspects
+- Each branch has 2-5 leaf nodes with specific knowledge points
+- Branch labels are short (2-5 words)
+- Leaf node labels can be slightly longer but no more than 15 words
+- color: assign a different color to each branch (pick from: #4fc3f7, #81c784, #ffb74d, #f06292, #ba68c8, #4dd0e1)
+- connections: cross-branch relationships (optional, 0-3), showing related knowledge points across branches
+{lang_rule}""",
+        max_tokens=2000,
+    )
+
+    # Validate and sanitize response
+    if "center" not in result:
+        result["center"] = title
+    if not isinstance(result.get("branches"), list) or not result["branches"]:
+        raise ValueError("AI response missing branches array")
+    for i, b in enumerate(result["branches"]):
+        b.setdefault("id", f"branch_{i}")
+        b.setdefault("label", f"Topic {i + 1}")
+        b.setdefault("children", [])
+        if not b.get("color"):
+            b["color"] = MINDMAP_COLORS[i % len(MINDMAP_COLORS)]
+    result.setdefault("connections", [])
+    return result
+
+
 def _extract_knowledge_with_ai(conversation_text: str, user_notes: str = "") -> dict:
     """Use Claude to extract structured knowledge points from conversation text."""
     system_prompt = (
-        "你是一个知识提取助手。分析用户提供的对话内容，提取有价值的知识点。\n\n"
-        "规则：\n"
-        "1. 只提取有学习价值的知识，忽略闲聊、debug 过程、重复修改代码等\n"
-        "2. 每个知识点应该是一个独立的、可复习的概念或事实\n"
-        "3. 如果对话主要是写代码/debug 且没有新知识，返回空数组\n"
-        "4. tags 用英文小写，用于搜索\n"
-        "5. summary 用对话的主要语言（中文或英文），2-3 句话\n"
-        "6. key_takeaways 每条是一个独立的要点，可以直接用于复习\n\n"
-        "严格按 JSON 格式返回，不要有其他文字："
+        "You are a knowledge extraction assistant. Analyze the provided conversation content and extract valuable knowledge points.\n\n"
+        "Rules:\n"
+        "1. Only extract knowledge with learning value — ignore chit-chat, debugging processes, repetitive code edits\n"
+        "2. Each knowledge point should be an independent, reviewable concept or fact\n"
+        "3. If the conversation is mainly coding/debugging with no new knowledge, return an empty array\n"
+        "4. tags: lowercase English, for search\n"
+        "5. summary: write in English, 2-3 sentences\n"
+        "6. key_takeaways: each item is an independent point that can be used directly for review\n\n"
+        "Return strict JSON, no other text:"
     )
 
-    notes_line = f"\n\n用户备注：{user_notes}" if user_notes else ""
+    notes_line = f"\n\nUser notes: {user_notes}" if user_notes else ""
     user_prompt = (
-        f"对话内容：\n{conversation_text}{notes_line}\n\n"
-        "请提取知识点，返回 JSON：\n"
+        f"Conversation content:\n{conversation_text}{notes_line}\n\n"
+        "Extract knowledge points, return JSON:\n"
         '{\n'
         '  "knowledge_points": [\n'
         '    {\n'
-        '      "title": "简短标题",\n'
+        '      "title": "Short title",\n'
         '      "tags": ["tag1", "tag2"],\n'
-        '      "summary": "2-3句话总结",\n'
-        '      "key_takeaways": ["要点1", "要点2"],\n'
-        '      "raw_excerpt": "对话中最相关的原文"\n'
+        '      "summary": "2-3 sentence summary",\n'
+        '      "key_takeaways": ["takeaway1", "takeaway2"],\n'
+        '      "raw_excerpt": "Most relevant excerpt from the conversation"\n'
         '    }\n'
         '  ]\n'
         '}\n\n'
-        '如果对话没有有价值的知识，返回 {"knowledge_points": []}'
+        'If the conversation has no valuable knowledge, return {"knowledge_points": []}'
     )
 
     try:
@@ -891,6 +1014,66 @@ def _get_next_due_time(tree_data: dict) -> str | None:
     return min(upcoming) if upcoming else None
 
 
+def _select_review_nodes(tree_data: dict, reviews_data: dict, count: int = 6) -> list[tuple]:
+    """Select nodes for comprehensive review, ordered by priority.
+
+    Returns list of (node_id, node_dict, reason) tuples where reason is
+    'due', 'wrong', or 'random'.
+    """
+    nodes = tree_data.get("nodes", {})
+    reviews = reviews_data.get("reviews", [])
+    now = _now_iso()
+
+    selected: list[tuple] = []
+    selected_ids: set[str] = set()
+
+    # Only nodes with source_ids that are not locked
+    eligible = {
+        nid: n for nid, n in nodes.items()
+        if n.get("status") in ("in_progress", "lit", "mastered")
+        and n.get("source_ids")
+    }
+    if not eligible:
+        return []
+
+    # Priority 1: SRS due nodes (next_review < now)
+    due_nodes = []
+    for nid, node in eligible.items():
+        nr = (node.get("review_status") or {}).get("next_review", "")
+        if nr and nr <= now:
+            due_nodes.append((nid, node))
+    due_nodes.sort(key=lambda x: (x[1].get("review_status") or {}).get("next_review", ""))
+
+    for nid, node in due_nodes[:3]:
+        if nid not in selected_ids:
+            selected.append((nid, node, "due"))
+            selected_ids.add(nid)
+
+    # Priority 2: Recently wrong nodes (from last 50 reviews)
+    wrong_nids: list[str] = []
+    seen_wrong: set[str] = set()
+    for r in reversed(reviews[-50:]):
+        nid = r.get("node_id", "")
+        if r.get("result") == "forgot" and nid in eligible and nid not in seen_wrong:
+            wrong_nids.append(nid)
+            seen_wrong.add(nid)
+
+    for nid in wrong_nids[:2]:
+        if nid not in selected_ids:
+            selected.append((nid, eligible[nid], "wrong"))
+            selected_ids.add(nid)
+
+    # Priority 3: Fill remaining with random eligible nodes
+    remaining = [nid for nid in eligible if nid not in selected_ids]
+    random.shuffle(remaining)
+
+    for nid in remaining[: count - len(selected)]:
+        selected.append((nid, eligible[nid], "random"))
+        selected_ids.add(nid)
+
+    return selected
+
+
 # ---------------------------------------------------------------------------
 # Helpers — quiz generation
 # ---------------------------------------------------------------------------
@@ -918,47 +1101,171 @@ def _get_related_context(due_nodes: list[dict], tree_data: dict) -> list[dict]:
 
 
 def _generate_quizzes_with_ai(nodes: list[dict], related_context: list[dict]) -> list[dict]:
-    """Generate review quizzes with AI."""
-    system_prompt = (
-        "你是一个知识复习助手。生成复习测验题。\n\n"
-        "规则：\n"
-        "1. 每个知识点1个问题\n"
-        "2. 混合题型：recall（回忆）、application（应用）、connection（关联）\n"
-        "3. 问题要具体\n"
-        "4. 用知识点的原始语言出题\n\n"
-        "严格按 JSON 格式返回。"
-    )
+    """Generate mixed-format quizzes: multiple_choice + open_ended, four quiz types."""
+    # Collect source content for richer quiz generation
+    tree_data = _load_tree()
+    all_content = []
+    for n in nodes:
+        node_data = tree_data.get("nodes", {}).get(n["id"], {})
+        sources = [s for s in tree_data.get("sources", []) if s["id"] in node_data.get("source_ids", [])]
+        content = {
+            "node_id": n["id"],
+            "title": n.get("title", n["id"]),
+            "summary": n.get("summary", node_data.get("summary", "")),
+            "key_takeaways": n.get("key_takeaways", node_data.get("key_takeaways", [])),
+            "dimensions": [d.get("title", d.get("name", "")) for d in node_data.get("quest", {}).get("dimensions", []) if isinstance(d, dict)],
+            "source_summaries": [s.get("summary", "")[:200] for s in sources],
+        }
+        all_content.append(content)
 
-    nodes_info = [
-        {"id": n["id"], "title": n.get("title", n["id"]), "summary": n.get("summary", ""),
-         "key_takeaways": n.get("key_takeaways", []), "confidence": n.get("confidence", 0)}
-        for n in nodes
-    ]
+    system_prompt = """你是一个 AI/ML 技术面试官和教育专家。根据学生学过的知识，生成高质量的测验题。
 
-    related_line = ""
-    if related_context:
-        related_line = f"\n\n关联知识点：\n{json.dumps(related_context, ensure_ascii=False)}"
+题型说明：
+1. concept_recall（概念回忆）— 考察核心概念的理解和记忆
+2. application（场景应用）— 给一个实际工作场景，考察如何应用知识
+3. comparison（对比分析）— 考察对相似概念/工具/方法的区分和取舍
+4. system_design（系统设计）— 考察架构思维和整体设计能力
 
-    user_prompt = (
-        f"知识点：\n{json.dumps(nodes_info, ensure_ascii=False, indent=2)}{related_line}\n\n"
-        "返回 JSON：\n"
-        '{"quizzes": [{"node_id": "ID", "type": "recall|application|connection", '
-        '"question": "问题", "hint": "提示", "expected_answer_points": ["要点"], "difficulty": "easy|medium|hard"}]}'
-    )
+答题形式：
+- 选择题（multiple_choice）：4 个选项，1 个正确答案
+- 开放题（open_ended）：用户自由作答，给出评分要点
+
+出题质量要求（非常重要）：
+- ❌ 绝对不要出纯数据记忆题（比如"增长了多少%"、"哪一年发生了什么"、"具体数字是多少"）
+- ❌ 不要出只需要背诵才能回答的题
+- ✅ 所有题目都应该考察理解、分析、应用能力
+- ✅ Concept Recall 应该考"这个概念的核心原理是什么"，而不是"某个统计数字"
+- ✅ Application 应该给一个真实工作场景让用户思考怎么解决
+- ✅ Comparison 应该考察什么时候用 A 什么时候用 B 的判断力
+- ✅ System Design 应该有具体约束条件，考察架构思维
+
+混合比例：大约 60% 选择题 + 40% 开放题
+严格按 JSON 格式返回。"""
+
+    user_prompt = f"""为以下知识点生成 12 道测验题（7 道选择题 + 5 道开放题），混合四种题型。
+
+知识内容：
+{json.dumps(all_content, ensure_ascii=False, indent=2)}
+
+返回 JSON：
+{{"quizzes": [
+  {{
+    "id": "q1",
+    "node_id": "节点ID",
+    "quiz_type": "concept_recall",
+    "format": "multiple_choice",
+    "question": "问题文本",
+    "options": ["A. 选项1", "B. 选项2", "C. 选项3", "D. 选项4"],
+    "correct_answer": "A",
+    "explanation": "为什么这个答案正确（1-2 句话）",
+    "difficulty": "easy"
+  }},
+  {{
+    "id": "q2",
+    "node_id": "节点ID",
+    "quiz_type": "application",
+    "format": "open_ended",
+    "question": "场景描述 + 问题",
+    "expected_points": ["答案要点1", "答案要点2", "答案要点3"],
+    "hint": "提示（可选）",
+    "difficulty": "medium"
+  }}
+]}}
+
+规则：
+- 12 道题：7 道选择题 + 5 道开放题
+- 四种题型都要出现，尽量均匀分布
+- 确保题目之间不重复、不过于相似
+- 选择题的干扰项要有迷惑性，不要太明显
+- 开放题的 expected_points 是评分要点（用户需要提到的关键信息）
+- 场景应用题要给具体的工作场景（比如"你在公司负责一个 RAG 系统..."）
+- 系统设计题要有明确的约束条件（比如"10万文档，延迟要求<2s"）
+- 难度分布：3 easy + 6 medium + 3 hard
+- 用中文出题（技术名词保留英文）
+- 语言规则：
+  * 题目和选项用中文，但技术名词保留英文原词
+  * 例如：data drift（不说"数据漂移"）、model degradation（不说"模型性能衰减"）
+  * Agent、Tokenization、Embedding、Fine-tuning、RAG、Pipeline、Deploy、API、SDK、CLI 等直接用英文
+  * 大原则：如果一个技术词在中文 AI 社区里大家普遍直接说英文的，就保留英文
+  * 只有确实有广泛使用的中文对应词（如"模型"、"数据集"、"微调"）才用中文
+  * 风格类似中国程序员日常讨论的中英混合
+  * expected_points 和 explanation 也遵循同样的中英混合规则
+- 不要出太教科书化的题，要偏实际工作应用
+
+好题举例：
+- "你的 RAG 系统 retrieval 相关性很高但回答质量差，可能是什么原因？"（application）
+- "RAG vs Fine-tuning，在数据频繁更新的场景下你会选哪个？为什么？"（comparison）
+- "设计一个支持 10 万文档的企业 RAG 系统，延迟要求 < 3s，你会怎么选型？"（system_design）
+
+坏题举例（绝对不要出这种）：
+- "AI 安全事件在 2017-2023 年增长了多少？"（纯背数字）
+- "MLflow 是哪一年发布的？"（无意义记忆）
+- "以下哪个不是 MLOps 工具？"（太简单，没有思考深度）"""
 
     try:
-        result = _call_claude(system_prompt, user_prompt, max_tokens=2000)
-        return result.get("quizzes", [])
+        result = _call_claude(system_prompt, user_prompt, max_tokens=6000)
+        quizzes = result.get("quizzes", [])
+        # Ensure each quiz has required fields
+        for i, q in enumerate(quizzes):
+            q.setdefault("id", f"q{i+1}")
+            q.setdefault("format", "multiple_choice" if q.get("options") else "open_ended")
+            q.setdefault("quiz_type", q.pop("type", "concept_recall"))
+            # Normalize: if has options but no correct_answer, treat as open_ended
+            if q["format"] == "multiple_choice" and not q.get("correct_answer"):
+                q["format"] = "open_ended"
+                q.setdefault("expected_points", q.pop("expected_answer_points", []))
+        return quizzes
     except Exception as e:
         log.warning("Quiz generation failed: %s", e)
         return [
-            {"node_id": n["id"], "type": "recall",
+            {"id": f"q{i+1}", "node_id": n["id"], "quiz_type": "concept_recall",
+             "format": "open_ended",
              "question": f"请回忆关于「{n.get('title', n['id'])}」的核心要点。",
              "hint": (n.get("summary") or "")[:100],
-             "expected_answer_points": n.get("key_takeaways", []),
+             "expected_points": n.get("key_takeaways", []),
              "difficulty": "medium"}
-            for n in nodes
+            for i, n in enumerate(nodes)
         ]
+
+
+def _evaluate_open_answer(question: str, user_answer: str, expected_points: list[str]) -> dict:
+    """AI-evaluate an open-ended quiz answer against expected points."""
+    try:
+        result = _call_claude(
+            system_prompt="You are a technical interview evaluator. Assess whether the candidate's answer covers the key points. Return strict JSON.",
+            user_prompt=f"""Question: {question}
+
+Candidate's answer: {user_answer}
+
+Expected points (1 point each):
+{json.dumps(expected_points, ensure_ascii=False)}
+
+Evaluate whether the candidate mentioned each point. Return JSON:
+{{
+  "total_points": {len(expected_points)},
+  "earned_points": 0,
+  "point_results": [
+    {{"point": "point text", "covered": true, "comment": "The candidate mentioned..."}}
+  ],
+  "overall_feedback": "Overall assessment (1-2 sentences, in Chinese with tech terms in English)",
+  "score_percentage": 0.75
+}}""",
+            max_tokens=1500,
+        )
+        # Ensure numeric fields
+        result.setdefault("total_points", len(expected_points))
+        result.setdefault("earned_points", sum(1 for p in result.get("point_results", []) if p.get("covered")))
+        result.setdefault("score_percentage", result["earned_points"] / max(result["total_points"], 1))
+        return result
+    except Exception as e:
+        log.warning("Open answer evaluation failed: %s", e)
+        return {
+            "total_points": len(expected_points),
+            "earned_points": 0,
+            "point_results": [{"point": p, "covered": False, "comment": "评估失败"} for p in expected_points],
+            "overall_feedback": f"AI 评估失败: {str(e)[:100]}",
+            "score_percentage": 0,
+        }
 
 
 # ---------------------------------------------------------------------------
@@ -1274,6 +1581,202 @@ def kt_update_node(node_id):
     return jsonify({"ok": True, "node": {**node, "id": node_id}})
 
 
+# ---------------------------------------------------------------------------
+# Mind Map
+# ---------------------------------------------------------------------------
+
+def _find_node_in_template(node_id: str, template: dict) -> dict | None:
+    """Find a node (branch, mid-level, or leaf) in the template tree by id."""
+    def _walk(node):
+        if node.get("id") == node_id:
+            return node
+        for child in node.get("children", []):
+            found = _walk(child)
+            if found:
+                return found
+        return None
+    return _walk(template.get("tree", {}))
+
+
+def _generate_branch_mindmap(branch_node: dict, tree_data: dict) -> dict:
+    """Generate a mind map for a branch/mid-level node from its tree structure."""
+    nodes_dict = tree_data.get("nodes", {})
+    branches = []
+
+    for child in branch_node.get("children", []):
+        if child.get("children"):
+            # Sub-branch with children (leaves)
+            branch_data = {
+                "id": child["id"],
+                "label": child.get("title", child["id"]),
+                "color": MINDMAP_COLORS[len(branches) % len(MINDMAP_COLORS)],
+                "children": [],
+            }
+            for leaf in child.get("children", []):
+                leaf_node = nodes_dict.get(leaf["id"], {})
+                status = leaf_node.get("status", "locked")
+                label = leaf.get("title", leaf["id"])
+                if status != "locked" and leaf_node.get("key_takeaways"):
+                    short = leaf_node["key_takeaways"][0][:30]
+                    label = f"{label} — {short}..."
+                branch_data["children"].append({
+                    "id": leaf["id"], "label": label, "status": status,
+                })
+            branches.append(branch_data)
+        else:
+            # Direct leaf child
+            leaf_node = nodes_dict.get(child["id"], {})
+            status = leaf_node.get("status", "locked")
+            children = []
+            if leaf_node.get("key_takeaways"):
+                children = [
+                    {"id": f"{child['id']}_t{i}", "label": t[:50]}
+                    for i, t in enumerate(leaf_node["key_takeaways"][:3])
+                ]
+            branches.append({
+                "id": child["id"],
+                "label": child.get("title", child["id"]),
+                "color": MINDMAP_COLORS[len(branches) % len(MINDMAP_COLORS)],
+                "status": status,
+                "children": children,
+            })
+
+    return {
+        "ok": True,
+        "mindmap": {
+            "center": branch_node.get("title", branch_node.get("id", "")),
+            "branches": branches,
+            "connections": [],
+        },
+        "cached": True,  # branch mindmaps are always derived from structure
+    }
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/mindmap/<node_id>")
+def kt_get_mindmap(node_id):
+    """Get or generate a mind map for any tech tree node (leaf or branch)."""
+    lang = request.args.get("lang", "en")
+    tree_data = _load_tree()
+    template = _load_template()
+
+    # Check if this is a branch/mid-level node in the template
+    tpl_node = _find_node_in_template(node_id, template)
+    if tpl_node and tpl_node.get("children"):
+        # Branch or mid-level — generate from tree structure (no AI needed)
+        return jsonify(_generate_branch_mindmap(tpl_node, tree_data))
+
+    # Leaf node — need sources for AI generation
+    node = tree_data.get("nodes", {}).get(node_id)
+    if not node:
+        return jsonify({"ok": False, "error": "not found"}), 404
+
+    source_ids = node.get("source_ids", [])
+    if not source_ids:
+        return jsonify({"ok": False, "error": "no sources"}), 404
+
+    # Check cache — zh has its own cache slot
+    version_key = ",".join(sorted(source_ids))
+    if lang == "zh":
+        zh = node.get("zh", {})
+        cached_zh = zh.get("mindmap")
+        if cached_zh and zh.get("mindmap_version") == version_key:
+            return jsonify({"ok": True, "mindmap": cached_zh, "cached": True})
+    else:
+        cached = node.get("mindmap")
+        if cached and node.get("mindmap_version") == version_key:
+            return jsonify({"ok": True, "mindmap": cached, "cached": True})
+
+    # Collect source knowledge
+    sources_by_id = {s["id"]: s for s in tree_data.get("sources", [])}
+    sources = [sources_by_id[sid] for sid in source_ids if sid in sources_by_id]
+    takeaways = []
+    summaries = []
+    for src in sources:
+        takeaways.extend(src.get("key_takeaways", []))
+        summaries.append(src.get("summary", ""))
+
+    leaf_map = {l["id"]: l["title"] for l in _get_all_leaves(template)}
+    node_with_title = {**node, "title": leaf_map.get(node_id, node_id)}
+
+    try:
+        mindmap = _generate_mindmap(node_with_title, takeaways, summaries, lang=lang)
+    except Exception as e:
+        log.warning("Failed to generate mindmap for %s: %s", node_id, e)
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+    # Cache to node
+    with _id_lock:
+        tree_data = _load_tree()
+        nd = tree_data.get("nodes", {}).get(node_id)
+        if nd:
+            if lang == "zh":
+                zh = nd.setdefault("zh", {})
+                zh["mindmap"] = mindmap
+                zh["mindmap_version"] = version_key
+            else:
+                nd["mindmap"] = mindmap
+                nd["mindmap_version"] = version_key
+            _save_tree(tree_data)
+
+    return jsonify({"ok": True, "mindmap": mindmap, "cached": False})
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/generate-mindmaps", methods=["POST"])
+def kt_generate_mindmaps():
+    """Batch-generate mind maps for all nodes that have sources."""
+    body = request.get_json(silent=True) or {}
+    limit = min(body.get("limit", 5), 10)  # Cap at 10 per request to avoid timeout
+
+    tree_data = _load_tree()
+    template = _load_template()
+    leaf_map = {l["id"]: l["title"] for l in _get_all_leaves(template)}
+    nodes = tree_data.get("nodes", {})
+    sources_by_id = {s["id"]: s for s in tree_data.get("sources", [])}
+    generated_maps = {}  # nid -> {mindmap, mindmap_version}
+    skipped = []
+    count = 0
+
+    for nid, node in nodes.items():
+        if count >= limit:
+            break
+        source_ids = node.get("source_ids", [])
+        if not source_ids:
+            continue
+        version_key = ",".join(sorted(source_ids))
+        if node.get("mindmap") and node.get("mindmap_version") == version_key:
+            skipped.append(nid)
+            continue
+
+        srcs = [sources_by_id[sid] for sid in source_ids if sid in sources_by_id]
+        takeaways = []
+        summaries = []
+        for src in srcs:
+            takeaways.extend(src.get("key_takeaways", []))
+            summaries.append(src.get("summary", ""))
+
+        node_with_title = {**node, "title": leaf_map.get(nid, nid)}
+        try:
+            mindmap = _generate_mindmap(node_with_title, takeaways, summaries)
+            generated_maps[nid] = {"mindmap": mindmap, "mindmap_version": version_key}
+            count += 1
+            log.info("Generated mindmap for %s", nid)
+        except Exception as e:
+            log.warning("Failed to generate mindmap for %s: %s", nid, e)
+
+    # Save under lock to avoid race with single-node endpoint
+    if generated_maps:
+        with _id_lock:
+            fresh = _load_tree()
+            for nid, data in generated_maps.items():
+                nd = fresh.get("nodes", {}).get(nid)
+                if nd:
+                    nd["mindmap"] = data["mindmap"]
+                    nd["mindmap_version"] = data["mindmap_version"]
+            _save_tree(fresh)
+
+    return jsonify({"ok": True, "generated": list(generated_maps.keys()), "skipped": skipped})
+
+
 @knowledge_tree_bp.route("/api/knowledge-tree/sources")
 def kt_list_sources():
     """List all sources, optionally filtered by node_id."""
@@ -1351,102 +1854,344 @@ def kt_stats():
 
 
 # ---------------------------------------------------------------------------
-# Routes — Recommended Tasks (Daily Quests)
+# Routes — Recommended Tasks (Daily / Weekly Quests)
 # ---------------------------------------------------------------------------
 
 RECOMMENDED_TASKS_FILE = DATA_DIR / "recommended_tasks.json"
+STUDY_VIDEOS_FILE = DATA_DIR / "study_videos.json"
+
+
+def _get_leaves_from_branch(branch_node: dict) -> list[dict]:
+    """Get all leaf nodes from a branch subtree."""
+    leaves = []
+    def _walk(node):
+        children = node.get("children", [])
+        if not children:
+            leaves.append(node)
+        else:
+            for c in children:
+                _walk(c)
+    _walk(branch_node)
+    return leaves
+
+
+def _build_title_map() -> dict[str, str]:
+    """Build node_id → title mapping from the template tree."""
+    template = load_json(TECH_TREE_TEMPLATE_FILE, {"version": "1.0", "tree": {"children": []}})
+    titles = {}
+    def _walk(node):
+        if "id" in node:
+            titles[node["id"]] = node.get("title", node["id"])
+        for c in node.get("children", []):
+            _walk(c)
+    _walk(template.get("tree", {}))
+    return titles
+
+
+def _generate_daily_quests(tree_data, reviews_data, profile, study_videos):
+    """Generate up to 3 daily quests based on rules + data (no AI calls)."""
+    quests = []
+    now = datetime.utcnow()
+    nodes = tree_data.get("nodes", {})
+    titles = _build_title_map()
+    reviews = reviews_data.get("reviews", [])
+
+    # === Type 1: 📚 Read & Learn ===
+    days_since = 99
+    if study_videos:
+        last_added = max((v.get("started_at", "") for v in study_videos), default="")
+        try:
+            last_time = datetime.fromisoformat(last_added.replace("Z", "+00:00"))
+            days_since = (now - last_time.replace(tzinfo=None)).days
+        except Exception:
+            days_since = 99
+
+    if days_since >= 1:
+        quests.append({
+            "id": "daily_read",
+            "type": "read",
+            "icon": "📚",
+            "title": "Read & Learn",
+            "short_desc": f"Add a new article to Study ({days_since}d since last)",
+            "detail": f"You haven't added a new article in {days_since} days. Find an interesting AI/ML article, add it to Study, and let the system analyze it. This keeps your knowledge fresh and growing.",
+            "actions": [
+                "Browse your favorite AI blogs or newsletters",
+                "Check Hacker News, Twitter, or arxiv for new content",
+                "Paste a URL into the Study tab and click Analyze",
+            ],
+            "priority": "high" if days_since >= 3 else "medium",
+            "xp_reward": 30,
+            "node_id": None,
+        })
+
+    # === Type 2: 🧠 Review ===
+    reviewed_nodes = {}
+    for r in reviews:
+        nid = r.get("node_id", "")
+        reviewed_at = r.get("reviewed_at", "")
+        if nid and reviewed_at > reviewed_nodes.get(nid, ""):
+            reviewed_nodes[nid] = reviewed_at
+
+    stale_nodes = []
+    for nid, node in nodes.items():
+        if node.get("status") in ("in_progress", "lit", "mastered") and node.get("source_ids"):
+            last_review = reviewed_nodes.get(nid, "")
+            if last_review:
+                try:
+                    lr_time = datetime.fromisoformat(last_review.replace("Z", "+00:00"))
+                    days_stale = (now - lr_time.replace(tzinfo=None)).days
+                except Exception:
+                    days_stale = 99
+            else:
+                days_stale = 99
+            if days_stale >= 3:
+                stale_nodes.append((nid, node, days_stale))
+
+    stale_nodes.sort(key=lambda x: x[2], reverse=True)
+
+    if stale_nodes:
+        nid, node, days = stale_nodes[0]
+        quests.append({
+            "id": f"daily_review_{nid}",
+            "type": "review",
+            "icon": "🧠",
+            "title": "Review Knowledge",
+            "short_desc": f'{titles.get(nid, nid)} — {days}d since last review',
+            "detail": f'You haven\'t reviewed "{titles.get(nid, nid)}" in {days} days. Take a quick quiz to reinforce your knowledge before it fades.',
+            "actions": [
+                "Open the node and review the Mind Map",
+                "Do a Knowledge Check quiz",
+                "Re-read the Key Takeaways",
+            ],
+            "priority": "high" if days >= 7 else "medium",
+            "xp_reward": 20,
+            "node_id": nid,
+        })
+
+    # === Type 3: 🎯 Quiz ===
+    unquizzed = []
+    for nid, node in nodes.items():
+        if node.get("status") == "in_progress" and node.get("source_ids"):
+            progress = node.get("quest", {}).get("progress", {})
+            if not progress.get("quiz_passed") and progress.get("quiz_attempts", 0) == 0:
+                coverage = progress.get("overall_coverage", 0)
+                unquizzed.append((nid, node, coverage))
+
+    unquizzed.sort(key=lambda x: x[2], reverse=True)
+
+    if unquizzed:
+        nid, node, cov = unquizzed[0]
+        quests.append({
+            "id": f"daily_quiz_{nid}",
+            "type": "quiz",
+            "icon": "🎯",
+            "title": "Knowledge Check",
+            "short_desc": f'{titles.get(nid, nid)} — never quizzed',
+            "detail": f'You\'ve been learning about "{titles.get(nid, nid)}" (coverage {cov * 100:.0f}%) but haven\'t tested yourself yet. Take a quiz to check your understanding.',
+            "actions": [
+                "Open the node",
+                "Click Start Quiz",
+                "Score 80%+ to pass",
+            ],
+            "priority": "medium",
+            "xp_reward": 25,
+            "node_id": nid,
+        })
+
+    # === Type 4: 📊 Fill Gaps ===
+    weak_nodes = []
+    for nid, node in nodes.items():
+        if node.get("status") == "in_progress":
+            dims = node.get("quest", {}).get("dimensions", [])
+            dim_scores = node.get("quest", {}).get("progress", {}).get("dimension_scores", {})
+            weak_dims = [d for d in dims if dim_scores.get(d["id"], 0) < 0.3]
+            if weak_dims:
+                weak_nodes.append((nid, node, weak_dims))
+
+    if weak_nodes:
+        nid, node, weak = weak_nodes[0]
+        dim_names = ", ".join(d["title"] for d in weak[:2])
+        quests.append({
+            "id": f"daily_fill_{nid}",
+            "type": "fill_gaps",
+            "icon": "📊",
+            "title": "Fill Knowledge Gaps",
+            "short_desc": f'{titles.get(nid, nid)} — weak: {dim_names}',
+            "detail": f'"{titles.get(nid, nid)}" has weak dimensions: {dim_names}. Find articles or resources that cover these areas to improve your coverage.',
+            "actions": [
+                f"Search for articles about {dim_names}",
+                "Use Deep Research to find resources",
+                "Add relevant articles to Study",
+            ],
+            "priority": "medium",
+            "xp_reward": 30,
+            "node_id": nid,
+        })
+
+    # === Type 5: 🔍 Explore ===
+    locked_nodes = [(nid, n) for nid, n in nodes.items() if n.get("status") == "locked"]
+    if locked_nodes:
+        nid, node = random.choice(locked_nodes)
+        quests.append({
+            "id": f"daily_explore_{nid}",
+            "type": "explore",
+            "icon": "🔍",
+            "title": "Explore New Concept",
+            "short_desc": f'{titles.get(nid, nid)}',
+            "detail": f'Expand your knowledge by exploring "{titles.get(nid, nid)}". Check the Deep Research report for recommended learning resources.',
+            "actions": [
+                "Open the node in the Tech Tree",
+                "Read the learning guide",
+                "Generate a Deep Research report",
+            ],
+            "priority": "low",
+            "xp_reward": 10,
+            "node_id": nid,
+        })
+
+    # === Type 6: 🔥 Streak ===
+    streak = profile.get("daily_streak", 0)
+    if streak >= 2:
+        quests.append({
+            "id": "daily_streak",
+            "type": "streak",
+            "icon": "🔥",
+            "title": f"Keep the Streak! ({streak} days)",
+            "short_desc": f"{streak} day learning streak — keep going!",
+            "detail": f"You've been learning for {streak} consecutive days! Do any learning activity today to keep your streak alive and earn bonus XP.",
+            "actions": [
+                "Add an article to Study",
+                "Do a quiz",
+                "Review a node",
+            ],
+            "priority": "high",
+            "xp_reward": streak * 5,
+            "node_id": None,
+        })
+
+    priority_order = {"high": 0, "medium": 1, "low": 2}
+    quests.sort(key=lambda q: priority_order.get(q["priority"], 1))
+    return quests[:3]
+
+
+def _generate_weekly_quests(tree_data, reviews_data, profile):
+    """Generate up to 2 weekly quests based on rules + data (no AI calls)."""
+    quests = []
+    nodes = tree_data.get("nodes", {})
+    titles = _build_title_map()
+
+    # === Type 1: 🏆 Complete a Node ===
+    almost_done = []
+    for nid, node in nodes.items():
+        if node.get("status") == "in_progress":
+            progress = node.get("quest", {}).get("progress", {})
+            coverage = progress.get("overall_coverage", 0)
+            quiz_passed = progress.get("quiz_passed", False)
+            threshold = node.get("quest", {}).get("coverage_threshold", 0.7)
+            completion = (min(coverage / threshold, 1.0) * 0.5) + (0.5 if quiz_passed else 0)
+            if completion > 0.3:
+                almost_done.append((nid, node, completion, coverage))
+
+    almost_done.sort(key=lambda x: x[2], reverse=True)
+
+    if almost_done:
+        nid, node, comp, coverage = almost_done[0]
+        quests.append({
+            "id": f"weekly_complete_{nid}",
+            "type": "complete_node",
+            "icon": "🏆",
+            "title": "Light Up a Node",
+            "short_desc": f'{titles.get(nid, nid)} — {comp * 100:.0f}% done',
+            "detail": f'You\'re {comp * 100:.0f}% of the way to lighting up "{titles.get(nid, nid)}". Focus on filling knowledge gaps and passing the quiz this week.',
+            "actions": [
+                f"Coverage: {coverage * 100:.0f}% — find more resources to fill gaps",
+                "Pass the Knowledge Check with 80%+",
+                "Complete the optional Practice Task for bonus XP",
+            ],
+            "priority": "high",
+            "xp_reward": 100,
+            "node_id": nid,
+        })
+
+    # === Type 2: 📖 Deep Dive ===
+    template = load_json(TECH_TREE_TEMPLATE_FILE, {"version": "1.0", "tree": {"children": []}})
+    branches = template.get("tree", {}).get("children", [])
+
+    branch_activity = []
+    for branch in branches:
+        leaves = _get_leaves_from_branch(branch)
+        in_prog = sum(1 for l in leaves if nodes.get(l["id"], {}).get("status") == "in_progress")
+        if in_prog >= 2:
+            branch_activity.append((branch, in_prog))
+
+    if branch_activity:
+        branch_activity.sort(key=lambda x: x[1], reverse=True)
+        branch, count = branch_activity[0]
+        quests.append({
+            "id": f'weekly_dive_{branch["id"]}',
+            "type": "deep_dive",
+            "icon": "📖",
+            "title": f'Deep Dive: {branch.get("title", "")}',
+            "short_desc": f"{count} concepts in progress — go deeper",
+            "detail": f'You have {count} concepts in progress under "{branch.get("title", "")}". Focus on this branch this week to make solid progress.',
+            "actions": [
+                f'Add 2-3 articles related to {branch.get("title", "")}',
+                "Complete quizzes for all in-progress nodes",
+                "Aim to light up at least 1 node",
+            ],
+            "priority": "medium",
+            "xp_reward": 200,
+            "node_id": None,
+        })
+
+    # === Type 3: 🔄 Review Sprint ===
+    now_iso = datetime.utcnow().isoformat()
+    total_stale = sum(
+        1 for nid, n in nodes.items()
+        if n.get("status") in ("in_progress", "lit")
+        and n.get("review_status", {}).get("next_review", "")
+        and n["review_status"]["next_review"] < now_iso
+    )
+
+    if total_stale >= 3:
+        quests.append({
+            "id": "weekly_review_sprint",
+            "type": "review_sprint",
+            "icon": "🔄",
+            "title": "Review Sprint",
+            "short_desc": f"{total_stale} nodes overdue for review",
+            "detail": f"You have {total_stale} nodes that are overdue for review. Clear them all this week to keep your knowledge fresh.",
+            "actions": [
+                "Use Start Review to go through overdue nodes",
+                "Aim for 80%+ on each quiz",
+                "Clear all overdue reviews by Friday",
+            ],
+            "priority": "high" if total_stale >= 5 else "medium",
+            "xp_reward": total_stale * 15,
+            "node_id": None,
+        })
+
+    return quests[:2]
 
 
 @knowledge_tree_bp.route("/api/knowledge-tree/recommended-tasks")
 def kt_recommended_tasks():
-    """Get AI-generated recommended learning tasks. Cached for 24h."""
-    force = request.args.get("force", "").lower() in ("1", "true")
-
-    cached = load_json(RECOMMENDED_TASKS_FILE, {})
-    meta = cached.get("_meta", {})
-
-    # Return cached if fresh (unless force refresh)
-    if not force and cached.get("tasks") and not meta.get("stale", True):
-        return jsonify({"ok": True, "tasks": cached["tasks"], "_meta": meta})
-
-    # Generate fresh recommendations
+    """Get rule-based recommended learning tasks (daily + weekly). No AI calls."""
     tree_data = _load_tree()
+    reviews_data = load_json(KNOWLEDGE_REVIEWS_FILE, {"reviews": []})
     profile = _load_profile()
-    nodes = tree_data.get("nodes", {})
+    study_videos_data = load_json(STUDY_VIDEOS_FILE, {"videos": []})
+    study_videos = study_videos_data.get("videos", []) if isinstance(study_videos_data, dict) else study_videos_data
 
-    in_progress = []
-    for nid, n in nodes.items():
-        if n.get("status") == "in_progress":
-            quest = n.get("quest", {})
-            progress = quest.get("progress", {})
-            in_progress.append({
-                "id": nid,
-                "title": n.get("title", nid),
-                "coverage": progress.get("overall_coverage", 0),
-                "threshold": quest.get("coverage_threshold", 0.7),
-                "weak_dims": [
-                    d["title"] for d in quest.get("dimensions", [])
-                    if progress.get("dimension_scores", {}).get(d["id"], 0) < 0.4
-                ],
-            })
+    daily = _generate_daily_quests(tree_data, reviews_data, profile, study_videos)
+    weekly = _generate_weekly_quests(tree_data, reviews_data, profile)
 
-    locked_titles = [
-        n.get("title", nid) for nid, n in nodes.items()
-        if n.get("status") == "locked"
-    ][:15]
-
-    due_nodes = _get_due_nodes(tree_data)
-    due_info = [{"title": nodes.get(nid, {}).get("title", nid)} for nid in due_nodes[:5]]
-
-    context = json.dumps({
-        "rank": profile.get("rank", "E"),
-        "level": profile.get("level", 1),
-        "in_progress": in_progress,
-        "locked": locked_titles,
-        "due_for_review": due_info,
-    }, ensure_ascii=False)
-
-    try:
-        result = _call_claude(
-            system_prompt="你是一个 AI/ML 学习导师。根据学生当前的学习进度，推荐接下来应该做什么。严格返回 JSON。",
-            user_prompt=f"""学生当前状态：
-{context}
-
-请推荐 3-5 个具体的学习任务，优先级从高到低。
-
-任务类型：
-1. "complete" — 继续完成某个 in_progress 节点（覆盖度最接近达标的优先）
-2. "review" — 复习某个节点（如果有 due 的复习）
-3. "explore" — 开始探索一个新的 locked 节点（和已有知识关联最紧的优先）
-4. "practice" — 完成某个实践任务
-
-返回 JSON：
-{{"tasks": [{{"type": "complete", "node_title": "...", "node_id": "...", "action": "具体可执行的建议", "reason": "简短原因", "priority": "high/medium/low"}}]}}
-
-规则：
-- 优先推荐快要完成的节点（complete 类型）
-- 其次推荐和已有知识关联最强的新节点（explore 类型）
-- action 要具体可执行，不要泛泛而谈
-- node_id 必须是实际存在的节点 ID
-- 用中文描述""",
-            max_tokens=2000,
-        )
-        tasks = result.get("tasks", [])
-    except Exception as e:
-        log.warning("Failed to generate recommended tasks: %s", e)
-        # Return stale cache if available
-        if cached.get("tasks"):
-            return jsonify({"ok": True, "tasks": cached["tasks"], "_meta": meta, "stale_fallback": True})
-        return jsonify({"ok": False, "error": str(e), "tasks": []}), 500
-
-    now_iso = datetime.now().isoformat()
-    payload = {
-        "tasks": tasks,
-        "_meta": make_meta(now_iso, stale_after_hours=24),
-    }
-    save_json(RECOMMENDED_TASKS_FILE, payload)
-
-    return jsonify({"ok": True, "tasks": tasks, "_meta": payload["_meta"]})
+    return jsonify({
+        "ok": True,
+        "daily": daily,
+        "weekly": weekly,
+        "generated_at": datetime.utcnow().isoformat() + "Z",
+    })
 
 
 # ---------------------------------------------------------------------------
@@ -1479,12 +2224,12 @@ def _generate_leaf_guides(template: dict) -> dict:
     )
 
     prompt = (
-        "为以下科技树叶子节点生成学习引导信息。每个节点需要：\n"
-        "- what: 1-2句话解释这个概念是什么（中文）\n"
-        "- why: 1句话说明为什么要学这个（中文）\n"
-        "- resources: 2-3条学习建议（英文或中文混合都行）\n\n"
-        f"叶子节点列表：\n{leaves_info}\n\n"
-        '返回 JSON：\n'
+        "Generate learning guides for the following tech tree leaf nodes. Each node needs:\n"
+        "- what: 1-2 sentences explaining what this concept is (English)\n"
+        "- why: 1 sentence explaining why to learn this (English)\n"
+        "- resources: 2-3 learning suggestions (English)\n\n"
+        f"Leaf node list:\n{leaves_info}\n\n"
+        'Return JSON:\n'
         '{"guides": {"node_id": {"what": "...", "why": "...", "resources": ["...", "..."]}, ...}}'
     )
 
@@ -1498,17 +2243,17 @@ def _generate_leaf_guides(template: dict) -> dict:
             ensure_ascii=False,
         )
         batch_prompt = (
-            "为以下科技树叶子节点生成学习引导信息。每个节点需要：\n"
-            "- what: 1-2句话解释这个概念是什么（中文）\n"
-            "- why: 1句话说明为什么要学这个（中文）\n"
-            "- resources: 2-3条学习建议（英文或中文混合都行）\n\n"
-            f"叶子节点列表：\n{batch_info}\n\n"
-            '返回 JSON：\n'
+            "Generate learning guides for the following tech tree leaf nodes. Each node needs:\n"
+            "- what: 1-2 sentences explaining what this concept is (English)\n"
+            "- why: 1 sentence explaining why to learn this (English)\n"
+            "- resources: 2-3 learning suggestions (English)\n\n"
+            f"Leaf node list:\n{batch_info}\n\n"
+            'Return JSON:\n'
             '{"guides": {"node_id": {"what": "...", "why": "...", "resources": ["...", "..."]}, ...}}'
         )
         try:
             result = _call_claude(
-                system_prompt="你是 AI/ML 学习顾问。为科技树节点生成简洁的学习引导。严格返回 JSON。",
+                system_prompt="You are an AI/ML learning consultant. Generate concise learning guides for tech tree nodes. Return strict JSON.",
                 user_prompt=batch_prompt,
                 max_tokens=3000,
             )
@@ -1644,16 +2389,17 @@ def _generate_quests_for_all_nodes(tree_data: dict, template: dict):
             ensure_ascii=False,
         )
         prompt = (
-            "为以下科技树叶子节点设计学习任务(quest)。根据概念的复杂度决定：\n"
-            "- practice_task: 可选的实践任务描述（字符串或null）。只有真正需要动手练习的概念才设置。\n"
-            "  如果设置practice_task，同时设 practice_required: true/false 表示是否必须完成\n\n"
-            f"节点列表：\n{batch_info}\n\n"
-            '返回 JSON：\n'
-            '{"quests": [{"node_id": "...", "practice_task": "..." or null, "practice_required": false}, ...]}'
+            "Design learning quests for the following tech tree leaf nodes. Based on concept complexity, determine:\n"
+            "- practice_task: Optional practice task description (string or null). Only set for concepts that truly need hands-on practice.\n"
+            "  If setting practice_task, also set practice_required: true/false for whether it must be completed\n\n"
+            f"Node list:\n{batch_info}\n\n"
+            'Return JSON:\n'
+            '{"quests": [{"node_id": "...", "practice_task": "..." or null, "practice_required": false}, ...]}\n\n'
+            "Write all practice_task descriptions in English."
         )
         try:
             result = _call_claude(
-                system_prompt="你是一个学习课程设计师。根据概念复杂度为科技树节点设计合理的学习任务。严格返回 JSON。",
+                system_prompt="You are a learning course designer. Design appropriate learning quests for tech tree nodes based on concept complexity. Return strict JSON.",
                 user_prompt=prompt,
                 max_tokens=3000,
             )
@@ -1822,21 +2568,21 @@ def _generate_dimensions_for_all_nodes(tree_data: dict, template: dict):
             ensure_ascii=False,
         )
         prompt = (
-            "为以下 AI/ML 概念节点设计知识维度。每个概念需要掌握的核心维度（3-6 个），每个维度有权重（总和 1.0）。\n\n"
-            f"概念列表：\n{batch_info}\n\n"
-            '返回 JSON：\n'
+            "Design knowledge dimensions for the following AI/ML concept nodes. Each concept needs core dimensions to master (3-6), each with a weight (sum to 1.0).\n\n"
+            f"Concept list:\n{batch_info}\n\n"
+            'Return JSON:\n'
             '{"nodes": [{"node_id": "prod_patterns", "dimensions": [{"id": "architecture", "title": "Architecture Design", "weight": 0.3}, ...], "coverage_threshold": 0.7}, ...]}\n\n'
-            "规则：\n"
-            "- 每个概念 3-6 个维度\n"
-            "- 维度 id 用 snake_case 英文\n"
-            "- 维度 title 用英文\n"
-            "- weight 总和 = 1.0，重要的维度权重高\n"
-            "- coverage_threshold: 简单概念 0.6，中等 0.7，复杂 0.8\n"
-            "- 维度应该代表该概念的不同方面/角度，不是细节"
+            "Rules:\n"
+            "- 3-6 dimensions per concept\n"
+            "- Dimension id in snake_case English\n"
+            "- Dimension title in English\n"
+            "- Weights sum to 1.0, more important dimensions get higher weight\n"
+            "- coverage_threshold: simple concepts 0.6, moderate 0.7, complex 0.8\n"
+            "- Dimensions should represent different aspects/angles of the concept, not details"
         )
         try:
             result = _call_claude(
-                system_prompt="你是一个课程设计专家。严格返回 JSON。",
+                system_prompt="You are a curriculum design expert. Return strict JSON.",
                 user_prompt=prompt,
                 max_tokens=4000,
             )
@@ -2242,14 +2988,71 @@ def kt_review_due():
 
 @knowledge_tree_bp.route("/api/knowledge-tree/review/generate", methods=["POST"])
 def kt_review_generate():
-    """Generate AI review quizzes for due nodes or specific nodes."""
+    """Generate AI review quizzes for due nodes or specific nodes.
+
+    Supports quiz caching: when a single node is requested and its source_ids
+    haven't changed, returns cached questions (randomly sampled 5 from pool).
+    Pass force=true to regenerate.
+
+    When mode='comprehensive' (or no node_ids given), enter comprehensive
+    review: select 5-8 nodes by SRS priority and pull 1 cached question each.
+    """
     body = request.get_json(silent=True) or {}
     batch_size = body.get("batch_size", 5)
     specific_node_ids = body.get("node_ids")  # Optional: quiz specific nodes
+    force = body.get("force", False)
+    mode = body.get("mode", "")
 
     tree_data = _load_tree()
     template = _load_template()
     leaf_map = {l["id"]: l["title"] for l in _get_all_leaves(template)}
+
+    # ── Comprehensive Review Mode ──
+    if mode == "comprehensive" or (not specific_node_ids and not body.get("batch_size")):
+        reviews_data = load_json(KNOWLEDGE_REVIEWS_FILE, {"reviews": [], "settings": {}})
+        selected = _select_review_nodes(tree_data, reviews_data, count=6)
+
+        if not selected:
+            return jsonify({"ok": True, "status": "no_nodes_available",
+                            "message": "No nodes available for review",
+                            "quizzes": [], "mode": "comprehensive_review"})
+
+        quizzes = []
+        for nid, node, reason in selected:
+            cached = node.get("cached_quiz", {})
+            pool = cached.get("quizzes", [])
+
+            if pool:
+                q = dict(random.choice(pool))
+                q["node_id"] = nid
+                q["node_title"] = leaf_map.get(nid, nid)
+                q["review_reason"] = reason
+                quizzes.append(q)
+            else:
+                # Fallback: concept recall question
+                title = leaf_map.get(nid, nid)
+                takeaways = node.get("key_takeaways", [])[:3]
+                quizzes.append({
+                    "id": f"review_{nid}",
+                    "node_id": nid,
+                    "node_title": title,
+                    "quiz_type": "concept_recall",
+                    "format": "open_ended",
+                    "question": f"Summarize the key concepts of {title} in 2-3 sentences.",
+                    "expected_points": takeaways,
+                    "difficulty": "medium",
+                    "review_reason": reason,
+                })
+
+        random.shuffle(quizzes)
+
+        return jsonify({
+            "ok": True, "status": "ok",
+            "mode": "comprehensive_review",
+            "quizzes": quizzes,
+            "node_count": len(selected),
+            "total_due": len(_get_due_nodes(tree_data)),
+        })
 
     if specific_node_ids:
         # Generate quizzes for specific nodes (e.g., quest quiz)
@@ -2264,6 +3067,34 @@ def kt_review_generate():
                 })
         if not target_nodes:
             return jsonify({"ok": True, "status": "no_content", "quizzes": [], "total_due": 0})
+
+        # --- Quiz caching for single-node quizzes ---
+        if len(specific_node_ids) == 1 and len(target_nodes) == 1:
+            nid = specific_node_ids[0]
+            node = tree_data["nodes"][nid]
+            current_sources = sorted(node.get("source_ids", []))
+            cache_key = ",".join(current_sources)
+            cached_quiz = node.get("cached_quiz")
+
+            if not force and cached_quiz and cached_quiz.get("cache_key") == cache_key:
+                # Check 30-day expiry (default expired if timestamp missing)
+                generated_at = cached_quiz.get("generated_at", "")
+                expired = True
+                if generated_at:
+                    try:
+                        gen_dt = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+                        expired = (datetime.now(timezone.utc) - gen_dt).days > 30
+                    except (ValueError, TypeError):
+                        expired = True
+                pool = cached_quiz.get("quizzes", [])
+                if not expired and pool:
+                    sample_size = min(5, len(pool))
+                    quizzes = random.sample(pool, sample_size)
+                    return jsonify({
+                        "ok": True, "status": "ok", "quizzes": quizzes,
+                        "total_due": len(_get_due_nodes(tree_data)),
+                        "cached": True,
+                    })
     else:
         target_nodes = _get_due_nodes(tree_data, limit=batch_size)
         if not target_nodes:
@@ -2273,7 +3104,27 @@ def kt_review_generate():
             d["title"] = leaf_map.get(d["id"], d["id"])
 
     related_context = _get_related_context(target_nodes, tree_data)
-    quizzes = _generate_quizzes_with_ai(target_nodes, related_context)
+    all_quizzes = _generate_quizzes_with_ai(target_nodes, related_context)
+
+    # Cache the full pool for single-node quizzes (skip if fallback/empty)
+    if specific_node_ids and len(specific_node_ids) == 1 and len(target_nodes) == 1 and len(all_quizzes) > 1:
+        nid = specific_node_ids[0]
+        with _id_lock:
+            tree_data = _load_tree()
+            node = tree_data["nodes"].get(nid)
+            if node:
+                current_sources = sorted(node.get("source_ids", []))
+                node["cached_quiz"] = {
+                    "cache_key": ",".join(current_sources),
+                    "quizzes": all_quizzes,
+                    "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                }
+                save_json(KNOWLEDGE_TREE_FILE, tree_data)
+        # Return random 5 from the newly generated pool
+        sample_size = min(5, len(all_quizzes))
+        quizzes = random.sample(all_quizzes, sample_size)
+    else:
+        quizzes = all_quizzes
 
     return jsonify({
         "ok": True, "status": "ok", "quizzes": quizzes,
@@ -2283,17 +3134,48 @@ def kt_review_generate():
 
 @knowledge_tree_bp.route("/api/knowledge-tree/review/submit", methods=["POST"])
 def kt_review_submit():
-    """Submit review result, update SRS, award XP."""
+    """Submit review result, update SRS, award XP. Supports multiple_choice and open_ended."""
     body = request.get_json(silent=True) or {}
     node_id = (body.get("node_id") or "").strip()
-    result = (body.get("result") or "").strip()
-    quiz_type = body.get("quiz_type", "recall")
+    quiz_format = body.get("format", "multiple_choice")
+    quiz_type = body.get("quiz_type", "concept_recall")
     question = body.get("question", "")
     time_spent = body.get("time_spent_seconds", 0)
 
-    valid_results = ("forgot", "hard", "remembered", "easy")
-    if not node_id or result not in valid_results:
-        return jsonify({"ok": False, "error": "Invalid node_id or result"}), 400
+    if not node_id:
+        return jsonify({"ok": False, "error": "Missing node_id"}), 400
+
+    # Determine result based on format
+    evaluation = None
+    score = 0.0
+
+    if quiz_format == "multiple_choice":
+        selected = body.get("selected_answer", "")
+        correct = body.get("correct_answer", "")
+        is_correct = selected == correct
+        score = 1.0 if is_correct else 0.0
+        result = "remembered" if is_correct else "forgot"
+    elif quiz_format == "open_ended":
+        user_answer = body.get("user_answer", "").strip()
+        expected_points = body.get("expected_points", [])
+        if not user_answer:
+            return jsonify({"ok": False, "error": "Empty answer"}), 400
+        evaluation = _evaluate_open_answer(question, user_answer, expected_points)
+        score = evaluation.get("score_percentage", 0)
+        if score >= 0.9:
+            result = "easy"
+        elif score >= 0.7:
+            result = "remembered"
+        elif score >= 0.4:
+            result = "hard"
+        else:
+            result = "forgot"
+    else:
+        # Legacy self-rating format
+        result = (body.get("result") or "forgot").strip()
+        if result not in ("forgot", "hard", "remembered", "easy"):
+            result = "forgot"
+        score = {"easy": 1.0, "remembered": 0.8, "hard": 0.5, "forgot": 0}.get(result, 0)
 
     quest_completed = False
     with _id_lock:
@@ -2305,16 +3187,31 @@ def kt_review_submit():
         old_status = node.get("status")
         _update_srs(node, result)
 
-        # Record review history (inside lock to avoid TOCTOU on reviews file)
+        # Record review history — save complete quiz data for wrong answer book
         reviews_data = load_json(KNOWLEDGE_REVIEWS_FILE, {"reviews": [], "settings": {}})
-        reviews_data.setdefault("reviews", []).append({
+        review_entry = {
             "node_id": node_id,
             "reviewed_at": _now_iso(),
             "quiz_type": quiz_type,
+            "format": quiz_format,
             "question": question,
             "result": result,
+            "score": round(score, 2),
             "time_spent_seconds": time_spent,
-        })
+            "difficulty": body.get("difficulty", ""),
+            "session_id": body.get("session_id", ""),
+        }
+        if quiz_format == "multiple_choice":
+            review_entry["options"] = body.get("options", [])
+            review_entry["correct_answer"] = body.get("correct_answer", "")
+            review_entry["user_answer"] = body.get("selected_answer", "")
+            review_entry["explanation"] = body.get("explanation", "")
+        elif quiz_format == "open_ended":
+            review_entry["expected_points"] = body.get("expected_points", [])
+            review_entry["user_answer"] = body.get("user_answer", "")
+            if evaluation:
+                review_entry["evaluation"] = evaluation
+        reviews_data.setdefault("reviews", []).append(review_entry)
         save_json(KNOWLEDGE_REVIEWS_FILE, reviews_data)
 
         # Check quest quiz completion
@@ -2324,7 +3221,6 @@ def kt_review_submit():
 
         _save_tree(tree_data)
 
-        # Snapshot values for response (while node reference is still valid)
         new_interval = node["review_status"]["interval_days"]
         next_review = node["review_status"]["next_review"]
         confidence = node["confidence"]
@@ -2333,16 +3229,9 @@ def kt_review_submit():
     # Award XP
     xp_map = {"easy": 25, "remembered": 20, "hard": 10, "forgot": 5}
     xp = xp_map.get(result, 10)
-
-    # Quest completion bonus (node lit via quest)
     quest_bonus = 100 if quest_completed else 0
+    mastered_bonus = 200 if new_status == "mastered" and old_status != "mastered" else 0
 
-    # Check if node just became mastered
-    mastered_bonus = 0
-    if new_status == "mastered" and old_status != "mastered":
-        mastered_bonus = 200
-
-    # Streak bonus
     profile = _load_profile()
     _update_streak(profile)
     streak_bonus = profile.get("daily_streak", 0) * 5
@@ -2351,23 +3240,48 @@ def kt_review_submit():
     total_xp = xp + mastered_bonus + streak_bonus + quest_bonus
     xp_result = _award_xp(total_xp, f"review: {result} on {node_id}")
 
-    # Add daily login XP if first review of the day
+    # Daily login bonus
     today_prefix = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     today_reviews = [r for r in reviews_data.get("reviews", []) if r.get("reviewed_at", "").startswith(today_prefix)]
     if len(today_reviews) == 1:
         _award_xp(15, "daily review login bonus")
 
-    log.info("Review: %s → %s (interval=%dd, xp=%d)", node_id, result, new_interval, total_xp)
+    log.info("Review: %s → %s (format=%s, score=%.2f, xp=%d)", node_id, result, quiz_format, score, total_xp)
 
-    return jsonify({
+    resp = {
         "ok": True,
         "node_id": node_id,
+        "result": result,
+        "score": round(score, 2),
         "new_interval": new_interval,
         "next_review": next_review,
         "confidence": confidence,
         "xp_result": xp_result,
         "quest_completed": quest_completed,
-    })
+    }
+    if evaluation:
+        resp["evaluation"] = evaluation
+    return jsonify(resp)
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/review/complete-bonus", methods=["POST"])
+def kt_review_complete_bonus():
+    """Award bonus XP for completing a comprehensive review session."""
+    body = request.get_json(silent=True) or {}
+    all_correct = body.get("all_correct", False)
+    node_count = body.get("node_count", 0)
+
+    completion_xp = 15
+    perfect_xp = 30 if all_correct else 0
+    total = completion_xp + perfect_xp
+
+    reason = f"comprehensive review completion ({node_count} nodes)"
+    if all_correct:
+        reason += " — perfect!"
+    xp_result = _award_xp(total, reason)
+    log.info("Comprehensive review bonus: %d XP (all_correct=%s, nodes=%d)", total, all_correct, node_count)
+
+    return jsonify({"ok": True, "bonus_xp": total, "xp_result": xp_result})
 
 
 @knowledge_tree_bp.route("/api/knowledge-tree/review/stats")
@@ -2708,3 +3622,900 @@ def kt_topics():
         topics.append({"topic": b["title"], "branch_id": b["id"], "icon": b.get("icon"), "count": lit, "total": len(leaf_ids)})
 
     return jsonify({"ok": True, "topics": topics})
+
+
+# ---------------------------------------------------------------------------
+# Audio Overview — AI Podcast via ElevenLabs TTS
+# ---------------------------------------------------------------------------
+
+AUDIO_DIR = DATA_DIR / "audio_overviews"
+os.makedirs(AUDIO_DIR, exist_ok=True)
+
+# ElevenLabs voice IDs — update after checking /audio/voices
+HOST_A_VOICE = "iP95p4xoKVk53GoZ742B"   # Chris — charming, casual (Alex)
+HOST_B_VOICE = "XrExE9yKIg1WjnnlVkGX"   # Matilda — knowledgeable, upbeat (Sam)
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/audio/voices", methods=["GET"])
+def kt_audio_voices():
+    """List available ElevenLabs voices for selection."""
+    try:
+        from elevenlabs import ElevenLabs
+        api_key = os.environ.get("ELEVENLABS_API_KEY")
+        if not api_key:
+            return jsonify({"error": "ELEVENLABS_API_KEY not set"}), 500
+        client = ElevenLabs(api_key=api_key)
+        voices = client.voices.get_all()
+        result = []
+        for v in voices.voices:
+            result.append({
+                "voice_id": v.voice_id,
+                "name": v.name,
+                "labels": dict(v.labels) if v.labels else {},
+            })
+        return jsonify({"ok": True, "voices": result})
+    except Exception as e:
+        log.warning("Failed to list voices: %s", e)
+        return jsonify({"error": str(e)}), 500
+
+
+def _audio_path_for(node_id: str, lang: str) -> "pathlib.Path":
+    suffix = f"_{lang}" if lang != "en" else ""
+    return AUDIO_DIR / f"{node_id}{suffix}.mp3"
+
+
+def _audio_url_for(node_id: str, lang: str) -> str:
+    q = f"?lang={lang}" if lang != "en" else ""
+    return f"/api/knowledge-tree/audio/{node_id}{q}"
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/audio/<node_id>/status", methods=["GET"])
+def kt_audio_status(node_id):
+    """Check whether audio has been generated (both en and zh)."""
+    result = {}
+    for lang in ("en", "zh"):
+        p = _audio_path_for(node_id, lang)
+        exists = p.exists()
+        result[lang] = {"exists": exists, "url": _audio_url_for(node_id, lang) if exists else None}
+    return jsonify(result)
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/audio/<node_id>", methods=["GET"])
+def kt_audio_serve(node_id):
+    """Serve the generated audio file."""
+    lang = request.args.get("lang", "en")
+    audio_path = _audio_path_for(node_id, lang)
+    if not audio_path.exists():
+        return jsonify({"error": "Audio not generated yet"}), 404
+    return send_file(str(audio_path), mimetype="audio/mpeg")
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/audio/<node_id>/generate", methods=["POST"])
+def kt_audio_generate(node_id):
+    """Generate Audio Overview: podcast script via Claude + TTS via ElevenLabs."""
+    lang = request.args.get("lang", "en")
+    if lang not in ("en", "zh"):
+        return jsonify({"error": "Unsupported lang, use en or zh"}), 400
+
+    tree_data = _load_tree()
+    node = tree_data.get("nodes", {}).get(node_id)
+    if not node:
+        return jsonify({"error": "Node not found"}), 404
+
+    if node.get("status") == "locked":
+        return jsonify({"error": "Cannot generate audio for locked nodes"}), 400
+
+    audio_path = _audio_path_for(node_id, lang)
+    if audio_path.exists():
+        return jsonify({"status": "exists", "url": _audio_url_for(node_id, lang)})
+
+    # Gather rich knowledge content
+    all_sources = tree_data.get("sources", [])
+    source_ids = set(node.get("source_ids", []))
+    node_sources = [s for s in all_sources if s["id"] in source_ids]
+    all_takeaways = []
+    for src in node_sources:
+        all_takeaways.extend(src.get("key_takeaways", []))
+
+    title = node.get("title", node_id)
+    summary = node.get("summary", "")
+
+    if not all_takeaways and not summary:
+        return jsonify({"error": "Node has no content to discuss"}), 400
+
+    # Quest dimensions
+    quest = node.get("quest", {})
+    dimensions = quest.get("dimensions", [])
+    dim_scores = quest.get("progress", {}).get("dimension_scores", {})
+
+    # Mind map summary
+    mindmap = node.get("mindmap")
+    mindmap_summary = ""
+    if mindmap and mindmap.get("branches"):
+        parts = []
+        for b in mindmap["branches"]:
+            children = ", ".join(c.get("label", "?") for c in b.get("children", [])[:5])
+            parts.append(f"  {b.get('label', '?')}: {children}")
+        mindmap_summary = "\n".join(parts)
+
+    # 1. Generate podcast script via Claude
+    try:
+        script = _generate_podcast_script(
+            title, summary, all_takeaways,
+            lang=lang,
+            sources=node_sources,
+            dimensions=dimensions,
+            dim_scores=dim_scores,
+            mindmap_summary=mindmap_summary,
+        )
+    except Exception as e:
+        log.warning("Podcast script generation failed for %s (%s): %s", node_id, lang, e)
+        return jsonify({"error": f"Script generation failed: {e}"}), 500
+
+    # 2. Synthesize audio via ElevenLabs
+    try:
+        audio_bytes = _synthesize_podcast(script)
+        with open(audio_path, "wb") as f:
+            f.write(audio_bytes)
+
+        # Save script for debugging / subtitles
+        suffix = f"_{lang}" if lang != "en" else ""
+        script_path = AUDIO_DIR / f"{node_id}{suffix}_script.json"
+        with open(script_path, "w") as f:
+            json.dump(script, f, ensure_ascii=False, indent=2)
+
+        return jsonify({
+            "status": "generated",
+            "url": _audio_url_for(node_id, lang),
+            "duration_segments": len(script.get("dialogue", [])),
+        })
+    except Exception as e:
+        log.warning("Audio synthesis failed for %s (%s): %s", node_id, lang, e)
+        return jsonify({"error": f"Audio synthesis failed: {e}"}), 500
+
+
+def _generate_podcast_script(
+    title: str,
+    summary: str,
+    takeaways: list[str],
+    *,
+    lang: str = "en",
+    sources: list[dict] | None = None,
+    dimensions: list[dict] | None = None,
+    dim_scores: dict | None = None,
+    mindmap_summary: str = "",
+) -> dict:
+    """Generate a two-host podcast discussion script via Claude with rich context."""
+
+    if lang == "zh":
+        system_prompt = (
+            "你是一个播客脚本编剧。写一段两人对话式的深度知识讨论，风格类似 NotebookLM 的 Audio Overview。\n\n"
+            "角色：\n"
+            "- Host A (Alex): 好奇心强，会提有深度的追问，代表学习者视角\n"
+            "- Host B (Sam): 知识丰富、善于用具体例子和类比解释复杂概念，代表专家视角\n\n"
+            "风格要求：\n"
+            "- 用中文对话，但技术名词保留英文原词，类似中国程序员日常交流的风格\n"
+            "- 保留英文的词汇：Agent, Tokenization, Embedding, RAG, Prompt, Pipeline, Deploy, API, SDK, CLI, "
+            "Model serving, Inference, Training, Fine-tuning（微调也可以）, Framework, Runtime, Latency 等\n"
+            "- 只有被广泛使用的中文对应词才用中文，如：微调、模型、数据集、向量、权重\n"
+            "- 自然口语化，不要太正式\n"
+            "- 有来有回，不是一个人的独白\n"
+            '- 适当使用过渡语（"说到这个..."、"对，而且..."、"等等，我想确认一下..."）\n'
+            "- 不只是复述要点，要有分析、对比、举例\n"
+            "- Alex 提出有深度的追问（'那这个和 X 有什么区别？'、'实际应用中会遇到什么问题？'）\n"
+            "- Sam 用具体例子和类比来解释\n"
+            "- 总时长控制在 5-8 分钟阅读量（约 2500-4000 字符）\n"
+            "- 开头有简短的引入，结尾有总结"
+        )
+        lang_rule = "- 对话用中文，技术名词保留英文（中英混合风格）"
+    else:
+        system_prompt = (
+            "You are a podcast script writer. Write a deep, insightful two-person knowledge discussion, "
+            "similar to NotebookLM's Audio Overview style.\n\n"
+            "Characters:\n"
+            "- Host A (Alex): Curious, asks insightful follow-up questions, represents the learner\n"
+            "- Host B (Sam): Knowledgeable, uses concrete examples and analogies, represents the expert\n\n"
+            "Style:\n"
+            "- Natural conversational tone, not too formal\n"
+            "- Back-and-forth dialogue, not monologue\n"
+            '- Use transitions ("Speaking of which...", "Right, and also...", "Wait, let me make sure I understand...")\n'
+            "- Don't just restate points — analyze, compare, give examples\n"
+            '- Alex asks deep follow-ups ("How is that different from X?", "What problems come up in practice?")\n'
+            "- Sam explains with concrete examples and analogies\n"
+            "- Total length: 5-8 minutes reading time (~2500-4000 characters)\n"
+            "- Brief intro at the start, summary at the end"
+        )
+        lang_rule = "- Write the dialogue in English"
+
+    # Build rich content sections
+    content_parts = [f"Concept: {title}", f"Description: {summary}"]
+
+    # Knowledge dimensions
+    if dimensions:
+        scores = dim_scores or {}
+        dims_text = "\n".join(
+            f"• {d.get('title', d.get('id', '?'))} (coverage: {scores.get(d.get('id', ''), 0)*100:.0f}%)"
+            for d in dimensions
+        )
+        content_parts.append(f"\nKnowledge dimensions (dialogue should cover these aspects):\n{dims_text}")
+
+    # Source summaries
+    if sources:
+        src_summaries = "\n".join(
+            f"--- {s.get('title', '?')} ---\n{s.get('summary', '')}"
+            for s in sources if s.get("summary")
+        )
+        if src_summaries:
+            content_parts.append(f"\nSource summaries:\n{src_summaries}")
+
+    # All takeaways (no limit)
+    if takeaways:
+        content_parts.append(f"\nAll key takeaways:\n" + "\n".join(f"• {t}" for t in takeaways))
+
+    # Mind map structure
+    if mindmap_summary:
+        content_parts.append(f"\nMind map structure:\n{mindmap_summary}")
+
+    # Raw excerpts (budget-aware: fit within ~6000 char total)
+    user_so_far = "\n".join(content_parts)
+    budget = 6000 - len(user_so_far)
+    if sources and budget > 200:
+        excerpts = []
+        for s in sources:
+            raw = s.get("raw_excerpt", "")
+            if not raw:
+                continue
+            chunk = raw[:500]
+            if len("\n".join(excerpts)) + len(chunk) + 50 > budget:
+                break
+            excerpts.append(f"--- {s.get('title', '?')} ---\n{chunk}")
+        if excerpts:
+            content_parts.append(f"\nRaw content excerpts:\n" + "\n".join(excerpts))
+
+    user_content = "\n".join(content_parts)
+
+    return _call_claude(
+        system_prompt=system_prompt,
+        user_prompt=(
+            user_content + "\n\n"
+            "Generate an in-depth podcast dialogue script, return JSON:\n"
+            '{\n'
+            '  "title": "Episode title",\n'
+            '  "dialogue": [\n'
+            '    {"speaker": "A", "text": "Alex says..."},\n'
+            '    {"speaker": "B", "text": "Sam says..."},\n'
+            "    ...\n"
+            "  ]\n"
+            "}\n\n"
+            "Rules:\n"
+            "- 15-25 dialogue turns\n"
+            "- Each turn 1-3 sentences\n"
+            "- Cover all listed knowledge dimensions and important takeaways\n"
+            "- Don't just restate — analyze, compare, give examples\n"
+            f"{lang_rule}\n"
+            "- Alex introduces the topic at the start, Sam summarizes at the end"
+        ),
+        max_tokens=4000,
+    )
+
+
+def _synthesize_podcast(script: dict) -> bytes:
+    """Synthesize podcast audio from dialogue script via ElevenLabs."""
+    from elevenlabs import ElevenLabs
+
+    api_key = os.environ.get("ELEVENLABS_API_KEY")
+    if not api_key:
+        raise ValueError("ELEVENLABS_API_KEY not set")
+
+    client = ElevenLabs(api_key=api_key)
+    dialogue = script.get("dialogue", [])
+    if not dialogue:
+        raise ValueError("Empty dialogue script")
+
+    audio_segments = []
+    for line in dialogue:
+        voice_id = HOST_A_VOICE if line["speaker"] == "A" else HOST_B_VOICE
+        audio = client.text_to_speech.convert(
+            voice_id=voice_id,
+            text=line["text"],
+            model_id="eleven_multilingual_v2",
+            output_format="mp3_44100_128",
+        )
+        audio_segments.append(b"".join(audio))
+
+    # Merge segments with pydub (300ms silence between speakers)
+    try:
+        from pydub import AudioSegment
+
+        combined = AudioSegment.empty()
+        silence = AudioSegment.silent(duration=300)
+        for i, seg_bytes in enumerate(audio_segments):
+            segment = AudioSegment.from_mp3(io.BytesIO(seg_bytes))
+            if i > 0:
+                combined += silence
+            combined += segment
+
+        output = io.BytesIO()
+        combined.export(output, format="mp3", bitrate="128k")
+        return output.getvalue()
+    except ImportError:
+        # Fallback: raw concatenation
+        return b"".join(audio_segments)
+
+
+# ---------------------------------------------------------------------------
+# Deep Research — AI-powered learning resource discovery
+# ---------------------------------------------------------------------------
+
+RESEARCH_DIR = DATA_DIR / "research_reports"
+os.makedirs(RESEARCH_DIR, exist_ok=True)
+
+
+def _get_parent_path(node_id: str, template: dict) -> str:
+    """Build a breadcrumb path for a node from the template tree."""
+    def _walk(node, path):
+        if node.get("id") == node_id:
+            return path
+        for child in node.get("children", []):
+            label = child.get("title", child.get("id", ""))
+            result = _walk(child, (path + " > " + label) if path else label)
+            if result is not None:
+                return result
+        return None
+    return _walk(template.get("tree", {}), "") or ""
+
+
+def _gather_research_context(node_id: str, node: dict | None, tree_data: dict, template: dict) -> dict:
+    """Collect all context for a node to help AI generate better searches."""
+    context = {
+        "title": "",
+        "status": "locked",
+        "dimensions": [],
+        "weak_dimensions": [],
+        "existing_sources": [],
+        "summary": "",
+        "guide": {},
+        "parent_path": "",
+    }
+
+    node_info = _find_node_in_template(node_id, template)
+    if node_info:
+        context["title"] = node_info.get("title", "")
+        context["guide"] = node_info.get("guide", {})
+        context["parent_path"] = _get_parent_path(node_id, template)
+
+    if node:
+        context["status"] = node.get("status", "locked")
+        context["summary"] = node.get("summary", "")
+        context["dimensions"] = node.get("quest", {}).get("dimensions", [])
+
+        progress = node.get("quest", {}).get("progress", {})
+        dim_scores = progress.get("dimension_scores", {})
+        for d in context["dimensions"]:
+            score = dim_scores.get(d["id"], 0)
+            if score < 0.5:
+                context["weak_dimensions"].append({"title": d["title"], "score": score})
+
+        sources = tree_data.get("sources", [])
+        for src in sources:
+            if src["id"] in node.get("source_ids", []):
+                context["existing_sources"].append(src.get("title", ""))
+
+    return context
+
+
+def _generate_search_plan(title: str, context: dict) -> dict:
+    """AI generates search queries based on node context."""
+    existing = context["existing_sources"]
+    weak = context["weak_dimensions"]
+
+    return _call_claude(
+        system_prompt="You are a learning resource research expert. Generate precise search queries based on the learning goal.",
+        user_prompt=f"""Learning goal: {title}
+Domain: {context.get('parent_path', '')}
+Current status: {context.get('status', 'locked')}
+
+{f"Existing learning resources (avoid duplicates): {existing}" if existing else "No learning resources yet."}
+
+{f"Weak knowledge dimensions (focus search on these): {json.dumps(weak, ensure_ascii=False)}" if weak else ""}
+
+Generate 3-5 precise English search queries to find the best learning resources.
+
+Return JSON:
+{{
+  "queries": [
+    "query 1 — beginner tutorials",
+    "query 2 — in-depth articles",
+    "query 3 — hands-on projects / code examples",
+    "query 4 — latest developments (add 2025 or 2026)",
+    "query 5 — resources for weak dimensions (if applicable)"
+  ]
+}}
+
+Rules:
+- Search queries in English (English resources are higher quality)
+- Each query 5-10 words
+- Include different types: tutorial, guide, best practices, comparison, hands-on
+- At least one query with year (2025 or 2026) for latest content
+- If there are weak dimensions, at least one query targeting them""",
+        max_tokens=1000,
+    )
+
+
+def _execute_searches(queries: list[str]) -> list[dict]:
+    """Execute web searches via Tavily."""
+    api_key = os.environ.get("TAVILY_API_KEY")
+    if not api_key:
+        log.warning("TAVILY_API_KEY not set")
+        return []
+
+    from tavily import TavilyClient
+
+    client = TavilyClient(api_key=api_key)
+    all_results = []
+    seen_urls: set[str] = set()
+
+    for query in queries[:5]:
+        try:
+            response = client.search(
+                query=query,
+                search_depth="advanced",
+                max_results=5,
+                include_answer=False,
+                include_raw_content=False,
+            )
+            for result in response.get("results", []):
+                url = result.get("url", "")
+                if url and url not in seen_urls:
+                    seen_urls.add(url)
+                    all_results.append({
+                        "title": result.get("title", ""),
+                        "url": url,
+                        "snippet": result.get("content", "")[:300],
+                        "score": result.get("score", 0),
+                        "query": query,
+                    })
+        except Exception as e:
+            log.warning("Tavily search failed for '%s': %s", query, e)
+
+    all_results.sort(key=lambda x: x.get("score", 0), reverse=True)
+    return all_results[:20]
+
+
+def _generate_research_report(title: str, context: dict, search_results: list[dict]) -> dict:
+    """AI synthesizes classic recommendations + search results into a structured report."""
+    results_for_prompt = json.dumps(
+        [{"title": r["title"], "url": r["url"], "snippet": r["snippet"]} for r in search_results[:15]],
+        ensure_ascii=False,
+    )
+
+    return _call_claude(
+        system_prompt="""You are an AI/ML learning consultant. Based on search results and your knowledge, generate a comprehensive learning resource report for the student.
+
+Your goal is to help the student find the most efficient learning path. Always respond in English.""",
+        user_prompt=f"""Learning goal: {title}
+Domain: {context.get('parent_path', '')}
+Student current status: {context.get('status', 'locked')}
+{f"Existing resources: {context['existing_sources']}" if context['existing_sources'] else "Starting from scratch"}
+{f"Weak dimensions: {json.dumps(context['weak_dimensions'], ensure_ascii=False)}" if context['weak_dimensions'] else ""}
+
+Search results:
+{results_for_prompt}
+
+Generate a learning resource report. Return JSON:
+{{
+  "overview": "A paragraph overview of this concept (3-4 sentences)",
+  "learning_path": [
+    {{
+      "step": 1,
+      "title": "Step 1: Fundamentals",
+      "description": "Start by understanding core concepts and basic principles",
+      "resources": [
+        {{
+          "title": "Resource title",
+          "url": "https://...",
+          "type": "article | video | tutorial | course | docs | github",
+          "difficulty": "beginner | intermediate | advanced",
+          "why": "Why this is recommended (1 sentence)",
+          "estimated_time": "30 min",
+          "from_search": true
+        }}
+      ]
+    }}
+  ],
+  "classic_resources": [
+    {{
+      "title": "Classic must-read resource",
+      "url": "https://...",
+      "type": "article | book | docs",
+      "why": "Why this is a classic",
+      "from_search": false
+    }}
+  ],
+  "weak_dimension_resources": [
+    {{
+      "dimension": "Weak dimension name",
+      "resources": [
+        {{
+          "title": "...",
+          "url": "...",
+          "why": "Specifically strengthens this dimension"
+        }}
+      ]
+    }}
+  ],
+  "practice_projects": [
+    {{
+      "title": "Practice project suggestion",
+      "description": "How to do it specifically",
+      "difficulty": "beginner | intermediate | advanced",
+      "estimated_time": "2 hours"
+    }}
+  ],
+  "total_estimated_time": "~8 hours"
+}}
+
+Rules:
+- learning_path has 2-4 steps, from beginner to advanced
+- Each step has 2-4 resources
+- Mix search results (from_search: true) and classic recommendations (from_search: false)
+- Classic recommendations come from your domain knowledge (official docs, renowned blogs, seminal papers, etc.)
+- If there are weak dimensions, list specific resources to strengthen them
+- practice_projects: 1-3 hands-on projects
+- Estimate total learning time
+- Write all descriptions in English
+- Resource URLs should be real, accessible links""",
+        max_tokens=4000,
+    )
+
+
+def _validate_report_urls(report: dict) -> dict:
+    """Validate all resource URLs in parallel, remove dead links."""
+    import requests as _req
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    # Collect all URLs
+    all_urls: set[str] = set()
+    for step in report.get("learning_path", []):
+        for r in step.get("resources", []):
+            if r.get("url"):
+                all_urls.add(r["url"])
+    for r in report.get("classic_resources", []):
+        if r.get("url"):
+            all_urls.add(r["url"])
+    for dim in report.get("weak_dimension_resources", []):
+        for r in dim.get("resources", []):
+            if r.get("url"):
+                all_urls.add(r["url"])
+
+    if not all_urls:
+        return report
+
+    # Parallel HEAD requests
+    valid_urls: set[str] = set()
+
+    def _check(url: str) -> tuple[str, bool]:
+        try:
+            resp = _req.head(url, timeout=5, allow_redirects=True, headers={"User-Agent": "Mozilla/5.0"})
+            return url, resp.status_code < 400
+        except Exception:
+            return url, False
+
+    with ThreadPoolExecutor(max_workers=10) as pool:
+        futures = {pool.submit(_check, u): u for u in all_urls}
+        for fut in as_completed(futures):
+            url, ok = fut.result()
+            if ok:
+                valid_urls.add(url)
+            else:
+                log.info("Dead link removed from research report: %s", url)
+
+    # Filter out dead links
+    for step in report.get("learning_path", []):
+        step["resources"] = [r for r in step.get("resources", []) if not r.get("url") or r["url"] in valid_urls]
+    report["classic_resources"] = [r for r in report.get("classic_resources", []) if not r.get("url") or r["url"] in valid_urls]
+    for dim in report.get("weak_dimension_resources", []):
+        dim["resources"] = [r for r in dim.get("resources", []) if not r.get("url") or r["url"] in valid_urls]
+    # Remove empty weak dimension entries
+    report["weak_dimension_resources"] = [d for d in report.get("weak_dimension_resources", []) if d.get("resources")]
+
+    return report
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/research/<node_id>", methods=["POST"])
+def generate_research(node_id):
+    """Generate a Deep Research report for a node."""
+    tree_data = _load_tree()
+    template = _load_template()
+    node = tree_data.get("nodes", {}).get(node_id)
+
+    node_info = _find_node_in_template(node_id, template)
+    if not node_info and not node:
+        return jsonify({"error": "Node not found"}), 404
+
+    title = node.get("title", "") if node else node_info.get("title", "")
+
+    # Check cache (7-day TTL) unless force refresh
+    force = request.args.get("force") == "1"
+    cache_path = RESEARCH_DIR / f"{node_id}.json"
+    if not force and cache_path.exists():
+        cached = load_json(cache_path, {})
+        generated = cached.get("generated_at", "")
+        if generated:
+            try:
+                gen_time = datetime.fromisoformat(generated.replace("Z", "+00:00"))
+                if datetime.now(timezone.utc) - gen_time < timedelta(days=7):
+                    return jsonify(cached)
+            except Exception:
+                pass
+
+    # 1. Gather context
+    context = _gather_research_context(node_id, node, tree_data, template)
+    if not context["title"] and title:
+        context["title"] = title
+
+    # 2. Generate search plan
+    try:
+        search_plan = _generate_search_plan(title, context)
+        queries = search_plan.get("queries", [])
+    except Exception as e:
+        log.warning("Search plan generation failed: %s", e)
+        queries = [f"{title} tutorial guide", f"{title} best practices 2026"]
+
+    # 3. Tavily search
+    search_results = _execute_searches(queries)
+
+    # 4. Generate report (works even with empty search_results as fallback)
+    try:
+        report = _generate_research_report(title, context, search_results)
+    except Exception as e:
+        log.warning("Research report generation failed: %s", e)
+        return jsonify({"error": f"Report generation failed: {e}"}), 500
+
+    # 4b. Validate resource URLs (remove dead links)
+    report = _validate_report_urls(report)
+
+    # 5. Cache report
+    report["generated_at"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    report["node_id"] = node_id
+    report["search_queries"] = queries
+    report["search_result_count"] = len(search_results)
+    save_json(cache_path, report)
+
+    # 6. Award XP for first research
+    if node:
+        quest = node.setdefault("quest", {})
+        progress = quest.setdefault("progress", {})
+        if not progress.get("research_generated"):
+            progress["research_generated"] = True
+            _award_xp(10, f"Deep Research generated for {title}", tree_data)
+            _save_tree(tree_data)
+
+    return jsonify(report)
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/research/<node_id>", methods=["GET"])
+def get_research(node_id):
+    """Get cached Deep Research report."""
+    cache_path = RESEARCH_DIR / f"{node_id}.json"
+    if not cache_path.exists():
+        return jsonify({"exists": False}), 404
+    return jsonify(load_json(cache_path, {}))
+
+
+# ---------------------------------------------------------------------------
+# Language — normalize + translate
+# ---------------------------------------------------------------------------
+
+@knowledge_tree_bp.route("/api/knowledge-tree/normalize-language", methods=["POST"])
+def kt_normalize_language():
+    """Move Chinese summaries to node['zh'], regenerate English defaults."""
+    body = request.get_json(silent=True) or {}
+    limit = min(body.get("limit", 5), 10)
+
+    tree_data = _load_tree()
+    nodes = tree_data.get("nodes", {})
+
+    # Identify nodes with Chinese content
+    to_normalize = []
+    remaining = 0
+    for nid, node in nodes.items():
+        summary = node.get("summary", "")
+        takeaways = node.get("key_takeaways", [])
+        takeaways_text = " ".join(takeaways) if takeaways else ""
+        if not _is_chinese(summary) and not _is_chinese(takeaways_text):
+            continue
+        if len(to_normalize) >= limit:
+            remaining += 1
+            continue
+        to_normalize.append((nid, summary, list(takeaways)))
+
+    # Perform AI calls outside the lock
+    regen_results = {}  # nid -> {summary, key_takeaways, tags}
+    for nid, _, _ in to_normalize:
+        result = _generate_node_summary(nid, tree_data)
+        if result:
+            regen_results[nid] = result
+
+    # Also find practice_task descriptions in Chinese
+    practice_fixed = []
+    for nid, node in nodes.items():
+        practice = node.get("quest", {}).get("practice_task", {})
+        if isinstance(practice, dict):
+            desc = practice.get("description", "")
+            if desc and _is_chinese(desc):
+                practice_fixed.append((nid, desc))
+
+    # Translate practice tasks to English
+    practice_translations = {}
+    for nid, desc in practice_fixed:
+        try:
+            result = _call_claude(
+                system_prompt="You are a translator. Translate the practice task description to English. Keep technical terms as-is. Return strict JSON.",
+                user_prompt=f'Translate to English:\n"{desc}"\n\nReturn JSON:\n{{"description": "English translation"}}',
+                max_tokens=300,
+            )
+            practice_translations[nid] = result.get("description", desc)
+        except Exception as e:
+            log.warning("Practice task translation failed for %s: %s", nid, e)
+
+    # Apply all changes under lock
+    normalized = [t[0] for t in to_normalize]
+    regenerated = list(regen_results.keys())
+    if to_normalize or practice_translations:
+        with _id_lock:
+            tree_data = _load_tree()
+            for nid, summary, takeaways in to_normalize:
+                nd = tree_data.get("nodes", {}).get(nid)
+                if not nd:
+                    continue
+                zh = nd.setdefault("zh", {})
+                if summary:
+                    zh["summary"] = summary
+                if takeaways:
+                    zh["key_takeaways"] = takeaways
+
+                regen = regen_results.get(nid)
+                if regen:
+                    nd["summary"] = regen.get("summary", "")
+                    nd["key_takeaways"] = regen.get("key_takeaways", [])
+                    nd["tags"] = regen.get("tags", nd.get("tags", []))
+                else:
+                    nd["summary"] = ""
+                    nd["key_takeaways"] = []
+
+            # Apply practice task translations
+            for nid, en_desc in practice_translations.items():
+                nd = tree_data.get("nodes", {}).get(nid)
+                if nd:
+                    practice = nd.get("quest", {}).get("practice_task", {})
+                    if isinstance(practice, dict):
+                        zh = nd.setdefault("zh", {})
+                        zh["practice_task"] = practice.get("description", "")
+                        practice["description"] = en_desc
+
+            _save_tree(tree_data)
+
+    return jsonify({
+        "ok": True,
+        "normalized": normalized,
+        "regenerated": regenerated,
+        "practice_fixed": [t[0] for t in practice_fixed],
+        "remaining": remaining,
+    })
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/translate/<node_id>", methods=["POST"])
+def kt_translate_node(node_id):
+    """Translate a node's summary + key_takeaways to Chinese (cached)."""
+    tree_data = _load_tree()
+    node = tree_data.get("nodes", {}).get(node_id)
+    if not node:
+        return jsonify({"ok": False, "error": "not found"}), 404
+
+    zh = node.get("zh", {})
+    if zh.get("summary") and zh.get("key_takeaways"):
+        return jsonify({"ok": True, "zh": zh, "cached": True})
+
+    summary = node.get("summary", "")
+    takeaways = node.get("key_takeaways", [])
+    if not summary and not takeaways:
+        return jsonify({"ok": False, "error": "no content to translate"}), 400
+
+    try:
+        result = _call_claude(
+            system_prompt="You are a translator. Translate the given content to Simplified Chinese. Keep technical terms in English (e.g. RAG, Embedding, Fine-tuning, Agent, Pipeline, API, SDK, CLI). Return strict JSON.",
+            user_prompt=f"""Translate the following to Simplified Chinese:
+
+Summary: {summary}
+
+Key Takeaways:
+{json.dumps(takeaways, ensure_ascii=False)}
+
+Return JSON:
+{{"summary": "Chinese translation of summary", "key_takeaways": ["Chinese takeaway 1", "Chinese takeaway 2", ...]}}""",
+            max_tokens=1500,
+        )
+    except Exception as e:
+        log.warning("Translation failed for %s: %s", node_id, e)
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+    zh_data = {
+        "summary": result.get("summary", ""),
+        "key_takeaways": result.get("key_takeaways", []),
+    }
+    # Save under lock to prevent concurrent write conflicts
+    with _id_lock:
+        tree_data = _load_tree()
+        nd = tree_data.get("nodes", {}).get(node_id)
+        if nd:
+            existing_zh = nd.get("zh", {})
+            existing_zh.update(zh_data)
+            nd["zh"] = existing_zh
+            _save_tree(tree_data)
+            return jsonify({"ok": True, "zh": nd["zh"], "cached": False})
+
+    return jsonify({"ok": True, "zh": zh_data, "cached": False})
+
+
+@knowledge_tree_bp.route("/api/knowledge-tree/translate-all", methods=["POST"])
+def kt_translate_all():
+    """Batch translate nodes missing zh content."""
+    body = request.get_json(silent=True) or {}
+    limit = min(body.get("limit", 5), 10)
+
+    tree_data = _load_tree()
+    nodes = tree_data.get("nodes", {})
+
+    # Collect nodes that need translation
+    to_translate = []
+    remaining = 0
+    for nid, node in nodes.items():
+        if not node.get("summary") and not node.get("key_takeaways"):
+            continue
+        zh = node.get("zh", {})
+        if zh.get("summary") and zh.get("key_takeaways"):
+            continue
+        if len(to_translate) >= limit:
+            remaining += 1
+            continue
+        to_translate.append((nid, node.get("summary", ""), node.get("key_takeaways", [])))
+
+    # Perform AI calls outside the lock
+    results = {}  # nid -> zh_data
+    for nid, summary, takeaways in to_translate:
+        try:
+            result = _call_claude(
+                system_prompt="You are a translator. Translate the given content to Simplified Chinese. Keep technical terms in English (e.g. RAG, Embedding, Fine-tuning, Agent, Pipeline, API, SDK, CLI). Return strict JSON.",
+                user_prompt=f"""Translate the following to Simplified Chinese:
+
+Summary: {summary}
+
+Key Takeaways:
+{json.dumps(takeaways, ensure_ascii=False)}
+
+Return JSON:
+{{"summary": "Chinese translation", "key_takeaways": ["Chinese takeaway 1", ...]}}""",
+                max_tokens=1500,
+            )
+            results[nid] = {
+                "summary": result.get("summary", ""),
+                "key_takeaways": result.get("key_takeaways", []),
+            }
+        except Exception as e:
+            log.warning("Batch translation failed for %s: %s", nid, e)
+
+    # Apply all results under lock
+    translated = list(results.keys())
+    if results:
+        with _id_lock:
+            tree_data = _load_tree()
+            for nid, zh_data in results.items():
+                nd = tree_data.get("nodes", {}).get(nid)
+                if nd:
+                    existing_zh = nd.get("zh", {})
+                    existing_zh.update(zh_data)
+                    nd["zh"] = existing_zh
+            _save_tree(tree_data)
+
+    return jsonify({"ok": True, "translated": translated, "remaining": remaining})

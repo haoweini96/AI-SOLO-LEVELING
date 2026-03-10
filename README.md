@@ -8,25 +8,67 @@ Transform your learning journey: start as a low-rank hunter, gradually awaken yo
 
 ## Features
 
-### Tech Tree — 46-Node Knowledge Graph
+### Power Grid — 46-Node Interactive Tech Tree
 - **6 Major Domains**: Foundations, Deep Learning, LLM & Applications, AI Agents, AI Engineering, AI Products
 - **15+ Sub-Branches**: Math & Statistics, Classical ML, Neural Networks, Computer Vision, NLP, LLM Fundamentals, RAG, Agent Development, ML Systems, API Integration, and more
-- **Interactive Radial Visualization**: D3.js-powered tech tree showing locked → unlocked → mastered nodes
+- **Interactive Radial Visualization**: D3.js-powered Power Grid showing locked → in_progress → lit → mastered nodes
+- **Coverage Arc Visualization**: Each node displays a radial arc showing knowledge coverage percentage
 - **Knowledge Dimensions**: Each concept has structured coverage dimensions (fundamentals, application, advanced theory) evaluated by Claude
+- **Branch Progress Overview**: Visual progress bars for each domain branch
+
+### Mind Map — Collapsible Knowledge Hierarchy
+- **AI-Generated Mind Maps**: Claude analyzes your sources and builds a structured concept hierarchy per node
+- **Collapsible Nodes**: Click to expand/collapse branches for focused exploration
+- **NotebookLM-Style Layout**: Clean, readable tree visualization using D3.js
+- **EN/中文 Language Toggle**: Switch mind map language between English and Chinese
+- **Cached Generation**: Mind maps are cached per node and regenerated when sources change
+
+### Knowledge Check — 4-Type Quiz System
+- **4 Quiz Types**: Concept Recall, Application, Comparison, System Design
+- **Dual Format**: Multiple-choice (instant grading) and open-ended (AI evaluation with point-by-point scoring)
+- **12-Question Cache Pool**: Each node generates and caches up to 12 questions; 5 are randomly sampled per quiz session
+- **AI Grading**: Open-ended answers scored by Claude against expected knowledge points with detailed feedback
+- **Quiz History**: Full review history tracking with wrong answers, scores, and time spent
+- **Quest Completion Gate**: Pass a Knowledge Check (80%+) to progress a node from in_progress → lit
+
+### Comprehensive Review — Cross-Node Mixed Quiz
+- **SRS-Priority Selection**: Picks 5-8 nodes by priority: SRS due > recently wrong > random
+- **Mixed Questions**: Pulls 1 cached question per selected node for a cross-topic challenge
+- **Source Labels**: Each question shows "From: Node Name" and a reason tag (Due / Previously Wrong / Random)
+- **Node-Grouped Results**: Results page groups scores by node with correct/wrong indicators
+- **Bonus XP**: +15 XP for completing a review session, +30 bonus for perfect score
+- **Fallback Questions**: Nodes without cached quiz pools get auto-generated recall questions
+
+### Daily & Weekly Quest System
+- **6 Daily Quest Types**: Read & Learn, Review Knowledge, Take Quiz, Fill Knowledge Gaps, Explore New Topic, Keep Streak
+- **3 Weekly Quest Types**: Complete a Node, Deep Dive a Branch, Review Sprint
+- **Rule-Based Generation**: Instant quest generation (no AI calls) with priority sorting
+- **Quest Cards**: Compact card UI with priority dots, icons, XP badges, and click-to-expand detail modals
+- **Daily/Weekly Toggle**: Switch between daily and weekly quests with localStorage caching (1hr TTL)
+- **Action Buttons**: Each quest links directly to the relevant node, study tab, or review action
+
+### Deep Research — AI-Powered Topic Reports
+- **Multi-Source Research**: Claude + Tavily web search produce comprehensive 2000+ word reports
+- **Structured Reports**: Executive summary, key findings, detailed analysis, practical applications
+- **Cached Reports**: Generated once per node, stored in `data/research_reports/`
+- **One-Click Generation**: Trigger from any node's detail page
+
+### Audio Overview — AI-Generated Podcast Summaries
+- **NotebookLM-Style Audio**: Two-voice AI podcast discussing the node's key concepts
+- **ElevenLabs Integration**: High-quality TTS with distinct voices for host and expert
+- **EN/中文 Toggle**: Generate audio summaries in English or Chinese
+- **Cached Audio**: MP3 files stored in `data/audio_overviews/` for instant playback
+- **Inline Player**: Play/pause directly from the node detail page
 
 ### Knowledge Feed
 - **Curated Articles**: Aggregated from RSS feeds, Medium, Twitter, and Hacker News
 - **AI Summaries**: Claude-powered summaries and key takeaway extraction
 - **One-Click Capture**: Save articles directly to your knowledge feed
 - **Search & Filter**: Find content by topic, branch, or date
+- **X/Twitter Thumbnail Fix**: Uses fxtwitter API for reliable social media thumbnails
+- **Article 404 Detection**: Auto-detects dead links and marks them
 
-### Quest System
-- **Dynamic Quests**: AI-generated learning tasks for each tech tree node
-- **Knowledge Dimensions**: Each concept has 3-5 multi-faceted coverage areas
-- **AI Evaluation**: Claude evaluates your learning coverage against each dimension
-- **Progress Tracking**: Visual indicators for locked → in_progress → lit → mastered states
-
-### Chrome Extension
+### Chrome Extension — Claude.ai Knowledge Capture
 - **Claude.ai Integration**: One-click capture from Claude conversations
 - **Intelligent Parsing**: Auto-extracts knowledge context from your conversations
 - **Tech Tree Mapping**: AI maps captured content to 1-3 relevant tech tree nodes
@@ -35,14 +77,22 @@ Transform your learning journey: start as a low-rank hunter, gradually awaken yo
 ### Study Analysis Engine
 - **Article Analysis**: Deep analysis with AI-extracted key concepts, learning outcomes
 - **Video Annotation**: Extract transcripts, analyze complexity, map to tech tree nodes
+- **Auto-Sync to Tech Tree**: Study articles automatically link to relevant tech tree nodes
 - **Smart Highlighting**: Mark important passages and auto-generate study notes
 - **Export to Notion-style Notes**: Structured study materials for spaced repetition
 
 ### Spaced Repetition System
 - **SM-2 Algorithm**: Adaptive scheduling based on your performance
 - **AI-Generated Quizzes**: Claude creates contextual questions from your learned material
+- **Wrong Answer Book**: Full quiz history with wrong answers for targeted review
 - **Review Tracking**: Track your review history and identify weak knowledge areas
 - **Streak Bonuses**: Earn XP multipliers for consistent daily reviews
+
+### EN/中文 Language Toggle
+- **Per-Node Language Switching**: Toggle between English and Chinese for summaries, key takeaways, and mind maps
+- **Pre-Generated Translations**: Chinese content is generated via Claude and cached (not real-time translation)
+- **Tech Terms Preserved**: Technical vocabulary stays in English even in Chinese mode
+- **Persistent Preference**: Language choice saved in localStorage across sessions
 
 ### Hunter Profile — Solo Leveling Rank System
 ```
@@ -83,28 +133,35 @@ Shadow Monarch (96-100) → Supreme Authority
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                   Browser (Solo Leveling SPA)                   │
-│        (index.html: Feed + Study + Knowledge Tree + Profile)    │
+│     (index.html: Feed + Study + Hunter's Path + Profile)        │
+│     D3.js Power Grid · Mind Map · Quiz · Audio Player           │
 └────────────────────────┬────────────────────────────────────────┘
                          │ fetch('/api/...')
                          ↓
 ┌─────────────────────────────────────────────────────────────────┐
 │                   Flask API Server (port 8081)                  │
 │                                                                   │
-│  ├── /api/knowledge-tree/*     Tech Tree, Quests, Reviews,      │
-│  │                              Hunter Profile, Achievements     │
+│  ├── /api/knowledge-tree/*     Power Grid, Quests, Reviews,     │
+│  │                              Hunter Profile, Achievements,    │
+│  │                              Quiz, Mind Map, Deep Research,   │
+│  │                              Audio, Language Toggle,           │
+│  │                              Comprehensive Review             │
 │  │                                                                │
 │  ├── /api/knowledge/*          Knowledge Feed, Articles,        │
 │  │                              Saved Sources, Summarization    │
 │  │                                                                │
 │  └── /api/study/*              Article/Video Analysis,          │
 │                                 Highlights, Transcripts          │
-└────────────┬─────────────────────────────────────────────────┬──┘
-             │ JSON file persistence                          │ Claude AI
-             ↓                                                 ↓
-     ┌──────────────┐                                    Knowledge extraction,
-     │  data/*.json │                                    quiz generation,
-     │  (no DB)     │                                    coverage evaluation
-     └──────────────┘
+└────────┬──────────────────────────────────────────────────┬──┘
+         │ JSON file persistence                            │ External APIs
+         ↓                                                   ↓
+  ┌──────────────┐                              ┌──────────────────────┐
+  │  data/*.json │                              │ Claude AI (quizzes,  │
+  │  (no DB)     │                              │   grading, research, │
+  │              │                              │   translation)       │
+  └──────────────┘                              │ ElevenLabs (TTS)     │
+                                                │ Tavily (web search)  │
+                                                └──────────────────────┘
 ```
 
 ### Data Flow
@@ -139,10 +196,12 @@ New Learning Source
 | Component | Technology | Purpose |
 |-----------|-----------|---------|
 | **Backend** | Python 3.10+, Flask | RESTful API, JSON persistence |
-| **Frontend** | Vanilla JavaScript, D3.js, Lucide Icons | Interactive SPA, tech tree visualization |
-| **AI/ML** | Claude Sonnet 3.5 | Knowledge extraction, quiz generation, coverage evaluation |
+| **Frontend** | Vanilla JavaScript, D3.js, Lucide Icons | Interactive SPA, Power Grid + Mind Map visualization |
+| **AI/ML** | Claude Sonnet 4 | Knowledge extraction, quiz generation, grading, translation, research |
+| **Audio** | ElevenLabs TTS | AI-generated podcast-style audio overviews |
+| **Search** | Tavily API | Web search for deep research reports |
 | **Data** | JSON files (no database) | Atomic writes, mtime-based caching |
-| **Storage** | Local filesystem | Tech tree state, hunter profile, reviews, achievements |
+| **Storage** | Local filesystem | Tech tree state, hunter profile, reviews, audio, reports |
 
 ---
 
@@ -226,12 +285,15 @@ AI-SOLO-LEVELING/
 │       │   └── knowledge_capture/   # Claude.ai integration
 │       └── knowledge_assets/        # Background images, icons
 ├── data/                            # JSON persistence (no database)
-│   ├── knowledge_tree.json          # Tech tree node state
-│   ├── hunter_profile.json          # User profile, XP, rank, streaks
-│   ├── knowledge_reviews.json       # Review history (SM-2 scheduling)
+│   ├── knowledge_tree.json          # Tech tree node state (quiz cache, SRS, dimensions)
+│   ├── hunter_profile.json          # User profile, XP, rank, streaks, achievements
+│   ├── knowledge_reviews.json       # Review history (SM-2 scheduling, wrong answers)
 │   ├── knowledge_feed.json          # Curated article feed
 │   ├── knowledge_saved.json         # User-saved sources
-│   └── tech_tree_template.json      # Tech tree structure (6 domains, 46 nodes)
+│   ├── tech_tree_template.json      # Tech tree structure (6 domains, 46 nodes)
+│   ├── research_reports/            # Deep research report cache (per node)
+│   ├── audio_overviews/             # Audio overview MP3 cache (per node)
+│   └── study_analyses/              # Study analysis results
 ├── assets/                          # Static assets
 │   ├── org_map_custom/              # Custom character avatars
 │   ├── favicon/                     # Favicon
@@ -246,19 +308,27 @@ AI-SOLO-LEVELING/
 
 ## API Reference
 
-### Knowledge Tree Endpoints
+### Knowledge Tree / Hunter's Path Endpoints
 
 | Method | Endpoint | Purpose |
 |--------|----------|---------|
-| **GET** | `/api/knowledge-tree/tech-tree` | Get full tech tree with node states |
+| **GET** | `/api/knowledge-tree/tech-tree` | Get full Power Grid with node states |
 | **GET** | `/api/knowledge-tree/hunter-profile` | Get hunter profile (rank, XP, streaks, achievements) |
-| **GET** | `/api/knowledge-tree/node/<node_id>` | Get detailed node info (title, description, sources, dimensions) |
+| **GET** | `/api/knowledge-tree/node/<node_id>` | Get detailed node info (title, sources, dimensions) |
 | **POST** | `/api/knowledge-tree/add-source` | Link a knowledge source to a node |
-| **POST** | `/api/knowledge-tree/capture` | Capture knowledge from external source (Chrome ext, article, video) |
-| **POST** | `/api/knowledge-tree/review` | Complete a review session (SM-2 scheduling) |
-| **GET** | `/api/knowledge-tree/generate-quests` | Generate learning quests for a node |
-| **GET** | `/api/knowledge-tree/recommended-tasks` | Get personalized next steps based on profile |
-| **POST** | `/api/knowledge-tree/generate-dimensions` | Generate knowledge coverage dimensions for a node |
+| **POST** | `/api/knowledge-tree/capture` | Capture knowledge from external source |
+| **POST** | `/api/knowledge-tree/review/generate` | Generate quiz (single-node or comprehensive review) |
+| **POST** | `/api/knowledge-tree/review/submit` | Submit quiz answer, update SRS, award XP |
+| **POST** | `/api/knowledge-tree/review/complete-bonus` | Award bonus XP for completing comprehensive review |
+| **GET** | `/api/knowledge-tree/review/due` | Get due review count and nodes |
+| **GET** | `/api/knowledge-tree/review/stats` | Review statistics and streak info |
+| **GET** | `/api/knowledge-tree/recommended-tasks` | Daily/weekly quests (rule-based) |
+| **POST** | `/api/knowledge-tree/generate-dimensions` | Generate knowledge dimensions for a node |
+| **GET** | `/api/knowledge-tree/mindmap/<node_id>` | Get/generate mind map for a node |
+| **POST** | `/api/knowledge-tree/deep-research/<node_id>` | Generate deep research report |
+| **POST** | `/api/knowledge-tree/audio-overview/<node_id>` | Generate audio overview (ElevenLabs TTS) |
+| **POST** | `/api/knowledge-tree/translate/<node_id>` | Translate node content to Chinese |
+| **POST** | `/api/knowledge-tree/normalize-language` | Normalize mixed-language content to English |
 
 ### Knowledge Feed Endpoints
 
@@ -386,11 +456,12 @@ Here's a typical learning journey from E-Rank to S-Rank:
 
 ```bash
 # Required
-ANTHROPIC_API_KEY=sk-ant-...        # Claude API key
+ANTHROPIC_API_KEY=sk-ant-...        # Claude API key (quizzes, grading, research, translation)
 
-# Optional (for article fetching / analysis)
+# Optional
+ELEVENLABS_API_KEY=...              # For audio overview generation (TTS)
+TAVILY_API_KEY=...                  # For deep research web search
 OPENAI_API_KEY=sk-...               # For fallback analysis
-BING_NEWS_API_KEY=...               # For news aggregation
 ```
 
 ### Tech Tree Customization
@@ -546,23 +617,34 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## Roadmap
 
+### Completed (v0.2)
+- [x] Power Grid radial visualization with coverage arcs
+- [x] Mind Map per-node (collapsible hierarchy)
+- [x] Knowledge Check (4 quiz types, MC + open-ended, AI grading)
+- [x] Comprehensive Review (cross-node mixed quiz, SRS priority)
+- [x] Daily/Weekly Quest system (6 task types, rule-driven)
+- [x] Deep Research reports (Claude + Tavily)
+- [x] Audio Overview (ElevenLabs TTS, dual-voice podcast)
+- [x] EN/中文 language toggle for summaries, mind maps, audio
+- [x] Quiz history & wrong answer book
+- [x] Hunter's Path / Power Grid rename
+- [x] Chrome extension for Claude.ai knowledge capture
+
 ### Near-term (v1.0)
 - [ ] Multiplayer leaderboards & community rankings
-- [ ] Mobile app (React Native)
+- [ ] Mobile-responsive layout
 - [ ] Video course integration (YouTube, Udemy)
-- [ ] Study group collaboration tools
+- [ ] Spaced repetition flashcard deck export
 
 ### Medium-term (v1.5)
-- [ ] Spaced repetition flashcard deck export
 - [ ] Integration with learning platforms (Coursera, Udacity)
 - [ ] AI tutor for guided learning paths
-- [ ] Certification program with proof-of-knowledge
+- [ ] Study group collaboration tools
 
 ### Long-term (v2.0)
-- [ ] Blockchain-based credential verification
-- [ ] Gamified AI/ML job matching
 - [ ] Community-driven tech tree updates
 - [ ] Advanced analytics dashboard
+- [ ] Certification program with proof-of-knowledge
 
 ---
 

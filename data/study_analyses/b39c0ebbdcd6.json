@@ -1,0 +1,191 @@
+{
+  "video_id": "b39c0ebbdcd6",
+  "type": "article",
+  "url": "https://www.wiz.io/academy/ai-security/ai-security-best-practices",
+  "title": "Essential AI Security Best Practices",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T23:24:32.031465",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Products",
+  "token_usage": {
+    "input_tokens": 3949,
+    "output_tokens": 1605,
+    "total_tokens": 5554,
+    "cost_usd": 0.0359,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Products",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "AI Security Threat Landscape",
+        "key_points": [
+          "690% increase in AI security incidents from 2017 to 2023",
+          "Risks extend beyond major organizations to smaller deployments",
+          "AI systems contain billions/trillions of decision points",
+          "Employee usage creates additional exposure through tools like ChatGPT"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Cross-Functional Security Approach",
+        "key_points": [
+          "Requires collaboration between SecOps, DevOps, and GRC teams",
+          "SecOps leads security framework development",
+          "DevOps maintains agile deployment processes",
+          "GRC ensures compliance and governance"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Agile Security Framework Implementation",
+        "key_points": [
+          "Rapid initial deployment for immediate coverage",
+          "Iterative refinement through short update cycles",
+          "Priority-based evolution addressing critical risks first",
+          "Open communication culture around AI security"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Threat Landscape Understanding",
+        "key_points": [
+          "MITRE ATLAS framework for AI threat tactics",
+          "DHS three categories: attacks using AI, targeting AI, design failures",
+          "Examples: Microsoft 38TB data exposure, Hugging Face API token exposure",
+          "Bedrock credentials abused within 7 hours"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Organizational Security Requirements",
+        "key_points": [
+          "Data privacy protection in training and inference",
+          "Asset management for AI models and datasets",
+          "Third-party risk management for open-source components",
+          "Compliance standards alignment with regulatory requirements"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Comprehensive Visibility Through AI-BOM",
+        "key_points": [
+          "AI Bill of Materials for component inventory",
+          "Component cataloging and dependency mapping",
+          "AI-model cards as security blueprints",
+          "CI/CD integration for automated security measures"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Vendor and Model Vetting",
+        "key_points": [
+          "Rigorous vetting process for external AI solutions",
+          "Security requirements for data encryption and access control",
+          "Industry standards and certifications adherence",
+          "Evaluation of frameworks, libraries, model weights, and datasets"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Automated Security Testing",
+        "key_points": [
+          "Regular scanning with tools like Alibi Detect and Adversarial Robustness Toolbox",
+          "Testing for misconfigurations and attack paths",
+          "AI-specific testing for bias and fairness analysis",
+          "CI/CD pipeline integration for early vulnerability detection"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Continuous Monitoring Systems",
+        "key_points": [
+          "Real-time monitoring of AI applications and infrastructure",
+          "Tracking KPIs, model outputs, and data distribution shifts",
+          "Automated alerts and response mechanisms",
+          "Contextualized risk prioritization for developers"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Staff Training and Awareness",
+        "key_points": [
+          "Collaboration with data science teams for security guidelines",
+          "Comprehensive training for all employees",
+          "Promoting experimentation while maintaining security",
+          "Employee contribution to organizational security posture"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Compliance and Regulatory Frameworks",
+        "key_points": [
+          "EU AI Act with risk-based categorization",
+          "NIST AI Risk Management Framework for voluntary guidance",
+          "Core principles: transparency, fairness, accountability, privacy",
+          "Automated compliance mapping and evidence gathering"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Guide to AI Security Best Practices and Implementation",
+      "takeaways": [
+        "AI security incidents have increased 690% from 2017-2023, requiring immediate organizational attention",
+        "Effective AI security requires cross-functional collaboration between SecOps, DevOps, and GRC teams",
+        "Eight core best practices include agile frameworks, threat understanding, visibility, vendor vetting, automated testing, continuous monitoring, staff training, and compliance",
+        "AI Bill of Materials (AI-BOM) is essential for maintaining comprehensive visibility of AI components",
+        "Regulatory frameworks like EU AI Act and NIST RMF are shaping compliance requirements"
+      ],
+      "concepts": [
+        "AI Security Posture Management (AI-SPM)",
+        "MITRE ATLAS framework",
+        "AI Bill of Materials (AI-BOM)",
+        "Shadow AI risks",
+        "Cross-functional security teams",
+        "Continuous monitoring systems",
+        "Automated security testing",
+        "Regulatory compliance frameworks"
+      ],
+      "actionable": [
+        "Implement an agile, cross-functional AI security framework with rapid initial deployment",
+        "Create an AI Bill of Materials to catalog all AI components and dependencies",
+        "Establish rigorous vetting processes for external AI models and vendors",
+        "Integrate automated security testing into CI/CD pipelines",
+        "Deploy continuous monitoring systems for real-time threat detection",
+        "Develop comprehensive staff training programs on AI security risks",
+        "Map security controls to regulatory requirements for compliance demonstration",
+        "Address shadow AI through transparency and approved AI adoption pathways"
+      ]
+    }
+  },
+  "article_text_length": 18646,
+  "cover": "https://www.datocms-assets.com/75231/1695230607-cloud-security-best-practices.jpg?fm=webp"
+}

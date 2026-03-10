@@ -1,0 +1,111 @@
+{
+  "video_id": "2be84f452cc6",
+  "type": "article",
+  "url": "https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/",
+  "title": "Nano Banana 2: Combining Pro capabilities with lightning-fast speed",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T19:50:44.897800",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Products",
+  "token_usage": {
+    "input_tokens": 1779,
+    "output_tokens": 928,
+    "total_tokens": 2707,
+    "cost_usd": 0.0193,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Products",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction and Model Overview",
+        "key_points": [
+          "Nano Banana 2 (Gemini 3.1 Flash Image) combines Pro capabilities with Flash speed",
+          "Evolution from original Nano Banana (viral sensation) to Nano Banana Pro to current version",
+          "Brings advanced world knowledge and quality at lightning-fast speed"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Intelligence and Visual Quality Features",
+        "key_points": [
+          "Advanced world knowledge powered by real-time web search information",
+          "Precision text rendering and translation capabilities",
+          "Can create infographics, diagrams, and data visualizations",
+          "Supports marketing mockups and localized content creation"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Enhanced Creative Control Capabilities",
+        "key_points": [
+          "Subject consistency: maintain up to 5 characters and 14 objects in single workflow",
+          "Precise instruction following for complex requests",
+          "Production-ready specs: 512px to 4K resolution support",
+          "Visual fidelity upgrade with vibrant lighting, richer textures, sharper details"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Product Integration and Availability",
+        "key_points": [
+          "Rolling out across Google products: Gemini app, Search, AI Studio + API, Google Cloud, Flow, Google Ads",
+          "Available in 141 new countries and territories, 8 additional languages",
+          "Different access levels for Pro vs standard subscribers",
+          "Zero credits required in Flow platform"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Provenance and AI Detection",
+        "key_points": [
+          "SynthID technology combined with C2PA Content Credentials",
+          "SynthID verification used over 20 million times since November launch",
+          "Helps identify Google AI-generated images, video, and audio",
+          "C2PA verification coming to Gemini app"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Google DeepMind Launches Nano Banana 2: High-Speed AI Image Generation with Pro-Level Features",
+      "takeaways": [
+        "Nano Banana 2 delivers Pro-level image generation capabilities at Flash model speed",
+        "Advanced features include subject consistency (5 characters, 14 objects), real-time web knowledge integration, and 4K resolution support",
+        "Wide rollout across Google ecosystem with different access tiers for various user types",
+        "Strong focus on AI provenance with SynthID and C2PA Content Credentials integration"
+      ],
+      "concepts": [
+        "AI image generation optimization",
+        "Subject consistency in generative models",
+        "Real-time knowledge integration",
+        "AI content provenance and verification",
+        "Multi-platform AI model deployment"
+      ],
+      "actionable": [
+        "Test Nano Banana 2 in Gemini app for rapid image generation workflows",
+        "Explore subject consistency features for character-based content creation",
+        "Utilize real-time web knowledge for accurate subject rendering",
+        "Implement SynthID verification for AI-generated content identification",
+        "Consider upgrading workflows from original Nano Banana to leverage new capabilities"
+      ]
+    }
+  },
+  "article_text_length": 5920,
+  "cover": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/NB2_SS.width-1300.png"
+}

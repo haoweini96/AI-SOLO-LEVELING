@@ -1,0 +1,132 @@
+{
+  "video_id": "fc9c13cc38f8",
+  "type": "article",
+  "url": "https://www.tigerdata.com/blog/a-beginners-guide-to-vector-embeddings",
+  "title": "A Beginner’s Guide to Vector Embeddings",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:11:55.726525",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "RAG",
+  "token_usage": {
+    "input_tokens": 4558,
+    "output_tokens": 1282,
+    "total_tokens": 5840,
+    "cost_usd": 0.0329,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "RAG",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction to Vector Embeddings",
+        "key_points": [
+          "Vector embeddings are essential for AI applications like RAG, agents, NLP, semantic search, and image search",
+          "An embedding is a compact representation of raw data transformed into a vector of floating-point numbers",
+          "High-dimensional data is mapped into lower-dimensional space while preserving semantic relationships",
+          "Semantically similar items are placed closer together in vector space"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Types of Vector Embeddings",
+        "key_points": [
+          "Word embeddings: Most common type for NLP tasks like translation and sentiment analysis",
+          "Sentence embeddings: Capture semantic meaning for chatbots and machine translation",
+          "Document embeddings: Represent entire documents for recommendation systems and classification",
+          "Image embeddings: Used for image recognition and content-based recommendations",
+          "Audio embeddings: Capture rhythm, tone, pitch for voice recognition and music recommendations",
+          "Graph embeddings: Represent nodes and edges for link prediction and community detection"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "How Neural Networks Create Embeddings",
+        "key_points": [
+          "Neural networks create embeddings through representation learning",
+          "Process involves mapping high-dimensional data to lower-dimensional spaces",
+          "Embedding layers have randomly initialized weights that are refined through backpropagation",
+          "Training task shapes the learned embeddings to capture semantic relationships",
+          "Example: Movie review sentiment classification adjusts word embeddings based on context"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "How Vector Embeddings Work",
+        "key_points": [
+          "Embeddings represent objects as points in multidimensional vector space",
+          "Distance metrics quantify relationships: Euclidean distance, cosine similarity, Manhattan distance",
+          "Cosine similarity measures angle between vectors regardless of magnitude",
+          "Example: 'cat' [1.2, 0.8] and 'dog' [1.0, 0.9] are closer than 'car' [0.3, -1.5]"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Creating Vector Embeddings",
+        "key_points": [
+          "Vectorization process: collect data, preprocess, chunk, embed",
+          "Popular text embedding models: OpenAI text-embedding-3, Google Gemini, Cohere Embed",
+          "Image embeddings: CNNs like VGG, Inception, or OpenAI CLIP",
+          "pgvectorizer for PostgreSQL keeps embeddings and relational data in sync",
+          "Code example using OpenAI's text-embedding API with Python"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Storing Vector Embeddings",
+        "key_points": [
+          "Traditional databases insufficient for vector data complexity",
+          "Vector databases specialized for storing and retrieving vector embeddings",
+          "PostgreSQL with pgvector extension enables vector storage alongside relational data",
+          "Combines vector data with business data, metrics, and analytics",
+          "Enables applications like RAG, NLP, computer vision, and semantic search"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Guide to Vector Embeddings: From Theory to Implementation",
+      "takeaways": [
+        "Vector embeddings are fundamental to modern AI applications including RAG, semantic search, and NLP",
+        "Different types of embeddings exist for various data types: text, images, audio, graphs, and documents",
+        "Neural networks create embeddings through representation learning and backpropagation training",
+        "Distance metrics like cosine similarity and Euclidean distance quantify semantic relationships",
+        "PostgreSQL with pgvector provides a practical solution for storing embeddings with relational data"
+      ],
+      "concepts": [
+        "Vector embeddings and semantic similarity",
+        "Representation learning in neural networks",
+        "Distance metrics (cosine similarity, Euclidean distance)",
+        "Embedding types (word, sentence, document, image, audio, graph)",
+        "Vectorization process and data preprocessing",
+        "Vector databases and pgvector extension"
+      ],
+      "actionable": [
+        "Use OpenAI's text-embedding-3 API to create text embeddings for your applications",
+        "Implement pgvectorizer to manage embeddings in PostgreSQL databases",
+        "Choose appropriate embedding models based on data type (text, image, audio)",
+        "Set up vector storage using PostgreSQL with pgvector extension",
+        "Apply distance metrics to measure semantic similarity in your vector space",
+        "Start with Timescale Cloud for vector embedding storage and retrieval"
+      ]
+    }
+  },
+  "article_text_length": 20021,
+  "cover": "https://timescale.ghost.io/blog/content/images/2024/04/A-Beginner-s-Guide-to-Vector-Embeddings.png"
+}

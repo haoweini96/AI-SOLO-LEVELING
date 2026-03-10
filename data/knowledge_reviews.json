@@ -7,6 +7,407 @@
       "question": "What is RAG?",
       "result": "remembered",
       "time_spent_seconds": 15
+    },
+    {
+      "node_id": "prompt_engineering",
+      "reviewed_at": "2026-03-09T22:46:42.630340+00:00",
+      "quiz_type": "concept_recall",
+      "format": "multiple_choice",
+      "question": "Test question",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 5
+    },
+    {
+      "node_id": "prompt_engineering",
+      "reviewed_at": "2026-03-09T22:47:04.398745+00:00",
+      "quiz_type": "application",
+      "format": "open_ended",
+      "question": "How to ensure consistent AI responses?",
+      "result": "remembered",
+      "score": 0.75,
+      "time_spent_seconds": 30
+    },
+    {
+      "node_id": "memory_systems",
+      "reviewed_at": "2026-03-09T22:52:56.291983+00:00",
+      "quiz_type": "concept_recall",
+      "format": "multiple_choice",
+      "question": "根据现代AI记忆系统的设计原则，以下哪种说法是正确的？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 16
+    },
+    {
+      "node_id": "memory_systems",
+      "reviewed_at": "2026-03-09T22:53:39.778545+00:00",
+      "quiz_type": "application",
+      "format": "open_ended",
+      "question": "你在一家AI公司负责开发客服智能体系统，需要让多个智能体能够共享经验和知识。基于记忆系统的设计原则，你会如何设计这个系统的记忆架构来实现智能体间的协作？请描述具体的实现方案。",
+      "result": "easy",
+      "score": 1.0,
+      "time_spent_seconds": 22
+    },
+    {
+      "node_id": "memory_systems",
+      "reviewed_at": "2026-03-09T22:54:03.860446+00:00",
+      "quiz_type": "comparison",
+      "format": "multiple_choice",
+      "question": "在提升AI智能体性能方面，以下哪种方法被认为是最重要的？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 8
+    },
+    {
+      "node_id": "memory_systems",
+      "reviewed_at": "2026-03-09T22:54:35.561583+00:00",
+      "quiz_type": "system_design",
+      "format": "open_ended",
+      "question": "你需要为一个企业级AI助手设计记忆系统，该助手需要服务1000+员工，处理各种业务查询，并且要求能够持续学习和改进。约束条件：响应时间<3秒，支持多租户隔离，需要保证数据安全。请设计一个完整的记忆系统架构。",
+      "result": "remembered",
+      "score": 0.8,
+      "time_spent_seconds": 16
+    },
+    {
+      "node_id": "memory_systems",
+      "reviewed_at": "2026-03-09T22:55:07.220531+00:00",
+      "quiz_type": "concept_recall",
+      "format": "multiple_choice",
+      "question": "关于AI记忆系统的竞争优势，以下哪种说法最准确？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 6
+    },
+    {
+      "node_id": "ai_coding_tools",
+      "reviewed_at": "2026-03-10T00:27:34.195541+00:00",
+      "quiz_type": "concept_recall",
+      "format": "multiple_choice",
+      "question": "Refactoring & Optimization 在 AI Coding Tools 中的核心能力是什么？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 20,
+      "difficulty": "easy",
+      "session_id": "quiz_20260310002714.",
+      "options": [
+        "A. 自动重写所有代码以达到最佳性能",
+        "B. 识别代码异味、建议重构方案，并辅助实施代码优化",
+        "C. 将旧版本代码自动升级到最新语言特性",
+        "D. 检测代码中的安全漏洞并自动修复"
+      ],
+      "correct_answer": "B",
+      "user_answer": "B",
+      "explanation": "AI Refactoring 工具主要是识别改进机会并提供建议，而不是完全自动化的代码重写"
+    },
+    {
+      "node_id": "ai_coding_tools",
+      "reviewed_at": "2026-03-10T00:27:50.444988+00:00",
+      "quiz_type": "comparison",
+      "format": "multiple_choice",
+      "question": "在选择 AI Coding Tools 时，什么情况下应该优先考虑企业级解决方案而不是免费的开源工具？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 15,
+      "difficulty": "medium",
+      "session_id": "quiz_20260310002714.",
+      "options": [
+        "A. 团队规模超过 10 人就必须使用企业级方案",
+        "B. 需要处理敏感代码、要求数据隐私保护、需要专业技术支持的场景",
+        "C. 开源工具功能不够强大，企业级工具 AI 能力更先进",
+        "D. 公司有充足预算时，企业级工具总是更好的选择"
+      ],
+      "correct_answer": "B",
+      "user_answer": "B",
+      "explanation": "企业级方案的核心优势在于数据安全、隐私保护和专业支持，而不仅仅是功能差异"
+    },
+    {
+      "node_id": "ai_coding_tools",
+      "reviewed_at": "2026-03-10T00:28:13.544047+00:00",
+      "quiz_type": "concept_recall",
+      "format": "multiple_choice",
+      "question": "Documentation Generation 在 AI Coding Tools 中的主要价值是什么？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 21,
+      "difficulty": "easy",
+      "session_id": "quiz_20260310002714.",
+      "options": [
+        "A. 完全替代开发者手写文档，实现文档自动化",
+        "B. 基于代码结构和注释生成初始文档框架，提升文档编写效率",
+        "C. 自动翻译技术文档为多种语言版本",
+        "D. 检查文档语法错误和格式规范性"
+      ],
+      "correct_answer": "B",
+      "user_answer": "B",
+      "explanation": "AI Documentation Generation 的核心价值是提供文档模板和初始内容，辅助而非替代开发者的文档工作"
+    },
+    {
+      "node_id": "ai_coding_tools",
+      "reviewed_at": "2026-03-10T00:28:21.570428+00:00",
+      "quiz_type": "comparison",
+      "format": "multiple_choice",
+      "question": "对于一个快速迭代的创业团队，在选择 AI Coding Tools 时最应该优先考虑什么因素？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 7,
+      "difficulty": "medium",
+      "session_id": "quiz_20260310002714.",
+      "options": [
+        "A. 工具的 AI 模型是否是最新最先进的",
+        "B. 是否支持团队使用的所有编程语言和框架",
+        "C. 快速上手、集成简单、能立即提升开发效率",
+        "D. 企业级安全功能和合规认证"
+      ],
+      "correct_answer": "C",
+      "user_answer": "C",
+      "explanation": "创业团队需要快速见效的工具，优先考虑易用性和即时效果，而不是复杂的企业功能"
+    },
+    {
+      "node_id": "ai_coding_tools",
+      "reviewed_at": "2026-03-10T00:28:50.426615+00:00",
+      "quiz_type": "concept_recall",
+      "format": "multiple_choice",
+      "question": "AI Coding Tools 中的 Code Completion & Suggestions 功能的核心工作原理是什么？",
+      "result": "forgot",
+      "score": 0.0,
+      "time_spent_seconds": 12,
+      "difficulty": "easy",
+      "session_id": "quiz_20260310002714.",
+      "options": [
+        "A. 基于上下文代码和注释，使用大语言模型预测最可能的代码续写",
+        "B. 通过静态分析代码语法结构，匹配预定义的代码模板",
+        "C. 根据变量名和函数名进行字符串匹配和自动补全",
+        "D. 分析代码执行路径，推荐性能最优的实现方案"
+      ],
+      "correct_answer": "A",
+      "user_answer": "C",
+      "explanation": "AI Code Completion 的核心是利用大语言模型理解代码上下文，预测开发者意图并生成相应代码"
+    },
+    {
+      "node_id": "claude_code_agents",
+      "reviewed_at": "2026-03-10T01:53:34.866919+00:00",
+      "quiz_type": "concept_recall",
+      "format": "open_ended",
+      "question": "Summarize the key concepts of Claude Code & Anthropic Tools in 2-3 sentences.",
+      "result": "forgot",
+      "score": 0.0,
+      "time_spent_seconds": 19,
+      "difficulty": "medium",
+      "session_id": "quiz_20260310015308.",
+      "expected_points": [
+        "Agent tool design should match model capabilities and evolve as models improve, with progressive disclosure preventing complexity overload",
+        "Context window management is critical - selective use of MCPs and plugins prevents performance degradation",
+        "Agent Teams feature enables multiple independent agent sessions with TMUX integration for parallel development workflows"
+      ],
+      "user_answer": "Claude Code is Anthropic's CLI tool for AI-assisted coding. It provides terminal-based access to Claude for code generation, debugging, and project management tasks.",
+      "evaluation": {
+        "total_points": 3,
+        "earned_points": 0,
+        "point_results": [
+          {
+            "point": "Agent tool design should match model capabilities and evolve as models improve, with progressive disclosure preventing complexity overload",
+            "covered": false,
+            "comment": "The candidate did not mention agent tool design principles, model capability matching, or progressive disclosure concepts."
+          },
+          {
+            "point": "Context window management is critical - selective use of MCPs and plugins prevents performance degradation",
+            "covered": false,
+            "comment": "The candidate did not discuss context window management, MCPs (Model Context Protocol), or plugin optimization strategies."
+          },
+          {
+            "point": "Agent Teams feature enables multiple independent agent sessions with TMUX integration for parallel development workflows",
+            "covered": false,
+            "comment": "The candidate did not mention the Agent Teams feature, TMUX integration, or parallel development workflows."
+          }
+        ],
+        "overall_feedback": "候选人的回答过于简单，仅描述了Claude Code的基本功能，完全没有涉及agent tool设计原则、context window管理和Agent Teams等核心概念。",
+        "score_percentage": 0.0
+      }
+    },
+    {
+      "node_id": "video_gen",
+      "reviewed_at": "2026-03-10T01:53:56.380103+00:00",
+      "quiz_type": "concept_recall",
+      "format": "open_ended",
+      "question": "Summarize the key concepts of Video Generation in 2-3 sentences.",
+      "result": "forgot",
+      "score": 0.0,
+      "time_spent_seconds": 10,
+      "difficulty": "medium",
+      "session_id": "quiz_20260310015308.",
+      "expected_points": [
+        "Supports multimodal video generation with 4 input types and 12-file capacity",
+        "Generates professional-quality content from storyboards, scripts, and reference materials",
+        "Requires identity verification for real person replication as an ethical safeguard"
+      ],
+      "user_answer": "Video generation uses diffusion models to create video content from text or image prompts.",
+      "evaluation": {
+        "total_points": 3,
+        "earned_points": 0,
+        "point_results": [
+          {
+            "point": "Supports multimodal video generation with 4 input types and 12-file capacity",
+            "covered": false,
+            "comment": "The candidate did not mention specific input types or file capacity limitations"
+          },
+          {
+            "point": "Generates professional-quality content from storyboards, scripts, and reference materials",
+            "covered": false,
+            "comment": "The candidate only mentioned text and image prompts, but did not specify storyboards, scripts, or reference materials"
+          },
+          {
+            "point": "Requires identity verification for real person replication as an ethical safeguard",
+            "covered": false,
+            "comment": "The candidate did not mention any ethical considerations or identity verification requirements"
+          }
+        ],
+        "overall_feedback": "候选人只提到了基本的diffusion model概念，但完全遗漏了multimodal输入、专业内容生成和ethical safeguard等关键特性。",
+        "score_percentage": 0.0
+      }
+    },
+    {
+      "node_id": "ai_coding_tools",
+      "reviewed_at": "2026-03-10T01:54:05.483526+00:00",
+      "quiz_type": "concept_recall",
+      "format": "multiple_choice",
+      "question": "Refactoring & Optimization 在 AI Coding Tools 中的核心能力是什么？",
+      "result": "remembered",
+      "score": 1.0,
+      "time_spent_seconds": 5,
+      "difficulty": "easy",
+      "session_id": "quiz_20260310015308.",
+      "options": [
+        "A. 自动重写所有代码以达到最佳性能",
+        "B. 识别代码异味、建议重构方案，并辅助实施代码优化",
+        "C. 将旧版本代码自动升级到最新语言特性",
+        "D. 检测代码中的安全漏洞并自动修复"
+      ],
+      "correct_answer": "B",
+      "user_answer": "B",
+      "explanation": "AI Refactoring 工具主要是识别改进机会并提供建议，而不是完全自动化的代码重写"
+    },
+    {
+      "node_id": "tool_use",
+      "reviewed_at": "2026-03-10T01:54:24.465419+00:00",
+      "quiz_type": "concept_recall",
+      "format": "open_ended",
+      "question": "Summarize the key concepts of Tool Use & Function Calling in 2-3 sentences.",
+      "result": "forgot",
+      "score": 0.0,
+      "time_spent_seconds": 8,
+      "difficulty": "medium",
+      "session_id": "quiz_20260310015308.",
+      "expected_points": [
+        "Agent tool design should match the model's capabilities and be discovered through experimentation",
+        "Tools need to evolve as model capabilities improve - what helps early models may constrain advanced ones",
+        "Progressive disclosure allows adding functionality without increasing tool complexity"
+      ],
+      "user_answer": "Tool use allows LLMs to call external functions and APIs.",
+      "evaluation": {
+        "total_points": 3,
+        "earned_points": 0,
+        "point_results": [
+          {
+            "point": "Agent tool design should match the model's capabilities and be discovered through experimentation",
+            "covered": false,
+            "comment": "The candidate did not mention tool design principles or the need for experimentation to match model capabilities"
+          },
+          {
+            "point": "Tools need to evolve as model capabilities improve - what helps early models may constrain advanced ones",
+            "covered": false,
+            "comment": "The candidate did not discuss the evolution of tools or how tool requirements change with model advancement"
+          },
+          {
+            "point": "Progressive disclosure allows adding functionality without increasing tool complexity",
+            "covered": false,
+            "comment": "The candidate did not mention progressive disclosure or complexity management strategies"
+          }
+        ],
+        "overall_feedback": "候选人只提到了Tool Use的基本定义，但完全没有涉及tool design的核心概念和最佳实践",
+        "score_percentage": 0.0
+      }
+    },
+    {
+      "node_id": "memory_systems",
+      "reviewed_at": "2026-03-10T01:54:42.527567+00:00",
+      "quiz_type": "concept_recall",
+      "format": "open_ended",
+      "question": "Summarize the key concepts of Memory Systems in 2-3 sentences.",
+      "result": "forgot",
+      "score": 0.0,
+      "time_spent_seconds": 10,
+      "difficulty": "medium",
+      "session_id": "quiz_20260310015308.",
+      "expected_points": [
+        "Context engineering architecture is more valuable than underlying AI model capabilities",
+        "Simple three-layer file-based memory systems outperform complex orchestration frameworks",
+        "AI agents improve through enriched surrounding context files rather than inherent learning"
+      ],
+      "user_answer": "Memory systems enable AI agents to persist and retrieve information across interactions.",
+      "evaluation": {
+        "total_points": 3,
+        "earned_points": 0,
+        "point_results": [
+          {
+            "point": "Context engineering architecture is more valuable than underlying AI model capabilities",
+            "covered": false,
+            "comment": "The candidate did not mention the importance of context engineering architecture over AI model capabilities"
+          },
+          {
+            "point": "Simple three-layer file-based memory systems outperform complex orchestration frameworks",
+            "covered": false,
+            "comment": "The candidate did not discuss the superiority of simple file-based systems over complex frameworks"
+          },
+          {
+            "point": "AI agents improve through enriched surrounding context files rather than inherent learning",
+            "covered": false,
+            "comment": "The candidate did not explain how agents improve through context enrichment rather than inherent learning mechanisms"
+          }
+        ],
+        "overall_feedback": "候选人只提供了Memory Systems的基础定义，完全没有涉及到context engineering、file-based architecture和context enrichment等核心技术概念。",
+        "score_percentage": 0.0
+      }
+    },
+    {
+      "node_id": "mcp",
+      "reviewed_at": "2026-03-10T01:55:00.216854+00:00",
+      "quiz_type": "concept_recall",
+      "format": "open_ended",
+      "question": "Summarize the key concepts of MCP (Model Context Protocol) in 2-3 sentences.",
+      "result": "forgot",
+      "score": 0.0,
+      "time_spent_seconds": 9,
+      "difficulty": "medium",
+      "session_id": "quiz_20260310015308.",
+      "expected_points": [
+        "Context window management is critical - be selective with enabled MCPs and plugins",
+        "Skills, hooks, and subagents create powerful automation workflows",
+        "Parallel execution through forking and git worktrees improves productivity"
+      ],
+      "user_answer": "MCP is a protocol for connecting AI models to external tools and data sources.",
+      "evaluation": {
+        "total_points": 3,
+        "earned_points": 0,
+        "point_results": [
+          {
+            "point": "Context window management is critical - be selective with enabled MCPs and plugins",
+            "covered": false,
+            "comment": "The candidate did not mention context window management or the need to be selective with MCPs and plugins"
+          },
+          {
+            "point": "Skills, hooks, and subagents create powerful automation workflows",
+            "covered": false,
+            "comment": "The candidate did not discuss skills, hooks, subagents, or automation workflows"
+          },
+          {
+            "point": "Parallel execution through forking and git worktrees improves productivity",
+            "covered": false,
+            "comment": "The candidate did not mention parallel execution, forking, git worktrees, or productivity improvements"
+          }
+        ],
+        "overall_feedback": "候选人只提供了MCP的基础定义，但完全没有涉及关键的实现细节和最佳实践。回答过于简单，缺乏对MCP核心概念的深入理解。",
+        "score_percentage": 0.0
+      }
     }
   ],
   "settings": {

@@ -1,0 +1,93 @@
+{
+  "video_id": "f4c64e41462e",
+  "type": "article",
+  "url": "https://huggingface.co/docs/optimum/index",
+  "title": "Optimum",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T23:52:48.422448",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "LLM Infra",
+  "token_usage": {
+    "input_tokens": 1378,
+    "output_tokens": 696,
+    "total_tokens": 2074,
+    "cost_usd": 0.0146,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "LLM Infra",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction to Hugging Face Optimum",
+        "key_points": [
+          "Optimum is an extension of Transformers library",
+          "Provides performance optimization tools for training and running models",
+          "Enables maximum efficiency on targeted hardware",
+          "Maintains same ease of use as Transformers",
+          "Distributed as collection of packages"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Hardware Partners Integration",
+        "key_points": [
+          "NVIDIA: TensorRT-LLM acceleration for inference",
+          "AMD: Optimizations for Instinct GPUs and Ryzen AI NPUs",
+          "AWS: Trainium and Inferentia acceleration",
+          "Google TPUs: Training and inference workflow acceleration",
+          "Intel: OpenVINO optimization for inference speedup",
+          "Intel Gaudi: Training throughput maximization",
+          "FuriosaAI: WARBOY inference optimization"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Open-Source Framework Support",
+        "key_points": [
+          "ONNX Runtime: Quantization and graph optimization",
+          "ExecuTorch: PyTorch's native edge inference solution",
+          "Exporters: Convert PyTorch models to formats like ONNX",
+          "Torch FX: Custom graph transformations for PyTorch Transformers"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Hugging Face Optimum: Multi-Hardware Model Optimization Framework",
+      "takeaways": [
+        "Optimum extends Transformers with hardware-specific optimizations while maintaining ease of use",
+        "Supports major hardware platforms including NVIDIA, AMD, AWS, Google TPUs, Intel, and FuriosaAI",
+        "Provides both proprietary hardware integrations and open-source optimization frameworks",
+        "Enables developers to efficiently deploy models across diverse hardware without changing workflows"
+      ],
+      "concepts": [
+        "Model optimization",
+        "Hardware acceleration",
+        "Cross-platform deployment",
+        "Quantization",
+        "Graph optimization",
+        "Edge inference",
+        "Model export formats"
+      ],
+      "actionable": [
+        "Choose appropriate Optimum package based on target hardware platform",
+        "Implement hardware-specific optimizations using Optimum's unified interface",
+        "Leverage quantization and graph optimization for inference acceleration",
+        "Export models to different formats for deployment flexibility"
+      ]
+    }
+  },
+  "article_text_length": 3289,
+  "cover": "https://cdn-thumbnails.huggingface.co/social-thumbnails/docs/optimum/index.png"
+}

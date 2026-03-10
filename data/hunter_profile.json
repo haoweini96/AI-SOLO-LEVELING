@@ -1,18 +1,18 @@
 {
   "hunter_name": "Shadow Monarch",
   "rank": "E",
-  "level": 4,
-  "total_xp": 450,
-  "current_xp": 104,
-  "xp_to_next_level": 152,
-  "title": "E-Rank Hunter",
+  "level": 8,
+  "total_xp": 1350,
+  "current_xp": 246,
+  "xp_to_next_level": 266,
+  "title": "E级猎人",
   "stats": {
     "foundations": 0,
     "deep_learning": 0,
-    "llm_apps": 25,
-    "ai_agents": 26,
-    "ai_engineering": 10,
-    "ai_products": 24
+    "llm_apps": 1,
+    "ai_agents": 1,
+    "ai_engineering": 2,
+    "ai_products": 0
   },
   "achievements": [
     {
@@ -65,8 +65,8 @@
       "earned_at": "2026-03-06T02:55:07.167763+00:00"
     }
   ],
-  "daily_streak": 0,
-  "longest_streak": 0,
-  "last_active_date": null,
+  "daily_streak": 2,
+  "longest_streak": 2,
+  "last_active_date": "2026-03-10",
   "created_at": "2026-03-06T02:41:56.739673+00:00"
 }

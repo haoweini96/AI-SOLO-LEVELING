@@ -1,0 +1,131 @@
+{
+  "video_id": "49136fea6f85",
+  "type": "article",
+  "url": "https://www.networkintelligence.ai/blogs/comprehensive-guide-to-ai-compliance-frameworks/",
+  "title": "A Comprehensive Guide to AI Compliance Frameworks",
+  "channel": "Amruta Telang",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T23:27:11.111487",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI Products",
+  "token_usage": {
+    "input_tokens": 5162,
+    "output_tokens": 1239,
+    "total_tokens": 6401,
+    "cost_usd": 0.0341,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI Products",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction and Framework Definition",
+        "key_points": [
+          "AI compliance frameworks translate abstract principles into operational practices",
+          "McKinsey survey shows <33% of companies follow core adoption practices for generative AI",
+          "Organizations with integrated governance move faster where it matters",
+          "Frameworks define compliance context, create accountability, and enable continuous assurance"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Regulatory Frameworks (Binding)",
+        "key_points": [
+          "EU AI Act: Classifies AI systems by risk level, phased implementation from Feb 2025",
+          "Council of Europe Framework Convention on AI: Focuses on human rights and democracy",
+          "Singapore Model AI Governance Framework with AI Verify testing tool",
+          "US Federal AI Governance: OMB M-24-10 and M-24-18 memos for agencies and contractors"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Standards-Based Governance",
+        "key_points": [
+          "ISO/IEC 42001: Certifiable AI management system similar to ISO 27001",
+          "ISO/IEC 23894: AI-specific risk management guidance",
+          "ISO/IEC 5338: AI system lifecycle processes",
+          "NIST AI Risk Management Framework: Four functions - Govern, Map, Measure, Manage",
+          "ENISA FAICP: Cybersecurity practices for AI"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Ethical and Principle-Based Frameworks",
+        "key_points": [
+          "OECD AI Principles: Adopted by 40+ countries for trustworthy AI",
+          "UNESCO Recommendation: Ratified by 194 member states",
+          "IEEE 7000 Series: Translates ethical values into engineering requirements",
+          "IEEE 7001 (transparency), 7002 (privacy), 7003 (bias controls)"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Business Benefits and Implementation",
+        "key_points": [
+          "8 key benefits: competitive advantage, faster scaling, alignment, lower costs, improved quality, investor confidence, regulatory readiness, cultural shift",
+          "Customization principles: start from operating model, calibrate risk appetite, modularize structure",
+          "Best practices: leadership sponsorship, model inventory, embedded compliance, automation, training, phased rollout"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Transilience AI Solution",
+        "key_points": [
+          "Outcome-driven compliance automation reducing audit time by 70%",
+          "Continuous evidence collection and control health monitoring",
+          "AI-driven risk prioritization and vulnerability management",
+          "Unified platform combining compliance, security, and SOC capabilities",
+          "Expert-led service with guaranteed certification results"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Guide to AI Compliance Frameworks and Implementation Strategies",
+      "takeaways": [
+        "AI compliance frameworks are essential for safe innovation and must be tailored to organizational context rather than applied as rigid templates",
+        "Global standards are converging around key frameworks like EU AI Act, ISO/IEC 42001, and NIST AI RMF",
+        "Organizations with integrated governance move faster and capture more value than those treating compliance as an afterthought",
+        "Automation and continuous monitoring are critical for making compliance sustainable and effective",
+        "Successful implementation requires executive sponsorship, cross-functional alignment, and embedding controls into development workflows"
+      ],
+      "concepts": [
+        "AI compliance frameworks",
+        "Risk-based AI classification",
+        "ISO/IEC 42001 AI management systems",
+        "NIST AI Risk Management Framework",
+        "EU AI Act implementation",
+        "Continuous compliance monitoring",
+        "AI governance automation",
+        "Cross-functional AI accountability"
+      ],
+      "actionable": [
+        "Start compliance framework design from your operating model and risk appetite, not just regulatory requirements",
+        "Implement a unified AI model inventory with risk classifications and ownership details",
+        "Embed compliance checkpoints directly into MLOps pipelines and development workflows",
+        "Use automation tools for continuous evidence collection and control validation",
+        "Pilot framework implementation on one high-impact use case before scaling organization-wide",
+        "Establish regular cross-functional training sessions for data science, legal, and risk teams",
+        "Map existing management systems (ISO 27001, SOC 2) to AI-specific controls for efficiency"
+      ]
+    }
+  },
+  "article_text_length": 22998,
+  "cover": "https://www.networkintelligence.ai/wp-content/uploads/2025/11/Ai-Compliance-framework-2.jpg"
+}

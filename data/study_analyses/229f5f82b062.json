@@ -1,0 +1,94 @@
+{
+  "video_id": "229f5f82b062",
+  "type": "article",
+  "url": "https://milvus.io/ai-quick-reference/what-are-embeddings-in-the-context-of-neural-networks",
+  "title": "What are embeddings in the context of neural networks?",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:12:01.660909",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "ML Research",
+  "token_usage": {
+    "input_tokens": 819,
+    "output_tokens": 774,
+    "total_tokens": 1593,
+    "cost_usd": 0.0141,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "ML Research",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "What are Embeddings and Why They Matter",
+        "key_points": [
+          "Embeddings convert discrete, high-dimensional data into continuous, low-dimensional vectors",
+          "Semantically similar items are placed closer together in vector space",
+          "Example: 'cat' and 'dog' words represented as nearby 300-dimensional vectors",
+          "Essential for NLP, recommendation systems, and categorical feature handling"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "How Embeddings are Created and Trained",
+        "key_points": [
+          "Neural networks learn embeddings by minimizing loss functions during training",
+          "Word2Vec example: predicting target words from context",
+          "Movie recommendation example: users and movies get embeddings based on interactions",
+          "Dimensionality is a hyperparameter (50, 100, 300) affecting detail vs computational cost",
+          "Embeddings start random and improve through backpropagation"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Practical Implementation of Embeddings",
+        "key_points": [
+          "Implemented as lookup tables/matrices in PyTorch and TensorFlow",
+          "Example: 10,000 vocabulary with 300-dim embeddings = 10,000x300 matrix",
+          "Input ID retrieves corresponding row as vector representation",
+          "Must handle out-of-vocabulary items via hashing or default vectors",
+          "Choice between pre-trained embeddings (GloVe) vs training from scratch",
+          "More efficient than one-hot encoding for large vocabularies"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Understanding Neural Network Embeddings: From Concept to Implementation",
+      "takeaways": [
+        "Embeddings transform discrete data into meaningful continuous vector representations",
+        "They capture semantic relationships by placing similar items closer in vector space",
+        "Training involves learning optimal vector positions through loss function minimization",
+        "Implementation uses lookup tables with configurable dimensionality",
+        "More computationally efficient than one-hot encoding for large vocabularies"
+      ],
+      "concepts": [
+        "Vector embeddings",
+        "Semantic similarity in vector space",
+        "Word2Vec training methodology",
+        "Embedding dimensionality trade-offs",
+        "Lookup table implementation",
+        "Out-of-vocabulary handling",
+        "Pre-trained vs custom embeddings"
+      ],
+      "actionable": [
+        "Choose appropriate embedding dimensions based on data complexity and computational constraints",
+        "Decide between using pre-trained embeddings or training custom ones for your domain",
+        "Implement proper handling for out-of-vocabulary items in your embedding system",
+        "Consider embedding layers as efficient alternatives to one-hot encoding for categorical data",
+        "Use frameworks like PyTorch or TensorFlow for embedding layer implementation"
+      ]
+    }
+  },
+  "article_text_length": 2310,
+  "cover": "https://assets.zilliz.com/meta_image_milvus_d6510e10e0.png"
+}

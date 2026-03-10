@@ -1,0 +1,127 @@
+{
+  "video_id": "f63efcab0027",
+  "type": "article",
+  "url": "https://medium.com/thedeephub/all-you-need-to-know-about-tokenization-in-llms-7a801302cf54",
+  "title": "All you need to know about Tokenization in LLMs",
+  "channel": "Tayyib Ul Hassan Gondal",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T20:30:27.379996",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "LLM Infra",
+  "token_usage": {
+    "input_tokens": 3833,
+    "output_tokens": 1204,
+    "total_tokens": 5037,
+    "cost_usd": 0.0296,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "LLM Infra",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Introduction to Tokenization",
+        "key_points": [
+          "Tokenization converts text into sequences of tokens (words, subwords, or characters)",
+          "Tokens are assigned unique integers that map to vector representations",
+          "Essential preprocessing step before LLM training and inference",
+          "Example: 'Hello, world!' becomes ['Hello', ',', 'world', '!']"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Why Tokenization is Necessary",
+        "key_points": [
+          "Language models process numbers, not raw text",
+          "Converts 10GB+ text datasets into numerical format",
+          "Workflow: text → tokens → integers → vectors → model processing → integers → text",
+          "Without tokenization, LLMs cannot operate on textual data"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Naive Tokenization Approaches",
+        "key_points": [
+          "Character-level: Small vocab but very long sequences, poor language diversity",
+          "Word-level: Large vocab size, high computational complexity, still language-limited",
+          "Both approaches have significant drawbacks for multilingual LLM training",
+          "Need for subword tokenization as middle ground solution"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Unicode and UTF-8 Encoding Challenges",
+        "key_points": [
+          "Unicode ord function: Very large vocab size, unstable due to changing standards",
+          "UTF-8 encoding: Limited to 256 vocab size, creates very long sequences",
+          "UTF-8 uses 1-4 bytes per character, better ASCII compatibility",
+          "Need compression method to increase vocab while reducing sequence length"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Byte Pair Encoding (BPE) Algorithm",
+        "key_points": [
+          "Iteratively replaces most common character pairs with unused placeholder bytes",
+          "Example: 'aaabdaaabac' → 'ZabdZabac' (Z=aa) → 'ZYdZYac' (Y=ab) → 'XdXac' (X=ZY)",
+          "Compression stops when no pairs occur more than once",
+          "Decompression reverses the replacement process using lookup table"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Custom Tokenizer Implementation",
+        "key_points": [
+          "5-step process: UTF-8 encode → convert to integers → find frequent pairs → replace with new tokens → repeat",
+          "Vocabulary starts at 256 (0-255), expands with merges",
+          "Encode function: text → UTF-8 bytes → merge pairs → return token list",
+          "Decode function: token IDs → concatenate vocab bytes → UTF-8 decode → return text",
+          "Training on multiple languages improves tokenizer performance"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Complete Guide to LLM Tokenization: From Basics to BPE Implementation",
+      "takeaways": [
+        "Tokenization is essential for converting text to numerical format that LLMs can process",
+        "Character-level and word-level tokenization have significant limitations for multilingual LLMs",
+        "Byte Pair Encoding (BPE) provides optimal balance between vocabulary size and sequence length",
+        "UTF-8 encoding with BPE compression enables efficient multilingual tokenization",
+        "Custom tokenizers can be implemented in 5 steps using frequency-based pair merging"
+      ],
+      "concepts": [
+        "Tokenization fundamentals",
+        "Character vs word-level tokenization trade-offs",
+        "Unicode and UTF-8 encoding",
+        "Byte Pair Encoding (BPE) algorithm",
+        "Vocabulary size vs sequence length optimization",
+        "Multilingual tokenizer training"
+      ],
+      "actionable": [
+        "Implement custom BPE tokenizer using the provided 5-step Python code",
+        "Train tokenizer on multilingual datasets for better LLM performance",
+        "Use UTF-8 encoding with BPE for optimal tokenization efficiency",
+        "Consider vocabulary size vs sequence length trade-offs when designing tokenizers",
+        "Test tokenizer performance with encode/decode functions before LLM training"
+      ]
+    }
+  },
+  "article_text_length": 14980,
+  "cover": "https://miro.medium.com/v2/resize:fit:1200/1*M6PNfzYtNu5Ub6ZB6MYuTg.jpeg"
+}

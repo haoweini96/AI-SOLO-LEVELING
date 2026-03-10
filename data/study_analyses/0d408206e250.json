@@ -1,0 +1,158 @@
+{
+  "video_id": "0d408206e250",
+  "type": "article",
+  "url": "https://platform.openai.com/docs/guides/prompt-engineering",
+  "title": "Prompt engineering",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T23:57:43.327331",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "Prompt Engineering",
+  "token_usage": {
+    "input_tokens": 4028,
+    "output_tokens": 1408,
+    "total_tokens": 5436,
+    "cost_usd": 0.0332,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "Prompt Engineering",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "OpenAI API Basics and Text Generation",
+        "key_points": [
+          "OpenAI API can generate various text types: code, math equations, JSON, prose",
+          "Simple example using Responses API with gpt-5.4 model",
+          "Response structure contains output array with message objects",
+          "output_text property aggregates all text outputs for convenience",
+          "Structured Outputs feature for JSON format generation"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Model Selection Guidelines",
+        "key_points": [
+          "Reasoning models: internal chain of thought, excel at complex tasks, slower/expensive",
+          "GPT models: fast, cost-efficient, intelligent, need explicit instructions",
+          "Large vs small models: trade-offs between speed, cost, and intelligence",
+          "gpt-4.1 recommended as balanced option for intelligence, speed, cost"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Prompt Engineering Fundamentals",
+        "key_points": [
+          "Process of writing effective instructions for consistent desired output",
+          "Mix of art and science due to non-deterministic nature",
+          "Pin production apps to specific model snapshots for consistency",
+          "Build evals to measure prompt performance and monitor iterations",
+          "Different model types require different prompting approaches"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Message Roles and Instructions",
+        "key_points": [
+          "Instructions parameter: high-level behavior guidance, takes priority",
+          "Three message roles: developer (highest priority), user, assistant",
+          "Developer messages: system rules and business logic",
+          "User messages: inputs and configuration",
+          "Instructions only apply to current request, not conversation history"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Reusable Prompts and Templates",
+        "key_points": [
+          "Create reusable prompts in OpenAI dashboard with placeholders",
+          "Use prompt parameter with id, version, and variables properties",
+          "Variables can be strings or other input types (images, files)",
+          "Enables prompt iteration without changing integration code"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Message Formatting Best Practices",
+        "key_points": [
+          "Use Markdown headers/lists for structure and hierarchy",
+          "XML tags to delineate content boundaries and add metadata",
+          "Developer message structure: Identity → Instructions → Examples → Context",
+          "Position frequently reused content early for prompt caching benefits"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Advanced Techniques",
+        "key_points": [
+          "Few-shot learning: include input/output examples to steer model behavior",
+          "Show diverse range of examples for pattern recognition",
+          "Include relevant context for proprietary data or constraints",
+          "RAG (Retrieval-Augmented Generation) for external data integration",
+          "Context window planning: models have token limits (100k to 1M tokens)"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Model-Specific Prompting Strategies",
+        "key_points": [
+          "GPT models (gpt-5): need precise, explicit instructions with logic and data",
+          "Reasoning models: work better with high-level guidance, like senior coworker",
+          "GPT models: like junior coworker, need explicit step-by-step instructions",
+          "Different approaches needed for coding, front-end, and agentic tasks"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive Guide to OpenAI API Prompt Engineering Techniques",
+      "takeaways": [
+        "Prompt engineering is both art and science requiring systematic approach with evals and model pinning",
+        "Different model types (reasoning vs GPT) require fundamentally different prompting strategies",
+        "Message roles create hierarchy: developer messages override user messages for consistent behavior",
+        "Structured formatting with Markdown and XML improves model understanding and response quality",
+        "Few-shot learning with diverse examples can steer model behavior without fine-tuning",
+        "Context window management and prompt caching optimization are crucial for cost and performance"
+      ],
+      "concepts": [
+        "Message roles and instruction hierarchy",
+        "Few-shot learning and pattern recognition",
+        "Retrieval-Augmented Generation (RAG)",
+        "Context window limitations and token management",
+        "Prompt caching optimization",
+        "Structured outputs and JSON schema compliance",
+        "Model-specific prompting strategies"
+      ],
+      "actionable": [
+        "Pin production applications to specific model snapshots for consistency",
+        "Build evaluation systems to measure prompt performance across iterations",
+        "Structure developer messages with Identity → Instructions → Examples → Context format",
+        "Place frequently reused content early in prompts for caching benefits",
+        "Use diverse examples in few-shot learning to improve pattern recognition",
+        "Choose appropriate model type based on task complexity and instruction detail needs",
+        "Implement reusable prompt templates in dashboard for easier iteration"
+      ]
+    }
+  },
+  "article_text_length": 15967,
+  "cover": "https://developers.openai.com/open-graph.png"
+}

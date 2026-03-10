@@ -1,0 +1,63 @@
+{
+  "video_id": "be48793b7361",
+  "type": "article",
+  "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+  "title": "AI RISK MANAGEMENT FRAMEWORK",
+  "channel": "",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-08T23:41:19.912886",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "AI News",
+  "token_usage": {
+    "input_tokens": 379,
+    "output_tokens": 372,
+    "total_tokens": 751,
+    "cost_usd": 0.0067,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "AI News",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "NIST AI Risk Management Framework Introduction",
+        "key_points": [
+          "NIST released new AI Risk Management Framework on January 26, 2023",
+          "Framework aims to improve trustworthiness of artificial intelligence",
+          "Seeks to balance AI innovation promotion with risk mitigation",
+          "Focuses on cultivating trust in AI technologies"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "NIST Releases AI Risk Management Framework to Balance Innovation and Safety",
+      "takeaways": [
+        "NIST has developed a comprehensive framework for managing AI risks",
+        "The framework prioritizes building trustworthiness in AI systems",
+        "There's a focus on enabling innovation while ensuring safety",
+        "This represents a significant step in AI governance and regulation"
+      ],
+      "concepts": [
+        "AI Risk Management",
+        "AI Trustworthiness",
+        "AI Governance Framework",
+        "Risk Mitigation Strategies",
+        "AI Innovation Policy"
+      ],
+      "actionable": [
+        "Review the NIST AI Risk Management Framework for organizational AI initiatives",
+        "Assess current AI systems against trustworthiness criteria",
+        "Implement risk management processes for AI development and deployment",
+        "Stay updated on evolving AI governance standards and best practices"
+      ]
+    }
+  },
+  "article_text_length": 212,
+  "cover": "https://www.nist.gov/themes/custom/nist_www/img/homepage/nist_mark.png"
+}

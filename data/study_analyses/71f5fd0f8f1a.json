@@ -1,0 +1,104 @@
+{
+  "video_id": "71f5fd0f8f1a",
+  "type": "article",
+  "url": "https://www.itsprodigy.com/en/news/2024-06-18-advanced-prompt-design-tecniques/",
+  "title": "3 ADVANCED PROMPT DESIGN TECHNIQUES EXPLAINED",
+  "channel": "marketing",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:03:13.387128",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "Prompt Engineering",
+  "token_usage": {
+    "input_tokens": 1335,
+    "output_tokens": 797,
+    "total_tokens": 2132,
+    "cost_usd": 0.016,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "Prompt Engineering",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Multi-turn Context Prompting",
+        "key_points": [
+          "Maintains coherent conversation across multiple AI exchanges",
+          "Requires AI to store information between turns using special tokens",
+          "Common challenge is context loss which can be mitigated with dependency and reference management",
+          "Example: chatbots remembering user preferences and conversation topics"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Hierarchical Prompts",
+        "key_points": [
+          "Structure requests into levels from macro to micro for complex task management",
+          "Breaks single problems into manageable sub-problems",
+          "Example: article generation starting with general structure then drilling into specific sections",
+          "Different roles can be assigned to different hierarchical levels",
+          "Specialized management software available for validation and testing"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Refining Strategies",
+        "key_points": [
+          "Iterative process for continuous improvement of AI responses",
+          "Focuses on continuous adjustments based on feedback and output analysis",
+          "Key techniques: response analysis, improvement area identification, prompt adaptation",
+          "A/B testing essential for measuring effectiveness of refined prompts",
+          "Different from optimization - emphasizes ongoing refinement"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Best Practices and Implementation",
+        "key_points": [
+          "Clarity and specificity are fundamental requirements",
+          "Prompts must be adapted to specific AI models and use contexts",
+          "Dedicated platforms and software available for prompt design and refinement",
+          "Online resources and communities provide support and examples",
+          "Comparison of unoptimized vs refined prompt versions available"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Advanced Prompt Engineering Techniques for Enhanced AI Interactions",
+      "takeaways": [
+        "Multi-turn context enables natural, continuous conversations by maintaining information across exchanges",
+        "Hierarchical prompts break complex tasks into manageable levels from macro to micro detail",
+        "Refining strategies use iterative improvement based on feedback analysis and A/B testing",
+        "Clarity, specificity, and model-specific adaptation are essential for effective prompt design"
+      ],
+      "concepts": [
+        "Multi-turn context management",
+        "Hierarchical prompt structuring",
+        "Iterative prompt refinement",
+        "Context dependency management",
+        "Prompt validation and testing"
+      ],
+      "actionable": [
+        "Implement special tokens for context retention in multi-turn conversations",
+        "Structure complex prompts hierarchically from general to specific levels",
+        "Use A/B testing to measure prompt effectiveness",
+        "Analyze AI responses to identify improvement areas",
+        "Leverage dedicated prompt management software for validation",
+        "Adapt prompts specifically to the AI model being used"
+      ]
+    }
+  },
+  "article_text_length": 4151,
+  "cover": "https://www.itsprodigy.com/wp-content/uploads/2024/06/fotis-fotopoulos-6sAl6aQ4OWI-unsplash-scaled.jpg"
+}

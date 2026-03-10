@@ -1,0 +1,124 @@
+{
+  "video_id": "5d80749444ee",
+  "type": "article",
+  "url": "https://www.azilen.com/blog/ai-cost-optimization/",
+  "title": "8 AI Cost Optimization Strategies for Product & Engineering Leaders",
+  "channel": "Swapnil Sharma",
+  "duration": 0,
+  "upload_date": "",
+  "analyzed_at": "2026-03-09T00:36:26.293571",
+  "model_used": "claude-sonnet-4-20250514",
+  "category": "LLM Infra",
+  "token_usage": {
+    "input_tokens": 4893,
+    "output_tokens": 1202,
+    "total_tokens": 6095,
+    "cost_usd": 0.0327,
+    "model": "claude-sonnet-4-20250514"
+  },
+  "transcript_available": true,
+  "transcript": [],
+  "frames": [],
+  "analysis": {
+    "category": "LLM Infra",
+    "sections": [
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "AI Cost Problem Overview",
+        "key_points": [
+          "90% of CIOs say cost limits their ability to get value from AI",
+          "Most AI spend comes from model usage, GPU utilization, and inefficient workflows",
+          "Companies can reduce LLM spend by 30-60% with proper optimization",
+          "Cost overruns from overusing large models for simple tasks and poor prompt design"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "AI Pricing Models",
+        "key_points": [
+          "Token-based pricing: GPT-5 ~$1.25 input/$10 output per 1M tokens",
+          "Bedrock pricing varies: Google Gemma 3 ~$0.00004 per 1K input tokens",
+          "Infrastructure costs: tens of dollars per hour per GPU unit",
+          "One million tokens ≈ 750,000 words of text"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Training Costs",
+        "key_points": [
+          "Smaller models: $50K-$1M for few billion parameters",
+          "Mid-sized models: $1M-$6M for ~70B parameters",
+          "Frontier models: GPT-3 cost $3M-$7M, GPT-4 estimated $41M-$78M",
+          "Largest models can cost up to $200M+ for training"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "8 Cost Optimization Strategies",
+        "key_points": [
+          "1. Route requests across models intelligently based on complexity",
+          "2. Design token-efficient prompts as versioned assets",
+          "3. Batch inference for non-interactive workloads",
+          "4. Optimize retrieval depth in RAG pipelines",
+          "5. Apply quantization and distillation strategically",
+          "6. Align infrastructure scaling with usage patterns",
+          "7. Instrument cost at feature and workflow level",
+          "8. Establish continuous AI FinOps practices"
+        ],
+        "screen_content": null
+      },
+      {
+        "frame_index": null,
+        "timestamp": null,
+        "title": "Implementation Best Practices",
+        "key_points": [
+          "Use lightweight models for routine tasks, advanced models selectively",
+          "Standardize prompt templates and output schemas",
+          "Focus on retrieval precision over recall in RAG systems",
+          "Track cost per feature for better product decisions",
+          "Combine autoscaling with pre-warming for critical paths"
+        ],
+        "screen_content": null
+      }
+    ],
+    "summary": {
+      "title": "Comprehensive AI Cost Optimization Guide for Production Systems",
+      "takeaways": [
+        "AI cost management is critical for production systems with 90% of CIOs citing cost as a barrier to AI value",
+        "Training costs range from $50K for small models to $200M+ for frontier models, but most enterprises benefit more from fine-tuning",
+        "Token-based pricing varies dramatically: GPT-5 costs $10 per 1M output tokens vs Google Gemma 3 at $0.00008 per 1K tokens",
+        "Eight proven strategies can reduce LLM spend by 30-60% without sacrificing performance",
+        "Model routing, prompt optimization, and RAG tuning are the highest-impact cost reduction techniques"
+      ],
+      "concepts": [
+        "Token-based pricing models",
+        "Model routing and intelligent request distribution",
+        "Prompt engineering for cost efficiency",
+        "RAG pipeline optimization",
+        "GPU utilization and autoscaling",
+        "AI FinOps practices",
+        "Batch inference processing",
+        "Quantization and model distillation"
+      ],
+      "actionable": [
+        "Implement a routing layer to use lightweight models for simple tasks and advanced models only when needed",
+        "Standardize prompt templates with explicit output schemas and strict context boundaries",
+        "Batch non-interactive workloads to increase GPU utilization and reduce per-request overhead",
+        "Optimize RAG systems by focusing on retrieval precision and implementing query-aware caching",
+        "Track cost at the feature and workflow level rather than aggregate spend for better decision-making",
+        "Establish regular AI FinOps reviews with shared dashboards and budget guardrails",
+        "Use autoscaling policies tuned specifically for AI workload patterns",
+        "Apply quantization and distillation strategically to high-volume endpoints after validation"
+      ]
+    }
+  },
+  "article_text_length": 18824,
+  "cover": "https://cdn.azilen.com/wp-content/uploads/2025/07/AI-Cost-Optimization.webp"
+}
