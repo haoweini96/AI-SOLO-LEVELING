@@ -88,6 +88,12 @@ Transform your learning journey: start as a low-rank hunter, gradually awaken yo
 - **Review Tracking**: Track your review history and identify weak knowledge areas
 - **Streak Bonuses**: Earn XP multipliers for consistent daily reviews
 
+### STATUS Window — SVG Sci-Fi HUD
+- **Hand-Drawn SVG Frame**: Purple glowing outer frame with cut corners, cyan inner frame with glow effects
+- **Live Hunter Stats**: Displays level, rank, XP bar, streak, and 6 key stats in real-time
+- **Breathing Glow Animation**: Purple outer frame pulses with a 3-second breathing cycle
+- **Responsive Layout**: Content-driven height with SVG stretching to fit
+
 ### EN/中文 Language Toggle
 - **Per-Node Language Switching**: Toggle between English and Chinese for summaries, key takeaways, and mind maps
 - **Pre-Generated Translations**: Chinese content is generated via Claude and cached (not real-time translation)
@@ -617,7 +623,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## Roadmap
 
-### Completed (v0.2)
+### Completed (v2.0)
 - [x] Power Grid radial visualization with coverage arcs
 - [x] Mind Map per-node (collapsible hierarchy)
 - [x] Knowledge Check (4 quiz types, MC + open-ended, AI grading)
@@ -629,6 +635,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 - [x] Quiz history & wrong answer book
 - [x] Hunter's Path / Power Grid rename
 - [x] Chrome extension for Claude.ai knowledge capture
+- [x] SVG STATUS window (sci-fi HUD with live hunter stats)
 
 ### Near-term (v1.0)
 - [ ] Multiplayer leaderboards & community rankings

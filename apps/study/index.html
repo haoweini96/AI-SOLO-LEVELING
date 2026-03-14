@@ -1772,8 +1772,8 @@
 
     /* ── Left Sidebar ── */
     .kt-sidebar {
-      width: 320px;
-      min-width: 280px;
+      width: 360px;
+      min-width: 320px;
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
@@ -1959,112 +1959,45 @@
       overflow-y: auto;
       padding: 32px;
       background: rgba(10, 15, 30, 0.92);
+      position: relative;
     }
     .kt-main::-webkit-scrollbar { width: 5px; }
     .kt-main::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-    /* ── Hunter Profile Card ── */
-    .kt-hunter-card {
-      margin: 16px;
-      padding: 16px;
-      background: linear-gradient(135deg, rgba(30,10,60,0.9), rgba(10,20,50,0.9));
-      border: 1px solid rgba(167,139,250,0.25);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: border-color 0.2s;
-      flex-shrink: 0;
-    }
-    .kt-hunter-card:hover { border-color: rgba(167,139,250,0.5); }
-    body[data-theme="light"] .kt-hunter-card {
-      background: linear-gradient(135deg, rgba(237,233,254,0.9), rgba(219,234,254,0.9));
-      border-color: rgba(109,40,217,0.2);
-    }
-    .kt-hunter-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    .kt-hunter-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #e9d5ff;
-    }
-    body[data-theme="light"] .kt-hunter-name { color: #6d28d9; }
-    .kt-hunter-rank {
-      font-size: 12px;
-      font-weight: 700;
-      padding: 2px 10px;
-      border-radius: 10px;
-      letter-spacing: 1px;
-      transition: all 0.3s;
-    }
-    .kt-hunter-rank[data-rank="E"] { background: rgba(136,136,136,0.2); color: #888; }
-    .kt-hunter-rank[data-rank="D"] { background: rgba(76,175,80,0.2); color: #4caf50; }
-    .kt-hunter-rank[data-rank="C"] { background: rgba(33,150,243,0.2); color: #2196f3; box-shadow: 0 0 8px rgba(33,150,243,0.15); }
-    .kt-hunter-rank[data-rank="B"] { background: rgba(156,39,176,0.2); color: #9c27b0; box-shadow: 0 0 12px rgba(156,39,176,0.2); }
-    .kt-hunter-rank[data-rank="A"] { background: rgba(255,215,0,0.2); color: #ffd700; box-shadow: 0 0 16px rgba(255,215,0,0.25); animation: ktRankPulse 2s ease-in-out infinite; }
-    .kt-hunter-rank[data-rank="S"] { background: rgba(244,67,54,0.2); color: #f44336; box-shadow: 0 0 20px rgba(244,67,54,0.3); animation: ktRankPulse 1.5s ease-in-out infinite; }
-    .kt-hunter-rank[data-rank="National"] { background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(33,150,243,0.3)); color: #ffd700; box-shadow: 0 0 24px rgba(255,215,0,0.35); animation: ktRankPulse 1.5s ease-in-out infinite; }
-    .kt-hunter-rank[data-rank="Monarch"], .kt-hunter-rank[data-rank="Shadow Monarch"] { background: linear-gradient(135deg, #1a0033, #4a0080); color: #c084fc; box-shadow: 0 0 24px rgba(74,0,128,0.5); animation: ktShadowPulse 2s ease-in-out infinite; }
-    @keyframes ktRankPulse {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.3); }
-    }
-    @keyframes ktShadowPulse {
-      0%, 100% { box-shadow: 0 0 24px rgba(74,0,128,0.5); }
-      50% { box-shadow: 0 0 36px rgba(74,0,128,0.7), 0 0 8px rgba(192,132,252,0.3); }
-    }
-    .kt-hunter-level-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    .kt-hunter-level-label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.5);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    body[data-theme="light"] .kt-hunter-level-label { color: rgba(0,0,0,0.45); }
-    .kt-hunter-xp-bar {
-      flex: 1;
-      height: 6px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .kt-hunter-xp-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #a78bfa, #818cf8);
-      border-radius: 3px;
-      transition: width 0.5s ease;
-    }
-    .kt-hunter-xp-label {
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    body[data-theme="light"] .kt-hunter-xp-label { color: rgba(0,0,0,0.45); }
-    .kt-hunter-stats-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 10px;
-      font-size: 11px;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 8px;
-    }
-    body[data-theme="light"] .kt-hunter-stats-row { color: rgba(0,0,0,0.55); }
-    .kt-hunter-stat-item { white-space: nowrap; }
-    .kt-hunter-footer {
-      display: flex;
-      justify-content: space-between;
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
-    }
-    body[data-theme="light"] .kt-hunter-footer { color: rgba(0,0,0,0.45); }
+    /* ── Hunter STATUS Frame ── */
+    /* ── STATUS Window (SVG + CSS) ── */
+    .kt-status-window { position: relative; width: calc(100% - 16px); margin: 8px; flex-shrink: 0; cursor: pointer; }
+    .kt-status-window:hover .kt-sw-outer { opacity: 1; }
+    .kt-status-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    @keyframes statusGlow { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+    .kt-sw-outer { animation: statusGlow 3s ease-in-out infinite; }
+    .kt-sw-content { position: relative; font-family: 'Courier New', monospace; display: flex; flex-direction: column; padding: 12px 15px 15px; }
+    /* Title */
+    .kt-sw-title { text-align: center; color: #dbe9f9; font-size: clamp(9px, 1.1vw, 14px); letter-spacing: 4px; font-weight: 700; margin-bottom: 6px; text-shadow: 0 0 10px rgba(100,200,255,0.5); }
+    /* Top section: level + rank */
+    .kt-sw-top { display: flex; align-items: flex-start; padding: 0 6px; gap: 12px; margin-bottom: 8px; }
+    .kt-sw-level-box { text-align: center; }
+    .kt-sw-level-num { font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: #fff; text-shadow: 0 0 15px rgba(100,200,255,0.6); line-height: 1; }
+    .kt-sw-level-label { font-size: clamp(7px, 0.8vw, 10px); color: rgba(255,255,255,0.6); letter-spacing: 3px; font-weight: 700; }
+    .kt-sw-rank-box { padding-top: 4px; }
+    .kt-sw-rank-tag { font-size: clamp(6px, 0.7vw, 9px); color: rgba(255,255,255,0.45); letter-spacing: 1px; }
+    .kt-sw-rank-val { font-size: clamp(9px, 1vw, 13px); color: #dbe9f9; font-weight: 700; text-shadow: 0 0 8px rgba(100,200,255,0.4); }
+    .kt-sw-title-val { font-size: clamp(6px, 0.65vw, 9px); color: rgba(255,255,255,0.45); margin-top: 2px; }
+    /* Mid section: XP + streak + lit */
+    .kt-sw-mid { padding: 0 6px; margin-bottom: 6px; }
+    .kt-sw-xp-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+    .kt-sw-xp-label { font-size: clamp(7px, 0.7vw, 10px); color: rgba(100,200,255,0.8); font-weight: 700; flex-shrink: 0; }
+    .kt-sw-xp-bar { flex: 1; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+    .kt-sw-xp-fill { height: 100%; background: linear-gradient(90deg, #60a5fa, #818cf8); border-radius: 3px; transition: width 0.5s ease; }
+    .kt-sw-xp-text { font-size: clamp(6px, 0.6vw, 9px); color: rgba(255,255,255,0.45); flex-shrink: 0; }
+    .kt-sw-streak { font-size: clamp(7px, 0.7vw, 10px); color: rgba(255,255,255,0.55); margin-bottom: 2px; }
+    .kt-sw-lit { font-size: clamp(6px, 0.65vw, 9px); color: rgba(255,255,255,0.4); }
+    /* Bottom section: stats grid */
+    .kt-sw-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; padding: 0 6px; }
+    .kt-sw-stat { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
+    .kt-sw-stat-icon { font-size: clamp(8px, 0.8vw, 12px); }
+    .kt-sw-stat-code { font-size: clamp(7px, 0.7vw, 10px); color: #dbe9f9; }
+    .kt-sw-stat-val { font-size: clamp(10px, 1.1vw, 15px); color: #4ade80; font-weight: 700; text-shadow: 0 0 6px rgba(74,222,128,0.4); margin-left: 2px; }
 
     /* ── Hunter Profile Full Modal ── */
     .kt-profile-modal {
@@ -2202,8 +2135,9 @@
     .kt-radial-wrap {
       display: none;
       flex-direction: column;
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
     }
     .kt-radial-wrap.active { display: flex; }
     .kt-radial-reset-btn {
@@ -2221,7 +2155,7 @@
       flex: 1;
       position: relative;
       overflow: hidden;
-      background: rgba(10, 15, 30, 0.92);
+      background: #0a0f1e;
     }
     body[data-theme="light"] .kt-radial-canvas { background: rgba(232, 244, 242, 0.95); }
     .kt-radial-canvas svg { width: 100%; height: 100%; }
@@ -3227,22 +3161,66 @@
       <!-- Left Sidebar -->
       <div class="kt-sidebar">
         <!-- Hunter Profile Card (compact) -->
-        <div class="kt-hunter-card" id="ktHunterCard" onclick="ktOpenProfile()">
-          <div class="kt-hunter-title-row">
-            <span class="kt-hunter-name" id="ktHunterName">Shadow Monarch</span>
-            <span class="kt-hunter-rank" id="ktHunterRank">Rank E</span>
-          </div>
-          <div class="kt-hunter-level-row">
-            <span class="kt-hunter-level-label" id="ktHunterLevel">Level 1</span>
-            <div class="kt-hunter-xp-bar">
-              <div class="kt-hunter-xp-fill" id="ktHunterXpFill" style="width:0%"></div>
+        <div class="kt-status-window" id="ktHunterCard" onclick="ktOpenProfile()">
+          <svg viewBox="0 0 260 290" preserveAspectRatio="none" class="kt-status-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="swGlow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <filter id="cyanGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <linearGradient id="swPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6"/><stop offset="50%" stop-color="#c026d3"/><stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <!-- Outer frame: cut-corner rectangle with purple glow -->
+            <path class="kt-sw-outer" d="M 20,0 L 240,0 L 260,20 L 260,270 L 240,290 L 20,290 L 0,270 L 0,20 Z"
+                  fill="rgba(10,10,30,0.85)" stroke="url(#swPurple)" stroke-width="4" filter="url(#swGlow)"/>
+            <!-- Corner accents -->
+            <line x1="0" y1="20" x2="14" y2="6" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <line x1="20" y1="0" x2="6" y2="14" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <line x1="240" y1="0" x2="254" y2="14" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <line x1="260" y1="20" x2="246" y2="6" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <line x1="260" y1="270" x2="246" y2="284" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <line x1="240" y1="290" x2="254" y2="276" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <line x1="20" y1="290" x2="6" y2="276" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <line x1="0" y1="270" x2="14" y2="284" stroke="#c026d3" stroke-width="2" filter="url(#swGlow)"/>
+            <!-- Inner frame: cyan glow border -->
+            <rect x="12" y="23" width="236" height="253" rx="2" fill="none" stroke="rgba(100,200,255,0.6)" stroke-width="2" filter="url(#cyanGlow)"/>
+            <!-- STATUS title box: straddles inner frame top edge (y=23), vertically centered on it -->
+            <rect x="75" y="11" width="110" height="24" rx="2" fill="rgba(10,10,30,0.95)" stroke="rgba(100,200,255,0.6)" stroke-width="1.5" filter="url(#cyanGlow)"/>
+            <!-- Divider lines -->
+            <line x1="18" y1="119" x2="242" y2="119" stroke="rgba(100,200,255,0.4)" stroke-width="1.5" filter="url(#cyanGlow)"/>
+            <line x1="18" y1="184" x2="242" y2="184" stroke="rgba(100,200,255,0.4)" stroke-width="1.5" filter="url(#cyanGlow)"/>
+          </svg>
+          <!-- Data overlay -->
+          <div class="kt-sw-content">
+            <div class="kt-sw-title">STATUS</div>
+            <div class="kt-sw-top">
+              <div class="kt-sw-level-box">
+                <div class="kt-sw-level-num" id="ktSwLevel">8</div>
+                <div class="kt-sw-level-label">LEVEL</div>
+              </div>
+              <div class="kt-sw-rank-box">
+                <div class="kt-sw-rank-tag">RANK</div>
+                <div class="kt-sw-rank-val" id="ktSwRank">E级猎人</div>
+                <div class="kt-sw-title-val" id="ktSwTitle">E级猎人</div>
+              </div>
             </div>
-            <span class="kt-hunter-xp-label" id="ktHunterXpLabel">0/100 XP</span>
-          </div>
-          <div class="kt-hunter-stats-row" id="ktHunterStatsRow"></div>
-          <div class="kt-hunter-footer">
-            <span id="ktHunterStreak">🔥 Streak: 0 days</span>
-            <span id="ktHunterProgress">🌟 Lit: 0/40 · ⭐ Mastered: 0/40</span>
+            <div class="kt-sw-mid">
+              <div class="kt-sw-xp-row">
+                <span class="kt-sw-xp-label">XP</span>
+                <div class="kt-sw-xp-bar"><div class="kt-sw-xp-fill" id="ktSwXpFill" style="width:0%"></div></div>
+                <span class="kt-sw-xp-text" id="ktSwXpText">0/100</span>
+              </div>
+              <div class="kt-sw-streak" id="ktSwStreak">&#x1F525; Streak: 0 days</div>
+              <div class="kt-sw-lit" id="ktSwLit">&#x1F525; 0/40 Lit &middot; &#x2B50; 0/40 Mastered</div>
+            </div>
+            <div class="kt-sw-stats">
+              <div class="kt-sw-stat" id="ktSwS1"><span class="kt-sw-stat-icon">&#x1F4D0;</span><span class="kt-sw-stat-code">FND:</span><span class="kt-sw-stat-val">0</span></div>
+              <div class="kt-sw-stat" id="ktSwS2"><span class="kt-sw-stat-icon">&#x1F9EC;</span><span class="kt-sw-stat-code">DL:</span><span class="kt-sw-stat-val">0</span></div>
+              <div class="kt-sw-stat" id="ktSwS3"><span class="kt-sw-stat-icon">&#x1F916;</span><span class="kt-sw-stat-code">LLM:</span><span class="kt-sw-stat-val">0</span></div>
+              <div class="kt-sw-stat" id="ktSwS4"><span class="kt-sw-stat-icon">&#x1F575;&#xFE0F;</span><span class="kt-sw-stat-code">AGT:</span><span class="kt-sw-stat-val">0</span></div>
+              <div class="kt-sw-stat" id="ktSwS5"><span class="kt-sw-stat-icon">&#x1F6E0;</span><span class="kt-sw-stat-code">ENG:</span><span class="kt-sw-stat-val">0</span></div>
+              <div class="kt-sw-stat" id="ktSwS6"><span class="kt-sw-stat-icon">&#x1F3A8;</span><span class="kt-sw-stat-code">PRD:</span><span class="kt-sw-stat-val">0</span></div>
+            </div>
           </div>
         </div>
 
@@ -4662,40 +4640,45 @@
       const p = ktHunterProfile;
       if (!p) return;
 
-      document.getElementById('ktHunterName').textContent = p.title || 'Shadow Monarch';
-      const rankEl = document.getElementById('ktHunterRank');
-      rankEl.textContent = 'Rank ' + (p.rank || 'E');
-      rankEl.setAttribute('data-rank', p.rank || 'E');
-      document.getElementById('ktHunterLevel').textContent = 'Level ' + (p.level || 1);
+      // Level
+      document.getElementById('ktSwLevel').textContent = p.level || 1;
 
-      const xpCurrent = p.xp || 0;
+      // Rank & Title
+      const rankName = p.title || 'E级猎人';
+      document.getElementById('ktSwRank').textContent = rankName;
+      document.getElementById('ktSwTitle').textContent = p.title || 'E级猎人';
+
+      // XP bar
+      const xpCurrent = p.current_xp || p.xp || 0;
       const xpNext = p.xp_to_next_level || 100;
       const xpPct = Math.min(100, Math.round((xpCurrent / xpNext) * 100));
-      document.getElementById('ktHunterXpFill').style.width = xpPct + '%';
-      document.getElementById('ktHunterXpLabel').textContent = xpCurrent + '/' + xpNext + ' XP';
+      document.getElementById('ktSwXpFill').style.width = xpPct + '%';
+      document.getElementById('ktSwXpText').textContent = xpCurrent + '/' + xpNext;
 
-      const stats = p.stats || {};
-      const statLabels = [
-        ['📐', 'FND', stats.foundations || 0],
-        ['🧬', 'DL', stats.deep_learning || 0],
-        ['🤖', 'LLM', stats.llm_apps || 0],
-        ['🕵️', 'AGT', stats.ai_agents || 0],
-        ['🛠', 'ENG', stats.ai_engineering || 0],
-        ['🎨', 'PRD', stats.ai_products || 0],
-      ];
-      document.getElementById('ktHunterStatsRow').innerHTML =
-        statLabels.map(([icon, code, val]) =>
-          `<span class="kt-hunter-stat-item">${icon} ${code} ${val}</span>`
-        ).join('');
+      // Streak
+      document.getElementById('ktSwStreak').textContent = '\u{1F525} Streak: ' + (p.daily_streak || p.streak_days || 0) + ' days';
 
-      document.getElementById('ktHunterStreak').textContent =
-        '🔥 Streak: ' + (p.streak_days || 0) + ' days';
-
+      // Lit / Mastered
       const litCount = p.lit_count || 0;
       const masteredCount = p.mastered_count || 0;
       const totalLeaves = p.total_leaves || 40;
-      document.getElementById('ktHunterProgress').textContent =
-        '🌟 Lit: ' + litCount + '/' + totalLeaves + ' · ⭐ Mastered: ' + masteredCount + '/' + totalLeaves;
+      document.getElementById('ktSwLit').textContent =
+        '\u{1F525} ' + litCount + '/' + totalLeaves + ' Lit \u00B7 \u2B50 ' + masteredCount + '/' + totalLeaves + ' Mastered';
+
+      // Stats
+      const stats = p.stats || {};
+      const statData = [
+        ['S1', '\u{1F4D0}', 'FND', stats.foundations || 0],
+        ['S2', '\u{1F9EC}', 'DL', stats.deep_learning || 0],
+        ['S3', '\u{1F916}', 'LLM', stats.llm_apps || 0],
+        ['S4', '\u{1F575}\uFE0F', 'AGT', stats.ai_agents || 0],
+        ['S5', '\u{1F6E0}', 'ENG', stats.ai_engineering || 0],
+        ['S6', '\u{1F3A8}', 'PRD', stats.ai_products || 0],
+      ];
+      for (const [id, icon, code, val] of statData) {
+        const el = document.getElementById('ktSw' + id);
+        if (el) el.innerHTML = '<span class="kt-sw-stat-icon">' + icon + '</span><span class="kt-sw-stat-code">' + code + ':</span><span class="kt-sw-stat-val">' + val + '</span>';
+      }
     }
 
     // ── Hunter Profile Full Modal ──
@@ -6975,10 +6958,11 @@
           <div class="kt-quiz-shimmer kt-quiz-shimmer-option" style="opacity:0.25"></div>
         </div>`;
 
+      const _quizLang = localStorage.getItem('kt_node_lang') || 'en';
       fetch(KT_API + '/review/generate', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ node_ids: [nodeId], batch_size: 5, force: forceRegenerate }),
+        body: JSON.stringify({ node_ids: [nodeId], batch_size: 5, force: forceRegenerate, lang: _quizLang }),
       })
         .then(r => r.json())
         .then(data => {
@@ -7023,10 +7007,11 @@
       reviewEl.style.display = 'block';
       reviewEl.innerHTML = '<div style="text-align:center;padding:60px 0;color:var(--text-secondary)">Generating branch quiz...</div>';
 
+      const _quizLang = localStorage.getItem('kt_node_lang') || 'en';
       fetch(KT_API + '/review/generate', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ node_ids: nodeIds, batch_size: 8 }),
+        body: JSON.stringify({ node_ids: nodeIds, batch_size: 8, lang: _quizLang }),
       })
         .then(r => r.json())
         .then(data => {
@@ -7560,9 +7545,10 @@
       reviewEl.innerHTML = `<div style="text-align:center;padding:60px 0;color:var(--text-secondary)">${ktIsComprehensiveReview ? 'Preparing comprehensive review...' : 'Generating review quizzes...'}</div>`;
 
       try {
+        const _quizLang = localStorage.getItem('kt_node_lang') || 'en';
         const body = ktIsComprehensiveReview
-          ? { mode: 'comprehensive' }
-          : { batch_size: 5, node_ids: [nodeId] };
+          ? { mode: 'comprehensive', lang: _quizLang }
+          : { batch_size: 5, node_ids: [nodeId], lang: _quizLang };
         const res = await fetch(KT_API + '/review/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

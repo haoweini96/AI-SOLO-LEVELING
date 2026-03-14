@@ -1101,7 +1101,7 @@ def _get_related_context(due_nodes: list[dict], tree_data: dict) -> list[dict]:
 
 
 def _generate_quizzes_with_ai(nodes: list[dict], related_context: list[dict]) -> list[dict]:
-    """Generate mixed-format quizzes: multiple_choice + open_ended, four quiz types."""
+    """Generate mixed-format quizzes in English: multiple_choice + open_ended, four quiz types."""
     # Collect source content for richer quiz generation
     tree_data = _load_tree()
     all_content = []
@@ -1118,89 +1118,81 @@ def _generate_quizzes_with_ai(nodes: list[dict], related_context: list[dict]) ->
         }
         all_content.append(content)
 
-    system_prompt = """你是一个 AI/ML 技术面试官和教育专家。根据学生学过的知识，生成高质量的测验题。
+    system_prompt = """You are an AI/ML technical interviewer and education expert. Generate high-quality quiz questions based on the student's learned knowledge.
+Generate questions in English. Technical terms stay in English.
 
-题型说明：
-1. concept_recall（概念回忆）— 考察核心概念的理解和记忆
-2. application（场景应用）— 给一个实际工作场景，考察如何应用知识
-3. comparison（对比分析）— 考察对相似概念/工具/方法的区分和取舍
-4. system_design（系统设计）— 考察架构思维和整体设计能力
+Quiz types:
+1. concept_recall — Test understanding and recall of core concepts
+2. application — Give a real-world work scenario, test how to apply knowledge
+3. comparison — Test ability to distinguish and choose between similar concepts/tools/methods
+4. system_design — Test architectural thinking and overall design ability
 
-答题形式：
-- 选择题（multiple_choice）：4 个选项，1 个正确答案
-- 开放题（open_ended）：用户自由作答，给出评分要点
+Answer formats:
+- multiple_choice: 4 options, 1 correct answer
+- open_ended: free-form answer, provide scoring rubric
 
-出题质量要求（非常重要）：
-- ❌ 绝对不要出纯数据记忆题（比如"增长了多少%"、"哪一年发生了什么"、"具体数字是多少"）
-- ❌ 不要出只需要背诵才能回答的题
-- ✅ 所有题目都应该考察理解、分析、应用能力
-- ✅ Concept Recall 应该考"这个概念的核心原理是什么"，而不是"某个统计数字"
-- ✅ Application 应该给一个真实工作场景让用户思考怎么解决
-- ✅ Comparison 应该考察什么时候用 A 什么时候用 B 的判断力
-- ✅ System Design 应该有具体约束条件，考察架构思维
+Quality requirements (very important):
+- Never ask pure data memorization questions (e.g., "how much did X grow?", "what year did Y happen?")
+- Never ask questions that only require rote memorization
+- All questions should test understanding, analysis, and application
+- Concept Recall should ask "what is the core principle" not "what statistic"
+- Application should give a real work scenario to reason through
+- Comparison should test judgment on when to use A vs B
+- System Design should have concrete constraints to test architectural thinking
 
-混合比例：大约 60% 选择题 + 40% 开放题
-严格按 JSON 格式返回。"""
+Mix: approximately 60% multiple choice + 40% open-ended
+Return strict JSON format."""
 
-    user_prompt = f"""为以下知识点生成 12 道测验题（7 道选择题 + 5 道开放题），混合四种题型。
+    user_prompt = f"""Generate 12 quiz questions (7 multiple choice + 5 open-ended) for the following topics, mixing all four quiz types.
 
-知识内容：
+Knowledge content:
 {json.dumps(all_content, ensure_ascii=False, indent=2)}
 
-返回 JSON：
+Return JSON:
 {{"quizzes": [
   {{
     "id": "q1",
-    "node_id": "节点ID",
+    "node_id": "node_id_here",
     "quiz_type": "concept_recall",
     "format": "multiple_choice",
-    "question": "问题文本",
-    "options": ["A. 选项1", "B. 选项2", "C. 选项3", "D. 选项4"],
+    "question": "Question text",
+    "options": ["A. Option 1", "B. Option 2", "C. Option 3", "D. Option 4"],
     "correct_answer": "A",
-    "explanation": "为什么这个答案正确（1-2 句话）",
+    "explanation": "Why this answer is correct (1-2 sentences)",
     "difficulty": "easy"
   }},
   {{
     "id": "q2",
-    "node_id": "节点ID",
+    "node_id": "node_id_here",
     "quiz_type": "application",
     "format": "open_ended",
-    "question": "场景描述 + 问题",
-    "expected_points": ["答案要点1", "答案要点2", "答案要点3"],
-    "hint": "提示（可选）",
+    "question": "Scenario description + question",
+    "expected_points": ["Key point 1", "Key point 2", "Key point 3"],
+    "hint": "Hint (optional)",
     "difficulty": "medium"
   }}
 ]}}
 
-规则：
-- 12 道题：7 道选择题 + 5 道开放题
-- 四种题型都要出现，尽量均匀分布
-- 确保题目之间不重复、不过于相似
-- 选择题的干扰项要有迷惑性，不要太明显
-- 开放题的 expected_points 是评分要点（用户需要提到的关键信息）
-- 场景应用题要给具体的工作场景（比如"你在公司负责一个 RAG 系统..."）
-- 系统设计题要有明确的约束条件（比如"10万文档，延迟要求<2s"）
-- 难度分布：3 easy + 6 medium + 3 hard
-- 用中文出题（技术名词保留英文）
-- 语言规则：
-  * 题目和选项用中文，但技术名词保留英文原词
-  * 例如：data drift（不说"数据漂移"）、model degradation（不说"模型性能衰减"）
-  * Agent、Tokenization、Embedding、Fine-tuning、RAG、Pipeline、Deploy、API、SDK、CLI 等直接用英文
-  * 大原则：如果一个技术词在中文 AI 社区里大家普遍直接说英文的，就保留英文
-  * 只有确实有广泛使用的中文对应词（如"模型"、"数据集"、"微调"）才用中文
-  * 风格类似中国程序员日常讨论的中英混合
-  * expected_points 和 explanation 也遵循同样的中英混合规则
-- 不要出太教科书化的题，要偏实际工作应用
+Rules:
+- 12 questions: 7 multiple choice + 5 open-ended
+- All four quiz types must appear, distribute as evenly as possible
+- No duplicate or overly similar questions
+- Multiple choice distractors should be plausible, not obviously wrong
+- Open-ended expected_points are scoring rubric items (key info the user should mention)
+- Application questions should have specific work scenarios (e.g., "You're responsible for a RAG system at your company...")
+- System Design questions should have clear constraints (e.g., "100K documents, latency < 2s")
+- Difficulty distribution: 3 easy + 6 medium + 3 hard
+- Keep questions practical and work-oriented, not textbook-style
 
-好题举例：
-- "你的 RAG 系统 retrieval 相关性很高但回答质量差，可能是什么原因？"（application）
-- "RAG vs Fine-tuning，在数据频繁更新的场景下你会选哪个？为什么？"（comparison）
-- "设计一个支持 10 万文档的企业 RAG 系统，延迟要求 < 3s，你会怎么选型？"（system_design）
+Good examples:
+- "Your RAG system has high retrieval relevance but poor answer quality. What could be the cause?" (application)
+- "RAG vs Fine-tuning: which would you choose when data updates frequently? Why?" (comparison)
+- "Design an enterprise RAG system supporting 100K documents with latency < 3s. How would you architect it?" (system_design)
 
-坏题举例（绝对不要出这种）：
-- "AI 安全事件在 2017-2023 年增长了多少？"（纯背数字）
-- "MLflow 是哪一年发布的？"（无意义记忆）
-- "以下哪个不是 MLOps 工具？"（太简单，没有思考深度）"""
+Bad examples (never generate these):
+- "How much did AI security incidents grow from 2017-2023?" (pure memorization)
+- "What year was MLflow released?" (meaningless trivia)
+- "Which of the following is NOT an MLOps tool?" (too simple, no depth)"""
 
     try:
         result = _call_claude(system_prompt, user_prompt, max_tokens=6000)
@@ -1220,12 +1212,42 @@ def _generate_quizzes_with_ai(nodes: list[dict], related_context: list[dict]) ->
         return [
             {"id": f"q{i+1}", "node_id": n["id"], "quiz_type": "concept_recall",
              "format": "open_ended",
-             "question": f"请回忆关于「{n.get('title', n['id'])}」的核心要点。",
+             "question": f"Recall the key concepts of '{n.get('title', n['id'])}'.",
              "hint": (n.get("summary") or "")[:100],
              "expected_points": n.get("key_takeaways", []),
              "difficulty": "medium"}
             for i, n in enumerate(nodes)
         ]
+
+
+def _translate_quizzes_to_zh(quizzes: list[dict]) -> list[dict]:
+    """Translate English quizzes to Chinese. Technical terms stay in English."""
+    try:
+        result = _call_claude(
+            system_prompt="你是一个技术翻译专家。把英文 quiz 翻译成中文，技术名词保留英文。返回 JSON 对象。",
+            user_prompt=f"""翻译以下 quiz 题目为中文。规则：
+- 技术名词保留英文（Agent, RAG, Pipeline, Embedding, Fine-tuning 等）
+- 风格像中国程序员日常讨论
+- 选项也要翻译
+- explanation 也要翻译
+- expected_points 也要翻译
+- hint 也要翻译
+- 保持所有其他字段（id, node_id, quiz_type, format, difficulty, correct_answer）不变
+
+{json.dumps(quizzes, ensure_ascii=False)}
+
+返回 JSON 对象格式：{{"quizzes": [翻译后的题目数组]}}""",
+            max_tokens=6000,
+        )
+        zh_quizzes = result.get("quizzes", [])
+        if zh_quizzes:
+            log.info("Quiz translation to zh succeeded: %d quizzes", len(zh_quizzes))
+            return zh_quizzes
+        log.warning("Quiz translation returned empty quizzes, keys: %s", list(result.keys()))
+        return quizzes  # fallback to English
+    except Exception as e:
+        log.warning("Quiz translation to zh failed: %s", e)
+        return quizzes  # fallback to English on error
 
 
 def _evaluate_open_answer(question: str, user_answer: str, expected_points: list[str]) -> dict:
@@ -3002,6 +3024,8 @@ def kt_review_generate():
     specific_node_ids = body.get("node_ids")  # Optional: quiz specific nodes
     force = body.get("force", False)
     mode = body.get("mode", "")
+    lang = body.get("lang", "en") if body.get("lang") in ("en", "zh") else "en"
+    log.info("Quiz requested: node_ids=%s, lang=%s, mode=%s, force=%s", specific_node_ids, lang, mode, force)
 
     tree_data = _load_tree()
     template = _load_template()
@@ -3020,7 +3044,7 @@ def kt_review_generate():
         quizzes = []
         for nid, node, reason in selected:
             cached = node.get("cached_quiz", {})
-            pool = cached.get("quizzes", [])
+            pool = cached.get(lang, cached.get("en", []))
 
             if pool:
                 q = dict(random.choice(pool))
@@ -3086,7 +3110,7 @@ def kt_review_generate():
                         expired = (datetime.now(timezone.utc) - gen_dt).days > 30
                     except (ValueError, TypeError):
                         expired = True
-                pool = cached_quiz.get("quizzes", [])
+                pool = cached_quiz.get(lang, cached_quiz.get("en", []))
                 if not expired and pool:
                     sample_size = min(5, len(pool))
                     quizzes = random.sample(pool, sample_size)
@@ -3104,27 +3128,33 @@ def kt_review_generate():
             d["title"] = leaf_map.get(d["id"], d["id"])
 
     related_context = _get_related_context(target_nodes, tree_data)
-    all_quizzes = _generate_quizzes_with_ai(target_nodes, related_context)
+    all_quizzes_en = _generate_quizzes_with_ai(target_nodes, related_context)
+    all_quizzes_zh = _translate_quizzes_to_zh(all_quizzes_en)
 
-    # Cache the full pool for single-node quizzes (skip if fallback/empty)
-    if specific_node_ids and len(specific_node_ids) == 1 and len(target_nodes) == 1 and len(all_quizzes) > 1:
+    # Cache the full pool (both languages) for single-node quizzes
+    if specific_node_ids and len(specific_node_ids) == 1 and len(target_nodes) == 1 and len(all_quizzes_en) > 1:
         nid = specific_node_ids[0]
         with _id_lock:
             tree_data = _load_tree()
             node = tree_data["nodes"].get(nid)
             if node:
                 current_sources = sorted(node.get("source_ids", []))
+                # Clean up old per-language cache keys
+                node.pop("cached_quiz_en", None)
+                node.pop("cached_quiz_zh", None)
                 node["cached_quiz"] = {
                     "cache_key": ",".join(current_sources),
-                    "quizzes": all_quizzes,
+                    "en": all_quizzes_en,
+                    "zh": all_quizzes_zh,
                     "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
                 }
                 save_json(KNOWLEDGE_TREE_FILE, tree_data)
-        # Return random 5 from the newly generated pool
-        sample_size = min(5, len(all_quizzes))
-        quizzes = random.sample(all_quizzes, sample_size)
+        # Return random 5 from the newly generated pool in requested language
+        pool = all_quizzes_zh if lang == "zh" else all_quizzes_en
+        sample_size = min(5, len(pool))
+        quizzes = random.sample(pool, sample_size)
     else:
-        quizzes = all_quizzes
+        quizzes = all_quizzes_zh if lang == "zh" else all_quizzes_en
 
     return jsonify({
         "ok": True, "status": "ok", "quizzes": quizzes,
