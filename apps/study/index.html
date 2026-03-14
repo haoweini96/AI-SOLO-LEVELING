@@ -6,7 +6,7 @@
   <title>Solo Leveling</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Noto+Sans+SC:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <style>
@@ -1803,6 +1803,124 @@
     .kt-view-btn:hover { background: var(--card-hover); color: var(--text); }
     .kt-view-btn.active { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
 
+    /* ── Stats Dashboard ── */
+    .kt-stats-wrap {
+      padding: 0;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .kt-stats-title {
+      font: 700 20px/1 var(--font-head);
+      color: var(--text);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .kt-stats-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .kt-stats-section-title {
+      font: 600 13px/1 var(--font-body);
+      color: var(--text);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .kt-stats-chart { width: 100%; min-height: 120px; position: relative; }
+    .kt-stats-separator {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+    /* Heatmap cells */
+    .kt-heatmap-cell { rx: 2; }
+    .kt-heatmap-cell:hover { stroke: var(--accent); stroke-width: 1; }
+    /* Chart tooltips */
+    .kt-chart-tooltip {
+      position: absolute;
+      background: rgba(10, 10, 30, 0.95);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font: 400 11px/1.4 var(--font-body);
+      color: var(--text);
+      pointer-events: none;
+      z-index: 100;
+      white-space: nowrap;
+    }
+    /* Coverage progress bars */
+    .kt-coverage-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .kt-coverage-row:last-child { border-bottom: none; }
+    .kt-coverage-rank {
+      font: 600 12px/1 var(--font-body);
+      color: var(--text-secondary);
+      width: 20px;
+      text-align: right;
+    }
+    .kt-coverage-name {
+      font: 500 13px/1 var(--font-body);
+      color: var(--text);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .kt-coverage-bar-wrap {
+      width: 120px;
+      height: 8px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .kt-coverage-bar {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      transition: width 0.5s ease;
+    }
+    .kt-coverage-pct {
+      font: 600 12px/1 var(--font-body);
+      color: var(--accent);
+      width: 40px;
+      text-align: right;
+    }
+    .kt-coverage-open {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      font: 500 10px/1 var(--font-body);
+      padding: 3px 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .kt-coverage-open:hover { color: var(--accent); border-color: var(--accent); }
+    /* Weakest areas */
+    .kt-weak-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .kt-weak-row:last-child { border-bottom: none; }
+    .kt-weak-count {
+      font: 400 12px/1 var(--font-body);
+      color: #ef4444;
+      width: 90px;
+    }
+
     /* ── Sidebar Actions ── */
     .kt-sidebar-actions {
       padding: 12px 16px;
@@ -1971,7 +2089,7 @@
     .kt-status-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     @keyframes statusGlow { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
     .kt-sw-outer { animation: statusGlow 3s ease-in-out infinite; }
-    .kt-sw-content { position: relative; font-family: 'Courier New', monospace; display: flex; flex-direction: column; padding: 12px 15px 15px; }
+    .kt-sw-content { position: relative; font-family: 'Audiowide', 'Noto Sans SC', cursive, sans-serif; display: flex; flex-direction: column; padding: 12px 15px 15px; }
     /* Title */
     .kt-sw-title { text-align: center; color: #dbe9f9; font-size: clamp(9px, 1.1vw, 14px); letter-spacing: 4px; font-weight: 700; margin-bottom: 6px; text-shadow: 0 0 10px rgba(100,200,255,0.5); }
     /* Top section: level + rank */
@@ -1982,6 +2100,7 @@
     .kt-sw-rank-box { padding-top: 4px; }
     .kt-sw-rank-tag { font-size: clamp(6px, 0.7vw, 9px); color: rgba(255,255,255,0.45); letter-spacing: 1px; }
     .kt-sw-rank-val { font-size: clamp(9px, 1vw, 13px); color: #dbe9f9; font-weight: 700; text-shadow: 0 0 8px rgba(100,200,255,0.4); }
+    .kt-sw-subtitle { font-size: clamp(6px, 0.65vw, 9px); color: rgba(255,255,255,0.55); margin-top: 2px; letter-spacing: 0.5px; }
     .kt-sw-title-val { font-size: clamp(6px, 0.65vw, 9px); color: rgba(255,255,255,0.45); margin-top: 2px; }
     /* Mid section: XP + streak + lit */
     .kt-sw-mid { padding: 0 6px; margin-bottom: 6px; }
@@ -1989,9 +2108,9 @@
     .kt-sw-xp-label { font-size: clamp(7px, 0.7vw, 10px); color: rgba(100,200,255,0.8); font-weight: 700; flex-shrink: 0; }
     .kt-sw-xp-bar { flex: 1; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
     .kt-sw-xp-fill { height: 100%; background: linear-gradient(90deg, #60a5fa, #818cf8); border-radius: 3px; transition: width 0.5s ease; }
-    .kt-sw-xp-text { font-size: clamp(6px, 0.6vw, 9px); color: rgba(255,255,255,0.45); flex-shrink: 0; }
-    .kt-sw-streak { font-size: clamp(7px, 0.7vw, 10px); color: rgba(255,255,255,0.55); margin-bottom: 2px; }
-    .kt-sw-lit { font-size: clamp(6px, 0.65vw, 9px); color: rgba(255,255,255,0.4); }
+    .kt-sw-xp-text { font-size: clamp(6px, 0.6vw, 9px); color: #dbe9f9; flex-shrink: 0; }
+    .kt-sw-streak { font-size: clamp(7px, 0.7vw, 10px); color: #dbe9f9; margin-bottom: 2px; }
+    .kt-sw-lit { font-size: clamp(6px, 0.65vw, 9px); color: #dbe9f9; }
     /* Bottom section: stats grid */
     .kt-sw-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; padding: 0 6px; }
     .kt-sw-stat { display: flex; align-items: center; gap: 2px; white-space: nowrap; }
@@ -3032,10 +3151,7 @@
     <button class="tab-btn" id="tabKtree" onclick="switchTab('ktree')">Hunter's Path</button>
   </div>
 
-  <div class="tab-actions" id="feedActions">
-    <button class="tab-action-btn" onclick="loadFeed(false)">Refresh</button>
-    <button class="tab-action-btn accent" onclick="loadFeed(true)">Force Refresh</button>
-  </div>
+  <div class="tab-actions" id="feedActions"></div>
 
   <!-- ============================================================
        FEED TAB
@@ -3201,7 +3317,7 @@
               <div class="kt-sw-rank-box">
                 <div class="kt-sw-rank-tag">RANK</div>
                 <div class="kt-sw-rank-val" id="ktSwRank">E级猎人</div>
-                <div class="kt-sw-title-val" id="ktSwTitle">E级猎人</div>
+                <div class="kt-sw-subtitle" id="ktSwSubtitle">初入猎场</div>
               </div>
             </div>
             <div class="kt-sw-mid">
@@ -3224,10 +3340,14 @@
           </div>
         </div>
 
+        <!-- SFX Toggle -->
+        <button id="ktSfxToggle" onclick="event.stopPropagation();ktToggleSfx()" style="position:absolute;top:4px;right:12px;background:none;border:none;font-size:14px;cursor:pointer;opacity:0.5;z-index:2" title="Toggle sound effects">🔊</button>
+
         <!-- View Toggle -->
         <div class="kt-view-toggle">
           <button class="kt-view-btn active" id="ktViewOverview" onclick="ktSwitchView('overview')">Overview</button>
           <button class="kt-view-btn" id="ktViewTechTree" onclick="ktSwitchView('tech-tree')">Power Grid</button>
+          <button class="kt-view-btn" id="ktViewStats" onclick="ktSwitchView('stats')">Stats</button>
         </div>
 
         <!-- Sidebar Actions -->
@@ -3256,6 +3376,7 @@
       <!-- Right Panel -->
       <div class="kt-main" id="ktMain">
         <div id="ktOverview"></div>
+        <div id="ktStats" style="display:none"></div>
         <div id="ktReview" style="display:none"></div>
         <!-- Tech Tree radial canvas -->
         <div class="kt-radial-wrap" id="ktRadialWrap">
@@ -4561,6 +4682,133 @@
     let ktTechTree = null;
     let ktView = 'overview'; // 'overview' | 'tech-tree'
     let ktPendingPopups = []; // queue of {type:'levelup'|'achievement', data}
+
+    // ── Sound Effects (Web Audio API) ──
+    var ktSfxEnabled = localStorage.getItem('ktSfxEnabled') !== 'false';
+    var ktSfx = {
+      ctx: null,
+      _getCtx() {
+        if (!this.ctx) this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        return this.ctx;
+      },
+      // Level Up — ascending electronic arpeggio + victory chord
+      levelUp() {
+        if (!ktSfxEnabled) return;
+        const ctx = this._getCtx();
+        const now = ctx.currentTime;
+        [400, 500, 700].forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + i * 0.15);
+          gain.gain.setValueAtTime(0.3, now + i * 0.15);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.15 + 0.3);
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.start(now + i * 0.15);
+          osc.stop(now + i * 0.15 + 0.3);
+        });
+        [700, 880, 1050].forEach(freq => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + 0.5);
+          gain.gain.setValueAtTime(0.2, now + 0.5);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 1.2);
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.start(now + 0.5);
+          osc.stop(now + 1.2);
+        });
+      },
+      // Rank Up — bass impact + rising sweep + high victory chord
+      rankUp() {
+        if (!ktSfxEnabled) return;
+        const ctx = this._getCtx();
+        const now = ctx.currentTime;
+        const bass = ctx.createOscillator();
+        const bassGain = ctx.createGain();
+        bass.type = 'sawtooth';
+        bass.frequency.setValueAtTime(80, now);
+        bass.frequency.exponentialRampToValueAtTime(40, now + 0.5);
+        bassGain.gain.setValueAtTime(0.4, now);
+        bassGain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+        bass.connect(bassGain); bassGain.connect(ctx.destination);
+        bass.start(now);
+        bass.stop(now + 0.5);
+        const sweep = ctx.createOscillator();
+        const sweepGain = ctx.createGain();
+        sweep.type = 'sine';
+        sweep.frequency.setValueAtTime(200, now + 0.3);
+        sweep.frequency.exponentialRampToValueAtTime(1200, now + 0.8);
+        sweepGain.gain.setValueAtTime(0.3, now + 0.3);
+        sweepGain.gain.exponentialRampToValueAtTime(0.01, now + 1.0);
+        sweep.connect(sweepGain); sweepGain.connect(ctx.destination);
+        sweep.start(now + 0.3);
+        sweep.stop(now + 1.0);
+        [880, 1100, 1320, 1760].forEach(freq => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now + 0.8);
+          gain.gain.setValueAtTime(0.15, now + 0.8);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 2.0);
+          osc.connect(gain); gain.connect(ctx.destination);
+          osc.start(now + 0.8);
+          osc.stop(now + 2.0);
+        });
+      },
+      // Node Lit — crisp ding-dong + shimmer
+      nodeLit() {
+        if (!ktSfxEnabled) return;
+        const ctx = this._getCtx();
+        const now = ctx.currentTime;
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(880, now);
+        gain1.gain.setValueAtTime(0.3, now);
+        gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+        osc1.connect(gain1); gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.2);
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(1320, now + 0.1);
+        gain2.gain.setValueAtTime(0.25, now + 0.1);
+        gain2.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+        osc2.connect(gain2); gain2.connect(ctx.destination);
+        osc2.start(now + 0.1);
+        osc2.stop(now + 0.4);
+        const osc3 = ctx.createOscillator();
+        const gain3 = ctx.createGain();
+        osc3.type = 'sine';
+        osc3.frequency.setValueAtTime(1760, now + 0.2);
+        gain3.gain.setValueAtTime(0.15, now + 0.2);
+        gain3.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+        osc3.connect(gain3); gain3.connect(ctx.destination);
+        osc3.start(now + 0.2);
+        osc3.stop(now + 0.6);
+      }
+    };
+    function ktToggleSfx() {
+      ktSfxEnabled = !ktSfxEnabled;
+      localStorage.setItem('ktSfxEnabled', ktSfxEnabled);
+      const btn = document.getElementById('ktSfxToggle');
+      if (btn) btn.textContent = ktSfxEnabled ? '🔊' : '🔇';
+    }
+    // Set initial SFX icon + resume AudioContext on first user click (iframe autoplay policy)
+    setTimeout(() => {
+      const btn = document.getElementById('ktSfxToggle');
+      if (btn) btn.textContent = ktSfxEnabled ? '🔊' : '🔇';
+    }, 0);
+    document.addEventListener('click', function _ktInitAudio() {
+      try {
+        ktSfx._getCtx();
+        if (ktSfx.ctx && ktSfx.ctx.state === 'suspended') ktSfx.ctx.resume();
+        console.log('[SFX] AudioContext initialized, state:', ktSfx.ctx.state);
+      } catch(e) { console.warn('[SFX] AudioContext init failed:', e); }
+    }, { once: true });
+    console.log('[SFX] ktSfx defined, enabled:', ktSfxEnabled);
     let ktRadialSvg = null;
     let ktRadialZoom = null;
 
@@ -4646,7 +4894,7 @@
       // Rank & Title
       const rankName = p.title || 'E级猎人';
       document.getElementById('ktSwRank').textContent = rankName;
-      document.getElementById('ktSwTitle').textContent = p.title || 'E级猎人';
+      document.getElementById('ktSwSubtitle').textContent = p.subtitle || '';
 
       // XP bar
       const xpCurrent = p.current_xp || p.xp || 0;
@@ -4849,24 +5097,29 @@
       ktView = mode;
       document.getElementById('ktViewOverview').classList.toggle('active', mode === 'overview');
       document.getElementById('ktViewTechTree').classList.toggle('active', mode === 'tech-tree');
+      document.getElementById('ktViewStats').classList.toggle('active', mode === 'stats');
 
       const overview = document.getElementById('ktOverview');
+      const statsView = document.getElementById('ktStats');
       const review = document.getElementById('ktReview');
       const radialWrap = document.getElementById('ktRadialWrap');
 
+      overview.style.display = 'none';
+      statsView.style.display = 'none';
+      review.style.display = 'none';
+      radialWrap.classList.remove('active');
+
       if (mode === 'overview') {
         overview.style.display = '';
-        review.style.display = 'none';
-        radialWrap.classList.remove('active');
         ktShowOverview();
       } else if (mode === 'tech-tree') {
-        overview.style.display = 'none';
-        review.style.display = 'none';
         radialWrap.classList.add('active');
         ktRenderTechTree();
+      } else if (mode === 'stats') {
+        statsView.style.display = '';
+        ktShowStats();
       } else if (mode === 'review') {
-        overview.style.display = 'none';
-        radialWrap.classList.remove('active');
+        // review display handled by review logic
       }
     }
 
@@ -4940,6 +5193,260 @@
       } catch (e) {
         document.getElementById('ktOverview').innerHTML =
           '<div style="padding:24px;color:var(--text-secondary)">Failed to load overview.</div>';
+      }
+    }
+
+    // ── Stats Dashboard ──
+    async function ktShowStats() {
+      const container = document.getElementById('ktStats');
+      container.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text-secondary)">Loading stats...</div>';
+      try {
+        const data = await fetch(KT_API + '/dashboard-stats').then(r => r.json());
+        const p = data.profile || {};
+        const qs = data.quiz_stats || {};
+
+        container.innerHTML = `
+          <div class="kt-stats-wrap">
+            <div class="kt-stats-title">LEARNING STATS</div>
+
+            <!-- Activity Heatmap -->
+            <div class="kt-stats-section">
+              <div class="kt-stats-section-title">🔥 ACTIVITY HEATMAP <span style="font-weight:400;color:var(--text-tertiary);font-size:11px;margin-left:auto">(last 90 days)</span></div>
+              <div class="kt-stats-chart" id="ktStatsHeatmap"></div>
+            </div>
+
+            <!-- Weekly Activity -->
+            <div class="kt-stats-section">
+              <div class="kt-stats-section-title">📚 WEEKLY ACTIVITY</div>
+              <div class="kt-stats-chart" id="ktStatsWeekly"></div>
+            </div>
+
+            <!-- Quiz Accuracy -->
+            <div class="kt-stats-section">
+              <div class="kt-stats-section-title">🎯 QUIZ ACCURACY</div>
+              <div class="kt-stats-chart" id="ktStatsAccuracy"></div>
+            </div>
+
+            <!-- Weakest Areas -->
+            <div class="kt-stats-section">
+              <div class="kt-stats-section-title">❌ WEAKEST AREAS</div>
+              <div id="ktStatsWeak"></div>
+            </div>
+          </div>
+        `;
+
+        // Render all charts
+        ktRenderHeatmap(data.daily_activity || {});
+        ktRenderWeeklyBars(data.weekly_quiz || {});
+        ktRenderAccuracyChart(data.weekly_quiz || {});
+        ktRenderWeakAreas(data.wrong_ranking || []);
+      } catch (e) {
+        container.innerHTML = '<div style="padding:24px;color:var(--text-secondary)">Failed to load stats.</div>';
+      }
+    }
+
+    // ── Stats: Activity Heatmap (GitHub-style) ──
+    function ktRenderHeatmap(dailyActivity) {
+      const el = document.getElementById('ktStatsHeatmap');
+      const cellSize = 12, gap = 2, total = cellSize + gap;
+      const dayLabels = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      const colorScale = d3.scaleThreshold().domain([1, 3, 5]).range(['rgba(255,255,255,0.04)', '#0d4429', '#006d32', '#26a641']);
+
+      // Local date helper (avoids UTC timezone shift from toISOString)
+      function localDateKey(d) {
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      }
+
+      // Build 90 days of cells aligned to day-of-week (GitHub style)
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const todayDow = (today.getDay() + 6) % 7; // Mon=0 ... Sun=6
+
+      // Go back 90 days from today, snap to previous Monday
+      const start = new Date(today);
+      start.setDate(start.getDate() - 89);
+      const startDow = (start.getDay() + 6) % 7;
+      start.setDate(start.getDate() - startDow); // snap to Monday
+
+      // Count weeks
+      const totalDays = Math.round((today - start) / 86400000) + 1;
+      const weeks = Math.ceil(totalDays / 7);
+      const W = weeks * total + 40, H = 7 * total + 20;
+
+      const svg = d3.select(el).append('svg').attr('width', W).attr('height', H);
+      const tooltip = d3.select(el).append('div').attr('class', 'kt-chart-tooltip').style('display', 'none');
+
+      // Day labels
+      dayLabels.forEach((d, i) => {
+        if (i % 2 === 0) {
+          svg.append('text').attr('x', 30).attr('y', i * total + cellSize + 2).attr('text-anchor', 'end')
+            .attr('fill', 'var(--text-tertiary)').attr('font-size', 9).attr('font-family', 'var(--font-body)').text(d);
+        }
+      });
+
+      // Cells
+      const cursor = new Date(start);
+      for (let w = 0; w < weeks; w++) {
+        for (let d = 0; d < 7; d++) {
+          if (cursor > today) break;
+          const key = localDateKey(cursor);
+          const act = dailyActivity[key] || {};
+          const count = (act.quizzes || 0) + (act.articles || 0);
+
+          svg.append('rect')
+            .attr('class', 'kt-heatmap-cell')
+            .attr('x', 36 + w * total).attr('y', d * total)
+            .attr('width', cellSize).attr('height', cellSize)
+            .attr('rx', 2).attr('fill', colorScale(count))
+            .on('mouseenter', function(ev) {
+              tooltip.style('display', 'block')
+                .html(`<b>${key}</b><br>${act.quizzes || 0} quizzes · ${act.articles || 0} articles`)
+                .style('left', (ev.offsetX + 10) + 'px').style('top', (ev.offsetY - 30) + 'px');
+            })
+            .on('mouseleave', () => tooltip.style('display', 'none'));
+
+          cursor.setDate(cursor.getDate() + 1);
+        }
+      }
+    }
+
+    // ── Stats: Weekly Activity (grouped bar chart) ──
+    function ktRenderWeeklyBars(weeklyQuiz) {
+      const el = document.getElementById('ktStatsWeekly');
+      const entries = Object.entries(weeklyQuiz).sort((a, b) => a[0].localeCompare(b[0])).slice(-8);
+      if (!entries.length) { el.innerHTML = '<div style="color:var(--text-tertiary);font-size:12px;padding:10px">No data yet</div>'; return; }
+
+      const margin = { top: 10, right: 20, bottom: 30, left: 35 };
+      const W = el.clientWidth || 700;
+      const chartW = W - margin.left - margin.right;
+      const chartH = 120;
+
+      const svg = d3.select(el).append('svg')
+        .attr('width', W).attr('height', chartH + margin.top + margin.bottom);
+      const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+      const weeks = entries.map(e => e[0]);
+      const x0 = d3.scaleBand().domain(weeks).range([0, chartW]).padding(0.3);
+      const x1 = d3.scaleBand().domain(['articles', 'quizzes']).range([0, x0.bandwidth()]).padding(0.05);
+      const maxVal = d3.max(entries, e => Math.max(e[1].total || 0, e[1].articles || 0)) || 5;
+      const y = d3.scaleLinear().domain([0, maxVal]).range([chartH, 0]);
+
+      const tooltip = d3.select(el).append('div').attr('class', 'kt-chart-tooltip').style('display', 'none');
+
+      entries.forEach(([week, vals]) => {
+        const gg = g.append('g').attr('transform', `translate(${x0(week)},0)`);
+        // Articles bar
+        gg.append('rect')
+          .attr('x', x1('articles')).attr('y', y(vals.articles || 0))
+          .attr('width', x1.bandwidth()).attr('height', chartH - y(vals.articles || 0))
+          .attr('fill', '#60a5fa').attr('rx', 2)
+          .on('mouseenter', (ev) => {
+            tooltip.style('display', 'block').html(`<b>${week}</b><br>📚 ${vals.articles || 0} articles`)
+              .style('left', (ev.offsetX + 10) + 'px').style('top', (ev.offsetY - 30) + 'px');
+          })
+          .on('mouseleave', () => tooltip.style('display', 'none'));
+        // Quizzes bar
+        gg.append('rect')
+          .attr('x', x1('quizzes')).attr('y', y(vals.total || 0))
+          .attr('width', x1.bandwidth()).attr('height', chartH - y(vals.total || 0))
+          .attr('fill', '#34d399').attr('rx', 2)
+          .on('mouseenter', (ev) => {
+            tooltip.style('display', 'block').html(`<b>${week}</b><br>🎯 ${vals.total || 0} quizzes`)
+              .style('left', (ev.offsetX + 10) + 'px').style('top', (ev.offsetY - 30) + 'px');
+          })
+          .on('mouseleave', () => tooltip.style('display', 'none'));
+      });
+
+      // X axis
+      g.append('g').attr('transform', `translate(0,${chartH})`)
+        .call(d3.axisBottom(x0).tickFormat(w => w.split('-')[1] || w))
+        .selectAll('text').attr('fill', 'var(--text-tertiary)').attr('font-size', 9);
+      g.append('g').call(d3.axisLeft(y).ticks(4))
+        .selectAll('text').attr('fill', 'var(--text-tertiary)').attr('font-size', 9);
+      g.selectAll('.domain, .tick line').attr('stroke', 'rgba(255,255,255,0.08)');
+
+      // Legend
+      const leg = svg.append('g').attr('transform', `translate(${margin.left},${margin.top - 2})`);
+      leg.append('rect').attr('width', 8).attr('height', 8).attr('fill', '#60a5fa').attr('rx', 2);
+      leg.append('text').attr('x', 12).attr('y', 8).attr('fill', 'var(--text-tertiary)').attr('font-size', 9).text('Articles');
+      leg.append('rect').attr('x', 65).attr('width', 8).attr('height', 8).attr('fill', '#34d399').attr('rx', 2);
+      leg.append('text').attr('x', 77).attr('y', 8).attr('fill', 'var(--text-tertiary)').attr('font-size', 9).text('Quizzes');
+    }
+
+    // ── Stats: Quiz Accuracy (line chart) ──
+    function ktRenderAccuracyChart(weeklyQuiz) {
+      const el = document.getElementById('ktStatsAccuracy');
+      const entries = Object.entries(weeklyQuiz).sort((a, b) => a[0].localeCompare(b[0])).slice(-8);
+      if (!entries.length) { el.innerHTML = '<div style="color:var(--text-tertiary);font-size:12px;padding:10px">No data yet</div>'; return; }
+
+      const margin = { top: 10, right: 20, bottom: 30, left: 40 };
+      const W = el.clientWidth || 700;
+      const chartW = W - margin.left - margin.right;
+      const chartH = 120;
+
+      const points = entries.map(([week, v]) => ({
+        week, accuracy: v.total > 0 ? Math.round((v.correct / v.total) * 100) : 0
+      }));
+
+      const svg = d3.select(el).append('svg')
+        .attr('width', W).attr('height', chartH + margin.top + margin.bottom);
+      const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+      const x = d3.scalePoint().domain(points.map(p => p.week)).range([0, chartW]).padding(0.5);
+      const y = d3.scaleLinear().domain([0, 100]).range([chartH, 0]);
+
+      // 80% threshold line
+      g.append('line')
+        .attr('x1', 0).attr('x2', chartW)
+        .attr('y1', y(80)).attr('y2', y(80))
+        .attr('stroke', '#f59e0b').attr('stroke-dasharray', '4,4').attr('stroke-width', 1).attr('opacity', 0.6);
+      g.append('text').attr('x', chartW + 4).attr('y', y(80) + 3)
+        .attr('fill', '#f59e0b').attr('font-size', 9).attr('opacity', 0.7).text('80%');
+
+      // Line
+      const line = d3.line().x(d => x(d.week)).y(d => y(d.accuracy)).curve(d3.curveMonotoneX);
+      g.append('path').datum(points).attr('d', line).attr('fill', 'none').attr('stroke', '#a78bfa').attr('stroke-width', 2);
+
+      // Dots + tooltip
+      const tooltip = d3.select(el).append('div').attr('class', 'kt-chart-tooltip').style('display', 'none');
+      g.selectAll('.acc-dot').data(points).enter().append('circle')
+        .attr('cx', d => x(d.week)).attr('cy', d => y(d.accuracy))
+        .attr('r', 4).attr('fill', '#a78bfa').attr('stroke', '#1a1a2e').attr('stroke-width', 2)
+        .on('mouseenter', function(ev, d) {
+          tooltip.style('display', 'block').html(`<b>${d.week}</b><br>${d.accuracy}% accuracy`)
+            .style('left', (ev.offsetX + 10) + 'px').style('top', (ev.offsetY - 30) + 'px');
+        })
+        .on('mouseleave', () => tooltip.style('display', 'none'));
+
+      // Axes
+      g.append('g').attr('transform', `translate(0,${chartH})`)
+        .call(d3.axisBottom(x).tickFormat(w => w.split('-')[1] || w))
+        .selectAll('text').attr('fill', 'var(--text-tertiary)').attr('font-size', 9);
+      g.append('g').call(d3.axisLeft(y).ticks(5).tickFormat(d => d + '%'))
+        .selectAll('text').attr('fill', 'var(--text-tertiary)').attr('font-size', 9);
+      g.selectAll('.domain, .tick line').attr('stroke', 'rgba(255,255,255,0.08)');
+    }
+
+    // ── Stats: Weakest Areas (list) ──
+    function ktRenderWeakAreas(ranking) {
+      const el = document.getElementById('ktStatsWeak');
+      if (!ranking.length) { el.innerHTML = '<div style="color:var(--text-tertiary);font-size:12px;padding:6px">No wrong answers yet — keep it up!</div>'; return; }
+      el.innerHTML = ranking.map((item, i) => `
+        <div class="kt-weak-row">
+          <span class="kt-coverage-rank">${i + 1}.</span>
+          <span class="kt-coverage-name">${ktEsc(item.title || item.node_id)}</span>
+          <span class="kt-weak-count">${item.wrong_count} wrong</span>
+          <button class="kt-coverage-open" onclick="ktOpenNodeById('${item.node_id}')">Practice →</button>
+        </div>
+      `).join('');
+    }
+
+    // Helper: open node by ID from stats links
+    function ktOpenNodeById(nodeId) {
+      const nodeData = ktFindNodeById(nodeId);
+      if (nodeData) {
+        ktSwitchView('tech-tree');
+        setTimeout(() => ktShowNodePage(nodeData), 300);
       }
     }
 
@@ -7209,6 +7716,7 @@
     }
 
     function ktShowQuestCompletionPopup(nodeId) {
+      ktSfx.nodeLit();
       // Solo Leveling style popup
       const popup = document.createElement('div');
       popup.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);animation:ktNodePageFadeIn 0.3s ease';
@@ -7719,6 +8227,11 @@
           if (xr.level_ups > 0) ktPendingPopups.push({ type: 'levelup', data: xr });
           if (xr.new_achievements) xr.new_achievements.forEach(a => ktPendingPopups.push({ type: 'achievement', data: a }));
         }
+        // Refresh hunter profile after each answer
+        fetch(KT_API + '/hunter-profile').then(r => r.json()).then(data => {
+          ktHunterProfile = data.profile || ktHunterProfile;
+          ktRenderHunterCard();
+        }).catch(() => {});
       }).catch(() => {});
     }
 
@@ -7778,6 +8291,7 @@
         `;
 
         document.getElementById('ktQuizNextBtn').style.display = '';
+        btn.style.display = 'none';
 
         const result = res.result || 'forgot';
         const score = res.score || 0;
@@ -7789,6 +8303,11 @@
           if (xr.level_ups > 0) ktPendingPopups.push({ type: 'levelup', data: xr });
           if (xr.new_achievements) xr.new_achievements.forEach(a => ktPendingPopups.push({ type: 'achievement', data: a }));
         }
+        // Refresh hunter profile after each answer
+        fetch(KT_API + '/hunter-profile').then(r => r.json()).then(data => {
+          ktHunterProfile = data.profile || ktHunterProfile;
+          ktRenderHunterCard();
+        }).catch(() => {});
       } catch (e) {
         btn.textContent = 'Error - Try Again';
         btn.disabled = false;
@@ -7944,24 +8463,28 @@
         box.style.boxShadow = '0 0 80px rgba(74,0,128,0.6), 0 0 160px rgba(192,132,252,0.3)';
         document.getElementById('ktLevelUpDesc').textContent =
           'The ultimate power is yours. You have transcended all limits.';
+        ktSfx.rankUp();
       } else if (newRank === 'National') {
         iconEl.textContent = '👑';
         headlineEl.textContent = 'NATIONAL LEVEL AWAKENING';
         headlineEl.style.color = '#ffd700';
         document.getElementById('ktLevelUpDesc').textContent =
           'You have surpassed S-Rank. Your power rivals nations.';
+        ktSfx.rankUp();
       } else if (rankChanged) {
         iconEl.textContent = '🔥';
         headlineEl.textContent = 'RANK UP!';
         headlineEl.style.color = '#fbbf24';
         document.getElementById('ktLevelUpDesc').textContent =
           oldRank + '-Rank → ' + newRank + '-Rank! Your hunter rank has increased!';
+        ktSfx.rankUp();
       } else {
         iconEl.textContent = '⚡';
         headlineEl.textContent = 'Level Up!';
         headlineEl.style.color = '#fbbf24';
         document.getElementById('ktLevelUpDesc').textContent =
           'You gained ' + (xrData.xp_gained || 0) + ' XP and leveled up! Your power grows.';
+        ktSfx.levelUp();
       }
       overlay.classList.add('open');
     }

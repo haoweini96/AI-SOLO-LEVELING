@@ -113,22 +113,23 @@ BRANCH_ACHIEVEMENT_MAP = {
 
 # Solo Leveling rank table: (min_level, max_level, rank, title_at_min, title_at_max)
 RANK_TABLE = [
-    (1,   5,   "E", "觉醒者",       "E-Rank Hunter"),
-    (6,   10,  "E", "E级猎人",      "E级精英"),
-    (11,  15,  "D", "D级猎人",      "D级猎人"),
-    (16,  20,  "D", "D级精英",      "见习突破者"),
-    (21,  27,  "C", "C级猎人",      "C级猎人"),
-    (28,  35,  "C", "C级精英",      "正式战力"),
-    (36,  42,  "B", "B级猎人",      "B级猎人"),
-    (43,  50,  "B", "B级精英",      "攻略组成员"),
-    (51,  57,  "A", "A级猎人",      "A级猎人"),
-    (58,  65,  "A", "A级精英",      "公会核心"),
-    (66,  72,  "S", "S级猎人",      "S级猎人"),
-    (73,  80,  "S", "S级精英",      "最强战力"),
-    (81,  87,  "National", "国家权力级",  "国家权力级"),
-    (88,  95,  "National", "国家权力级精英", "超越人类"),
-    (96,  99,  "Monarch",  "君主候选",    "君主"),
-    (100, 100, "Shadow Monarch", "暗影君王", "暗影君王"),
+    # (min_level, max_level, rank, title_cn, subtitle_cn)
+    (1,   5,   "E", "觉醒者",         "初入猎场"),
+    (6,   10,  "E", "E级猎人",        "崭露头角"),
+    (11,  15,  "D", "D级猎人",        "小有名气"),
+    (16,  20,  "D", "D级精英",        "见习突破者"),
+    (21,  27,  "C", "C级猎人",        "独当一面"),
+    (28,  35,  "C", "C级精英",        "百战之将"),
+    (36,  42,  "B", "B级猎人",        "公会中坚"),
+    (43,  50,  "B", "B级精英",        "攻略组核心"),
+    (51,  57,  "A", "A级猎人",        "名震四方"),
+    (58,  65,  "A", "A级精英",        "顶级战力"),
+    (66,  72,  "S", "S级猎人",        "人类巅峰"),
+    (73,  80,  "S", "S级精英",        "传说猎人"),
+    (81,  87,  "National", "国家权力级",  "超越人类"),
+    (88,  95,  "National", "国家权力级精英", "世界守护者"),
+    (96,  99,  "Monarch",  "君主候选",    "暗影觉醒"),
+    (100, 100, "Shadow Monarch", "暗影君王", "统御万影"),
 ]
 
 
@@ -257,8 +258,8 @@ def _get_all_intermediate_nodes(template: dict) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def xp_for_level(level: int) -> int:
-    """XP required to reach the next level."""
-    return int(100 * (1.15 ** (level - 1)))
+    """XP required to reach the next level. ~67.5K total for Lv.100, ~1 year at 200 XP/day."""
+    return round(45 + 3 * level * (1.02 ** level))
 
 
 def _rank_for_level(level: int) -> str:
@@ -269,13 +270,17 @@ def _rank_for_level(level: int) -> str:
 
 
 def _title_for_level(level: int) -> str:
-    for min_l, max_l, _, title_min, title_max in RANK_TABLE:
+    for min_l, max_l, _, title_cn, _ in RANK_TABLE:
         if min_l <= level <= max_l:
-            if level <= (min_l + max_l) // 2:
-                return title_min
-            else:
-                return title_max
+            return title_cn
     return "觉醒者"
+
+
+def _subtitle_for_level(level: int) -> str:
+    for min_l, max_l, _, _, subtitle_cn in RANK_TABLE:
+        if min_l <= level <= max_l:
+            return subtitle_cn
+    return "初入猎场"
 
 
 def _update_streak(profile: dict):
@@ -436,6 +441,7 @@ def _award_xp(amount: int, reason: str, tree_data: dict | None = None) -> dict:
         profile["xp_to_next_level"] = xp_for_level(profile["level"])
         profile["rank"] = _rank_for_level(profile["level"])
         profile["title"] = _title_for_level(profile["level"])
+        profile["subtitle"] = _subtitle_for_level(profile["level"])
 
     # Cap at level 100
     if profile["level"] >= 100:
@@ -446,6 +452,7 @@ def _award_xp(amount: int, reason: str, tree_data: dict | None = None) -> dict:
     # Always recalculate rank/title (handles migration from old rank system)
     profile["rank"] = _rank_for_level(profile["level"])
     profile["title"] = _title_for_level(profile["level"])
+    profile["subtitle"] = _subtitle_for_level(profile["level"])
 
     # Update stats
     if tree_data is None:
@@ -470,6 +477,16 @@ def _award_xp(amount: int, reason: str, tree_data: dict | None = None) -> dict:
                 profile["xp_to_next_level"] = xp_for_level(profile["level"])
                 profile["rank"] = _rank_for_level(profile["level"])
                 profile["title"] = _title_for_level(profile["level"])
+                profile["subtitle"] = _subtitle_for_level(profile["level"])
+
+    # Append XP history entry
+    xp_history = profile.setdefault("xp_history", [])
+    xp_history.append({
+        "date": datetime.utcnow().strftime("%Y-%m-%d"),
+        "amount": amount,
+        "reason": reason,
+        "total_after": profile.get("total_xp", 0),
+    })
 
     _save_profile(profile)
 
@@ -1875,6 +1892,145 @@ def kt_stats():
     })
 
 
+@knowledge_tree_bp.route("/api/knowledge-tree/dashboard-stats")
+def kt_dashboard_stats():
+    """Comprehensive stats for the Stats dashboard tab."""
+    tree_data = _load_tree()
+    reviews_data = load_json(KNOWLEDGE_REVIEWS_FILE, {"reviews": []})
+    profile = _load_profile()
+    study_videos_raw = load_json(DATA_DIR / "study_videos.json", {})
+
+    nodes = tree_data.get("nodes", {})
+    reviews = reviews_data.get("reviews", [])
+    videos = study_videos_raw if isinstance(study_videos_raw, list) else study_videos_raw.get("videos", [])
+    titles = _build_title_map()
+
+    # Helper: extract local date from ISO timestamp (handles UTC→local conversion)
+    def _local_date(iso_str: str) -> str:
+        if not iso_str:
+            return ""
+        try:
+            dt = datetime.fromisoformat(iso_str)
+            if dt.tzinfo is not None:
+                dt = dt.astimezone()  # convert to local timezone
+            return dt.strftime("%Y-%m-%d")
+        except Exception:
+            return iso_str[:10]  # fallback
+
+    # === Daily activity (from reviews + videos timestamps) ===
+    daily_activity = {}
+    for r in reviews:
+        date = _local_date(r.get("reviewed_at", ""))
+        if date:
+            daily_activity.setdefault(date, {"quizzes": 0, "articles": 0, "xp": 0})
+            daily_activity[date]["quizzes"] += 1
+
+    for v in videos:
+        date = _local_date(v.get("started_at", ""))
+        if date and v.get("status") == "done":
+            daily_activity.setdefault(date, {"quizzes": 0, "articles": 0, "xp": 0})
+            daily_activity[date]["articles"] += 1
+
+    # Merge XP history into daily_activity
+    for entry in profile.get("xp_history", []):
+        date = entry.get("date", "")[:10]
+        if date:
+            daily_activity.setdefault(date, {"quizzes": 0, "articles": 0, "xp": 0})
+            daily_activity[date]["xp"] += entry.get("amount", 0)
+
+    # === Quiz stats ===
+    total_quizzes = len(reviews)
+    correct = sum(1 for r in reviews if r.get("result") in ("easy", "remembered"))
+    wrong = sum(1 for r in reviews if r.get("result") == "forgot")
+    accuracy = correct / total_quizzes if total_quizzes > 0 else 0
+
+    # === Weekly quiz breakdown ===
+    weekly_quiz = {}
+    for r in reviews:
+        date = _local_date(r.get("reviewed_at", ""))
+        if date:
+            try:
+                dt = datetime.fromisoformat(date)
+                week = dt.strftime("%Y-W%W")
+                weekly_quiz.setdefault(week, {"total": 0, "correct": 0, "articles": 0})
+                weekly_quiz[week]["total"] += 1
+                if r.get("result") in ("easy", "remembered"):
+                    weekly_quiz[week]["correct"] += 1
+            except Exception:
+                pass
+
+    # Add articles to weekly breakdown
+    for v in videos:
+        date = _local_date(v.get("started_at", ""))
+        if date and v.get("status") == "done":
+            try:
+                dt = datetime.fromisoformat(date)
+                week = dt.strftime("%Y-W%W")
+                weekly_quiz.setdefault(week, {"total": 0, "correct": 0, "articles": 0})
+                weekly_quiz[week]["articles"] += 1
+            except Exception:
+                pass
+
+    # === Branch stats (radar) ===
+    stats_radar = profile.get("stats", {})
+
+    # === Coverage ranking (closest to completion) ===
+    coverage_ranking = []
+    for nid, node in nodes.items():
+        if node.get("status") == "in_progress":
+            cov = node.get("quest", {}).get("progress", {}).get("overall_coverage", 0)
+            threshold = node.get("quest", {}).get("coverage_threshold", 0.7)
+            coverage_ranking.append({
+                "node_id": nid,
+                "title": titles.get(nid, node.get("title", nid)),
+                "coverage": round(cov, 3),
+                "threshold": threshold,
+                "completion": round(min(cov / threshold, 1.0) if threshold > 0 else 0, 3),
+            })
+    coverage_ranking.sort(key=lambda x: x["completion"], reverse=True)
+
+    # === Weakest areas (most wrong answers) ===
+    wrong_by_node = {}
+    for r in reviews:
+        if r.get("result") == "forgot":
+            nid = r.get("node_id", "")
+            wrong_by_node[nid] = wrong_by_node.get(nid, 0) + 1
+    wrong_ranking = sorted(wrong_by_node.items(), key=lambda x: x[1], reverse=True)[:5]
+    wrong_ranking = [
+        {"node_id": nid, "title": titles.get(nid, nid), "wrong_count": cnt}
+        for nid, cnt in wrong_ranking
+    ]
+
+    return jsonify({
+        "daily_activity": daily_activity,
+        "weekly_quiz": weekly_quiz,
+        "quiz_stats": {
+            "total": total_quizzes,
+            "correct": correct,
+            "wrong": wrong,
+            "accuracy": round(accuracy, 2),
+        },
+        "branch_stats": stats_radar,
+        "coverage_ranking": coverage_ranking[:10],
+        "wrong_ranking": wrong_ranking,
+        "profile": {
+            "level": profile.get("level", 1),
+            "rank": profile.get("rank", "E"),
+            "title": profile.get("title", ""),
+            "xp": profile.get("total_xp", 0),
+            "current_xp": profile.get("current_xp", 0),
+            "xp_to_next": profile.get("xp_to_next_level", 100),
+            "streak": profile.get("daily_streak", 0),
+            "total_sources": len(tree_data.get("sources", [])),
+            "nodes_in_progress": sum(1 for n in nodes.values() if n.get("status") == "in_progress"),
+            "nodes_lit": sum(1 for n in nodes.values() if n.get("status") == "lit"),
+            "nodes_mastered": sum(1 for n in nodes.values() if n.get("status") == "mastered"),
+            "nodes_locked": sum(1 for n in nodes.values() if n.get("status") == "locked"),
+        },
+        "xp_history": profile.get("xp_history", []),
+    })
+
+
 # ---------------------------------------------------------------------------
 # Routes — Recommended Tasks (Daily / Weekly Quests)
 # ---------------------------------------------------------------------------
@@ -2756,6 +2912,7 @@ def kt_migrate_quests():
     profile["xp_to_next_level"] = xp_for_level(level)
     profile["rank"] = _rank_for_level(level)
     profile["title"] = _title_for_level(level)
+    profile["subtitle"] = _subtitle_for_level(level)
     _save_profile(profile)
 
     log.info("Quest migration complete: %d quests generated, %d nodes regressed, XP=%d",
